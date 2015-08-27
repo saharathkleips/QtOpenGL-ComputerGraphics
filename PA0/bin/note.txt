@@ -1,0 +1,1 @@
+The executable should draw a triangle on a white background
