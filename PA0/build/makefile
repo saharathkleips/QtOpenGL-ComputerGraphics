@@ -10,8 +10,8 @@ LIBS= -lglut -lGLEW -lGL
 # Compiler flags
 CXXFLAGS= -g -Wall -std=c++0x
 
-all: ../bin/Pass
+all: ../bin/Pass.out
 
-../bin/Pass: ../src/main.cpp
+../bin/Pass.out: ../src/main.cpp
 	$(CC) $(CXXFLAGS) ../src/main.cpp -o ../bin/Pass $(LIBS)
 

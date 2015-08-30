@@ -1,8 +1,6 @@
 # PA1 - Rotating Cube
 ## Saharath Kleips
 
----
-
 A simple example of matrix use in OpenGL
 ========================================
 
