@@ -3,6 +3,7 @@
 #include <iostream>
 #include <chrono>
 
+#define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp> //Makes passing matrices to shaders easier
@@ -146,6 +147,7 @@ void update()
 
     angle += dt * M_PI/2; //move through 90 degrees a second
     model = glm::translate( glm::mat4(1.0f), glm::vec3(4.0 * sin(angle), 0.0, 4.0 * cos(angle)));
+    model = glm::rotate( model, angle * -200, glm::vec3(0, 1, 0) );
     // Update the state of the scene
     glutPostRedisplay();//call the display callback
 }
