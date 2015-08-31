@@ -29,8 +29,12 @@ GLuint ShaderLoader::loadShader()
     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &result);
     glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &logLength);
     std::vector<char> vertexShaderError((logLength > 1) ? logLength : 1);
-    glGetShaderInfoLog(vertexShader, logLength, NULL, &vertexShaderError[0]);
-    std::cerr << &vertexShaderError[0] << std::endl;
+    if(logLength > 1)
+    {
+        glGetShaderInfoLog(vertexShader, logLength, NULL, 
+            &vertexShaderError[0]);
+        std::cerr << &vertexShaderError[0] << std::endl;
+    }
 
     //Compile Fragment Shader
     glShaderSource(fragmentShader, 1, &cStrFragmentShader, NULL);
@@ -40,9 +44,12 @@ GLuint ShaderLoader::loadShader()
     glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &result);
     glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &logLength);
     std::vector<char> fragmentShaderError((logLength > 1) ? logLength : 1);
-    glGetShaderInfoLog(fragmentShader, logLength, NULL, 
-        &fragmentShaderError[0]);
-    std::cerr << &fragmentShaderError[0] << std::endl;
+    if(logLength > 1)
+    {
+        glGetShaderInfoLog(fragmentShader, logLength, NULL, 
+            &fragmentShaderError[0]);
+        std::cerr << &fragmentShaderError[0] << std::endl;
+    }
 
     //Link Program
     GLuint program = glCreateProgram();
@@ -53,8 +60,11 @@ GLuint ShaderLoader::loadShader()
     glGetProgramiv(program, GL_LINK_STATUS, &result);
     glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLength);
     std::vector<char> programError( (logLength > 1) ? logLength : 1);
-    glGetProgramInfoLog(program, logLength, NULL, &programError[0]);
-    std::cerr << &programError[0] << std::endl;
+    if(logLength > 1)
+    {
+        glGetProgramInfoLog(program, logLength, NULL, &programError[0]);
+        std::cerr << &programError[0] << std::endl;
+    }
 
     //Return Program
     return program;
