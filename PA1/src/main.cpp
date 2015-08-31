@@ -7,6 +7,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp> //Makes passing matrices to shaders easier
 
+#include "ShaderLoader.h"
+
 
 //--Data types
 //This object will define the attributes of a vertex(position, color, etc...)
@@ -231,66 +233,10 @@ bool initialize()
 
     //--Geometry done
 
-    GLuint vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-    GLuint fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-
-    //Shader Sources
-    // Put these into files and write a loader in the future
-    // Note the added uniform!
-    const char *vs =
-        "attribute vec3 v_position;"
-        "attribute vec3 v_color;"
-        "varying vec3 color;"
-        "uniform mat4 mvpMatrix;"
-        "void main(void){"
-        "   gl_Position = mvpMatrix * vec4(v_position, 1.0);"
-        "   color = v_color;"
-        "}";
-
-    const char *fs =
-        "varying vec3 color;"
-        "void main(void){"
-        "   gl_FragColor = vec4(color.rgb, 1.0);"
-        "}";
-
-    //compile the shaders
-    GLint shader_status;
-
-    // Vertex shader first
-    glShaderSource(vertex_shader, 1, &vs, NULL);
-    glCompileShader(vertex_shader);
-    //check the compile status
-    glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &shader_status);
-    if(!shader_status)
-    {
-        std::cerr << "[F] FAILED TO COMPILE VERTEX SHADER!" << std::endl;
-        return false;
-    }
-
-    // Now the Fragment shader
-    glShaderSource(fragment_shader, 1, &fs, NULL);
-    glCompileShader(fragment_shader);
-    //check the compile status
-    glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &shader_status);
-    if(!shader_status)
-    {
-        std::cerr << "[F] FAILED TO COMPILE FRAGMENT SHADER!" << std::endl;
-        return false;
-    }
-
-    //Now we link the 2 shader objects into a program
-    //This program is what is run on the GPU
-    program = glCreateProgram();
-    glAttachShader(program, vertex_shader);
-    glAttachShader(program, fragment_shader);
-    glLinkProgram(program);
-    //check if everything linked ok
-    glGetProgramiv(program, GL_LINK_STATUS, &shader_status);
-    if(!shader_status)
-    {
-        std::cerr << "[F] THE SHADER PROGRAM FAILED TO LINK" << std::endl;
-        return false;
-    }
+    ShaderLoader shaderLoader = ShaderLoader(
+        "defaultVertexShader.vs", "defaultFragmentShader.fs");
+    program = shaderLoader.loadShader();
+    glUseProgram(program);
 
     //Now we set the locations of the attributes and uniforms
     //this allows us to access them easily while rendering
