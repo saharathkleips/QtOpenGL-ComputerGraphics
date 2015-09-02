@@ -146,19 +146,20 @@ void update()
 {
     //total time
     static float angle = 0.0;
+    static float rotation = 0.0;
     float dt = getDT();// if you have anything moving, use dt.
 
     angle += dt * M_PI/2; //move through 90 degrees a second
     model = glm::translate( glm::mat4(1.0f), glm::vec3(4.0 * sin(angle), 0.0, 4.0 * cos(angle)));
     if(clockwise)
     {
-      std::cout << "going clockwise" << std::endl;
-      model = glm::rotate( model, angle * -2, glm::vec3(0, 1, 0) );
+      rotation -= dt * M_PI/2;
+      model = glm::rotate( model, rotation, glm::vec3(0, 1, 0) );
     }
     else
     {
-      std::cout << "going counter clockwise" << std::endl;
-      model = glm::rotate( model, angle * 2, glm::vec3(0, 1, 0) );
+      rotation += dt * M_PI/2;
+      model = glm::rotate( model, rotation, glm::vec3(0, 1, 0) );
     }
     // Update the state of the scene
     glutPostRedisplay();//call the display callback
@@ -184,12 +185,12 @@ void keyboard(unsigned char key, int x_pos, int y_pos)
       case 27:  //ESC
         exit(0);
         break;
-      case 68: //Left Arrow
-        std::cout << "Left arrow pushed" << std::endl;
+      case 97:  //'a'
+      case 65:  //'A'
         clockwise = false;
         break;
-      case 67:  //Right Arrow
-        std::cout << "Right arrow pushed" << std::endl;
+      case 100: //'d'
+      case 68:  //'D'
         clockwise = true;
         break;
       default:  //Default
