@@ -38,6 +38,9 @@ glm::mat4 view;//world->eye
 glm::mat4 projection;//eye->clip
 glm::mat4 mvp;//premultiplied modelviewprojection
 
+//Evil Global Variables
+bool clockwise;
+
 //--GLUT Callbacks
 void render();
 void update();
@@ -147,7 +150,10 @@ void update()
 
     angle += dt * M_PI/2; //move through 90 degrees a second
     model = glm::translate( glm::mat4(1.0f), glm::vec3(4.0 * sin(angle), 0.0, 4.0 * cos(angle)));
-    model = glm::rotate( model, angle * -200, glm::vec3(0, 1, 0) );
+    if(clockwise)
+      model = glm::rotate( model, angle * -200, glm::vec3(0, 1, 0) );
+    else
+      model = glm::rotate( model, angle * 200, glm::vec3(0, 1, 0) );
     // Update the state of the scene
     glutPostRedisplay();//call the display callback
 }
@@ -167,11 +173,20 @@ void reshape(int n_w, int n_h)
 
 void keyboard(unsigned char key, int x_pos, int y_pos)
 {
-    // Handle keyboard input
-    if(key == 27)//ESC
+    switch (key)
     {
+      case 27:  //ESC
         exit(0);
-    }
+        break;
+      case 37: //Left Arrow
+        clockwise = false;
+        break;
+      case 39:  //Right Arrow
+        clockwise = true;
+        break;
+      default:  //Default
+        break;
+    }  
 }
 
 bool initialize()
