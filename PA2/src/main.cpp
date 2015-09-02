@@ -47,6 +47,7 @@ void update();
 void reshape(int n_w, int n_h);
 void keyboard(unsigned char key, int x_pos, int y_pos);
 void mouse(int button, int state, int x, int y);
+void menu(int index);
 
 //--Resource management
 bool initialize();
@@ -83,6 +84,11 @@ int main(int argc, char **argv)
     glutIdleFunc(update);// Called if there is nothing else to do
     glutKeyboardFunc(keyboard);// Called if there is keyboard input
     glutMouseFunc(mouse);//Called if there is mouse input
+
+    glutCreateMenu(menu);
+    glutAddMenuEntry("Rotate Off", 1);
+    glutAddMenuEntry("Exit Program", 2);
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
 
     // Initialize all of our resources(shaders, geometry)
     bool init = initialize();
@@ -207,13 +213,25 @@ void mouse(int button, int state, int x, int y)
     switch(button)
     {
       case GLUT_LEFT_BUTTON:
-      case GLUT_RIGHT_BUTTON:
         clockwise = !clockwise;
         break;
       default:
         break;
     }
   }
+}
+
+void menu(int index)
+{
+  //std::cout << index << std::endl;
+  switch(index)
+  {
+    case 1: //Rotate
+      break;
+    case 2: //Exit Program
+      exit(0);
+      break;
+    }
 }
 
 bool initialize()
