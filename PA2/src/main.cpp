@@ -151,9 +151,15 @@ void update()
     angle += dt * M_PI/2; //move through 90 degrees a second
     model = glm::translate( glm::mat4(1.0f), glm::vec3(4.0 * sin(angle), 0.0, 4.0 * cos(angle)));
     if(clockwise)
-      model = glm::rotate( model, angle * -200, glm::vec3(0, 1, 0) );
+    {
+      std::cout << "going clockwise" << std::endl;
+      model = glm::rotate( model, angle * -2, glm::vec3(0, 1, 0) );
+    }
     else
-      model = glm::rotate( model, angle * 200, glm::vec3(0, 1, 0) );
+    {
+      std::cout << "going counter clockwise" << std::endl;
+      model = glm::rotate( model, angle * 2, glm::vec3(0, 1, 0) );
+    }
     // Update the state of the scene
     glutPostRedisplay();//call the display callback
 }
@@ -178,10 +184,12 @@ void keyboard(unsigned char key, int x_pos, int y_pos)
       case 27:  //ESC
         exit(0);
         break;
-      case 37: //Left Arrow
+      case 68: //Left Arrow
+        std::cout << "Left arrow pushed" << std::endl;
         clockwise = false;
         break;
-      case 39:  //Right Arrow
+      case 67:  //Right Arrow
+        std::cout << "Right arrow pushed" << std::endl;
         clockwise = true;
         break;
       default:  //Default
