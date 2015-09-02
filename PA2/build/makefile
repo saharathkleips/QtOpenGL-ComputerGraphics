@@ -10,13 +10,13 @@ LIBS= -lglut -lGLEW -lGL
 # Compiler flags
 CXXFLAGS= -g -Wall -std=c++0x
 
-all: ../bin/Matrix.out
+all: ../bin/PA2.out
 
-../bin/Matrix.out: ../src/main.cpp ../src/ShaderLoader.o
-	$(CC) $(CXXFLAGS) ../src/main.cpp ../src/ShaderLoader.o -o ../bin/Matrix.out $(LIBS)
+../bin/PA2.out: ../src/main.cpp ../src/ShaderLoader.o
+	$(CC) $(CXXFLAGS) ../src/main.cpp ../src/ShaderLoader.o -o ../bin/PA2.out $(LIBS)
 
 ../bin/ShaderLoader.o: ../src/ShaderLoader.cpp ../src/ShaderLoader.h
 	$(CC) $(CXXFLAGS) ../src/ShaderLoader.cpp -c -o ../bin/ShaderLoader.o $(LIBS)
 
 clean: 
-	rm -rf *.o ../bin/Matrix.out
+	rm -rf *.o ../bin/PA2.out
