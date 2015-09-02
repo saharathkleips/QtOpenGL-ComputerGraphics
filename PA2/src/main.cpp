@@ -46,6 +46,7 @@ void render();
 void update();
 void reshape(int n_w, int n_h);
 void keyboard(unsigned char key, int x_pos, int y_pos);
+void mouse(int button, int state, int x, int y);
 
 //--Resource management
 bool initialize();
@@ -81,6 +82,7 @@ int main(int argc, char **argv)
     glutReshapeFunc(reshape);// Called if the window is resized
     glutIdleFunc(update);// Called if there is nothing else to do
     glutKeyboardFunc(keyboard);// Called if there is keyboard input
+    glutMouseFunc(mouse);//Called if there is mouse input
 
     // Initialize all of our resources(shaders, geometry)
     bool init = initialize();
@@ -196,6 +198,22 @@ void keyboard(unsigned char key, int x_pos, int y_pos)
       default:  //Default
         break;
     }  
+}
+
+void mouse(int button, int state, int x, int y)
+{
+  if(state == GLUT_UP)
+  {
+    switch(button)
+    {
+      case GLUT_LEFT_BUTTON:
+      case GLUT_RIGHT_BUTTON:
+        clockwise = !clockwise;
+        break;
+      default:
+        break;
+    }
+  }
 }
 
 bool initialize()
