@@ -40,6 +40,7 @@ glm::mat4 mvp;//premultiplied modelviewprojection
 
 //Evil Global Variables
 bool clockwise;
+bool spinning;
 
 //--GLUT Callbacks
 void render();
@@ -161,13 +162,15 @@ void update()
     model = glm::translate( glm::mat4(1.0f), glm::vec3(4.0 * sin(angle), 0.0, 4.0 * cos(angle)));
     if(clockwise)
     {
-      rotation -= dt * M_PI/2;
-      model = glm::rotate( model, rotation, glm::vec3(0, 1, 0) );
+        if(spinning)
+            rotation -= 2;
+        model = glm::rotate( model, rotation, glm::vec3(0, 1, 0) );
     }
     else
     {
-      rotation += dt * M_PI/2;
-      model = glm::rotate( model, rotation, glm::vec3(0, 1, 0) );
+        if(spinning)
+            rotation += 2;
+        model = glm::rotate( model, rotation, glm::vec3(0, 1, 0) );
     }
     // Update the state of the scene
     glutPostRedisplay();//call the display callback
@@ -227,6 +230,7 @@ void menu(int index)
   switch(index)
   {
     case 1: //Rotate
+        spinning = !spinning;
       break;
     case 2: //Exit Program
       exit(0);
