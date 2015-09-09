@@ -39,9 +39,9 @@ glm::mat4 projection;//eye->clip
 glm::mat4 mvp;//premultiplied modelviewprojection
 
 //Evil Global Variables
-bool exit_flag;
 bool clockwise;
 bool spinning;
+GLint optionsMenu;
 
 //--GLUT Callbacks
 void render();
@@ -87,8 +87,8 @@ int main(int argc, char **argv)
     glutKeyboardFunc(keyboard);// Called if there is keyboard input
     glutMouseFunc(mouse);//Called if there is mouse input
 
-    glutCreateMenu(menu);
-    glutAddMenuEntry("Rotate Off", 1);
+    optionsMenu = glutCreateMenu(menu);
+    glutAddMenuEntry("Rotate", 1);
     glutAddMenuEntry("Exit Program", 2);
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 
@@ -154,9 +154,6 @@ void render()
 
 void update()
 {
-    if(exit_flag)
-      exit(0);
-
     //total time
     static float angle = 0.0;
     static float rotation = 0.0;
@@ -167,13 +164,13 @@ void update()
     if(clockwise)
     {
         if(spinning)
-            rotation -= 2;
+            rotation -= .01;
         model = glm::rotate( model, rotation, glm::vec3(0, 1, 0) );
     }
     else
     {
         if(spinning)
-            rotation += 2;
+            rotation += .01;
         model = glm::rotate( model, rotation, glm::vec3(0, 1, 0) );
     }
     // Update the state of the scene
@@ -198,7 +195,8 @@ void keyboard(unsigned char key, int x_pos, int y_pos)
     switch (key)
     {
       case 27:  //ESC
-        exit_flag = true;
+        glutDestroyMenu(optionsMenu);
+        exit(0);
         break;
       case 97:  //'a'
       case 65:  //'A'
@@ -237,7 +235,8 @@ void menu(int index)
         spinning = !spinning;
       break;
     case 2: //Exit Program
-      exit_flag = true;
+        glutDestroyMenu(optionsMenu);
+        exit(0);
       break;
     }
 }
