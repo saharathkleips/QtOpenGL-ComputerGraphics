@@ -1,6 +1,17 @@
 # PA2 - Interaction: Menus, Keyboard, and Mouse
 ## Saharath Kleips
 
+This project displays various interaction techniques utilizing GLUT.
+The cube starts off translating in an elliptical path, to start the rotation, enable it within the menu (instructions found below).
+Controls for this program are as follows:
+ Keyboard 'a' / 'd' keys: Rotates the cube clockwise / counter-clockwise respectively.
+ Left Mouse Click: Switches the rotation of the cube.
+ Right Mouse Click: Opens up a menu.
+
+ Menu Items:
+ Rotate: Enables / Disables the rotation of the cube.
+ Exit: Exits the program.
+
 A simple example of interactions in OpenGL
 ========================================
 
