@@ -165,13 +165,13 @@ void update()
     if(clockwise)
     {
         if(spinning)
-            rotation -= .01;
+            rotation -= .001;
         model = glm::rotate( model, rotation, glm::vec3(0, 1, 0) );
     }
     else
     {
         if(spinning)
-            rotation += .01;
+            rotation += .001;
         model = glm::rotate( model, rotation, glm::vec3(0, 1, 0) );
     }
     // Update the state of the scene
