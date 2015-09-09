@@ -39,6 +39,7 @@ glm::mat4 projection;//eye->clip
 glm::mat4 mvp;//premultiplied modelviewprojection
 
 //Evil Global Variables
+bool exit_flag = false;
 bool clockwise;
 bool spinning;
 GLint optionsMenu;
@@ -175,6 +176,12 @@ void update()
     }
     // Update the state of the scene
     glutPostRedisplay();//call the display callback
+
+    if(exit_flag)
+    {
+      glutDestroyMenu(optionsMenu);
+      exit(0);
+    }
 }
 
 
@@ -195,8 +202,7 @@ void keyboard(unsigned char key, int x_pos, int y_pos)
     switch (key)
     {
       case 27:  //ESC
-        glutDestroyMenu(optionsMenu);
-        exit(0);
+        exit_flag = true;
         break;
       case 97:  //'a'
       case 65:  //'A'
@@ -235,8 +241,7 @@ void menu(int index)
         spinning = !spinning;
       break;
     case 2: //Exit Program
-        glutDestroyMenu(optionsMenu);
-        exit(0);
+        exit_flag = true;
       break;
     }
 }
