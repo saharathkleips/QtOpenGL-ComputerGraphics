@@ -31,5 +31,6 @@
 *~
 
 # Qmake Files
-moc_*
-qrc_*
+moc_*.cpp
+qrc_*.cpp
+*.moc
