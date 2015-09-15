@@ -3,8 +3,8 @@ TODO: Write Description
 
 ## Table of Contents
 + [Program Usage](#program-usage)  
-- [Controls](#controls)  
-- [Context Menu](#context-menu)  
+    - [Controls](#controls)  
+    - [Context Menu](#context-menu)  
 + [Installation Instructions](#installation-instructions)  
 + [Build Instructions](#build-instructions)  
 
@@ -70,13 +70,13 @@ TODO: Write Description
             <th>Context Item</th>
             <th>Description</th>
         </tr>
-            <th>Unpause / Pause</th>
-            <th>Unpauses / pauses all object montion</th>
+            <td>Unpause / Pause</td>
+            <td>Unpauses / pauses all object montion</td>
         <tr>
         </tr>
         <tr>
-            <th>Exit Program</th>
-            <th>Exit the program</th>
+            <td>Exit Program</td>
+            <td>Exit the program</td>
         </tr>
     </tbody>
 </table>
