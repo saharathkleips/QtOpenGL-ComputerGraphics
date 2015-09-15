@@ -10,6 +10,8 @@ This program displays a planet orbiting around a central location with a moon th
 + [Installation Instructions](#installation-instructions)  
     - [Ubuntu 14.04 LTS](#ubuntu-14.04-lts)
 + [Build Instructions](#build-instructions)  
++ [Bug Encounters / Error Fixes](#bug-encounters--error-fixes)
+    - [Not Found in Mesa Table OpenGL Error](#not-found-in-mesa-table-opengl-error)
 
 ## Program Usage
 ###Controls
@@ -107,11 +109,11 @@ sudo apt-get install qt-latest
 ```
 
 **Set Up Development Environment**  
-Your `qtchooser` should now list opt-qt55 as an option
+Your `qtchooser` should now list opt-qt55 as an option.
 ```
 qtchooser --list-versions
 ```
-Add the environment variables to your bashrc file
+Add the environment variables to your bashrc file.
 ```
 echo 'export QT_SELECT=opt-qt55' >> ~/.bashrc
 ```
@@ -120,12 +122,12 @@ Restart your terminal.
 ### Ubuntu 12.04 LTS
 
 ## Build Instructions
-Navigate to the `build` directory
+Navigate to the `build` directory.
 ```
 qmake
 make
 ```
-Navigate to the `bin` directory
+Navigate to the `bin` directory.
 ```
 ./PA3.exe
 ```
@@ -136,7 +138,7 @@ qmake; make; cd ../bin; ./PA3.exe; cd ../build
 make; cd ../bin; ./PA3.exe; cd ../build
 ```
 
-**Note:** `qmake` does not need to be run before `make` everytime, only when the `.pro` file has been changed. Otherwise, simple `qmake` once and `make` from there on out.
+**Note:** `qmake` does not need to be run before `make` everytime, only when the `.pro` file has been changed. Otherwise, simply `qmake` once and `make` from there on out.
 
 ## Bug Encounters / Error Fixes
 ### "Not Found in Mesa Table OpenGL Error"
@@ -145,11 +147,11 @@ VirtualBox 5.0.2r102096
 Host: Windows 7 Ultimate x64  
 Guest: Ubuntu 14.04 LTS x64 (Guest Additions Installed)  
 **Error:**  
-Check `glxinfo`
+Check `glxinfo`:
 ```
 glxinfo | grep OpenGL
 ```
-glxinfo requires `mesa-utils` installed using
+glxinfo requires `mesa-utils` installed using:
 ```
 sudo apt-get install mesa-utils
 ```
@@ -172,4 +174,4 @@ OpenGL shading language version string: 1.30
 OpenGL context flags: (none)
 OpenGL extensions:
 ```
-Note the version string should now contain Mesa rather than Chromium.
+Note: The version string should now contain Mesa rather than Chromium.
