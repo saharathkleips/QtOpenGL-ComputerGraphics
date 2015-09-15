@@ -45,5 +45,5 @@ Project files for the CS 480 Computer Graphics course (Fall 2015).
 ### PA11 - Labyrinth
 
 ### Contact Information
-LinkedIn: http://www.linkedin.com/in/SaharathKleips
+LinkedIn: http://www.linkedin.com/in/SaharathKleips  
 Email: SaharathKleips@yahoo.com
