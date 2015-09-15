@@ -3,8 +3,8 @@ TODO: Write Description
 
 ## Table of Contents
 + [Program Usage](#program-usage)  
---* [Controls](#controls)  
---* [Context Menu](#context-menu)  
+    [Controls](#controls)  
+    [Context Menu](#context-menu)  
 + [Installation Instructions](#installation-instructions)  
 + [Build Instructions](#build-instructions)  
 
