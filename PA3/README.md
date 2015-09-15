@@ -2,25 +2,6 @@
 TODO: Write Description
 
 **Controls**
-| Action              | Description                         |
-| ------------------- | ----------------------------------- |
-| Keyboard - Up       | Rotate planet counter-clockwise     |
-| Keyboard - Down     | Rotate planet clockwise             |
-| Keyboard - Left     | Orbit planet counter-clockwise      |
-| Keyboard - Right    | Orbit planet clockwise              |
-| Keyboard - W        | Rotate moon counter-clockwise       |
-| Keyboard - S        | Rotate moon clockwise               |
-| Keyboard - A        | Orbit moon counter-clockwise        |
-| Keyboard - D        | Orbit moon clockwise                |
-| Keyboard - ESC      | Exit the program                    |
-| Mouse - Left Click  | Reverse the orbits of both planets  |
-| Mouse - Right Click | Create a popup context menu         |
-
-**Context Menu**
-| Context Item        | Description                         |
-| ------------------- | ----------------------------------- |
-| Unpause / Pause     | Unpauses / Pauses all planet motion |
-| Exit Program        | Exit the program                    |
 <table>
     <tbody>
         <tr>
@@ -33,43 +14,61 @@ TODO: Write Description
         </tr>
         <tr>
             <td>Keyboard - Down</td>
-            <td> </td>
+            <td>Rotate planet clockwise</td>
         </tr>
         <tr>
             <td>Keyboard - Left</td>
+            <td>Orbit planet counter-clockwise</td>
+        </tr>
+        <tr>
             <td>Keyboard - Right</td>
+            <td>Orbit planet clockwise</td>
         </tr>
         <tr>
             <td>Keyboard - W</td>
-            <td> </td>
+            <td>Rotate moon counter-clockwise</td>
         </tr>
         <tr>
             <td>Keyboard - S</td>
-            <td> </td>
+            <td>Rotate moon clockwise</td>
         </tr>
         <tr>
             <td>Keyboard - A</td>
-            <td> </td>
+            <td>Orbit moon counter-clockwise</td>
         </tr>
         <tr>
             <td>Keyboard - D</td>
-            <td> </td>
+            <td>Orbit moon clockwise</td>
         </tr>
         <tr>
             <td>Keyboard - ESC</td>
-            <td> </td>
+            <td>Exit the program</td>
         </tr>
         <tr>
             <td>Mouse - Left Click</td>
-            <td> </td>
+            <td>Reverse the orbits of both planets</td>
         </tr>
         <tr>
             <td>Mouse - Right Click</td>
-            <td> </td>
+            <td>Create a popup context menu</td>
+        </tr>
+    </tbody>
+</table>
+
+**Context Menu**
+<table>
+    <tbody>
+        <tr>
+            <th>Context Item</th>
+            <th>Description</th>
+        </tr>
+            <th>Unpause / Pause</th>
+            <th>Unpauses / Pauses all planet montion</th>
+        <tr>
         </tr>
         <tr>
-            <td> </td>
-            <td> </td>
+            <th>Exit Program</th>
+            <th>Exit the program</th>
         </tr>
     </tbody>
 </table>
