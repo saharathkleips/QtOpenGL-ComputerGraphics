@@ -2,7 +2,11 @@
 TODO: Write Description
 
 ## Table of Contents
-[Program Usage]
+[Program Usage](#program-usage)
+    [Controls](#controls)
+    [Context Menu](#context-menu)
+[Installation Instructions](#installation-instructions)
+[Build Instructions](#build-instructions)
 
 ## Program Usage
 ###Controls
