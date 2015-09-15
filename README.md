@@ -2,10 +2,10 @@
 Project files for the CS 480 Computer Graphics course (Fall 2015).
 
 ## Table of Contents
-[PA0](https://github.com/Zarol/cs480Kleips#pa0-pass-through-shader)  
-[PA1](https://github.com/Zarol/cs480Kleips#pa1-rotating-cube)  
-[PA2](https://github.com/Zarol/cs480Kleips#pa2-interactions)  
-[PA3](https://github.com/Zarol/cs480Kleips#pa3-moons)  
+[PA0](https://github.com/Zarol/cs480Kleips#pa0---pass-through-shader)  
+[PA1](https://github.com/Zarol/cs480Kleips#pa1---rotating-cube)  
+[PA2](https://github.com/Zarol/cs480Kleips#pa2---interactions)  
+[PA3](https://github.com/Zarol/cs480Kleips#pa3---moons)  
 [PA4](https://github.com/Zarol/cs480Kleips#pa4)  
 [PA5](https://github.com/Zarol/cs480Kleips#pa5)  
 [PA6](https://github.com/Zarol/cs480Kleips#pa6)  
