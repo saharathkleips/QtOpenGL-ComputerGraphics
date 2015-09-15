@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = qtGL1.0.0
-DISTDIR = /home/zarol/Desktop/qtGL/build/.tmp/qtGL1.0.0
+DISTDIR = /home/zarol/Documents/cs480Kleips/PA3/build/.tmp/qtGL1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1 -Wl,-rpath,/opt/qt55/lib
 LIBS          = $(SUBLIBS) -L/opt/qt55/lib -lQt5OpenGL -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -661,7 +661,7 @@ moc_glWidget.cpp: /opt/qt55/include/QtWidgets/QOpenGLWidget \
 		/opt/qt55/include/QtGui/QQuaternion \
 		../src/camera3d.h \
 		../src/glWidget.h
-	/opt/qt55/bin/moc $(DEFINES) -I/opt/qt55/mkspecs/linux-g++ -I/home/zarol/Desktop/qtGL/build -I/home/zarol/Desktop/qtGL/build -I/opt/qt55/include -I/opt/qt55/include/QtOpenGL -I/opt/qt55/include/QtWidgets -I/opt/qt55/include/QtGui -I/opt/qt55/include/QtCore -I/usr/include/c++/4.6 -I/usr/include/c++/4.6/x86_64-linux-gnu -I/usr/include/c++/4.6/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/glWidget.h -o moc_glWidget.cpp
+	/opt/qt55/bin/moc $(DEFINES) -I/opt/qt55/mkspecs/linux-g++ -I/home/zarol/Documents/cs480Kleips/PA3/build -I/home/zarol/Documents/cs480Kleips/PA3/build -I/opt/qt55/include -I/opt/qt55/include/QtOpenGL -I/opt/qt55/include/QtWidgets -I/opt/qt55/include/QtGui -I/opt/qt55/include/QtCore -I/usr/include/c++/4.6 -I/usr/include/c++/4.6/x86_64-linux-gnu -I/usr/include/c++/4.6/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/glWidget.h -o moc_glWidget.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -824,6 +824,11 @@ glWidget.o: ../src/glWidget.cpp ../src/glWidget.h \
 		/opt/qt55/include/QtCore/QString \
 		/opt/qt55/include/QtGui/QOpenGLShaderProgram \
 		/opt/qt55/include/QtGui/qopenglshaderprogram.h \
+		/opt/qt55/include/QtGui/QPainter \
+		/opt/qt55/include/QtGui/qpainter.h \
+		/opt/qt55/include/QtGui/qtextoption.h \
+		/opt/qt55/include/QtGui/qpen.h \
+		/opt/qt55/include/QtCore/QRect \
 		/opt/qt55/include/QtCore/QtMath \
 		/opt/qt55/include/QtCore/qmath.h \
 		/opt/qt55/include/QtGui/QMouseEvent \

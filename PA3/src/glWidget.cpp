@@ -4,6 +4,8 @@
 #include <QDebug>
 #include <QString>
 #include <QOpenGLShaderProgram>
+#include <QPainter>
+#include <QRect>
 #include <QtMath>
 
 #include <QMouseEvent>
@@ -27,22 +29,26 @@ GLWidget::GLWidget()
     //  Rotate Clockwise
     connect( this, SIGNAL( rotateClockwise( bool ) ),
         this, SLOT( set_rotate_cw( bool ) ) );
+    connect( this, SIGNAL( rotateClockwiseMoon( bool ) ),
+        this, SLOT( set_rotate_cw_moon( bool ) ) );
     //  Translate Clockwise
     connect( this, SIGNAL( translateClockwise( bool ) ),
         this, SLOT( set_translate_cw( bool ) ) );
+    connect( this, SIGNAL( translateClockwiseMoon( bool ) ),
+        this, SLOT( set_translate_cw_moon( bool ) ) );
 
     //  Context Menu
     context_menu = new QMenu();
     setContextMenuPolicy(Qt::CustomContextMenu);
-    action_pause = context_menu->addAction("Unpause / Pause");
+    action_pause = context_menu->addAction("Unpause All");
     action_exit = context_menu->addAction("Exit Program");
 
     //  Context Menu Request
     connect( this, SIGNAL( customContextMenuRequested( const QPoint ) ), 
         this, SLOT( contextMenuRequested( QPoint ) ) );
-    //  Context Menu Pause
+    //  Context Menu Pause All
     connect( action_pause, SIGNAL( triggered() ),
-        this, SLOT( pause() ));
+        this, SLOT( pause() ) );
     //  Context Menu Quit
     connect( action_exit, SIGNAL( triggered() ),
         QApplication::instance(), SLOT( quit() ) );
@@ -59,10 +65,14 @@ GLWidget::GLWidget()
     camera3d.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
     camera3d.translate( 0.0f, 3.5f, 0.0f );
 
-    //  Initialize cube helper variables
+    //  Initialize planet system helper variables
     is_paused = true;
     rotate_cw = false;
     translate_cw = true;
+    rotate_cw_moon = true;
+    translate_cw_moon = false;
+
+    setOrbitString();
 }
 
 GLWidget::~GLWidget()
@@ -79,13 +89,6 @@ void GLWidget::initializeGL()
     //  Initialize OpenGL Backend
     initializeOpenGLFunctions();
     printContextInformation();
-
-    //  Set Global OpenGL Information
-    glEnable( GL_DEPTH_TEST );
-    glDepthFunc( GL_LEQUAL );
-    glDepthMask(GL_TRUE);
-    glEnable( GL_CULL_FACE );
-    glClearColor( 0.0f, 0.0f, 0.2f, 1.0f );
 
     //  Application Specific Initialization
     {
@@ -135,6 +138,11 @@ void GLWidget::resizeGL( int width, int height )
 
 void GLWidget::paintGL()
 {
+    glEnable( GL_DEPTH_TEST );
+    glDepthFunc( GL_LEQUAL );
+    glDepthMask(GL_TRUE);
+    glEnable( GL_CULL_FACE );
+    glClearColor( 0.0f, 0.0f, 0.2f, 1.0f );
 
     //  Clear Screen
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -158,6 +166,15 @@ void GLWidget::paintGL()
     }
 
     program->release();
+
+    //  Draw 2D Elements
+    QPainter painter(this);
+    painter.setPen(QColor(255, 255, 255, 255));
+    QRect rect(QWidget::width() / 2 - 100, 10, 200, 100);
+    painter.beginNativePainting();
+    painter.drawText(rect, Qt::AlignHCenter, orbit_string);
+    painter.endNativePainting();
+
 }
 
 void GLWidget::teardownGL()
@@ -181,37 +198,35 @@ void GLWidget::update()
     if( !is_paused )
     {
         if( translate_cw )
-        {
             angle -= .03;
-            moonAngle += .06;
-        }
         else
-        {
             angle += .03;
-            moonAngle -= .06;
-        }
+
+        if( translate_cw_moon )
+            moonAngle -= .09;
+        else
+            moonAngle += .09;
 
         if( rotate_cw )
-        {
-            rotationSpeed = -3.0;
-        }
+            rotationSpeed = -1.5;
         else
-        {
-            rotationSpeed = 3.0;
-        }
+            rotationSpeed = 1.5;
+
+        if( rotate_cw_moon )
+            moonRotationSpeed = -3.0;
+        else
+            moonRotationSpeed = 3.0;
 
         transform3d.setTranslation( 3.0 * sin( angle ), 0, 3.0 * cos( angle ) );
         transform3d.translate( 0.0f, 0.0f, -10.0f );
-        //transform3d.rotate( rotationSpeed, 0.0f, 1.0f, 0.0f );
 
         transform3d_2.setTranslation(
             transform3d.translation().x() + 2.0f * sin( moonAngle ),
             transform3d.translation().y(),
             transform3d.translation().z() + 2.0f * cos( moonAngle ) );
-        //transform3d.translate( 3.0f, 0.0f, 0.0f);
 
         transform3d.rotate( rotationSpeed, 0.0f, 1.0f, 0.0f );
-        transform3d_2.rotate( -rotationSpeed, 0.0f, 1.0f, 0.0f );
+        transform3d_2.rotate( moonRotationSpeed, 0.0f, 1.0f, 0.0f );
     }
 
     //Schedule a redraw
@@ -221,16 +236,35 @@ void GLWidget::update()
 void GLWidget::pause()
 {
     is_paused = !is_paused;
+
+    if( is_paused )
+        action_pause->setText("Unpause");
+    else
+        action_pause->setText("Pause");
 }
 
 void GLWidget::set_rotate_cw( bool cw )
 {
     rotate_cw = cw;
+    setOrbitString();
+}
+
+void GLWidget::set_rotate_cw_moon( bool cw )
+{
+    rotate_cw_moon = cw;
+    setOrbitString();
 }
 
 void GLWidget::set_translate_cw( bool cw )
 {
     translate_cw = cw;
+    setOrbitString();
+}
+
+void GLWidget::set_translate_cw_moon( bool cw )
+{
+    translate_cw_moon = cw;
+    setOrbitString();
 }
 
 void GLWidget::contextMenuRequested( QPoint point )
@@ -245,11 +279,31 @@ void GLWidget::keyPressEvent( QKeyEvent* event )
 {
     switch( event->key() )
     {
+        //  Planet Controls
+        case Qt::Key_Up:
+            emit set_translate_cw( false );
+            break;
+        case Qt::Key_Down:
+            emit set_translate_cw( true );
+            break;
         case Qt::Key_Left:
             emit set_rotate_cw( false );
             break;
         case Qt::Key_Right:
             emit set_rotate_cw( true );
+            break;
+        //  Moon Controls
+        case Qt::Key_W:
+            emit set_translate_cw_moon( false );
+            break;
+        case Qt::Key_S:
+            emit set_translate_cw_moon( true );
+            break;
+        case Qt::Key_A:
+            emit set_rotate_cw_moon( false );
+            break;
+        case Qt::Key_D:
+            emit set_rotate_cw_moon( true );
             break;
         case Qt::Key_Escape:
             emit exitFlag();
@@ -275,6 +329,7 @@ void GLWidget::mouseReleaseEvent( QMouseEvent* event )
     {
         case Qt::LeftButton:
             emit translateClockwise( !translate_cw );
+            emit translateClockwiseMoon( !translate_cw_moon );
             break;
         case Qt::RightButton:
             emit contextMenuRequest( event->pos() );
@@ -313,4 +368,19 @@ void GLWidget::printContextInformation()
 
     qDebug() << qPrintable( gl_type ) << qPrintable( gl_version ) <<
         "(" << qPrintable( gl_profile ) << ")";
+}
+
+void GLWidget::setOrbitString()
+{
+    QString p_orbit = (translate_cw) ? "Clockwise" : "Counter-Clockwise";
+    QString p_rotate = (rotate_cw) ? "Clockwise" : "Counter-Clockwise";
+    QString m_orbit = (translate_cw_moon) ? "Clockwise" : "Counter-Clockwise";
+    QString m_rotate = (rotate_cw_moon) ? "Clockwise" : "Counter-Clockwise";
+
+    orbit_string = "[Planet]\n" + 
+        p_orbit + " Orbit\n" +
+        p_rotate + " Rotation\n" +
+        "[Moon]\n" +
+        m_orbit + " Orbit\n" +
+        m_rotate + " Rotation";
 }

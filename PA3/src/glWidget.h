@@ -33,13 +33,17 @@ protected slots:
     void update();
     void pause();
     void set_rotate_cw(bool cw);
+    void set_rotate_cw_moon(bool cw);
     void set_translate_cw(bool cw);
+    void set_translate_cw_moon(bool cw);
     void contextMenuRequested(QPoint point);
 
 signals:
     void exitFlag();
     void rotateClockwise(bool cw);
+    void rotateClockwiseMoon(bool cw);
     void translateClockwise(bool cw);
+    void translateClockwiseMoon(bool cw);
     void contextMenuRequest(QPoint point);
 
 protected:
@@ -64,13 +68,14 @@ private:
     Transform3D transform3d;
     Transform3D transform3d_2;
 
-    //  Cube Helper Variables
+    // Planet System Helper Variables
     bool is_paused;
+
+    //  Cube Helper Variables
     bool rotate_cw;
     bool translate_cw;
 
     // Moon Helper Variables
-    bool is_paused_moon;
     bool rotate_cw_moon;
     bool translate_cw_moon;
 
@@ -79,8 +84,12 @@ private:
     QAction* action_pause;
     QAction* action_exit;
 
+    //  Orbit Label
+    QString orbit_string;
+
     //  Private Helpers
     void printContextInformation();
+    void setOrbitString();
 };
 
 #endif  //  GLWIDGET_H
