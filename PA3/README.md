@@ -1,7 +1,11 @@
 # PA3 - Moons (Saharath Kleips)
 TODO: Write Description
 
-####Controls
+## Table of Contents
+[Program Usage]
+
+## Program Usage
+###Controls
 <table>
     <tbody>
         <tr>
@@ -46,7 +50,7 @@ TODO: Write Description
         </tr>
         <tr>
             <td>Mouse - Left Click</td>
-            <td>Reverse the orbits of both planets</td>
+            <td>Reverse the orbits of both objects</td>
         </tr>
         <tr>
             <td>Mouse - Right Click</td>
@@ -55,7 +59,7 @@ TODO: Write Description
     </tbody>
 </table>
 
-####Context Menu
+###Context Menu
 <table>
     <tbody>
         <tr>
@@ -63,7 +67,7 @@ TODO: Write Description
             <th>Description</th>
         </tr>
             <th>Unpause / Pause</th>
-            <th>Unpauses / Pauses all planet montion</th>
+            <th>Unpauses / pauses all object montion</th>
         <tr>
         </tr>
         <tr>
@@ -73,12 +77,12 @@ TODO: Write Description
     </tbody>
 </table>
 
-### Installation Instructions
+## Installation Instructions
 ```
 TODO: Write install instructions
 ```
 
-### Build Instructions
+## Build Instructions
 ```
 TODO: Write build instructions
 ```
