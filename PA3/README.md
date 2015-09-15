@@ -98,7 +98,7 @@ sudo apt-get install build-essential
 sudo apt-get install libgl1-mesa-dev
 ```
 
-**Qt 5.5 Install**
+**Qt 5.5 Install**  
 Add the Qt5.5 PPAs by [Stephan Banner](https://launchpad.net/~beineri) and then install the latest Qt files.
 ```
 sudo apt-add-repository ppa:beineri/opt-qt55-trusty
@@ -106,7 +106,7 @@ sudo apt-get update
 sudo apt-get install qt-latest
 ```
 
-**Set Up Development Environment**
+**Set Up Development Environment**  
 Your `qtchooser` should now list opt-qt55 as an option
 ```
 qtchooser --list-versions
@@ -115,6 +115,7 @@ Add the environment variables to your bashrc file
 ```
 echo 'export QT_SELECT=opt-qt55' >> ~/.bashrc
 ```
+Restart your terminal.
 
 ### Ubuntu 12.04 LTS
 
@@ -132,6 +133,7 @@ Navigate to the `bin` directory
 Convenince Copy/Paste from the `build` directory:
 ```
 qmake; make; cd ../bin; ./PA3.exe; cd ../build
+make; cd ../bin; ./PA3.exe; cd ../build
 ```
 
 **Note:** `qmake` does not need to be run before `make` everytime, only when the `.pro` file has been changed. Otherwise, simple `qmake` once and `make` from there on out.
