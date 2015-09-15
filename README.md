@@ -1,8 +1,7 @@
 # cs480Kleips (Saharath Kleips)
 Project files for the CS 480 Computer Graphics course (Fall 2015).
 
-### PA0
-[Pass Through Shader](https://github.com/Zarol/cs480Kleips/tree/master/PA0)
+### PA0 [Pass Through Shader](https://github.com/Zarol/cs480Kleips/tree/master/PA0)
 [Documentation](PA0/README.md)
 
 ### PA1
