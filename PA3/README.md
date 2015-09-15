@@ -8,6 +8,7 @@ This program displays a planet orbiting around a central location with a moon th
     - [Controls](#controls)  
     - [Context Menu](#context-menu)  
 + [Installation Instructions](#installation-instructions)  
+    - [Ubuntu 14.04 LTS](#ubuntu-14.04-lts)
 + [Build Instructions](#build-instructions)  
 
 ## Program Usage
@@ -85,6 +86,7 @@ This program displays a planet orbiting around a central location with a moon th
 
 ## Installation Instructions
 ### Ubuntu 14.04 LTS
+
 **g++ Install**
 ```
 sudo apt-get install build-essential
@@ -99,13 +101,17 @@ sudo apt-get install libgl1-mesa-dev
 64-bit
 ```
 wget http://download.qt.io/official_releases/qt/5.5/5.5.0/qt-opensource-linux-x64-5.5.0-2.run
+
 chmod +x qt-opensource-linux-x64-5.5.0-2.run
+
 ./qt-opensource-linux-x64-5.5.0-2.run
 ```
 32-bit
 ```
 wget http://download.qt.io/official_releases/qt/5.5/5.5.0/qt-opensource-linux-x86-5.5.0.run
+
 chmod +x qt-opensource-linux-x86-5.5.0.run
+
 ./qt-opensource-linux-x86-5.5.0.run
 ```
 Click "Next," then click "Skip," make a note of your installation directory then click "Next," make sure all of the components are selected then click "Next," agree to the license agreement and then click "Next," then click "Install," wait for the wizard to finish to uncheck "Launch Qt Creator," and then lastly click "Finish."
@@ -117,3 +123,39 @@ Click "Next," then click "Skip," make a note of your installation directory then
 ```
 TODO: Write build instructions
 ```
+
+## Bugs Encounters / Error Fixes
+### "Not Found in Mesa Table OpenGL Error"
+**Found on:**  
+VirtualBox 5.0.2r102096
+Host: Windows 7 Ultimate x64
+Guest: Ubuntu 14.04 LTS x64 (Guest Additions Installed)
+**Solution:**
+Check `glxinfo`
+```
+glxinfo | grep OpenGL
+```
+glxinfo requires `mesa-utils` installed using
+```
+sudo apt-get install mesa-utils
+```
+The output should resemble the following and contain Chromium and not Mesa:
+```
+OpenGL vendor string: Humper
+OpenGL renderer string: Chromium
+OpenGL version string: 2.1 Chromium
+OpenGL shading language version string: 4.50 NVIDIA
+OpenGL extensions:
+```
+**Solution**
+A fix is disabling 3D Hardware Acceleration on your VirtualBox.  
+After disabling, your glxinfo should look similar to:
+```
+OpenGL vendor string: VMWare, Inc.
+OpenGL renderer string: Gallium 0.4 on llvmpipe (LLVM 3.6 256 bits)
+OpenGL version string: 3.0 Mesa 10.5.2
+OpenGL shading language version string: 1.30
+OpenGL context flags: (none)
+OpenGL extensions:
+```
+Note the version string should now contain Mesa rather than Chromium.
