@@ -6,14 +6,14 @@ Project files for the CS 480 Computer Graphics course (Fall 2015).
 [PA1 - Rotating Cube](#pa1---rotating-cube)  
 [PA2 - Interactions](#pa2---interactions)  
 [PA3 - Moons](#pa3---moons)  
-[PA4 - Model Loading](#pa4)  
-[PA5 - Assimp Model](#pa5)  
-[PA6 - Assimp Texture](#pa6)  
-[PA7 - Solar System](#pa7)  
-[PA8 - Bullet](#pa8)  
-[PA9 - Air Hockey](#pa9)  
-[PA10 - Lighting](#pa10)  
-[PA11 - Labyrinth](#pa11)  
+[PA4 - Model Loading](#pa4---model-loading)  
+[PA5 - Assimp Model](#pa5---assimp-model)  
+[PA6 - Assimp Texture](#pa6---assimp-texture)  
+[PA7 - Solar System](#pa7---solar-system)  
+[PA8 - Bullet](#pa8---bullet)  
+[PA9 - Air Hockey](#pa9---air-hockey)  
+[PA10 - Lighting](#pa10---lighting)  
+[PA11 - Labyrinth](#pa11---labyrinth)  
 [Contact Info](#contact-information)  
 
 ### PA0 - [Pass Through Shader](PA0)
@@ -45,5 +45,5 @@ Project files for the CS 480 Computer Graphics course (Fall 2015).
 ### PA11 - Labyrinth
 
 ### Contact Information
-LinkedIn: http://www.linkedin.com/in/SaharathKleips  
-Email: SaharathKleips@yahoo.com
+**LinkedIn:** http://www.linkedin.com/in/SaharathKleips  
+**Email:** SaharathKleips@yahoo.com
