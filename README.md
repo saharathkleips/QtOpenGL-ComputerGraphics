@@ -1,7 +1,7 @@
 # cs480Kleips (Saharath Kleips)
 Project files for the CS 480 Computer Graphics course (Fall 2015).
 
-The projects focus on an understanding of 3D computer graphics and its implementations with OpenGL. The projects display concepts, algorithms, and design principles associated with 3D computer graphics in a practical application. The projects are programed in C++ using OpenGL with the first couple projects using GLUT / GLEW and the remainder using the Qt 5.5 Framework. All the projects have been built and tested on Ubuntu 12.04 LTS on Oracle VM VirtualBox.
+The projects focus on an understanding of 3D computer graphics and its implementations with OpenGL. The projects display concepts, algorithms, and design principles associated with 3D computer graphics in a practical application. The projects are programed in C++ using OpenGL 2.1 Mesa 10.1.3 with the first couple projects using GLUT / GLEW and the remainder using the Qt 5.5 Framework. All the projects have been built and tested on Ubuntu 12.04 LTS on Oracle VM VirtualBox.
 
 ## Table of Contents
 + [PA0 - Pass Through Shader](#pa0---pass-through-shader)  
