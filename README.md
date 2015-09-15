@@ -16,7 +16,7 @@ Project files for the CS 480 Computer Graphics course (Fall 2015).
 [PA11 - Labyrinth](https://github.com/Zarol/cs480Kleips#pa11)  
 [Contact Info](https://github.com/Zarol/cs480Kleips#contact-information)  
 
-### PA0 - [Pass Through Shader](https://github.com/Zarol/cs480Kleips/tree/master/PA0)
+### PA0 - [Pass Through Shader](PA0)
 [Documentation](PA0/README.md)
 
 ### PA1 - [Rotating Cube](https://github.com/Zarol/cs480Kleips/tree/master/PA1)
