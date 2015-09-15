@@ -14,7 +14,7 @@ Project files for the CS 480 Computer Graphics course (Fall 2015).
 [PA9 - Air Hockey](#pa9---air-hockey)  
 [PA10 - Lighting](#pa10---lighting)  
 [PA11 - Labyrinth](#pa11---labyrinth)  
-[Contact Info](#contact-information)  
+[Contact Information](#contact-information)  
 
 ## PA0 - [Pass Through Shader](PA0)
 [Documentation](PA0/README.md)
