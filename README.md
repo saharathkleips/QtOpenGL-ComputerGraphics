@@ -1,18 +1,21 @@
-# cs480Kleips
-## Saharath Kleips
+# cs480Kleips (Saharath Kleips)
 Project files for the CS 480 Computer Graphics course (Fall 2015).
 
 ### PA0
-Pass Through Shader
+[Pass Through Shader](https://github.com/Zarol/cs480Kleips/tree/master/PA0)
+[Documentation](PA0/README.md)
 
 ### PA1
-Rotating Cube
+[Rotating Cube](https://github.com/Zarol/cs480Kleips/tree/master/PA1)
+[Documentation](PA1/README.md)
 
 ### PA2
-Interaction: Menus, Keyboard, and Mouse
+[Interactions](https://github.com/Zarol/cs480Kleips/tree/master/PA2)
+[Documentation](PA2/README.md)
 
 ### PA3
-Moons
+[Moons](https://github.com/Zarol/cs480Kleips/tree/master/PA3)
+[Documentation](PA3/README.md)
 
 ### PA4
 Blender and Model Loading
