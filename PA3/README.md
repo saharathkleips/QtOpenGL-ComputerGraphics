@@ -86,6 +86,7 @@ This program displays a planet orbiting around a central location with a moon th
 
 ## Installation Instructions
 ### Ubuntu 14.04 LTS
+Tested with a clean install of Ubuntu 14.04 x64 LTS on VirtualBox 5.0.2r102096 with Guest Additions installed and Windows 8.1 x64 host.  
 
 **g++ Install**
 ```
@@ -98,39 +99,50 @@ sudo apt-get install libgl1-mesa-dev
 ```
 
 **Qt 5.5 Install**
-64-bit
+Add the Qt5.5 PPAs by [Stephan Banner](https://launchpad.net/~beineri) and then install the latest Qt files.
 ```
-wget http://download.qt.io/official_releases/qt/5.5/5.5.0/qt-opensource-linux-x64-5.5.0-2.run
-
-chmod +x qt-opensource-linux-x64-5.5.0-2.run
-
-./qt-opensource-linux-x64-5.5.0-2.run
+sudo apt-add-repository ppa:beineri/opt-qt55-trusty
+sudo apt-get update
+sudo apt-get install qt-latest
 ```
-32-bit
-```
-wget http://download.qt.io/official_releases/qt/5.5/5.5.0/qt-opensource-linux-x86-5.5.0.run
-
-chmod +x qt-opensource-linux-x86-5.5.0.run
-
-./qt-opensource-linux-x86-5.5.0.run
-```
-Click "Next," then click "Skip," make a note of your installation directory then click "Next," make sure all of the components are selected then click "Next," agree to the license agreement and then click "Next," then click "Install," wait for the wizard to finish to uncheck "Launch Qt Creator," and then lastly click "Finish."
 
 **Set Up Development Environment**
+Your `qtchooser` should now list opt-qt55 as an option
+```
+qtchooser --list-versions
+```
+Add the environment variables to your bashrc file
+```
+echo 'export QT_SELECT=opt-qt55' >> ~/.bashrc
+```
 
+### Ubuntu 12.04 LTS
 
 ## Build Instructions
+Navigate to the `build` directory
 ```
-TODO: Write build instructions
+qmake
+make
+```
+Navigate to the `bin` directory
+```
+./PA3.exe
 ```
 
-## Bugs Encounters / Error Fixes
+Convenince Copy/Paste from the `build` directory:
+```
+qmake; make; cd ../bin; ./PA3.exe; cd ../build
+```
+
+**Note:** `qmake` does not need to be run before `make` everytime, only when the `.pro` file has been changed. Otherwise, simple `qmake` once and `make` from there on out.
+
+## Bug Encounters / Error Fixes
 ### "Not Found in Mesa Table OpenGL Error"
 **Found on:**  
-VirtualBox 5.0.2r102096
-Host: Windows 7 Ultimate x64
-Guest: Ubuntu 14.04 LTS x64 (Guest Additions Installed)
-**Solution:**
+VirtualBox 5.0.2r102096  
+Host: Windows 7 Ultimate x64  
+Guest: Ubuntu 14.04 LTS x64 (Guest Additions Installed)  
+**Error:**  
 Check `glxinfo`
 ```
 glxinfo | grep OpenGL
@@ -147,7 +159,7 @@ OpenGL version string: 2.1 Chromium
 OpenGL shading language version string: 4.50 NVIDIA
 OpenGL extensions:
 ```
-**Solution**
+**Solution:**  
 A fix is disabling 3D Hardware Acceleration on your VirtualBox.  
 After disabling, your glxinfo should look similar to:
 ```
