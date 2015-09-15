@@ -29,3 +29,7 @@
 
 # Backup Files
 *~
+
+# Qmake Files
+moc_*
+qrc_*
