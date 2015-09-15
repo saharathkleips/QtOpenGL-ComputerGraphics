@@ -1,7 +1,7 @@
 # PA3 - Moons (Saharath Kleips)
 TODO: Write Description
 
-**Controls**
+####Controls
 <table>
     <tbody>
         <tr>
@@ -55,7 +55,7 @@ TODO: Write Description
     </tbody>
 </table>
 
-**Context Menu**
+####Context Menu
 <table>
     <tbody>
         <tr>
