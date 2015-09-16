@@ -188,8 +188,8 @@ VirtualBox 5.0.2r102096
 Host: Windows 7 Ultimate x64  
 Guest: Ubuntu 14.04 LTS x64 (Guest Additions Installed)
 
-VirtualBox 5.0.2r102096
-Host: Windows 8.1 x64
+VirtualBox 5.0.2r102096  
+Host: Windows 8.1 x64  
 Guest: Ubuntu 12.04 LTS x64 (Guest Additions Installed)  
 **Error:**  
 Check `glxinfo`:
