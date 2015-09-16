@@ -144,13 +144,10 @@ sudo apt-get install qt-latest
 ```
 
 **Set Up Development Environment**  
-Your `qtchooser` should now list opt-qt55 as an option.
-```
-qtchooser --list-versions
-```
 Add the environment variables to your bashrc file.
 ```
-echo 'export QT_SELECT=opt-qt55' >> ~/.bashrc
+cd /opt/qt55/bin
+./qt55-env.sh
 ```
 Restart your terminal.
 
