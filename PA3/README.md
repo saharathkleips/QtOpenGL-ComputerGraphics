@@ -8,7 +8,10 @@ This program displays a planet orbiting around a central location with a moon th
     - [Controls](#controls)  
     - [Context Menu](#context-menu)  
 + [Installation Instructions](#installation-instructions)  
-    - [Ubuntu 14.04 LTS](#ubuntu-14.04-lts)
+    - [Ubuntu 14.04 LTS](#ubuntu-1404-lts)
+    - [Ubuntu 12.04 LTS](#ubuntu-1204-lts)
+    - [OSX](#osx)
+    - [Windows](#windows)
 + [Build Instructions](#build-instructions)  
 + [Bug Encounters / Error Fixes](#bug-encounters--error-fixes)
     - [Not Found in Mesa Table OpenGL Error](#not-found-in-mesa-table-opengl-error)
@@ -120,6 +123,44 @@ echo 'export QT_SELECT=opt-qt55' >> ~/.bashrc
 Restart your terminal.
 
 ### Ubuntu 12.04 LTS
+Tested with a clean install of Ubuntu 12.04 x64 LTS on VirtualBox 5.0.2r102096 with Guest Additions installed and Windows 8.1 x64 host.  
+
+**g++ Install**
+```
+sudo apt-get install build-essential
+```
+
+**OpenGL Install**
+```
+sudo apt-get install libgl1-mesa-dev
+```
+
+**Qt 5.5 Install**  
+Add the Qt5.5 PPAs by [Stephan Banner](https://launchpad.net/~beineri) and then install the latest Qt files.
+```
+sudo apt-add-repository ppa:beineri/opt-qt55
+sudo apt-get update
+sudo apt-get install qt-latest
+```
+
+**Set Up Development Environment**  
+Your `qtchooser` should now list opt-qt55 as an option.
+```
+qtchooser --list-versions
+```
+Add the environment variables to your bashrc file.
+```
+echo 'export QT_SELECT=opt-qt55' >> ~/.bashrc
+```
+Restart your terminal.
+
+### OSX
+
+Install VirtualBox. Go get Ubuntu. Brew instructions unavailable.
+
+### Windows
+
+Really?
 
 ## Build Instructions
 Navigate to the `build` directory.
@@ -145,7 +186,11 @@ make; cd ../bin; ./PA3.exe; cd ../build
 **Found on:**  
 VirtualBox 5.0.2r102096  
 Host: Windows 7 Ultimate x64  
-Guest: Ubuntu 14.04 LTS x64 (Guest Additions Installed)  
+Guest: Ubuntu 14.04 LTS x64 (Guest Additions Installed)
+
+VirtualBox 5.0.2r102096
+Host: Windows 8.1 x64
+Guest: Ubuntu 12.04 LTS x64 (Guest Additions Installed)  
 **Error:**  
 Check `glxinfo`:
 ```
