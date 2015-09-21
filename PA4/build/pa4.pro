@@ -25,6 +25,7 @@ HEADERS += \
     ../src/oglWidget.h \
     ../src/renderable.h \
     ../src/sg_vertices.h \
+    ../src/suzanne.h \
     ../src/transform3d.h \
     ../src/vertex.h
 
@@ -33,6 +34,7 @@ SOURCES += \
     ../src/cube.cpp \
     ../src/main.cpp \
     ../src/oglWidget.cpp \
+    ../src/suzanne.cpp \
     ../src/transform3d.cpp \
     ../src/vertex.cpp
 

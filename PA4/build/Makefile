@@ -52,6 +52,7 @@ SOURCES       = ../src/camera3d.cpp \
 		../src/cube.cpp \
 		../src/main.cpp \
 		../src/oglWidget.cpp \
+		../src/suzanne.cpp \
 		../src/transform3d.cpp \
 		../src/vertex.cpp qrc_resources.cpp \
 		moc_oglWidget.cpp
@@ -59,6 +60,7 @@ OBJECTS       = camera3d.o \
 		cube.o \
 		main.o \
 		oglWidget.o \
+		suzanne.o \
 		transform3d.o \
 		vertex.o \
 		qrc_resources.o \
@@ -189,11 +191,13 @@ DIST          = /opt/qt55/mkspecs/features/spec_pre.prf \
 		../src/oglWidget.h \
 		../src/renderable.h \
 		../src/sg_vertices.h \
+		../src/suzanne.h \
 		../src/transform3d.h \
 		../src/vertex.h ../src/camera3d.cpp \
 		../src/cube.cpp \
 		../src/main.cpp \
 		../src/oglWidget.cpp \
+		../src/suzanne.cpp \
 		../src/transform3d.cpp \
 		../src/vertex.cpp
 QMAKE_TARGET  = PA4.exe
@@ -497,8 +501,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents resources.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../src/camera3d.h ../src/cube.h ../src/oglWidget.h ../src/renderable.h ../src/sg_vertices.h ../src/transform3d.h ../src/vertex.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../src/camera3d.cpp ../src/cube.cpp ../src/main.cpp ../src/oglWidget.cpp ../src/transform3d.cpp ../src/vertex.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../src/camera3d.h ../src/cube.h ../src/oglWidget.h ../src/renderable.h ../src/sg_vertices.h ../src/suzanne.h ../src/transform3d.h ../src/vertex.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../src/camera3d.cpp ../src/cube.cpp ../src/main.cpp ../src/oglWidget.cpp ../src/suzanne.cpp ../src/transform3d.cpp ../src/vertex.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -678,6 +682,11 @@ moc_oglWidget.cpp: /opt/qt55/include/QtWidgets/QApplication \
 		../src/cube.h \
 		../src/sg_vertices.h \
 		../src/vertex.h \
+		../src/suzanne.h \
+		/opt/qt55/include/QtCore/QFile \
+		/opt/qt55/include/QtCore/QTextStream \
+		/opt/qt55/include/QtGui/QVector2D \
+		/opt/qt55/include/QtCore/QVector \
 		../src/oglWidget.h
 	/opt/qt55/bin/moc $(DEFINES) -I/opt/qt55/mkspecs/linux-g++ -I/home/zarol/Documents/cs480Kleips/PA4/build -I/home/zarol/Documents/cs480Kleips/PA4/build -I/opt/qt55/include -I/opt/qt55/include/QtOpenGL -I/opt/qt55/include/QtWidgets -I/opt/qt55/include/QtGui -I/opt/qt55/include/QtCore -I/usr/include/c++/4.6 -I/usr/include/c++/4.6/x86_64-linux-gnu -I/usr/include/c++/4.6/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/oglWidget.h -o moc_oglWidget.cpp
 
@@ -1025,7 +1034,12 @@ main.o: ../src/main.cpp /opt/qt55/include/QtWidgets/QApplication \
 		../src/transform3d.h \
 		../src/cube.h \
 		../src/sg_vertices.h \
-		../src/vertex.h
+		../src/vertex.h \
+		../src/suzanne.h \
+		/opt/qt55/include/QtCore/QFile \
+		/opt/qt55/include/QtCore/QTextStream \
+		/opt/qt55/include/QtGui/QVector2D \
+		/opt/qt55/include/QtCore/QVector
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../src/main.cpp
 
 oglWidget.o: ../src/oglWidget.cpp ../src/oglWidget.h \
@@ -1174,8 +1188,160 @@ oglWidget.o: ../src/oglWidget.cpp ../src/oglWidget.h \
 		../src/transform3d.h \
 		../src/cube.h \
 		../src/sg_vertices.h \
-		../src/vertex.h
+		../src/vertex.h \
+		../src/suzanne.h \
+		/opt/qt55/include/QtCore/QFile \
+		/opt/qt55/include/QtCore/QTextStream \
+		/opt/qt55/include/QtGui/QVector2D \
+		/opt/qt55/include/QtCore/QVector
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o oglWidget.o ../src/oglWidget.cpp
+
+suzanne.o: ../src/suzanne.cpp ../src/suzanne.h \
+		/opt/qt55/include/QtWidgets/QApplication \
+		/opt/qt55/include/QtWidgets/qapplication.h \
+		/opt/qt55/include/QtCore/qcoreapplication.h \
+		/opt/qt55/include/QtCore/qglobal.h \
+		/opt/qt55/include/QtCore/qconfig.h \
+		/opt/qt55/include/QtCore/qfeatures.h \
+		/opt/qt55/include/QtCore/qsystemdetection.h \
+		/opt/qt55/include/QtCore/qprocessordetection.h \
+		/opt/qt55/include/QtCore/qcompilerdetection.h \
+		/opt/qt55/include/QtCore/qtypeinfo.h \
+		/opt/qt55/include/QtCore/qtypetraits.h \
+		/opt/qt55/include/QtCore/qsysinfo.h \
+		/opt/qt55/include/QtCore/qlogging.h \
+		/opt/qt55/include/QtCore/qflags.h \
+		/opt/qt55/include/QtCore/qatomic.h \
+		/opt/qt55/include/QtCore/qbasicatomic.h \
+		/opt/qt55/include/QtCore/qatomic_bootstrap.h \
+		/opt/qt55/include/QtCore/qgenericatomic.h \
+		/opt/qt55/include/QtCore/qatomic_cxx11.h \
+		/opt/qt55/include/QtCore/qatomic_gcc.h \
+		/opt/qt55/include/QtCore/qatomic_msvc.h \
+		/opt/qt55/include/QtCore/qatomic_armv7.h \
+		/opt/qt55/include/QtCore/qatomic_armv6.h \
+		/opt/qt55/include/QtCore/qatomic_armv5.h \
+		/opt/qt55/include/QtCore/qatomic_ia64.h \
+		/opt/qt55/include/QtCore/qatomic_mips.h \
+		/opt/qt55/include/QtCore/qatomic_x86.h \
+		/opt/qt55/include/QtCore/qatomic_unix.h \
+		/opt/qt55/include/QtCore/qglobalstatic.h \
+		/opt/qt55/include/QtCore/qmutex.h \
+		/opt/qt55/include/QtCore/qnumeric.h \
+		/opt/qt55/include/QtCore/qstring.h \
+		/opt/qt55/include/QtCore/qchar.h \
+		/opt/qt55/include/QtCore/qbytearray.h \
+		/opt/qt55/include/QtCore/qrefcount.h \
+		/opt/qt55/include/QtCore/qnamespace.h \
+		/opt/qt55/include/QtCore/qarraydata.h \
+		/opt/qt55/include/QtCore/qstringbuilder.h \
+		/opt/qt55/include/QtCore/qobject.h \
+		/opt/qt55/include/QtCore/qobjectdefs.h \
+		/opt/qt55/include/QtCore/qobjectdefs_impl.h \
+		/opt/qt55/include/QtCore/qlist.h \
+		/opt/qt55/include/QtCore/qalgorithms.h \
+		/opt/qt55/include/QtCore/qiterator.h \
+		/opt/qt55/include/QtCore/qbytearraylist.h \
+		/opt/qt55/include/QtCore/qstringlist.h \
+		/opt/qt55/include/QtCore/qregexp.h \
+		/opt/qt55/include/QtCore/qstringmatcher.h \
+		/opt/qt55/include/QtCore/qcoreevent.h \
+		/opt/qt55/include/QtCore/qscopedpointer.h \
+		/opt/qt55/include/QtCore/qmetatype.h \
+		/opt/qt55/include/QtCore/qvarlengtharray.h \
+		/opt/qt55/include/QtCore/qcontainerfwd.h \
+		/opt/qt55/include/QtCore/qisenum.h \
+		/opt/qt55/include/QtCore/qobject_impl.h \
+		/opt/qt55/include/QtCore/qeventloop.h \
+		/opt/qt55/include/QtGui/qwindowdefs.h \
+		/opt/qt55/include/QtGui/qwindowdefs_win.h \
+		/opt/qt55/include/QtCore/qpoint.h \
+		/opt/qt55/include/QtCore/qsize.h \
+		/opt/qt55/include/QtGui/qcursor.h \
+		/opt/qt55/include/QtWidgets/qdesktopwidget.h \
+		/opt/qt55/include/QtWidgets/qwidget.h \
+		/opt/qt55/include/QtCore/qmargins.h \
+		/opt/qt55/include/QtGui/qpaintdevice.h \
+		/opt/qt55/include/QtCore/qrect.h \
+		/opt/qt55/include/QtGui/qpalette.h \
+		/opt/qt55/include/QtGui/qcolor.h \
+		/opt/qt55/include/QtGui/qrgb.h \
+		/opt/qt55/include/QtGui/qbrush.h \
+		/opt/qt55/include/QtCore/qpair.h \
+		/opt/qt55/include/QtCore/qvector.h \
+		/opt/qt55/include/QtGui/qmatrix.h \
+		/opt/qt55/include/QtGui/qpolygon.h \
+		/opt/qt55/include/QtGui/qregion.h \
+		/opt/qt55/include/QtCore/qdatastream.h \
+		/opt/qt55/include/QtCore/qiodevice.h \
+		/opt/qt55/include/QtCore/qline.h \
+		/opt/qt55/include/QtGui/qtransform.h \
+		/opt/qt55/include/QtGui/qpainterpath.h \
+		/opt/qt55/include/QtGui/qimage.h \
+		/opt/qt55/include/QtGui/qpixelformat.h \
+		/opt/qt55/include/QtGui/qpixmap.h \
+		/opt/qt55/include/QtCore/qsharedpointer.h \
+		/opt/qt55/include/QtCore/qshareddata.h \
+		/opt/qt55/include/QtCore/qhash.h \
+		/opt/qt55/include/QtCore/qsharedpointer_impl.h \
+		/opt/qt55/include/QtGui/qfont.h \
+		/opt/qt55/include/QtGui/qfontmetrics.h \
+		/opt/qt55/include/QtGui/qfontinfo.h \
+		/opt/qt55/include/QtWidgets/qsizepolicy.h \
+		/opt/qt55/include/QtGui/qkeysequence.h \
+		/opt/qt55/include/QtGui/qevent.h \
+		/opt/qt55/include/QtCore/qvariant.h \
+		/opt/qt55/include/QtCore/qmap.h \
+		/opt/qt55/include/QtCore/qdebug.h \
+		/opt/qt55/include/QtCore/qtextstream.h \
+		/opt/qt55/include/QtCore/qlocale.h \
+		/opt/qt55/include/QtCore/qset.h \
+		/opt/qt55/include/QtCore/qcontiguouscache.h \
+		/opt/qt55/include/QtCore/qurl.h \
+		/opt/qt55/include/QtCore/qurlquery.h \
+		/opt/qt55/include/QtCore/qfile.h \
+		/opt/qt55/include/QtCore/qfiledevice.h \
+		/opt/qt55/include/QtGui/qvector2d.h \
+		/opt/qt55/include/QtGui/qtouchdevice.h \
+		/opt/qt55/include/QtGui/qguiapplication.h \
+		/opt/qt55/include/QtGui/qinputmethod.h \
+		/opt/qt55/include/QtCore/QFile \
+		/opt/qt55/include/QtCore/QTextStream \
+		/opt/qt55/include/QtCore/QString \
+		/opt/qt55/include/QtCore/QDebug \
+		/opt/qt55/include/QtGui/QVector3D \
+		/opt/qt55/include/QtGui/qvector3d.h \
+		/opt/qt55/include/QtGui/QVector2D \
+		/opt/qt55/include/QtCore/QVector \
+		../src/renderable.h \
+		/opt/qt55/include/QtGui/QOpenGLFunctions \
+		/opt/qt55/include/QtGui/qopenglfunctions.h \
+		/opt/qt55/include/QtGui/qopengl.h \
+		/opt/qt55/include/QtCore/qt_windows.h \
+		/opt/qt55/include/QtGui/qopengles2ext.h \
+		/opt/qt55/include/QtGui/qopenglext.h \
+		/opt/qt55/include/QtGui/qopenglcontext.h \
+		/opt/qt55/include/QtCore/QObject \
+		/opt/qt55/include/QtCore/QScopedPointer \
+		/opt/qt55/include/QtGui/QSurfaceFormat \
+		/opt/qt55/include/QtGui/qsurfaceformat.h \
+		/opt/qt55/include/QtGui/qopenglversionfunctions.h \
+		/opt/qt55/include/QtGui/QOpenGLBuffer \
+		/opt/qt55/include/QtGui/qopenglbuffer.h \
+		/opt/qt55/include/QtGui/QOpenGLVertexArrayObject \
+		/opt/qt55/include/QtGui/qopenglvertexarrayobject.h \
+		/opt/qt55/include/QtGui/QOpenGLShaderProgram \
+		/opt/qt55/include/QtGui/qopenglshaderprogram.h \
+		/opt/qt55/include/QtGui/qvector4d.h \
+		/opt/qt55/include/QtGui/qmatrix4x4.h \
+		/opt/qt55/include/QtGui/qquaternion.h \
+		/opt/qt55/include/QtGui/qgenericmatrix.h \
+		/opt/qt55/include/QtGui/QMatrix4x4 \
+		../src/transform3d.h \
+		/opt/qt55/include/QtGui/QQuaternion \
+		../src/camera3d.h \
+		../src/vertex.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o suzanne.o ../src/suzanne.cpp
 
 transform3d.o: ../src/transform3d.cpp ../src/transform3d.h \
 		/opt/qt55/include/QtGui/QVector3D \

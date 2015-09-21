@@ -20,7 +20,8 @@ OGLWidget::OGLWidget()
     camera.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 0.0f, 3.5f, 0.0f );
 
-    cube = new Cube();
+    //cube = new Cube();
+    suzanne = new Suzanne();
 }
 
 /**
@@ -42,7 +43,8 @@ void OGLWidget::initializeGL()
     initializeOpenGLFunctions();
     printContextInfo();
 
-    cube->initializeGL();
+    //cube->initializeGL();
+    suzanne->initializeGL();
 }
 
 /**
@@ -74,7 +76,8 @@ void OGLWidget::paintGL()
     // Clear the screen
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    cube->paintGL( camera, projection );
+    //cube->paintGL( camera, projection );
+    suzanne->paintGL( camera, projection );
 }
 
 /**
@@ -82,7 +85,8 @@ void OGLWidget::paintGL()
  */
 void OGLWidget::teardownGL()
 {
-    delete cube;
+    //delete cube;
+    delete suzanne;
 }
 
 //
@@ -94,7 +98,8 @@ void OGLWidget::teardownGL()
  */
 void OGLWidget::update()
 {
-    cube->transform.setTranslation( 0.0f, 0.0f, -10.0f );
+    //cube->transform.setTranslation( 0.0f, 0.0f, -10.0f );
+    suzanne->transform.setTranslation( 0.0f, 0.0f, -10.0f );
     QOpenGLWidget::update();
 }
 

@@ -16,6 +16,7 @@
 #include "camera3d.h"
 #include "renderable.h"
 #include "cube.h"
+#include "suzanne.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions
@@ -44,6 +45,7 @@ private:
     void printContextInfo();
 
     Renderable* cube;
+    Renderable* suzanne;
 
     QMatrix4x4 projection;
     Camera3D camera;

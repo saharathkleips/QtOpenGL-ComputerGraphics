@@ -23,7 +23,11 @@ Cube::~Cube()
 // INTERFACE IMPLEMENTATIONS ///////////////////////////////////////////////////
 // 
 
-
+/**
+ * @brief      Overridden Renderable function.
+ * @details    Initializes the OpenGL contexts / states / buffers to draw the
+ * Cube.
+ */
 void Cube::initializeGL()
 {
     initializeOpenGLFunctions();
@@ -70,6 +74,14 @@ void Cube::initializeGL()
     program->release();
 }
 
+/**
+ * @brief      Overridden Renderable function.
+ * @details    Paints the Cube onto the screen with the proper states and
+ * transformations.
+ *
+ * @param      camera      The camera of the main drawing canvas.
+ * @param      projection  The projection of the main drawing canvas.
+ */
 void Cube::paintGL( Camera3D& camera, QMatrix4x4& projection )
 {
     glEnable( GL_DEPTH_TEST );
@@ -92,6 +104,10 @@ void Cube::paintGL( Camera3D& camera, QMatrix4x4& projection )
     program->release();
 }
 
+/**
+ * @brief      Overridden Renderable function.
+ * @details    Disposes of all of the OpenGL data for this Cube.
+ */
 void Cube::teardownGL()
 {
     vao.destroy();
