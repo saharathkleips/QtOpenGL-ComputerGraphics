@@ -50,6 +50,7 @@ void Cube::initializeGL()
     vbo.create();
     vbo.bind();
     vbo.setUsagePattern( QOpenGLBuffer::StaticDraw );
+    qDebug() << "Cube Size: " << sizeof( sg_vertices );
     vbo.allocate( sg_vertices, sizeof( sg_vertices ) );
 
     // Create a Vertex Array Object (vao)

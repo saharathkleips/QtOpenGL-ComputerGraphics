@@ -17,5 +17,9 @@
     <file>shaders/simple.fs</file>
     <file>models/suzanne.obj</file>
     <file>models/suzanne.mtl</file>
+    <file>models/cube.obj</file>
+    <file>models/cube.mtl</file>
+    <file>models/table.obj</file>
+    <file>models/table.mtl</file>
 </qresource>
 </RCC>

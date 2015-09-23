@@ -29,6 +29,7 @@ private:
     Vertex* loadObj( QString path );
 
     Vertex* model;
+    int numVertices;
 };
 
 #endif  //  SUZANNE_H

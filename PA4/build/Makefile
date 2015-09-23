@@ -530,7 +530,11 @@ qrc_resources.cpp: resources.qrc \
 		shaders/simple.fs \
 		shaders/simple.vs \
 		models/suzanne.mtl \
-		models/suzanne.obj
+		models/suzanne.obj \
+		models/table.mtl \
+		models/table.obj \
+		models/cube.mtl \
+		models/cube.obj
 	/opt/qt55/bin/rcc -name resources resources.qrc -o qrc_resources.cpp
 
 compiler_moc_header_make_all: moc_oglWidget.cpp

@@ -44,7 +44,7 @@ void Suzanne::initializeGL()
     vbo.create();
     vbo.bind();
     vbo.setUsagePattern( QOpenGLBuffer::StaticDraw );
-    vbo.allocate( model, sizeof( model ) );
+    vbo.allocate( model, numVertices * sizeof( model[0] ) );
 
     // Create a Vertex Array Object (vao)
     vao.create();
@@ -85,7 +85,7 @@ void Suzanne::paintGL( Camera3D& camera, QMatrix4x4& projection )
     program->setUniformValue( modelWorld, transform.toMatrix() );
     glDrawArrays(   GL_TRIANGLES,
                     0,
-                    sizeof( model ) / sizeof( model[0] ) );
+                    numVertices );
     vao.release();
 
     program->release();
@@ -211,6 +211,7 @@ Vertex* Suzanne::loadObj( QString path )
         }
     }
 
+    numVertices = vertexIndices.size();
     Vertex* geometry = new Vertex[ vertexIndices.size() ];
     for( int i = 0; i < vertexIndices.size(); i++ )
     {
