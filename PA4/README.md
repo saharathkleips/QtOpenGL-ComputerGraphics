@@ -1,5 +1,7 @@
 # PA4 - Model Loading (Saharath Kleips)
-This program displays a table-like model loaded from a .obj file with a custom model loader. The model loader supports: vertex indices, vertex texture coordinate indices, vertex normal indices, and vertex normal indices without texture coordinate indices. The extra credit has also been completed with the requirement to display custom colors for each vertex fragment.
+This program displays a table-like model loaded from a .obj file with a custom model loader. The model loader supports: vertex indices, vertex texture coordinate indices, vertex normal indices, and vertex normal indices without texture coordinate indices. The extra credit has also been completed with the requirement to display custom colors for each vertex fragment.  
+
+**Note:** The custom model loader implementation can be found within `suzanne.cpp`. This will be refactored out in a later version.
 
 ![](.screenshot.png "Screenshot")
 
