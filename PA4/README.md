@@ -36,7 +36,7 @@ This program features custom model loading from a file path. Click [here](#build
         </tr>
         <tr>
             <td>Keyboard - Left</td>
-            <td>Rotate model postively along the y-axis</td>
+            <td>Rotate model negatively along the x-axis</td>
         </tr>
         <tr>
             <td>Keyboard - Right</td>
@@ -48,24 +48,6 @@ This program features custom model loading from a file path. Click [here](#build
         </tr>
         <tr>
             <td>Keyboard - ESC</td>
-            <td>Exit the program</td>
-        </tr>
-    </tbody>
-</table>
-
-###Context Menu
-<table>
-    <tbody>
-        <tr>
-            <th>Context Item</th>
-            <th>Description</th>
-        </tr>
-            <td>Unpause / Pause</td>
-            <td>Unpauses / pauses all object montion</td>
-        <tr>
-        </tr>
-        <tr>
-            <td>Exit Program</td>
             <td>Exit the program</td>
         </tr>
     </tbody>
@@ -159,8 +141,8 @@ ex: ./PA4.exe ../build/models/suzanne.obj
 
 Convenince Copy/Paste from the `build` directory:
 ```
-qmake; make; cd ../bin; ./PA3.exe; cd ../build
-make; cd ../bin; ./PA3.exe; cd ../build
+qmake; make; cd ../bin; ./PA4.exe; cd ../build
+make; cd ../bin; ./PA4.exe; cd ../build
 ```
 
 **Note:** `qmake` does not need to be run before `make` everytime, only when the `.pro` file has been changed. Otherwise, simply `qmake` once and `make` from there on out.
