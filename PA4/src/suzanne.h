@@ -19,6 +19,7 @@ class Suzanne   :   public Renderable
 {
 public:
     Suzanne();
+    Suzanne( QString path );
     ~Suzanne();
 
     void initializeGL();

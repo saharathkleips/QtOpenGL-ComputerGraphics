@@ -1,13 +1,11 @@
 # PA4 - Model Loading (Saharath Kleips)
-# UPDATE THIS INFORMATION!!!!!!!!!!!!!!
-This program displays a planet orbiting around a central location with a moon that orbits the planet. Both the planet and the moon utilize the same mesh, but may act and transform independently of each other. In this program the moon will always orbit the planet no matter where the planet is, or what the planet is doing. Controls listed below showcase this interaction.
+This program displays a table-like model loaded from a .obj file with a custom model loader. The model loader supports: vertex indices, vertex texture coordinate indices, vertex normal indices, and vertex normal indices without texture coordinate indices. The extra credit has also been completed with the requirement to display custom colors for each vertex fragment.
 
 ![](.screenshot.png "Screenshot")
 
 ## Table of Contents
 + [Program Usage](#program-usage)  
-    - [Controls](#controls)  
-    - [Context Menu](#context-menu)  
+    - [Controls](#controls)
 + [Installation Instructions](#installation-instructions)  
     - [Ubuntu 14.04 LTS](#ubuntu-1404-lts)
     - [Ubuntu 12.04 LTS](#ubuntu-1204-lts)
@@ -18,6 +16,7 @@ This program displays a planet orbiting around a central location with a moon th
     - [Not Found in Mesa Table OpenGL Error](#not-found-in-mesa-table-opengl-error)
 
 ## Program Usage
+This program features custom model loading from a file path. Click [here](#build-instructions) for instructions on how to add a custom path.
 ###Controls
 <table>
     <tbody>
@@ -27,47 +26,27 @@ This program displays a planet orbiting around a central location with a moon th
         </tr>
         <tr>
             <td>Keyboard - Up</td>
-            <td>Rotate planet counter-clockwise</td>
+            <td>Zoom camera in</td>
         </tr>
         <tr>
             <td>Keyboard - Down</td>
-            <td>Rotate planet clockwise</td>
+            <td>Zoom camera out</td>
         </tr>
         <tr>
             <td>Keyboard - Left</td>
-            <td>Orbit planet counter-clockwise</td>
+            <td>Rotate model postively along the y-axis</td>
         </tr>
         <tr>
             <td>Keyboard - Right</td>
-            <td>Orbit planet clockwise</td>
+            <td>Rotate model postively along the x-axis</td>
         </tr>
         <tr>
-            <td>Keyboard - W</td>
-            <td>Rotate moon counter-clockwise</td>
-        </tr>
-        <tr>
-            <td>Keyboard - S</td>
-            <td>Rotate moon clockwise</td>
-        </tr>
-        <tr>
-            <td>Keyboard - A</td>
-            <td>Orbit moon counter-clockwise</td>
-        </tr>
-        <tr>
-            <td>Keyboard - D</td>
-            <td>Orbit moon clockwise</td>
+            <td>Keyboard - Space</td>
+            <td>Reset model rotation</td>
         </tr>
         <tr>
             <td>Keyboard - ESC</td>
             <td>Exit the program</td>
-        </tr>
-        <tr>
-            <td>Mouse - Left Click</td>
-            <td>Reverse the orbits of both objects</td>
-        </tr>
-        <tr>
-            <td>Mouse - Right Click</td>
-            <td>Create a popup context menu</td>
         </tr>
     </tbody>
 </table>
@@ -168,7 +147,12 @@ make
 ```
 Navigate to the `bin` directory.
 ```
-./PA3.exe
+Default model:
+./PA4.exe
+
+Custom model:
+./PA4.exe {$PATH}
+ex: ./PA4.exe ../build/models/suzanne.obj
 ```
 
 Convenince Copy/Paste from the `build` directory:

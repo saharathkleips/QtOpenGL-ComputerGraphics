@@ -532,9 +532,7 @@ qrc_resources.cpp: resources.qrc \
 		models/suzanne.mtl \
 		models/suzanne.obj \
 		models/table.mtl \
-		models/table.obj \
-		models/cube.mtl \
-		models/cube.obj
+		models/table.obj
 	/opt/qt55/bin/rcc -name resources resources.qrc -o qrc_resources.cpp
 
 compiler_moc_header_make_all: moc_oglWidget.cpp

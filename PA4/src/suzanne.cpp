@@ -1,5 +1,8 @@
 #include "suzanne.h"
 
+//@todo COMMENT!
+//@todo refactor "suzanne" test model loader into a real model loader
+
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
@@ -7,7 +10,12 @@
 
 Suzanne::Suzanne()
 {
-    model = loadObj( QString(":/models/suzanne.obj") );
+    model = loadObj( QString(":/models/table.obj") );
+}
+
+Suzanne::Suzanne( QString path )
+{
+    model = loadObj( path );
 }
 
 

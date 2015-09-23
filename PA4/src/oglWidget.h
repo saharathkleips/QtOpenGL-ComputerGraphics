@@ -25,6 +25,7 @@ class OGLWidget    :    public QOpenGLWidget,
 
 public:
     OGLWidget();
+    OGLWidget( QString modelPath );
     ~OGLWidget();
 
     virtual void initializeGL();

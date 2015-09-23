@@ -12,10 +12,16 @@ int main( int argc, char** argv )
     format.setProfile( QSurfaceFormat::NoProfile );
     format.setVersion( 2,1 );
 
-    OGLWidget oglWidget;
-    oglWidget.setFormat( format );
-    oglWidget.resize( QSize( 800, 600 ) );
-    oglWidget.show(); 
+
+    OGLWidget* oglWidget;
+    if(argc == 1)
+        oglWidget = new OGLWidget();
+    else
+        oglWidget = new OGLWidget(argv[1]);
+
+    oglWidget->setFormat( format );
+    oglWidget->resize( QSize( 800, 600 ) );
+    oglWidget->show(); 
 
     return app.exec();
 }

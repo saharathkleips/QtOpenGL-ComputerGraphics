@@ -20,8 +20,28 @@ OGLWidget::OGLWidget()
     camera.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 0.0f, 4.0f, 10.0f );
 
-    cube = new Cube();
     suzanne = new Suzanne();
+}
+
+/**
+ * @brief      Function for PA4
+ *
+ * @param[in]  modelPath  Path of the model to load
+ */
+OGLWidget::OGLWidget( QString modelPath )
+{
+    // Update the widget after a frameswap
+    connect( this, SIGNAL( frameSwapped() ),
+        this, SLOT( update() ) );
+    // Exit the application
+    connect( this, SIGNAL( exitFlag() ),
+        QApplication::instance(), SLOT( quit() ) );
+
+    // Setup the Camera
+    camera.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
+    camera.translate( 0.0f, 4.0f, 10.0f );
+
+    suzanne = new Suzanne( modelPath );
 }
 
 /**
@@ -43,7 +63,6 @@ void OGLWidget::initializeGL()
     initializeOpenGLFunctions();
     printContextInfo();
 
-    cube->initializeGL();
     suzanne->initializeGL();
 }
 
@@ -76,7 +95,6 @@ void OGLWidget::paintGL()
     // Clear the screen
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    cube->paintGL( camera, projection );
     suzanne->paintGL( camera, projection );
 }
 
@@ -85,7 +103,6 @@ void OGLWidget::paintGL()
  */
 void OGLWidget::teardownGL()
 {
-    delete cube;
     delete suzanne;
 }
 
@@ -98,8 +115,7 @@ void OGLWidget::teardownGL()
  */
 void OGLWidget::update()
 {
-    cube->transform.setTranslation( 0.0f, 0.0f, -10.0f );
-    //suzanne->transform.setTranslation( 0.0f, 0.0f, -10.0f );
+    suzanne->transform.rotate( 1.0f, 0,1,0 );
     QOpenGLWidget::update();
 }
 
@@ -116,6 +132,21 @@ void OGLWidget::keyPressEvent( QKeyEvent* event )
 {
     switch( event->key() )
     {
+        case Qt::Key_Up:
+            suzanne->transform.scale( 1.1f );
+            break;
+        case Qt::Key_Down:
+            suzanne->transform.scale( 0.9f );
+            break;
+        case Qt::Key_Right:
+            suzanne->transform.rotate( 5.0f, 1,0,0 );
+            break;
+        case Qt::Key_Left:
+            suzanne->transform.rotate( -5.0f, 1,0,0 );
+            break;
+        case Qt::Key_Space:
+            suzanne->transform.setRotation( 0.0f, 0, 0, 0);
+            break;
         case Qt::Key_Escape:
             emit exitFlag();
             break;
