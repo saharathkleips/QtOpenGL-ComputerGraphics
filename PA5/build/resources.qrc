@@ -1,0 +1,23 @@
+<!--Qt Resource Files are XML Based-->
+<!DOCTYPE RCC><RCC version="1.0">
+<!--
+    A prefix tag may be used for a path prefix with the following example:
+        <qresource prefix="/dir_example">
+-->
+<qresource>
+    <!--
+        Resource paths are relative to the directory with the .qrc file.
+        Paths must therefor be in the .qrc directory or subdirectory.
+
+        Resources are accessible with the ':/' file path prefix.
+        Aliases may be used with the following example:
+            <file alias="NEW_NAME.png">images/example.png</file>
+    -->
+    <file>shaders/simple.vs</file>
+    <file>shaders/simple.fs</file>
+    <file>models/suzanne.obj</file>
+    <file>models/suzanne.mtl</file>
+    <file>models/table.obj</file>
+    <file>models/table.mtl</file>
+</qresource>
+</RCC>
