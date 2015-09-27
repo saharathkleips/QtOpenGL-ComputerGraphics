@@ -16,37 +16,38 @@
     - [Not Found in Mesa Table OpenGL Error](#not-found-in-mesa-table-opengl-error)
 
 ## Program Usage
-This program features custom model loading from a file path. Click [here](#build-instructions) for instructions on how to add a custom path.
+
+
 ###Controls
 <table>
     <tbody>
         <tr>
-            <th>Action</th>
-            <th>Description</th>
+            <th></th>
+            <th></th>
         </tr>
         <tr>
-            <td>Keyboard - Up</td>
-            <td>Zoom camera in</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td>Keyboard - Down</td>
-            <td>Zoom camera out</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td>Keyboard - Left</td>
-            <td>Rotate model negatively along the x-axis</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td>Keyboard - Right</td>
-            <td>Rotate model postively along the x-axis</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td>Keyboard - Space</td>
-            <td>Reset model rotation</td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td>Keyboard - ESC</td>
-            <td>Exit the program</td>
+            <td></td>
+            <td></td>
         </tr>
     </tbody>
 </table>
@@ -130,17 +131,17 @@ make
 Navigate to the `bin` directory.
 ```
 Default model:
-./PA4.exe
+./PA5.exe
 
 Custom model:
-./PA4.exe {$PATH}
-ex: ./PA4.exe ../build/models/suzanne.obj
+./PA5.exe {$PATH}
+ex: ./PA5.exe ../build/models/suzanne.obj
 ```
 
 Convenince Copy/Paste from the `build` directory:
 ```
-qmake; make; cd ../bin; ./PA4.exe; cd ../build
-make; cd ../bin; ./PA4.exe; cd ../build
+qmake; make; cd ../bin; ./PA5.exe; cd ../build
+make; cd ../bin; ./PA5.exe; cd ../build
 ```
 
 **Note:** `qmake` does not need to be run before `make` everytime, only when the `.pro` file has been changed. Otherwise, simply `qmake` once and `make` from there on out.
