@@ -30,9 +30,11 @@ The projects focus on an understanding of 3D computer graphics and its implement
 ## PA3 - [Moons](PA3)
 [Documentation](PA3/README.md)
 
-## PA4 - Model Loading
+## PA4 - [Model Loading](PA4)
+[Documentation](PA4/README.md)
 
-## PA5 - Assimp Model
+## PA5 - [Assimp Model](PA4)
+[Documentation](PA4/README.md)
 
 ## PA6 - Assimp Texture
 
