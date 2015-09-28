@@ -113,6 +113,23 @@ cd /opt/qt55/bin
 ```
 Restart your terminal.
 
+### Other linux distributions 
+
+Qt can be built from [source code](https://wiki.qt.io/Building_Qt_5_from_Git), and is most likely available in your distribution's repositories. However, an easy way of getting the latest Qt is using the official installer:
+
+Download the [Qt Installer](http://www.qt.io/download-open-source/). Give it executable permissions and run as administrator.
+```
+chmod +x qt-unified-linux-x64-2.0.2-2-online.run
+sudo ./qt-unified-linux-x64-2.0.2-2-online.run
+```
+Assuming Qt was installed in the default location of /opt/Qt/, to add the Qt binaries to PATH environment variable:
+```
+echo "PATH=\$PATH:/opt/Qt/Tools/QtCreator/bin:/opt/Qt/5.5/gcc_64/bin" >> ~/.bashrc
+source ~/.bashrc
+```
+
+... and that's it!
+
 ### OSX
 
 Install VirtualBox. Go get Ubuntu. Brew instructions unavailable.

@@ -2,7 +2,8 @@
 *.slo
 *.lo
 *.o
-*.obj
+# Windows specific
+# *.obj
 
 # Precompiled Headers
 *.gch
@@ -34,3 +35,6 @@
 moc_*.cpp
 qrc_*.cpp
 *.moc
+
+# Generated makefile
+Makefile
