@@ -122,7 +122,7 @@ Download the [Qt Installer](http://www.qt.io/download-open-source/). Give it exe
 chmod +x qt-unified-linux-x64-2.0.2-2-online.run
 sudo ./qt-unified-linux-x64-2.0.2-2-online.run
 ```
-Assuming Qt was installed in the default location of /opt/Qt/, to add the Qt binaries to PATH environment variable:
+Add the Qt binaries to PATH environment variable (assumes default install location of /opt/Qt/:
 ```
 echo "PATH=\$PATH:/opt/Qt/Tools/QtCreator/bin:/opt/Qt/5.5/gcc_64/bin" >> ~/.bashrc
 source ~/.bashrc
