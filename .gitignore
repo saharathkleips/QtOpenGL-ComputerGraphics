@@ -34,3 +34,6 @@
 moc_*.cpp
 qrc_*.cpp
 *.moc
+
+# Generated makefile
+Makefile
