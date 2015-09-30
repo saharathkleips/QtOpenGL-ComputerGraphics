@@ -10,7 +10,7 @@
 
 Suzanne::Suzanne()
 {
-    model = loadObj( QString("table.obj") );
+    model = loadObj( QString("suzanne.obj") );
 }
 
 Suzanne::Suzanne( QString path )

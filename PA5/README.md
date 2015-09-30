@@ -153,8 +153,9 @@ Default model:
 ./PA5.exe
 
 Custom model:
-./PA5.exe {$PATH}
-ex: ./PA5.exe ../build/models/suzanne.obj
+Place models within the bin directory.
+./PA5.exe MODEL_NAME
+ex: ./PA5.exe table.obj
 ```
 
 Convenince Copy/Paste from the `build` directory:
