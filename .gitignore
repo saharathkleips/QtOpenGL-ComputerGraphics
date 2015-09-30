@@ -2,8 +2,7 @@
 *.slo
 *.lo
 *.o
-# Windows specific
-# *.obj
+*.obj
 
 # Precompiled Headers
 *.gch
