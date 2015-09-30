@@ -1,5 +1,7 @@
 # PA5 - Assimp Model Loading (Ben Nicholes, Denis Morozov, Saharath Kleips)
-## FIX THE INFORMATION ON THIS PAGE!!!!!
+Sample program that displays the usage of Assimp model loading.
+
+**Note** Possibly broken on most machines.
 
 ![](.screenshot.png "Screenshot")
 
