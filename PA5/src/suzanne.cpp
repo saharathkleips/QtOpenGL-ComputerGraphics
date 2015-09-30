@@ -121,37 +121,23 @@ Vertex* Suzanne::loadObj( QString path )
         aiProcess_JoinIdenticalVertices |
         aiProcess_SortByPType );
 
-    qDebug() << "After importer";
-
     aiMesh* mesh = scene->mMeshes[0];
-
-    qDebug() << "After mesh";
 
     numVertices = mesh->mNumFaces * 3;
     Vertex* geometry = new Vertex[ numVertices ];
-
-    qDebug() << "After Vertex declr";
 
     int counter = 0;
     for( unsigned int i = 0; i < mesh->mNumFaces; i++ )
     {
         const aiFace& face = mesh->mFaces[i];
-        qDebug() << "After aiFace declr";
 
         for( unsigned int j = 0; j < 3; j++ )
         {
-            qDebug() << "Before aiVector3D";
-            qDebug() << mesh->mNumVertices;
-                qDebug() << "Qt wtf";
-            qDebug() << face.mNumIndices;
             aiVector3D pos = mesh->mVertices[ face.mIndices[j] ];
-            qDebug() << "After aiVector3D";
             QVector3D position( pos.x, pos.y, pos.z) ;
             QVector3D color( 255.0f, 165.0f, 0.0f );
-            qDebug() << "before geometry";
             geometry[counter] = Vertex( position, color );
             counter++;
-            qDebug() << "After geometry";
         }
     }
 
