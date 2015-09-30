@@ -10,7 +10,7 @@
 
 Suzanne::Suzanne()
 {
-    model = loadObj( QString(":/models/table.obj") );
+    model = loadObj( QString("table.obj") );
 }
 
 Suzanne::Suzanne( QString path )
@@ -113,129 +113,49 @@ void Suzanne::teardownGL()
 
 Vertex* Suzanne::loadObj( QString path )
 {
-    QVector<unsigned int> vertexIndices, uvIndices, normalIndices;
-    QVector<QVector3D> temp_vertices;
-    QVector<QVector2D> temp_uvs;
-    QVector<QVector3D> temp_normals;
-    bool hasTextures = false;
-    bool hasNormals = false;
+    Assimp::Importer importer;
+    const aiScene* scene = importer.ReadFile( path.toStdString(), 
+        aiProcess_GenSmoothNormals |
+        aiProcess_CalcTangentSpace |
+        aiProcess_Triangulate |
+        aiProcess_JoinIdenticalVertices |
+        aiProcess_SortByPType );
 
-    QFile file( path );
-    if( !file.open( QIODevice::ReadOnly ) )
+    qDebug() << "After importer";
+
+    aiMesh* mesh = scene->mMeshes[0];
+
+    qDebug() << "After mesh";
+
+    numVertices = mesh->mNumFaces * 3;
+    Vertex* geometry = new Vertex[ numVertices ];
+
+    qDebug() << "After Vertex declr";
+
+    int counter = 0;
+    for( unsigned int i = 0; i < mesh->mNumFaces; i++ )
     {
-        qDebug() << "Error: " << qPrintable( file.errorString() );
-        QApplication::instance()->quit();
-    }
+        const aiFace& face = mesh->mFaces[i];
+        qDebug() << "After aiFace declr";
 
-    QTextStream in( &file );
-    while( !in.atEnd() )
-    {
-        QString line = in.readLine();
-        QStringList fields = line.split( " " );
-        
-        if( fields[0] == "v" )  // Vertex
+        for( unsigned int j = 0; j < 3; j++ )
         {
-            QVector3D v;
-            v.setX( fields[1].toFloat() );
-            v.setY( fields[2].toFloat() );
-            v.setZ( fields[3].toFloat() );
-            temp_vertices.push_back( v );
-        }
-        else if(fields[0] == "vt" ) // Texture coordinate of one vertex
-        {
-            hasTextures = true;
-            QVector2D uv;
-            uv.setX( fields[1].toFloat() );
-            uv.setY( fields[2].toFloat() );
-            temp_uvs.push_back( uv );
-        }
-        else if( fields[0] == "vn" ) // Normal of one vertex
-        {
-            hasNormals = true;
-            QVector3D n;
-            n.setX( fields[1].toFloat() );
-            n.setY( fields[2].toFloat() );
-            n.setZ( fields[3].toFloat() );
-            temp_normals.push_back( n );
-        }
-        else if( fields[0] == "f" ) // Face
-        {
-            unsigned int vertexIndex[3], uvIndex[3], normalIndex[3];
-            (void)uvIndex;      //@todo
-            (void)normalIndex;  //@todo
-
-            if( !hasTextures && !hasNormals )
-            {
-                vertexIndex[0] = fields[1].toUInt();
-                vertexIndex[1] = fields[2].toUInt();
-                vertexIndex[2] = fields[3].toUInt();
-            }
-            else if( hasTextures && !hasNormals )
-            {
-                QStringList args1 = fields[1].split("/");
-                QStringList args2 = fields[2].split("/");
-                QStringList args3 = fields[3].split("/");
-
-                vertexIndex[0] = args1[0].toUInt();
-                uvIndex[0]     = args1[1].toUInt();
-                vertexIndex[1] = args2[0].toUInt();
-                uvIndex[1]     = args2[1].toUInt();
-                vertexIndex[2] = args3[0].toUInt();
-                uvIndex[2]     = args3[1].toUInt();
-            }
-            else if( !hasTextures && hasNormals )
-            {
-                QStringList args1 = fields[1].split("//");
-                QStringList args2 = fields[2].split("//");
-                QStringList args3 = fields[3].split("//");
-
-                vertexIndex[0] = args1[0].toUInt();
-                normalIndex[0] = args1[1].toUInt();
-                vertexIndex[1] = args2[0].toUInt();
-                normalIndex[1] = args2[1].toUInt();
-                vertexIndex[2] = args3[0].toUInt();
-                normalIndex[2] = args3[1].toUInt();
-            }
-            else if( hasTextures && hasNormals )
-            {
-                QStringList args1 = fields[1].split("/");
-                QStringList args2 = fields[2].split("/");
-                QStringList args3 = fields[3].split("/");
-
-                vertexIndex[0] = args1[0].toUInt();
-                uvIndex[0]     = args1[1].toUInt();
-                normalIndex[0] = args1[2].toUInt();
-                vertexIndex[1] = args2[0].toUInt();
-                uvIndex[1]     = args2[1].toUInt();
-                normalIndex[1] = args2[2].toUInt();
-                vertexIndex[2] = args3[0].toUInt();
-                uvIndex[2]     = args3[1].toUInt();
-                normalIndex[2] = args3[2].toUInt();
-            }
-
-            vertexIndices.push_back( vertexIndex[0] );
-            vertexIndices.push_back( vertexIndex[1] );
-            vertexIndices.push_back( vertexIndex[2] );
+            qDebug() << "Before aiVector3D";
+            qDebug() << mesh->mNumVertices;
+                qDebug() << "Qt wtf";
+            qDebug() << face.mNumIndices;
+            aiVector3D pos = mesh->mVertices[ face.mIndices[j] ];
+            qDebug() << "After aiVector3D";
+            QVector3D position( pos.x, pos.y, pos.z) ;
+            QVector3D color( 255.0f, 165.0f, 0.0f );
+            qDebug() << "before geometry";
+            geometry[counter] = Vertex( position, color );
+            counter++;
+            qDebug() << "After geometry";
         }
     }
 
-    numVertices = vertexIndices.size();
-    Vertex* geometry = new Vertex[ vertexIndices.size() ];
-    for( int i = 0; i < vertexIndices.size(); i++ )
-    {
-        unsigned int vertexIndex = vertexIndices[i];
-        QVector3D position(
-            temp_vertices[vertexIndex - 1].x(),
-            temp_vertices[vertexIndex - 1].y(),
-            temp_vertices[vertexIndex - 1].z()
-            );
-        QVector3D color(
-            1.0f / ( ( i % 2 ) + 1.0f ),    // R
-            1.0f / ( ( i % 4 ) + 1.0f ),    // G
-            1.0f / ( ( i % 6 ) + 1.0f )     // B
-            );
-        geometry[i] = Vertex( position, color );
-    }
+    geometry -= mesh->mNumFaces * 3;
 
     return geometry;
 }

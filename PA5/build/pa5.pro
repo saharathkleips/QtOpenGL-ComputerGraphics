@@ -14,7 +14,9 @@ QT += opengl
 #Necessary for Qt5 and above
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-INCLUDEPATH += .
+LIBS += -L/usr/include -lassimp
+
+QMAKE_CXXFLAGS_WARD_ON += -Wall -pedantic
 
 # Input
 # HEADERS += first_file.h second_file.h
@@ -22,6 +24,7 @@ INCLUDEPATH += .
 HEADERS += \
     ../src/camera3d.h \
     ../src/cube.h \
+    ../src/modelLoader.h \
     ../src/oglWidget.h \
     ../src/renderable.h \
     ../src/sg_vertices.h \
@@ -33,6 +36,7 @@ SOURCES += \
     ../src/camera3d.cpp \
     ../src/cube.cpp \
     ../src/main.cpp \
+    ../src/modelLoader.cpp \
     ../src/oglWidget.cpp \
     ../src/suzanne.cpp \
     ../src/transform3d.cpp \

@@ -14,6 +14,7 @@
 
 #include "renderable.h"
 #include "vertex.h"
+#include "modelLoader.h"
 
 class Suzanne   :   public Renderable
 {
