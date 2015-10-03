@@ -1,5 +1,5 @@
 # PA5 - Assimp Model Loading (Ben Nicholes, Denis Morozov, Saharath Kleips)
-Sample program that displays the usage of Assimp model loading. The loader current supports various model formats, but will not load any textures or materials associated with them. Controls found below allow the model to be maniuplated to better view the loaded models.
+Sample program that displays the usage of Assimp model loading. The loader current supports various model formats, but will not load any textures or materials associated with them. Controls found below allow the model to be manipulated to better view the loaded models.
 
 
 ![](.screenshot.png "Screenshot")
@@ -10,7 +10,7 @@ Sample program that displays the usage of Assimp model loading. The loader curre
 + [Installation Instructions](#installation-instructions)  
     - [Ubuntu 14.04 LTS (RECOMMENDED)](#ubuntu-1404-lts)
     - [Ubuntu 12.04 LTS](#ubuntu-1204-lts)
-    - [Other Linux Distrb](#other-linux-distributions)
+    - [Other Linux Distrbutions](#other-linux-distributions)
     - [OSX](#osx)
     - [Windows](#windows)
 + [Build Instructions](#build-instructions)  
@@ -122,7 +122,7 @@ cd /opt/qt55/bin
 ```
 Restart your terminal.
 
-**WARNING: Potentially Unsupported**
+**WARNING: Potentially Unsupported**  
 **Assimp Install**
 ```
 sudo apt-get install libassimp-dev
@@ -222,7 +222,7 @@ OpenGL extensions:
 ```
 Note: The version string should now contain Mesa rather than Chromium.
 
-**Alternative Solution**
-Download and install VMWare Workstation Player 12.
-Migrate your current virtual machine image and boot from VMWare.
-Install VMWare tools.
+**Alternative Solution**  
+Download and install VMWare Workstation Player 12.  
+Migrate your current virtual machine image and boot from VMWare.  
+Install VMWare tools.  
