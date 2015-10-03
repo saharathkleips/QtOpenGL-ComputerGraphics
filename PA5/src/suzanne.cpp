@@ -114,19 +114,21 @@ void Suzanne::teardownGL()
 Vertex* Suzanne::loadObj( QString path )
 {
     Assimp::Importer importer;
+    // const aiScene* scene = importer.ReadFile( path.toStdString(), 
+    //     aiProcess_GenSmoothNormals |
+    //     aiProcess_CalcTangentSpace |
+    //     aiProcess_Triangulate |
+    //     aiProcess_JoinIdenticalVertices |
+    //     aiProcess_SortByPType );
+
     const aiScene* scene = importer.ReadFile( path.toStdString(), 
-        aiProcess_GenSmoothNormals |
-        aiProcess_CalcTangentSpace |
-        aiProcess_Triangulate |
-        aiProcess_JoinIdenticalVertices |
-        aiProcess_SortByPType );
+        aiProcess_Triangulate );
 
     aiMesh* mesh = scene->mMeshes[0];
 
     numVertices = mesh->mNumFaces * 3;
     Vertex* geometry = new Vertex[ numVertices ];
 
-    int counter = 0;
     for( unsigned int i = 0; i < mesh->mNumFaces; i++ )
     {
         const aiFace& face = mesh->mFaces[i];
@@ -134,10 +136,12 @@ Vertex* Suzanne::loadObj( QString path )
         for( unsigned int j = 0; j < 3; j++ )
         {
             aiVector3D pos = mesh->mVertices[ face.mIndices[j] ];
+
             QVector3D position( pos.x, pos.y, pos.z) ;
             QVector3D color( 255.0f, 165.0f, 0.0f );
-            geometry[counter] = Vertex( position, color );
-            counter++;
+            geometry->setPosition( position );
+            geometry->setColor( color );
+            geometry++;
         }
     }
 

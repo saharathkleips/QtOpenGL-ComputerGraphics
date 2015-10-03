@@ -14,7 +14,10 @@
 
 #include "renderable.h"
 #include "vertex.h"
-#include "modelLoader.h"
+
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 class Suzanne   :   public Renderable
 {

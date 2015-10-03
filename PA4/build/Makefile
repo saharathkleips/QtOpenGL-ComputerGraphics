@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = PA4.exe1.0.0
-DISTDIR = /home/zarol/Documents/cs480Kleips/PA4/build/.tmp/PA4.exe1.0.0
+DISTDIR = /home/unr/cs480kleips/PA4/build/.tmp/PA4.exe1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1 -Wl,-rpath,/opt/qt55/lib
 LIBS          = $(SUBLIBS) -L/opt/qt55/lib -lQt5OpenGL -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -150,8 +150,16 @@ DIST          = /opt/qt55/mkspecs/features/spec_pre.prf \
 		/opt/qt55/mkspecs/modules/qt_lib_uiplugin.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_uitools.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_uitools_private.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_waylandclient.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_waylandclient_private.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_webchannel.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_webchannel_private.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_webengine.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_webengine_private.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_webenginecore.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_webenginecore_private.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_webenginewidgets.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_webkit.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_webkit_private.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_webkitwidgets.pri \
@@ -316,8 +324,16 @@ Makefile: pa4.pro /opt/qt55/mkspecs/linux-g++/qmake.conf /opt/qt55/mkspecs/featu
 		/opt/qt55/mkspecs/modules/qt_lib_uiplugin.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_uitools.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_uitools_private.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_waylandclient.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_waylandclient_private.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_webchannel.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_webchannel_private.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_webengine.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_webengine_private.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_webenginecore.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_webenginecore_private.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_webenginewidgets.pri \
+		/opt/qt55/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_webkit.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_webkit_private.pri \
 		/opt/qt55/mkspecs/modules/qt_lib_webkitwidgets.pri \
@@ -444,8 +460,16 @@ Makefile: pa4.pro /opt/qt55/mkspecs/linux-g++/qmake.conf /opt/qt55/mkspecs/featu
 /opt/qt55/mkspecs/modules/qt_lib_uiplugin.pri:
 /opt/qt55/mkspecs/modules/qt_lib_uitools.pri:
 /opt/qt55/mkspecs/modules/qt_lib_uitools_private.pri:
+/opt/qt55/mkspecs/modules/qt_lib_waylandclient.pri:
+/opt/qt55/mkspecs/modules/qt_lib_waylandclient_private.pri:
 /opt/qt55/mkspecs/modules/qt_lib_webchannel.pri:
 /opt/qt55/mkspecs/modules/qt_lib_webchannel_private.pri:
+/opt/qt55/mkspecs/modules/qt_lib_webengine.pri:
+/opt/qt55/mkspecs/modules/qt_lib_webengine_private.pri:
+/opt/qt55/mkspecs/modules/qt_lib_webenginecore.pri:
+/opt/qt55/mkspecs/modules/qt_lib_webenginecore_private.pri:
+/opt/qt55/mkspecs/modules/qt_lib_webenginewidgets.pri:
+/opt/qt55/mkspecs/modules/qt_lib_webenginewidgets_private.pri:
 /opt/qt55/mkspecs/modules/qt_lib_webkit.pri:
 /opt/qt55/mkspecs/modules/qt_lib_webkit_private.pri:
 /opt/qt55/mkspecs/modules/qt_lib_webkitwidgets.pri:
@@ -690,7 +714,7 @@ moc_oglWidget.cpp: /opt/qt55/include/QtWidgets/QApplication \
 		/opt/qt55/include/QtGui/QVector2D \
 		/opt/qt55/include/QtCore/QVector \
 		../src/oglWidget.h
-	/opt/qt55/bin/moc $(DEFINES) -I/opt/qt55/mkspecs/linux-g++ -I/home/zarol/Documents/cs480Kleips/PA4/build -I/home/zarol/Documents/cs480Kleips/PA4/build -I/opt/qt55/include -I/opt/qt55/include/QtOpenGL -I/opt/qt55/include/QtWidgets -I/opt/qt55/include/QtGui -I/opt/qt55/include/QtCore -I/usr/include/c++/4.6 -I/usr/include/c++/4.6/x86_64-linux-gnu -I/usr/include/c++/4.6/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/oglWidget.h -o moc_oglWidget.cpp
+	/opt/qt55/bin/moc $(DEFINES) -I/opt/qt55/mkspecs/linux-g++ -I/home/unr/cs480kleips/PA4/build -I/home/unr/cs480kleips/PA4/build -I/opt/qt55/include -I/opt/qt55/include/QtOpenGL -I/opt/qt55/include/QtWidgets -I/opt/qt55/include/QtGui -I/opt/qt55/include/QtCore -I/usr/include/c++/4.8 -I/usr/include/x86_64-linux-gnu/c++/4.8 -I/usr/include/c++/4.8/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../src/oglWidget.h -o moc_oglWidget.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
