@@ -114,15 +114,12 @@ void Suzanne::teardownGL()
 Vertex* Suzanne::loadObj( QString path )
 {
     Assimp::Importer importer;
-    // const aiScene* scene = importer.ReadFile( path.toStdString(), 
-    //     aiProcess_GenSmoothNormals |
-    //     aiProcess_CalcTangentSpace |
-    //     aiProcess_Triangulate |
-    //     aiProcess_JoinIdenticalVertices |
-    //     aiProcess_SortByPType );
-
     const aiScene* scene = importer.ReadFile( path.toStdString(), 
-        aiProcess_Triangulate );
+        aiProcess_GenSmoothNormals |
+        aiProcess_CalcTangentSpace |
+        aiProcess_Triangulate |
+        aiProcess_JoinIdenticalVertices |
+        aiProcess_SortByPType );
 
     aiMesh* mesh = scene->mMeshes[0];
 
