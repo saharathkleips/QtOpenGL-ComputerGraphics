@@ -1,7 +1,6 @@
 # PA5 - Assimp Model Loading (Ben Nicholes, Denis Morozov, Saharath Kleips)
-Sample program that displays the usage of Assimp model loading.
+Sample program that displays the usage of Assimp model loading. The loader current supports various model formats, but will not load any textures or materials associated with them. Controls found below allow the model to be maniuplated to better view the loaded models.
 
-**Note** Possibly broken on most machines.
 
 ![](.screenshot.png "Screenshot")
 
@@ -9,8 +8,9 @@ Sample program that displays the usage of Assimp model loading.
 + [Program Usage](#program-usage)  
     - [Controls](#controls)
 + [Installation Instructions](#installation-instructions)  
-    - [Ubuntu 14.04 LTS](#ubuntu-1404-lts)
+    - [Ubuntu 14.04 LTS (RECOMMENDED)](#ubuntu-1404-lts)
     - [Ubuntu 12.04 LTS](#ubuntu-1204-lts)
+    - [Other Linux Distrb](#other-linux-distributions)
     - [OSX](#osx)
     - [Windows](#windows)
 + [Build Instructions](#build-instructions)  
@@ -18,43 +18,44 @@ Sample program that displays the usage of Assimp model loading.
     - [Not Found in Mesa Table OpenGL Error](#not-found-in-mesa-table-opengl-error)
 
 ## Program Usage
-
+This program features custom model loading from a file path. Click [here](#build-instructions) for instructions on how to add a custom path.
 
 ###Controls
 <table>
     <tbody>
         <tr>
-            <th></th>
-            <th></th>
+            <th>Action</th>
+            <th>Description</th>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
+            <td>Keyboard - Up</td>
+            <td>Zoom camera in</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
+            <td>Keyboard - Down</td>
+            <td>Zoom camera out</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
+            <td>Keyboard - Left</td>
+            <td>Rotate model negatively along the x-axis</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
+            <td>Keyboard - Right</td>
+            <td>Rotate model postively along the x-axis</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
+            <td>Keyboard - Space</td>
+            <td>Reset model rotation</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
+            <td>Keyboard - ESC</td>
+            <td>Exit the program</td>
         </tr>
     </tbody>
 </table>
 
 ## Installation Instructions
+**It is recommended that you use Ubuntu 14.04 LTS.**
 ### Ubuntu 14.04 LTS
 Tested with a clean install of Ubuntu 14.04 x64 LTS on VirtualBox 5.0.2r102096 with Guest Additions installed and Windows 8.1 x64 host.  
 
@@ -87,6 +88,11 @@ echo 'export QT_SELECT=opt-qt55' >> ~/.bashrc
 ```
 Restart your terminal.
 
+**Assimp Install**
+```
+sudo apt-get install libassimp-dev
+```
+
 ### Ubuntu 12.04 LTS
 Tested with a clean install of Ubuntu 12.04 x64 LTS on VirtualBox 5.0.2r102096 with Guest Additions installed and Windows 8.1 x64 host.  
 
@@ -116,7 +122,13 @@ cd /opt/qt55/bin
 ```
 Restart your terminal.
 
-### Other linux distributions 
+**WARNING: Potentially Unsupported**
+**Assimp Install**
+```
+sudo apt-get install libassimp-dev
+```
+
+### Other Linux Distributions 
 
 Qt can be built from [source code](https://wiki.qt.io/Building_Qt_5_from_Git), and is most likely available in your distribution's repositories. However, an easy way of getting the latest Qt is using the official installer:
 
@@ -156,6 +168,10 @@ Custom model:
 Place models within the bin directory.
 ./PA5.exe MODEL_NAME
 ex: ./PA5.exe table.obj
+
+Full-Path models:
+./PA5.exe /path/to/model/model.obj
+ex: ./PA5.exe /models/suzanne.obj
 ```
 
 Convenince Copy/Paste from the `build` directory:
@@ -205,3 +221,8 @@ OpenGL context flags: (none)
 OpenGL extensions:
 ```
 Note: The version string should now contain Mesa rather than Chromium.
+
+**Alternative Solution**
+Download and install VMWare Workstation Player 12.
+Migrate your current virtual machine image and boot from VMWare.
+Install VMWare tools.
