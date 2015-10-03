@@ -57,7 +57,7 @@ This program features custom model loading from a file path. Click [here](#build
 ## Installation Instructions
 **It is recommended that you use Ubuntu 14.04 LTS.**
 ### Ubuntu 14.04 LTS
-Tested with a clean install of Ubuntu 14.04 x64 LTS on VirtualBox 5.0.2r102096 with Guest Additions installed and Windows 8.1 x64 host.  
+Tested with a clean install of Ubuntu 14.04 x64 LTS on VMWare Workstation Player with VMWare Tools installed and Windows 7 Ultimate x64 host.  
 
 **g++ Install**
 ```
