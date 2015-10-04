@@ -23,17 +23,14 @@ QMAKE_CXXFLAGS_WARD_ON += -Wall -pedantic
 # SOURCES += first_file.cpp second_file.cpp
 HEADERS += \
     ../src/camera3d.h \
-    ../src/cube.h \
     ../src/oglWidget.h \
     ../src/renderable.h \
-    ../src/sg_vertices.h \
     ../src/suzanne.h \
     ../src/transform3d.h \
     ../src/vertex.h
 
 SOURCES += \
     ../src/camera3d.cpp \
-    ../src/cube.cpp \
     ../src/main.cpp \
     ../src/oglWidget.cpp \
     ../src/suzanne.cpp \
