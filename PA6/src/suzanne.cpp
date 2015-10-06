@@ -1,4 +1,5 @@
 #include "suzanne.h"
+#include <QGLWidget>
 
 //@todo COMMENT!
 //@todo refactor "suzanne" test model loader into a real model loader
@@ -45,8 +46,9 @@ void Suzanne::initializeGL()
 
     // Texture Buffer Object
     texture = QImage( ":/texture/capsule.jpg" );
-    glGenTextures( 1, &text );
+    texture = texture.convertToFormat(QImage::Format_ARGB32);
     glActiveTexture( GL_TEXTURE0 );
+    glGenTextures( 1, &text );
     glBindTexture( GL_TEXTURE_2D, text );
     glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, texture.width(), texture.height(),
         0, GL_RGBA, GL_UNSIGNED_BYTE, texture.bits() );
