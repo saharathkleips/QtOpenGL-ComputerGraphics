@@ -8,6 +8,8 @@
 
 #include <QMatrix4x4>
 
+#include <QImage>
+
 #include "transform3d.h"
 #include "camera3d.h"
 
@@ -28,6 +30,9 @@ protected:
     QOpenGLBuffer vbo;
     QOpenGLVertexArrayObject vao;
     QOpenGLShaderProgram* program;
+
+    QImage texture;
+    GLuint text;
 
     // Shader Information
     int modelWorld;

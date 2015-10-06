@@ -25,10 +25,10 @@ Vertex::Vertex( const QVector3D& position )
  * @brief      Overloaded constructor for Vertex.
  *
  * @param[in]  position  The position data for the vertex.
- * @param[in]  color     The color data for the vertex.
+ * @param[in]  uv        The uv data for the vertex.
  */
-Vertex::Vertex( const QVector3D& position, const QVector3D& color )
-    :   m_position( position ), m_color( color )
+Vertex::Vertex( const QVector3D& position, const QVector2D& uv )
+    :   m_position( position ), m_uv( uv )
 {
 }
 
@@ -47,13 +47,13 @@ const QVector3D& Vertex::position() const
 }
 
 /**
- * @brief      Gets the color.
+ * @brief      Gets the uv.
  *
- * @return     The color.
+ * @return     The uv.
  */
-const QVector3D& Vertex::color() const
+const QVector2D& Vertex::uv() const
 {
-    return m_color;
+    return m_uv;
 }
 
 /**
@@ -67,13 +67,13 @@ void Vertex::setPosition( const QVector3D& position )
 }
 
 /**
- * @brief      Sets color to a new color.
+ * @brief      Sets uv to a new uv.
  *
- * @param[in]  color  The new color.
+ * @param[in]  color  The new uv.
  */
-void Vertex::setColor( const QVector3D& color )
+void Vertex::setUV( const QVector2D& uv )
 {
-    m_color = color;
+    m_uv = uv;
 }
 
 //
@@ -91,13 +91,13 @@ int Vertex::positionOffset()
 }
 
 /**
- * @brief      Calcualtes the color offset within Vertex.
+ * @brief      Calcualtes the uv offset within Vertex.
  *
- * @return     The color offset.
+ * @return     The uv offset.
  */
-int Vertex::colorOffset()
+int Vertex::uvOffset()
 {
-    return offsetof( Vertex, m_color );
+    return offsetof( Vertex, m_uv );
 }
 
 /**

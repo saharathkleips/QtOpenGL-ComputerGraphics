@@ -10,7 +10,7 @@
 
 Suzanne::Suzanne()
 {
-    model = loadObj( QString( "models/suzanne.obj" ) );
+    model = loadObj( QString( "models/capsule.obj" ) );
 }
 
 Suzanne::Suzanne( QString path )
@@ -43,6 +43,15 @@ void Suzanne::initializeGL()
     program->link();
     program->bind();
 
+    // Texture Buffer Object
+    texture = QImage( ":/texture/capsule.jpg" );
+    glGenTextures( 1, &text );
+    glBindTexture( GL_TEXTURE_2D, text );
+    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, texture.width(), texture.height(),
+        0, GL_RGBA, GL_UNSIGNED_BYTE, texture.bits() );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+
     // Cache the Uniform Locations
     modelWorld = program->uniformLocation( "model_to_world" );
     worldEye = program->uniformLocation( "world_to_eye" );
@@ -66,8 +75,8 @@ void Suzanne::initializeGL()
                                     Vertex::stride() );
     program->setAttributeBuffer(    1,
                                     GL_FLOAT,
-                                    Vertex::colorOffset(),
-                                    Vertex::ColorTupleSize,
+                                    Vertex::uvOffset(),
+                                    Vertex::UVTupleSize,
                                     Vertex::stride() );
 
     // Release all (order matters)
@@ -91,9 +100,15 @@ void Suzanne::paintGL( Camera3D& camera, QMatrix4x4& projection )
 
     vao.bind();
     program->setUniformValue( modelWorld, transform.toMatrix() );
+
+    //Texture stuff
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, text);
+
     glDrawArrays(   GL_TRIANGLES,
                     0,
                     numVertices );
+
     vao.release();
 
     program->release();
@@ -133,11 +148,14 @@ Vertex* Suzanne::loadObj( QString path )
         for( unsigned int j = 0; j < 3; j++ )
         {
             aiVector3D pos = mesh->mVertices[ face.mIndices[j] ];
-
             QVector3D position( pos.x, pos.y, pos.z) ;
-            QVector3D color( 255.0f, 165.0f, 0.0f );
+
+            aiVector3D uv = mesh->mTextureCoords[0][face.mIndices[j]];
+            QVector2D uv_coords( uv.x, uv.y );
+            
             geometry->setPosition( position );
-            geometry->setColor( color );
+            geometry->setUV( uv_coords );
+            
             geometry++;
         }
     }
