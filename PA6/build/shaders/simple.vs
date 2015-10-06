@@ -1,7 +1,7 @@
 attribute vec3 position;
 attribute vec2 texture;
 
-varying v_texture;
+varying vec2 v_texture;
 
 uniform mat4 model_to_world;
 uniform mat4 world_to_eye;
