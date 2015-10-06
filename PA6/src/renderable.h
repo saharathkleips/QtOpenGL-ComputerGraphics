@@ -31,7 +31,9 @@ protected:
     QOpenGLVertexArrayObject vao;
     QOpenGLShaderProgram* program;
 
+    // Texture Information
     QImage texture;
+    GLint texAttrib;
     GLuint text;
 
     // Shader Information
