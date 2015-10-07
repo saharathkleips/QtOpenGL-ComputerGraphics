@@ -15,7 +15,6 @@
     -->
     <file>shaders/simple.vs</file>
     <file>shaders/simple.fs</file>
-    <file>textures/checkerboard.png</file>
     <file>textures/capsule.jpg</file>
 </qresource>
 </RCC>
