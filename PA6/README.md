@@ -1,5 +1,5 @@
 # PA6 - Assimp Texture Loading (Ben Nicholes, Denis Morozov, Saharath Kleips)
-This sample program displays the usage of Assimp to load uv-coordinates for a model's textures. The image loader uses QImage which currently supports BMP, GIF, JPG, JPEG, PNG, PBM, PGM, PPM, XBM, and XPM. The model loaded must support uv-coordinates as well as be loaded with it's respected texture image.
+This sample program displays the usage of Assimp to load uv-coordinates for a model's textures. The image loader uses QImage which currently supports BMP, GIF, JPG, JPEG, PNG, PBM, PGM, PPM, XBM, and XPM. The model loaded must support uv-coordinates as well as be loaded with it's corresponding texture image.
 
 
 ![](.screenshot.png "Screenshot")
