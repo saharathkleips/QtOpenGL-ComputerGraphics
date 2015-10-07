@@ -32,9 +32,6 @@ protected:
     QOpenGLVertexArrayObject vao;
     QOpenGLShaderProgram* program;
 
-    // Texture Information
-    QOpenGLTexture* texture;
-
     // Shader Information
     int modelWorld;
     int worldEye;
