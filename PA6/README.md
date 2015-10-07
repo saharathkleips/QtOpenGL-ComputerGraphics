@@ -1,5 +1,5 @@
 # PA6 - Assimp Texture Loading (Ben Nicholes, Denis Morozov, Saharath Kleips)
-**EDIT CONTENT**
+This sample program displays the usage of Assimp to load uv-coordinates for a model's textures. The image loader uses QImage which currently supports BMP, GIF, JPG, JPEG, PNG, PBM, PGM, PPM, XBM, and XPM. The model loaded must support uv-coordinates as well as be loaded with it's respected texture image.
 
 
 ![](.screenshot.png "Screenshot")
@@ -18,7 +18,7 @@
     - [Not Found in Mesa Table OpenGL Error](#not-found-in-mesa-table-opengl-error)
 
 ## Program Usage
-This program features custom model loading from a file path. Click [here](#build-instructions) for instructions on how to add a custom path.
+This program features custom model/texture loading from 2 file paths. Click [here](#build-instructions) for instructions on how to add the custom paths.
 
 ###Controls
 <table>
@@ -164,14 +164,14 @@ Navigate to the `bin` directory.
 Default model:
 ./PA6.exe
 
-Custom model:
-Place models within the bin directory.
-./PA6.exe MODEL_NAME
-ex: ./PA6.exe table.obj
+Custom model / texture:
+Place the model & texture within the bin directory.
+./PA6.exe MODEL_NAME TEXTURE_NAME
+ex: ./PA6.exe table.obj table.png
 
-Full-Path models:
-./PA6.exe /path/to/model/model.obj
-ex: ./PA6.exe /models/suzanne.obj
+Full-Path models / textures:
+./PA6.exe /path/to/model.obj /path/to/texture.jpg
+ex: ./PA6.exe /models/capsule.obj ../build/textures/capsule.jpg
 ```
 
 Convenince Copy/Paste from the `build` directory:
