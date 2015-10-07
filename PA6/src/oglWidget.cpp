@@ -20,7 +20,7 @@ OGLWidget::OGLWidget()
     camera.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 0.0f, 4.0f, 10.0f );
 
-    suzanne = new Suzanne();
+    capsule = new Capsule();
 }
 
 /**
@@ -41,7 +41,7 @@ OGLWidget::OGLWidget( QString modelPath )
     camera.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 0.0f, 4.0f, 10.0f );
 
-    suzanne = new Suzanne( modelPath );
+    capsule = new Capsule( modelPath );
 }
 
 /**
@@ -63,7 +63,7 @@ void OGLWidget::initializeGL()
     initializeOpenGLFunctions();
     printContextInfo();
 
-    suzanne->initializeGL();
+    capsule->initializeGL();
 }
 
 /**
@@ -95,7 +95,7 @@ void OGLWidget::paintGL()
     // Clear the screen
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    suzanne->paintGL( camera, projection );
+    capsule->paintGL( camera, projection );
 }
 
 /**
@@ -103,7 +103,7 @@ void OGLWidget::paintGL()
  */
 void OGLWidget::teardownGL()
 {
-    delete suzanne;
+    capsule->teardownGL();
 }
 
 //
@@ -115,7 +115,7 @@ void OGLWidget::teardownGL()
  */
 void OGLWidget::update()
 {
-    suzanne->transform.rotate( 1.0f, 0,1,0 );
+    capsule->transform.rotate( 1.0f, 0,1,0 );
     QOpenGLWidget::update();
 }
 
@@ -133,19 +133,19 @@ void OGLWidget::keyPressEvent( QKeyEvent* event )
     switch( event->key() )
     {
         case Qt::Key_Up:
-            suzanne->transform.scale( 1.1f );
+            capsule->transform.scale( 1.1f );
             break;
         case Qt::Key_Down:
-            suzanne->transform.scale( 0.9f );
+            capsule->transform.scale( 0.9f );
             break;
         case Qt::Key_Right:
-            suzanne->transform.rotate( 5.0f, 1,0,0 );
+            capsule->transform.rotate( 5.0f, 1,0,0 );
             break;
         case Qt::Key_Left:
-            suzanne->transform.rotate( -5.0f, 1,0,0 );
+            capsule->transform.rotate( -5.0f, 1,0,0 );
             break;
         case Qt::Key_Space:
-            suzanne->transform.setRotation( 0.0f, 0, 0, 0);
+            capsule->transform.setRotation( 0.0f, 0, 0, 0);
             break;
         case Qt::Key_Escape:
             emit exitFlag();
