@@ -222,7 +222,7 @@ OpenGL extensions:
 ```
 Note: The version string should now contain Mesa rather than Chromium.
 
-**Alternative Solution**  
+**Alternative Solution:**  
 Download and install VMWare Workstation Player 12.  
 Migrate your current virtual machine image and boot from VMWare.  
 Install VMWare tools.  
