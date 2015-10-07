@@ -45,17 +45,10 @@ void Suzanne::initializeGL()
     program->bind();
 
     // Texture Buffer Object
-    texture = QImage( ":/texture/capsule.jpg" );
-    texture = texture.convertToFormat(QImage::Format_ARGB32);
-    glActiveTexture( GL_TEXTURE0 );
-    glGenTextures( 1, &text );
-    glBindTexture( GL_TEXTURE_2D, text );
-    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, texture.width(), texture.height(),
-        0, GL_RGBA, GL_UNSIGNED_BYTE, texture.bits() );
-    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-    texAttrib = glGetAttribLocation( program->programId(), 
-        const_cast<const char*>( "texture" ) );
+    texture = new QOpenGLTexture( 
+        QImage( ":/textures/capsule.jpg" ).mirrored() );
+    texture->setMinificationFilter( QOpenGLTexture::LinearMipMapLinear );
+    texture->setMagnificationFilter( QOpenGLTexture::Linear );
 
     // Cache the Uniform Locations
     modelWorld = program->uniformLocation( "model_to_world" );
@@ -104,23 +97,16 @@ void Suzanne::paintGL( Camera3D& camera, QMatrix4x4& projection )
     program->setUniformValue( eyeClip, projection );
 
     vao.bind();
+    texture->bind();
+
     program->setUniformValue( modelWorld, transform.toMatrix() );
-
-    //Texture stuff
-    glEnableVertexAttribArray( texAttrib );
-    glActiveTexture( GL_TEXTURE0 );
-    glBindTexture( GL_TEXTURE_2D, text );
-
-    glVertexAttribPointer( texAttrib, Vertex::UVTupleSize, GL_FLOAT, GL_FALSE, 
-        Vertex::stride(), (void*)Vertex::uvOffset() );
 
     glDrawArrays(   GL_TRIANGLES,
                     0,
                     numVertices );
 
-    glDisableVertexAttribArray( texAttrib );
+    texture->release();
     vao.release();
-
     program->release();
 }
 

@@ -4,6 +4,7 @@
 #include <QOpenGLFunctions>
 #include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
+#include <QOpenGLTexture>
 #include <QOpenGLShaderProgram>
 
 #include <QMatrix4x4>
@@ -32,9 +33,7 @@ protected:
     QOpenGLShaderProgram* program;
 
     // Texture Information
-    QImage texture;
-    GLint texAttrib;
-    GLuint text;
+    QOpenGLTexture* texture;
 
     // Shader Information
     int modelWorld;
