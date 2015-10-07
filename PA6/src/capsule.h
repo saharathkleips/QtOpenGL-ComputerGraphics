@@ -23,7 +23,7 @@ class Capsule   :   public Renderable
 {
 public:
     Capsule();
-    Capsule( QString path );
+    Capsule( QString modelPath, QString texturePath );
     ~Capsule();
 
     void initializeGL();
@@ -38,6 +38,7 @@ private:
     int numVertices;
 
     // Texture Information
+    QString m_texturePath;
     QOpenGLTexture* texture;
 };
 

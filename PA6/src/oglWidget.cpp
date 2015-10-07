@@ -28,7 +28,7 @@ OGLWidget::OGLWidget()
  *
  * @param[in]  modelPath  Path of the model to load
  */
-OGLWidget::OGLWidget( QString modelPath )
+OGLWidget::OGLWidget( QString modelPath, QString texturePath )
 {
     // Update the widget after a frameswap
     connect( this, SIGNAL( frameSwapped() ),
@@ -41,7 +41,7 @@ OGLWidget::OGLWidget( QString modelPath )
     camera.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 0.0f, 4.0f, 10.0f );
 
-    capsule = new Capsule( modelPath );
+    capsule = new Capsule( modelPath, texturePath );
 }
 
 /**

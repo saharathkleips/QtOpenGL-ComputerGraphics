@@ -10,6 +10,7 @@
 Capsule::Capsule()
 {
     model = loadObj( QString( "models/capsule.obj" ) );
+    m_texturePath = ":/textures/capsule.jpg";
 }
 
 /**
@@ -19,8 +20,9 @@ Capsule::Capsule()
  * @param[in]  texturePath  Full path to this object's texture.
  */
 Capsule::Capsule( QString modelPath, QString texturePath )
+    :   m_texturePath( texturePath )
 {
-    model = loadObj( path );
+    model = loadObj( modelPath );
 }
 
 /**
@@ -56,7 +58,7 @@ void Capsule::initializeGL()
 
     // Texture Buffer Object
     texture = new QOpenGLTexture( 
-        QImage( ":/textures/capsule.jpg" ).mirrored() );
+        QImage( m_texturePath ).mirrored() );
     texture->setMinificationFilter( QOpenGLTexture::LinearMipMapLinear );
     texture->setMagnificationFilter( QOpenGLTexture::Linear );
 
