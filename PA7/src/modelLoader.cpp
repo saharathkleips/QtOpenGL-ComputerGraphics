@@ -1,5 +1,14 @@
 #include "modelLoader.h"
 
+/**
+ * @brief       Loads a model based on a file path.
+ *
+ * @param[in]   filePath      The full path to the model source.
+ * @param[out]  geometry      The geometry data of the model loaded.
+ * @param[out]  numVertices   The number of vertices within the model.
+ *
+ * @return     True of the model loaded successfully, false otherwise.
+ */
 bool ModelLoader::loadModel( QString filePath, Vertex& geometry, 
     int& numVertices )
 {
