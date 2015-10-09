@@ -1,5 +1,5 @@
 # Installation Instructions
-[Return to README](#README.md) 
+[Return to README](#README.md)  
 **It is recommended that you use Ubuntu 14.04 LTS.**  
 
 ## Table of Contents
@@ -10,7 +10,7 @@
 + [Windows](#windows)
 
 ## Ubuntu 14.04 LTS
-Tested with a clean install of Ubuntu 14.04 x64 LTS on VMWare Workstation Player with VMWare Tools installed and Windows 7 Ultimate x64 host.  
+Tested with a clean install of Ubuntu 14.04 x64 LTS on VMWare Workstation Player with VMWare Tools installed and Windows 7 Ultimate x64 host.
 
 **g++ Install**
 ```
