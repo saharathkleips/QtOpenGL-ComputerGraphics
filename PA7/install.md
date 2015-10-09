@@ -1,5 +1,5 @@
 # Installation Instructions
-[Return to README](#README.md)  
+[Return to README](README.md)  
 **It is recommended that you use Ubuntu 14.04 LTS.**  
 
 ## Table of Contents

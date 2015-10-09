@@ -1,5 +1,5 @@
 # Bug Encounters / Error Fixes
-[Return to README](#README.md)  
+[Return to README](README.md)  
 
 ## Table of Contents
 + [Not Found in Mesa Table OpenGL Error](#not-found-in-mesa-table-opengl-error)  
