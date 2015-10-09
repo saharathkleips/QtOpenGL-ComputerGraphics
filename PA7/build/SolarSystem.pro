@@ -13,7 +13,10 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 #Any external libraries this build uses
 LIBS += -lassimp
 
-#compiler flags
+#Compiler settings
+CONFIG += c++11
+
+#Compiler flags
 QMAKE_CXXFLAGS_WARD_ON += -Wall -pedantic
 
 # Input
