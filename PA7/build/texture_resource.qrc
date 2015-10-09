@@ -1,0 +1,17 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/texture">
+    <file alias="sun.jpg">textures/sunmap.jpg</file>
+    <file alias="mercury.jpg">textures/mercurymap.jpg</file>
+    <file alias="venus.jpg">textures/venusmap.jpg</file>
+    <file alias="earth.jpg">textures/earthmap.jpg</file>
+    <file alias="moon.jpg">textures/moonmap.jpg</file>
+    <file alias="mars.jpg">textures/marsmap.jpg</file>
+    <file alias="jupiter.jpg">textures/jupitermap.jpg</file>
+    <file alias="saturn.jpg">textures/saturnmap.jpg</file>
+    <file alias="saturnring.jpg">textures/saturnringmap.jpg</file>
+    <file alias="uranus.jpg">textures/uranusmap.jpg</file>
+    <file alias="uranusring.jpg">textures/uranusringmap.jpg</file>
+    <file alias="neptune.jpg">textures/neptunemap.jpg</file>
+    <file alias="pluto.jpg">textures/plutomap.jpg</file>
+</qresource>
+</RCC>

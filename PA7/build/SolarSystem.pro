@@ -21,17 +21,22 @@ QMAKE_CXXFLAGS_WARD_ON += -Wall -pedantic
 # SOURCES += first_file.cpp second_file.cpp
 HEADERS += \
     ../src/camera3d.h \
+    ../src/modelLoader.h \
     ../src/oglWidget.h \
+    ../src/planet.h \
+    ../src/renderable.h \
     ../src/transform3d.h \
     ../src/vertex.h
 
 SOURCES += \
     ../src/camera3d.cpp \
     ../src/main.cpp \
+    ../src/modelLoader.cpp \
     ../src/oglWidget.cpp \
     ../src/transform3d.cpp \
     ../src/vertex.cpp
 
 # Resource files are .qrc - they will be compiled into the binary
 RESOURCES += \
-    resources.qrc
+    shader_resource.qrc \
+    texture_resource.qrc
