@@ -1,3 +1,5 @@
+#include "planet.h"
+
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
@@ -9,7 +11,7 @@ Planet::Planet()
     m_fShaderPath = ":/shader/simple.fs";
     m_vShaderPath = ":/shader/simple.vs";
 
-    loadModel( MODEL_PATH, model, numVertices );
+    loadModel( MODEL_PATH, *model, numVertices );
 }
 
 Planet::Planet( QString texturePath )
@@ -18,41 +20,38 @@ Planet::Planet( QString texturePath )
     m_fShaderPath = ":/shader/simple.fs";
     m_vShaderPath = ":/shader/simple.vs";
 
-    loadModel( MODEL_PATH, model, numVertices );
+    loadModel( MODEL_PATH, *model, numVertices );
 }
 
 Planet::Planet( QString texturePath, QString fShaderPath, QString vShaderPath)
     :   m_texturePath( texturePath ), m_fShaderPath( fShaderPath ),
         m_vShaderPath( vShaderPath )
 {
-    loadModel( MODEL_PATH, model, numVertices );
+    loadModel( MODEL_PATH, *model, numVertices );
 }
 
 Planet::~Planet()
 {
-    teardownGL();
+    this->teardownGL();
 }
 
 //
 // RENDERABLE FUNCTIONS ////////////////////////////////////////////////////////
 // 
 
-void initializeGL()
+void Planet::initializeGL()
 {
-
 }
 
-void paintGL( Camera3D& camera, QMatrix4x4& projection )
+void Planet::paintGL( Camera3D& camera, QMatrix4x4& projection )
 {
+    (void)camera;
+    (void)projection;}
 
+void Planet::update()
+{
 }
 
-void update()
+void Planet::teardownGL()
 {
-
-}
-
-void teardownGL()
-{
-
 }
