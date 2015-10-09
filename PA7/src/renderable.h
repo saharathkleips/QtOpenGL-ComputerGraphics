@@ -10,6 +10,7 @@ class Renderable    :   protected QOpenGLFunctions
 public:
     virtual void initializeGL() = 0;
     virtual void paintGL( Camera3D& camera, QMatrix4x4& projection ) = 0;
+    virtual void update() = 0;
     virtual void teardownGL() = 0;
 };
 
