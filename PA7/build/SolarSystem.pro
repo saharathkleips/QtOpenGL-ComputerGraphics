@@ -33,6 +33,7 @@ SOURCES += \
     ../src/main.cpp \
     ../src/modelLoader.cpp \
     ../src/oglWidget.cpp \
+    ../src/planet.cpp \
     ../src/transform3d.cpp \
     ../src/vertex.cpp
 
