@@ -6,17 +6,18 @@
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLTexture>
 #include <QOpenGLShaderProgram>
+#include <QDebug>
 
 #include "renderable.h"
+#include "modelLoader.h"
 #include "transform3d.h"
 #include "camera3d.h"
 #include "vertex.h"
 
 class QOpenGLShaderProgram;
 
-class Planet    :   protected QOpenGLFunctions,
-                    protected ModelLoader,
-                    public Renderable
+class Planet    :   public Renderable,
+                    protected ModelLoader
 {
 public:
     Planet();
@@ -47,10 +48,12 @@ private:
 
     // Shader Information
     QString m_fShaderPath;
-    QString m_vShaderPath
+    QString m_vShaderPath;
     int modelWorld;
     int worldEye;
     int eyeClip;
 };
 
-#endif  //  PLANET
+Vertex* Planet::model = NULL;
+
+#endif  //  PLANET_H
