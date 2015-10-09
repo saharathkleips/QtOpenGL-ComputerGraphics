@@ -36,7 +36,8 @@ The projects focus on an understanding of 3D computer graphics and its implement
 ## PA5 - [Assimp Model](PA5)
 [Documentation](PA5/README.md)
 
-## PA6 - Assimp Texture
+## PA6 - [Assimp Texture](PA6)
+[Documentation](PA6/README.md)
 
 ## PA7 - Solar System
 
