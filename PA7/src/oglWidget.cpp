@@ -101,6 +101,7 @@ void OGLWidget::update()
  */
 void OGLWidget::keyPressEvent( QKeyEvent* event )
 {
+    (void)event;
 }
 
 //

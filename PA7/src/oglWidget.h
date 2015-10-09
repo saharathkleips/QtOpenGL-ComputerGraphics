@@ -42,8 +42,6 @@ protected:
 private:
     void printContextInfo();
 
-    Renderable* capsule;
-
     QMatrix4x4 projection;
     Camera3D camera;
 };
