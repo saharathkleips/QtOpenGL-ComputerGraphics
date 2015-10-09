@@ -1,5 +1,4 @@
-# PA7 - Solar System  
-# (Ben Nicholes, Denis Morozov, Saharath Kleips)
+# PA7 - Solar System (Ben Nicholes, Denis Morozov, Saharath Kleips)
 ** INSERT DESCRIPTION / UPDATE SCREENSHOT **  
 ![](.screenshot.png "Screenshot")
 
