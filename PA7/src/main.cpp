@@ -13,9 +13,7 @@ int main( int argc, char** argv )
     format.setVersion( 2,1 );
 
     OGLWidget* oglWidget;
-
     oglWidget = new OGLWidget();
-
     oglWidget->setFormat( format );
     oglWidget->resize( QSize( 800, 600 ) );
     oglWidget->show(); 
