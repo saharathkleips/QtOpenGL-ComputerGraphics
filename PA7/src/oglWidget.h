@@ -14,7 +14,6 @@
 #include <QString>
 
 #include "camera3d.h"
-#include "renderable.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions
