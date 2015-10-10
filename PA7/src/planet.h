@@ -19,23 +19,24 @@ class QOpenGLShaderProgram;
 class Planet    :   public Renderable,
                     protected ModelLoader
 {
-public:
+protected:
     Planet();
     Planet( QString texturePath );
-    Planet( QString texturePath, QString fShaderPath, QString vShaderPath);
     ~Planet();
 
+public:
     void initializeGL();
     void paintGL( Camera3D& camera, QMatrix4x4& projection );
-    void update();
+    virtual void update();
     void teardownGL();
 
     Transform3D transform;
+
 private:
     // OpenGL State Information
-    static QOpenGLBuffer vbo;
-    QOpenGLVertexArrayObject vao;
-    QOpenGLShaderProgram* program;
+    static QOpenGLBuffer* vbo;
+    static QOpenGLVertexArrayObject* vao;
+    static QOpenGLShaderProgram* program;
 
     // Model Information
     const QString MODEL_PATH = "models/planet.obj";
@@ -47,13 +48,11 @@ private:
     QOpenGLTexture* texture;
 
     // Shader Information
-    QString m_fShaderPath;
-    QString m_vShaderPath;
-    int modelWorld;
-    int worldEye;
-    int eyeClip;
+    const QString V_SHADER_PATH = ":/shader/simple.vs";
+    const QString F_SHADER_PATH = ":/shader/simple.fs";
+    static int modelWorld;
+    static int worldEye;
+    static int eyeClip;
 };
-
-Vertex* Planet::model = NULL;
 
 #endif  //  PLANET_H
