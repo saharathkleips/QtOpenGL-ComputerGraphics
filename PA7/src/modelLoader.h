@@ -16,7 +16,7 @@ protected:
     ModelLoader();
 
 public:
-    bool loadModel( QString filePath, Vertex& geometry, 
+    bool loadModel( QString filePath, Vertex*& geometry, 
         int& numVertices );
 };
 

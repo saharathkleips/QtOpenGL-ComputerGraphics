@@ -14,7 +14,7 @@ ModelLoader::ModelLoader()
  *
  * @return     True of the model loaded successfully, false otherwise.
  */
-bool ModelLoader::loadModel( QString filePath, Vertex& geometry, 
+bool ModelLoader::loadModel( QString filePath, Vertex*& geometry, 
     int& numVertices )
 {
     Assimp::Importer importer;
@@ -57,6 +57,6 @@ bool ModelLoader::loadModel( QString filePath, Vertex& geometry,
 
     geo -= mesh->mNumFaces * 3;
 
-    geometry = *geo;
+    geometry = geo;
     return true;
 }
