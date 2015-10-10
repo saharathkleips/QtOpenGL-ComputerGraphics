@@ -28,6 +28,7 @@ HEADERS += \
     ../src/oglWidget.h \
     ../src/planet.h \
     ../src/planetSun.h \
+    ../src/planetEarth.h \
     ../src/renderable.h \
     ../src/transform3d.h \
     ../src/vertex.h
@@ -39,6 +40,7 @@ SOURCES += \
     ../src/oglWidget.cpp \
     ../src/planet.cpp \
     ../src/planetSun.cpp \
+    ../src/planetEarth.cpp \
     ../src/transform3d.cpp \
     ../src/vertex.cpp
 
