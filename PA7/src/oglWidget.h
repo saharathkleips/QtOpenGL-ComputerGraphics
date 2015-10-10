@@ -6,6 +6,8 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 
+#include <QVector>
+#include <QVectorIterator>
 #include <QMatrix4x4>
 
 #include <QKeyEvent>
@@ -14,6 +16,8 @@
 #include <QString>
 
 #include "camera3d.h"
+#include "renderable.h"
+#include "planetSun.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions
@@ -41,6 +45,8 @@ protected:
 
 private:
     void printContextInfo();
+
+    QVector<Renderable*> renderables;
 
     QMatrix4x4 projection;
     Camera3D camera;

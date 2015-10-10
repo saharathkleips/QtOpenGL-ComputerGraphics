@@ -19,6 +19,8 @@ OGLWidget::OGLWidget()
     // Setup the Camera
     camera.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 0.0f, 4.0f, 10.0f );
+
+    renderables.push_back( new PlanetSun() );
 }
 
 /**
@@ -39,6 +41,12 @@ void OGLWidget::initializeGL()
     // Init OpenGL Backend
     initializeOpenGLFunctions();
     printContextInfo();
+
+    QVectorIterator<Renderable*> i_renderable( renderables );
+    while( i_renderable.hasNext() )
+    {
+        ( i_renderable.next() )->initializeGL();
+    }
 }
 
 /**
@@ -69,6 +77,12 @@ void OGLWidget::paintGL()
 
     // Clear the screen
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+    QVectorIterator<Renderable*> i_renderable( renderables );
+    while( i_renderable.hasNext() )
+    {
+        ( i_renderable.next() )->paintGL( camera, projection );
+    }
 }
 
 /**
@@ -76,6 +90,11 @@ void OGLWidget::paintGL()
  */
 void OGLWidget::teardownGL()
 {
+    QVectorIterator<Renderable*> i_renderable( renderables );
+    while( i_renderable.hasNext() )
+    {
+        ( i_renderable.next() )->teardownGL();
+    }
 }
 
 //
@@ -88,6 +107,12 @@ void OGLWidget::teardownGL()
 void OGLWidget::update()
 {
     QOpenGLWidget::update();
+
+    QVectorIterator<Renderable*> i_renderable( renderables );
+    while( i_renderable.hasNext() )
+    {
+        ( i_renderable.next() )->update();
+    }
 }
 
 //
