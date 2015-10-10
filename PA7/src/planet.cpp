@@ -8,6 +8,7 @@ QOpenGLBuffer* Planet::vbo = NULL;
 QOpenGLVertexArrayObject* Planet::vao = NULL;
 QOpenGLShaderProgram* Planet::program = NULL;
 Vertex* Planet::model = NULL;
+int Planet::numVertices = -1;
 int Planet::modelWorld = -1;
 int Planet::worldEye = -1;
 int Planet::eyeClip = -1;
@@ -21,14 +22,16 @@ Planet::Planet()
 {
     m_texturePath = ":/texture/earth.jpg";
     if( model == NULL )
-        loadModel( MODEL_PATH, *model, numVertices );
+        loadModel( MODEL_PATH, model, numVertices );
 }
 
 Planet::Planet( QString texturePath )
     :   m_texturePath( texturePath )
 {
     if( model == NULL )
-        loadModel( MODEL_PATH, *model, numVertices );
+    {
+        loadModel( MODEL_PATH, model, numVertices );
+    }
 }
 
 Planet::~Planet()
@@ -47,11 +50,10 @@ Planet::~Planet()
 void Planet::initializeGL()
 {
     initializeOpenGLFunctions();
-
     // Create the shader this planet will be using
     if( program == NULL )
     {    
-        program->create();
+        program = new QOpenGLShaderProgram();
         program->addShaderFromSourceFile( QOpenGLShader::Vertex, 
             V_SHADER_PATH );
         program->addShaderFromSourceFile( QOpenGLShader::Fragment, 
@@ -70,12 +72,14 @@ void Planet::initializeGL()
 
     // Create Texture Buffer Object
     texture = new QOpenGLTexture( QImage( m_texturePath ).mirrored() );
+    
     texture->setMinificationFilter( QOpenGLTexture::LinearMipMapLinear );
     texture->setMagnificationFilter( QOpenGLTexture::Linear );
 
     // Create the Vertex Buffer Object only if it's not already created
     if( vbo == NULL )
     {
+        vbo = new QOpenGLBuffer();
         vbo->create();
         vbo->bind();
         vbo->setUsagePattern( QOpenGLBuffer::StaticDraw );
@@ -87,6 +91,7 @@ void Planet::initializeGL()
     // Create the Vertex Array Object only if it's not already created
     if( vao == NULL )
     {
+        vao = new QOpenGLVertexArrayObject();
         vao->create();
         vao->bind();
         program->enableAttributeArray( 0 );

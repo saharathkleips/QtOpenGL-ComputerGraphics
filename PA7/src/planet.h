@@ -41,7 +41,7 @@ private:
     // Model Information
     const QString MODEL_PATH = "models/planet.obj";
     static Vertex* model;
-    int numVertices;
+    static int numVertices;
 
     // Texture Information
     QString m_texturePath;
