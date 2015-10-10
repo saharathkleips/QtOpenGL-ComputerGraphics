@@ -8,7 +8,6 @@ PlanetEarth::PlanetEarth()
     :   Planet( ":/texture/earth.jpg" )
 {
     Planet::transform.setScale( .75f );
-    Planet::transform.setTranslation( 3, 0, 0 );
 }
 
 //

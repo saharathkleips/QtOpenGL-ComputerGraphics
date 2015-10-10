@@ -21,7 +21,6 @@ OGLWidget::OGLWidget()
     camera.translate( 0.0f, 4.0f, 10.0f );
 
     renderables.push_back( new PlanetSun() );
-    renderables.push_back( new PlanetEarth() );
 }
 
 /**
