@@ -11,9 +11,13 @@
 #include <assimp/postprocess.h>
 
 class ModelLoader
-{
+{ 
+protected:
+    ModelLoader();
+
 public:
-    bool loadModel( QString filePath, Vertex& geometry, int& numVertices );
+    bool loadModel( QString filePath, Vertex& geometry, 
+        int& numVertices );
 };
 
 #endif  //  MODEL_LOADER_H

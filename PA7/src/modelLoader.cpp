@@ -1,5 +1,10 @@
 #include "modelLoader.h"
 
+ModelLoader::ModelLoader()
+{
+
+}
+
 /**
  * @brief       Loads a model based on a file path.
  *
