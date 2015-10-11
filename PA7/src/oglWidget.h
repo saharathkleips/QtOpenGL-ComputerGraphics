@@ -11,10 +11,12 @@
 #include <QMatrix4x4>
 
 #include <QKeyEvent>
+#include <QMouseEvent>
 
 #include <QDebug>
 #include <QString>
 
+#include "input.h"
 #include "camera3d.h"
 #include "renderable.h"
 #include "planetSun.h"
@@ -42,6 +44,9 @@ signals:
 
 protected:
     void keyPressEvent( QKeyEvent* event );
+    void keyReleaseEvent( QKeyEvent* event );
+    void mousePressEvent( QMouseEvent* event );
+    void mouseReleaseEvent( QMouseEvent* event );
 
 private:
     void printContextInfo();

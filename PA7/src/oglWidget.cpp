@@ -106,13 +106,44 @@ void OGLWidget::teardownGL()
  */
 void OGLWidget::update()
 {
-    QOpenGLWidget::update();
+    Input::update();
+    if( Input::keyPressed( Qt::Key_Escape ) )
+        emit exitFlag();
+
+    // Camera Transforms
+    if( Input::buttonPressed( Qt::RightButton ) )
+    {
+        static const float cameraTranslationSpeed = 0.1f;
+        static const float cameraRotationSpeed = 0.1f;
+
+        camera.rotate( -cameraRotationSpeed * Input::mouseDelta().x(), 
+            Camera3D::LocalUp );
+        camera.rotate( -cameraRotationSpeed * Input::mouseDelta().y(),
+            camera.right() );
+
+        QVector3D cameraTranslations;
+        if( Input::keyPressed( Qt::Key_W ) )
+            cameraTranslations += camera.forward();
+        if( Input::keyPressed( Qt::Key_S ) )
+            cameraTranslations -= camera.forward();
+        if( Input::keyPressed( Qt::Key_A ) )
+            cameraTranslations -= camera.right();
+        if( Input::keyPressed( Qt::Key_D ) )
+            cameraTranslations += camera.right();
+        if( Input::keyPressed( Qt::Key_Q ) )
+            cameraTranslations -= camera.up();
+        if( Input::keyPressed( Qt::Key_E ) )
+            cameraTranslations += camera.up();
+        camera.translate( cameraTranslationSpeed * cameraTranslations );
+    }
 
     QVectorIterator<Renderable*> i_renderable( renderables );
     while( i_renderable.hasNext() )
     {
         ( i_renderable.next() )->update();
     }
+
+    QOpenGLWidget::update();
 }
 
 //
@@ -126,7 +157,43 @@ void OGLWidget::update()
  */
 void OGLWidget::keyPressEvent( QKeyEvent* event )
 {
-    (void)event;
+    if( event->isAutoRepeat() )
+        event->ignore();
+    else
+        Input::registerKeyPress( event->key() );
+}
+
+/**
+ * @brief      Default slot for handling key release events.
+ *
+ * @param      event  The key event information.
+ */
+void OGLWidget::keyReleaseEvent( QKeyEvent* event )
+{
+    if( event->isAutoRepeat() )
+        event->ignore();
+    else
+        Input::registerKeyRelease( event->key() );
+}
+
+/**
+ * @brief      Default slot for handling mouse press events.
+ *
+ * @param      event  The mouse event information.
+ */
+void OGLWidget::mousePressEvent( QMouseEvent* event )
+{
+    Input::registerMousePress( event->button() );
+}
+
+/**
+ * @brief      Default slot for handling mouse release events.
+ *
+ * @param      event  The mouse event information.
+ */
+void OGLWidget::mouseReleaseEvent( QMouseEvent* event )
+{
+    Input::registerMouseRelease( event->button() );
 }
 
 //
