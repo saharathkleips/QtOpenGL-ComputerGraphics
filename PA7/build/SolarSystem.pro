@@ -24,6 +24,7 @@ QMAKE_CXXFLAGS_WARD_ON += -Wall -pedantic
 # SOURCES += first_file.cpp second_file.cpp
 HEADERS += \
     ../src/camera3d.h \
+    ../src/input.h \
     ../src/modelLoader.h \
     ../src/oglWidget.h \
     ../src/planet.h \
@@ -35,6 +36,7 @@ HEADERS += \
 
 SOURCES += \
     ../src/camera3d.cpp \
+    ../src/input.cpp \
     ../src/main.cpp \
     ../src/modelLoader.cpp \
     ../src/oglWidget.cpp \
