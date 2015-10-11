@@ -37,7 +37,8 @@ void PlanetSun::update()
         transform.translation().z() + 2.0f * cos( translationAngle ) );
 
     transform.rotate( 1.0f, 0, 1, 0 );
-    earth.transform.rotate( 2.0f, 0, 1, 0 );
+    
+    earth.update();
 }
 
 void PlanetSun::teardownGL()
