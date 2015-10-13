@@ -5,6 +5,7 @@
 
 #include "planet.h"
 #include "planetEarth.h"
+#include "planetMars.h"
 #include "camera3d.h"
 
 class PlanetSun     :   public Planet
@@ -19,6 +20,7 @@ public:
 
 private:
     PlanetEarth earth;
+ 	PlanetMars mars;
 };
 
 #endif  //  PLANET_SUN_H

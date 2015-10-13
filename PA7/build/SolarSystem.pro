@@ -30,6 +30,7 @@ HEADERS += \
     ../src/planet.h \
     ../src/planetSun.h \
     ../src/planetEarth.h \
+    ../src/planetMars.h \
     ../src/renderable.h \
     ../src/transform3d.h \
     ../src/vertex.h
@@ -43,6 +44,7 @@ SOURCES += \
     ../src/planet.cpp \
     ../src/planetSun.cpp \
     ../src/planetEarth.cpp \
+    ../src/planetMars.cpp \
     ../src/transform3d.cpp \
     ../src/vertex.cpp
 

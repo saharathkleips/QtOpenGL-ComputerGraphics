@@ -23,6 +23,10 @@ Planet::Planet()
     m_texturePath = ":/texture/earth.jpg";
     if( model == NULL )
         loadModel( MODEL_PATH, model, numVertices );
+
+    m_texturePath = ":/texture/mars.jpg";
+    if( model == NULL )
+        loadModel( MODEL_PATH, model, numVertices );
 }
 
 Planet::Planet( QString texturePath )
