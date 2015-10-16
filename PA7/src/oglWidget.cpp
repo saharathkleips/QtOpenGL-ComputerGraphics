@@ -18,7 +18,7 @@ OGLWidget::OGLWidget()
 
     // Setup the Camera
     camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
-    camera.translate( 0.0f, 30.0f, 50.0f );
+    camera.translate( 0.0f, 30.0f, 45.0f );
 
     renderables.push_back( new Sun() );
 }
@@ -58,7 +58,7 @@ void OGLWidget::initializeGL()
 void OGLWidget::resizeGL( int width, int height )
 {
     projection.setToIdentity();
-    projection.perspective( 45.0f,  // Field of view angle
+    projection.perspective( 55.0f,  // Field of view angle
                             float( width ) / float( height ),   // Aspect Ratio
                             0.01f,  // Near Plane (MUST BE GREATER THAN 0)
                             1000.0f );  // Far Plane
