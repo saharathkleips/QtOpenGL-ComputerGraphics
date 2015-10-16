@@ -17,8 +17,8 @@ OGLWidget::OGLWidget()
         QApplication::instance(), SLOT( quit() ) );
 
     // Setup the Camera
-    camera.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
-    camera.translate( 0.0f, 4.0f, 10.0f );
+    camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
+    camera.translate( 0.0f, 30.0f, 50.0f );
 
     renderables.push_back( new Sun() );
 }
