@@ -25,6 +25,7 @@ QMAKE_CXXFLAGS_WARD_ON += -Wall -pedantic
 HEADERS += \
     ../src/camera3d.h \
     ../src/input.h \
+    ../src/mainWindow.h \
     ../src/modelLoader.h \
     ../src/oglWidget.h \
     ../src/renderable.h \
@@ -48,6 +49,7 @@ SOURCES += \
     ../src/camera3d.cpp \
     ../src/input.cpp \
     ../src/main.cpp \
+    ../src/mainWindow.cpp \
     ../src/modelLoader.cpp \
     ../src/oglWidget.cpp \
     ../src/transform3d.cpp \

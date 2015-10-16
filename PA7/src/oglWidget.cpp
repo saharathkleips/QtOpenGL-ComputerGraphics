@@ -12,9 +12,9 @@ OGLWidget::OGLWidget()
     // Update the widget after a frameswap
     connect( this, SIGNAL( frameSwapped() ),
         this, SLOT( update() ) );
-    // Exit the application
-    connect( this, SIGNAL( exitFlag() ),
-        QApplication::instance(), SLOT( quit() ) );
+
+    // Allows keyboard input to fall through
+    setFocusPolicy( Qt::ClickFocus );
 
     // Setup the Camera
     camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
@@ -107,8 +107,6 @@ void OGLWidget::teardownGL()
 void OGLWidget::update()
 {
     Input::update();
-    if( Input::keyPressed( Qt::Key_Escape ) )
-        emit exitFlag();
 
     // Camera Transforms
     if( Input::buttonPressed( Qt::RightButton ) )

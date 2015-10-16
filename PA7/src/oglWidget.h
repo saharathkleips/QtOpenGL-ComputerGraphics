@@ -39,9 +39,6 @@ public:
 protected slots:
     void update();
 
-signals:
-    void exitFlag();
-
 protected:
     void keyPressEvent( QKeyEvent* event );
     void keyReleaseEvent( QKeyEvent* event );
@@ -51,6 +48,7 @@ protected:
 private:
     void printContextInfo();
 
+    // 3D Information
     QVector<Renderable*> renderables;
 
     QMatrix4x4 projection;
