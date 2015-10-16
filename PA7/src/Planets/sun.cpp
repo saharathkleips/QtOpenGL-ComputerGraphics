@@ -49,6 +49,38 @@ void Sun::paintGL( Camera3D& camera, QMatrix4x4& projection )
 
 void Sun::update()
 {
+    if( Planet::SCALED )
+        updateScaled();
+    else
+        updateReal();
+
+    // UPDATE ALL PLANETS
+    for( QMap<QString, Planet*>::iterator iter = planets.begin(); 
+        iter != planets.end(); iter++ )
+    {
+        (*iter)->update();
+    }
+}
+
+void Sun::teardownGL()
+{
+    // DEALLOCATE ALL PLANETS
+    for( QMap<QString, Planet*>::iterator iter = planets.begin(); 
+        iter != planets.end(); iter++ )
+    {
+        (*iter)->teardownGL();
+    }
+
+    Planet::teardownGL();
+}
+
+//
+// PRIVATE HELPER FUNCTIONS ////////////////////////////////////////////////////
+//
+
+
+void Sun::updateScaled()
+{
     // SUN
     {
         transform.rotate( 1.0f, 0, 1, 0 );
@@ -143,23 +175,9 @@ void Sun::update()
         transform.translation().y(),
         transform.translation().z() + 27.0f * cos( translationAngle ) );
     }
-
-    // UPDATE ALL PLANETS
-    for( QMap<QString, Planet*>::iterator iter = planets.begin(); 
-        iter != planets.end(); iter++ )
-    {
-        (*iter)->update();
-    }
 }
 
-void Sun::teardownGL()
+void Sun::updateReal()
 {
-    // DEALLOCATE ALL PLANETS
-    for( QMap<QString, Planet*>::iterator iter = planets.begin(); 
-        iter != planets.end(); iter++ )
-    {
-        (*iter)->teardownGL();
-    }
 
-    Planet::teardownGL();
 }

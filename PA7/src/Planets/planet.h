@@ -30,7 +30,9 @@ public:
     virtual void update();
     void teardownGL();
 
+    // Planet Information
     Transform3D transform;
+    static bool SCALED;
 
 private:
     // OpenGL State Information
