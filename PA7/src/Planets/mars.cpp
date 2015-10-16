@@ -1,20 +1,20 @@
-#include "planetMars.h"
+#include "mars.h"
 
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
 
-PlanetMars::PlanetMars()
+Mars::Mars()
     :   Planet( ":/texture/mars.jpg" )
 {
-    Planet::transform.setScale( .75f );
+    transform.setScale( .75f );
 }
 
 //
 // OVERRIDDEN FUNCTIONS
 // 
 
-void PlanetMars::update()
+void Mars::update()
 {
-    Planet::transform.rotate( 1.0f, 0, 1, 0 );
+    transform.rotate( 1.0f, 0, 1, 0 );
 }

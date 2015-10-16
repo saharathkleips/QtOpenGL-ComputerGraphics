@@ -32,9 +32,16 @@ HEADERS += \
     ../src/vertex.h \
     #PLANETS
     ../src/Planets/planet.h \
-    ../src/Planets/planetSun.h \
-    ../src/Planets/planetEarth.h \
-    ../src/Planets/planetMars.h
+    ../src/Planets/sun.h \
+    ../src/Planets/mercury.h \
+    ../src/Planets/venus.h \
+    ../src/Planets/earth.h \
+    ../src/Planets/mars.h \
+    ../src/Planets/jupiter.h \
+    ../src/Planets/saturn.h \
+    ../src/Planets/uranus.h \
+    ../src/Planets/neptune.h \
+    ../src/Planets/pluto.h
 
 
 SOURCES += \
@@ -47,9 +54,16 @@ SOURCES += \
     ../src/vertex.cpp \
     #PLANETS
     ../src/Planets/planet.cpp \
-    ../src/Planets/planetSun.cpp \
-    ../src/Planets/planetEarth.cpp \
-    ../src/Planets/planetMars.cpp
+    ../src/Planets/sun.cpp \
+    ../src/Planets/mercury.cpp \
+    ../src/Planets/venus.cpp \
+    ../src/Planets/earth.cpp \
+    ../src/Planets/mars.cpp \
+    ../src/Planets/jupiter.cpp \
+    ../src/Planets/saturn.cpp \
+    ../src/Planets/uranus.cpp \
+    ../src/Planets/neptune.cpp \
+    ../src/Planets/pluto.cpp
 
 # Resource files are .qrc - they will be compiled into the binary
 RESOURCES += \

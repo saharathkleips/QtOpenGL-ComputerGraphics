@@ -20,7 +20,7 @@ OGLWidget::OGLWidget()
     camera.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 0.0f, 4.0f, 10.0f );
 
-    renderables.push_back( new PlanetSun() );
+    renderables.push_back( new Sun() );
 }
 
 /**

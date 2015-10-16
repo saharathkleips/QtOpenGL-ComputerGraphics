@@ -1,20 +1,20 @@
-#include "planetEarth.h"
+#include "earth.h"
 
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
 
-PlanetEarth::PlanetEarth()
+Earth::Earth()
     :   Planet( ":/texture/earth.jpg" )
 {
-    Planet::transform.setScale( .75f );
+    transform.setScale( .75f );
 }
 
 //
 // OVERRIDDEN FUNCTIONS
 // 
 
-void PlanetEarth::update()
+void Earth::update()
 {
-    Planet::transform.rotate( 1.0f, 0, 1, 0 );
+    transform.rotate( 1.0f, 0, 1, 0 );
 }
