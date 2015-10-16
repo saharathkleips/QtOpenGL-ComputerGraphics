@@ -27,13 +27,15 @@ HEADERS += \
     ../src/input.h \
     ../src/modelLoader.h \
     ../src/oglWidget.h \
-    ../src/planet.h \
-    ../src/planetSun.h \
-    ../src/planetEarth.h \
-    ../src/planetMars.h \
     ../src/renderable.h \
     ../src/transform3d.h \
-    ../src/vertex.h
+    ../src/vertex.h \
+    #PLANETS
+    ../src/Planets/planet.h \
+    ../src/Planets/planetSun.h \
+    ../src/Planets/planetEarth.h \
+    ../src/Planets/planetMars.h
+
 
 SOURCES += \
     ../src/camera3d.cpp \
@@ -41,12 +43,13 @@ SOURCES += \
     ../src/main.cpp \
     ../src/modelLoader.cpp \
     ../src/oglWidget.cpp \
-    ../src/planet.cpp \
-    ../src/planetSun.cpp \
-    ../src/planetEarth.cpp \
-    ../src/planetMars.cpp \
     ../src/transform3d.cpp \
-    ../src/vertex.cpp
+    ../src/vertex.cpp \
+    #PLANETS
+    ../src/Planets/planet.cpp \
+    ../src/Planets/planetSun.cpp \
+    ../src/Planets/planetEarth.cpp \
+    ../src/Planets/planetMars.cpp
 
 # Resource files are .qrc - they will be compiled into the binary
 RESOURCES += \

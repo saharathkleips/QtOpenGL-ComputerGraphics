@@ -19,7 +19,7 @@
 #include "input.h"
 #include "camera3d.h"
 #include "renderable.h"
-#include "planetSun.h"
+#include "Planets/planetSun.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions

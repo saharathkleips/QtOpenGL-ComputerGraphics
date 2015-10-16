@@ -8,11 +8,11 @@
 #include <QOpenGLShaderProgram>
 #include <QDebug>
 
-#include "renderable.h"
-#include "modelLoader.h"
-#include "transform3d.h"
-#include "camera3d.h"
-#include "vertex.h"
+#include "../renderable.h"
+#include "../modelLoader.h"
+#include "../transform3d.h"
+#include "../camera3d.h"
+#include "../vertex.h"
 
 class QOpenGLShaderProgram;
 
