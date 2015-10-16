@@ -160,4 +160,6 @@ void Sun::teardownGL()
     {
         (*iter)->teardownGL();
     }
+
+    Planet::teardownGL();
 }
