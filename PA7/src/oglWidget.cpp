@@ -113,7 +113,7 @@ void OGLWidget::update()
     // Camera Transforms
     if( Input::buttonPressed( Qt::RightButton ) )
     {
-        static const float cameraTranslationSpeed = 0.1f;
+        static const float cameraTranslationSpeed = 0.3f;
         static const float cameraRotationSpeed = 0.1f;
 
         camera.rotate( -cameraRotationSpeed * Input::mouseDelta().x(), 
