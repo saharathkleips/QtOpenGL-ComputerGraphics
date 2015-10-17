@@ -20,6 +20,7 @@
 #include "camera3d.h"
 #include "renderable.h"
 #include "Planets/sun.h"
+#include "skybox.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions

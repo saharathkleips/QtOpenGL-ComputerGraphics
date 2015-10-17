@@ -13,5 +13,7 @@
     <file alias="uranusring.jpg">textures/uranusringmap.jpg</file>
     <file alias="neptune.jpg">textures/neptunemap.jpg</file>
     <file alias="pluto.jpg">textures/plutomap.jpg</file>
+
+    <file alias="skybox.jpg">textures/skyboxmap.jpg</file>
 </qresource>
 </RCC>

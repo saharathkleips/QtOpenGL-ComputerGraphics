@@ -21,6 +21,7 @@ OGLWidget::OGLWidget()
     camera.translate( 0.0f, 30.0f, 45.0f );
 
     renderables.push_back( new Sun() );
+    renderables.push_back( new Skybox() );
 }
 
 /**
