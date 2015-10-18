@@ -7,7 +7,7 @@ class EarthMoon     :   public Planet
 {
 public:
     EarthMoon();
-
+    
     void update();
 };
 
