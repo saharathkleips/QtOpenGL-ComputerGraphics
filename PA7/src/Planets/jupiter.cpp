@@ -8,7 +8,7 @@ Jupiter::Jupiter()
     :   Planet( ":/texture/jupiter.jpg" )
 {
     actualSize = 0.3180f;
-    scaledSize = 0.8f;
+    scaledSize = 2.0f;
 
     transform.setScale( actualSize );
 }

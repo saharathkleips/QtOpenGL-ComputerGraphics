@@ -8,7 +8,7 @@ Neptune::Neptune()
     :   Planet( ":/texture/neptune.jpg" )
 {
     actualSize = 0.0172f;
-    scaledSize = 0.4f;
+    scaledSize = 2.0f;
 
     transform.setScale( actualSize );
 }

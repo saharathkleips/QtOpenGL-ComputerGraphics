@@ -7,9 +7,8 @@
 Pluto::Pluto()
     :   Planet( ":/texture/pluto.jpg" )
 {
-
     actualSize = 0.002f;
-    scaledSize = 0.4f;
+    scaledSize = 2.5f;
 
     transform.setScale( actualSize );
 }

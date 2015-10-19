@@ -8,7 +8,7 @@ Saturn::Saturn()
     :   Planet( ":/texture/saturn.jpg" )
 {
     actualSize = 0.166f;
-    scaledSize = 0.8f;
+    scaledSize = 2.0f;
 
     transform.setScale( actualSize );
     ring = new Ring( ":/texture/saturnring.jpg" );

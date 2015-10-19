@@ -8,7 +8,7 @@ Mercury::Mercury()
     :   Planet( ":/texture/mercury.jpg" )
 {
     actualSize = 0.0055f;
-    scaledSize = 0.4f;
+    scaledSize = 0.2f;
 
     transform.setScale( actualSize );
 }

@@ -8,7 +8,7 @@ Mars::Mars()
     :   Planet( ":/texture/mars.jpg" )
 {
     actualSize = 0.0107f;
-    scaledSize = 0.6f;
+    scaledSize = 0.3f;
 
     transform.setScale( actualSize );
 }

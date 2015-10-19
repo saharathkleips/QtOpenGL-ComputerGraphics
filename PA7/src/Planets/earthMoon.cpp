@@ -8,7 +8,7 @@ EarthMoon::EarthMoon()
     :   Planet( ":/texture/moonmap.jpg" )
 {
     actualSize = 0.011f;
-    scaledSize = 0.200f;
+    scaledSize = 0.100f;
     transform.setScale( actualSize );
 }
 

@@ -8,7 +8,7 @@ Venus::Venus()
     :   Planet( ":/texture/venus.jpg" )
 {
     actualSize = 0.0815f;
-    scaledSize = 0.4f;
+    scaledSize = 0.3f;
 
     transform.setScale( actualSize );
 }

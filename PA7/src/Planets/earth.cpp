@@ -8,7 +8,7 @@ Earth::Earth()
     :   Planet( ":/texture/earth.jpg" )
 {
     actualSize = 0.09158f;
-    scaledSize = 0.6f;
+    scaledSize = 0.5f;
     
     transform.setScale( actualSize );
 
