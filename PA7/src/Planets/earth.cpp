@@ -7,12 +7,9 @@
 Earth::Earth()
     :   Planet( ":/texture/earth.jpg" )
 {
-
     transform.setScale( 0.09158f );
 
-
     moon = new EarthMoon();
-
 }
 
 //
@@ -35,11 +32,32 @@ void Earth::paintGL( Camera3D& camera, QMatrix4x4& projection )
 
 void Earth::update()
 {
-    if( Planet::SCALED )
-        updateScaled();
-    else
-        updateReal();
+    // rotate earth
+    transform.rotate( 10.0f, 0, 1, 0 );
 
+
+    if( Planet::SCALED )
+    {
+        transform.setScale( 0.6f );
+        moon->transform.setScale( 0.2f );
+    }
+
+    else
+    {
+        transform.setScale( 0.09158f );
+        moon->transform.setScale(0.011f);
+    }
+
+    // Moon
+    {
+        static float translationAngle = 0.0;
+        translationAngle += 0.070;
+        moon->transform.setTranslation(
+            transform.translation().x() + 1.5f * sin(translationAngle),
+            transform.translation().y(),
+            transform.translation().z() + 1.5f * cos(translationAngle)
+        );
+    }
     moon->update();
 
     
@@ -49,32 +67,4 @@ void Earth::teardownGL()
 {
     moon->teardownGL();
     Planet::teardownGL();
-}
-
-//
-// PRIVATE HELPER FUNCTIONS ////////////////////////////////////////////////////
-//
-
-void Earth::updateScaled()
-{
-    // EARTH
-    {
-        transform.rotate( 10.0f, 0, 1, 0 );
-    }
-
-    // MOON
-    {
-        moon->transform.setScale(0.011f);
-        static float translationAngle = 0.0;
-        translationAngle += 0.070;
-        moon->transform.setTranslation(
-            transform.translation().x() + 1.5f * sin(translationAngle),
-            transform.translation().y(),
-            transform.translation().z() + 1.5f * cos(translationAngle));
-    }
-}
-
-void Earth::updateReal()
-{
-
 }
