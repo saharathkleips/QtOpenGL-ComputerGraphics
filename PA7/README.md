@@ -1,7 +1,7 @@
 # PA7 - Solar System (Ben Nicholes, Denis Morozov, Saharath Kleips)
 Interactable solar system created with Qt and OpenGL.
 
-## Extra Credit:
+## Extra Credit
 + Option to go from actual data to a scaled view
 + Uranus has its ring
 + Flythrough camera
