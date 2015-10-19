@@ -16,5 +16,5 @@ Jupiter::Jupiter()
 
 void Jupiter::update()
 {
-    transform.rotate( 1.0f, 0, 1, 0 );
+    transform.rotate( 1.41f, 0, 1, 0 );
 }

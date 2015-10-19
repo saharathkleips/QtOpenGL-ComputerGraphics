@@ -16,5 +16,5 @@ Venus::Venus()
 
 void Venus::update()
 {
-    transform.rotate( 1.0f, 0, 1, 0 );
+    transform.rotate( -2.243f, 0, 1, 0 );
 }
