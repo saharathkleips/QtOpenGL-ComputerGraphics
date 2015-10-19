@@ -29,8 +29,6 @@ public:
 private:
     void updateScaled();
     void updateReal();
-
-private:
     QMap<QString, Planet*> planets;
 };
 
