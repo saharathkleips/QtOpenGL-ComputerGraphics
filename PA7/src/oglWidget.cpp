@@ -16,6 +16,9 @@ OGLWidget::OGLWidget()
     // Allows keyboard input to fall through
     setFocusPolicy( Qt::ClickFocus );
 
+    connect( this, SIGNAL( pause() ),
+    this, SLOT( swapPause() ) );
+
     // Setup the Camera
     camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 0.0f, 30.0f, 45.0f );
@@ -136,13 +139,26 @@ void OGLWidget::update()
         camera.translate( cameraTranslationSpeed * cameraTranslations );
     }
 
-    QVectorIterator<Renderable*> i_renderable( renderables );
-    while( i_renderable.hasNext() )
+    if( Input::keyPressed( Qt::Key_P ))
+        emit swapPause();
+
+    if( !paused )
     {
-        ( i_renderable.next() )->update();
-    }
+        for( auto renderable : renderables )
+        {
+            renderable->update();
+        }
+    }  
 
     QOpenGLWidget::update();
+}
+
+/**
+* @brief      Slot for pausing/unpausing.
+*/
+void OGLWidget::swapPause()
+{
+    paused = !paused;
 }
 
 //
