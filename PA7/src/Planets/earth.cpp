@@ -7,7 +7,9 @@
 Earth::Earth()
     :   Planet( ":/texture/earth.jpg" )
 {
-    transform.setScale( 0.09158f );
+    actualSize = 0.09158f;
+    scaledSize = 0.6f;
+    transform.setScale( actualSize );
 
     moon = new EarthMoon();
 }
@@ -38,29 +40,24 @@ void Earth::update()
 
     if( Planet::SCALED )
     {
-        transform.setScale( 0.6f );
-        moon->transform.setScale( 0.2f );
+        transform.setScale( scaledSize );
     }
 
     else
     {
-        transform.setScale( 0.09158f );
-        moon->transform.setScale(0.011f);
+        transform.setScale( actualSize );
     }
 
-    // Moon
-    {
-        static float translationAngle = 0.0;
-        translationAngle += 0.070;
-        moon->transform.setTranslation(
-            transform.translation().x() + 1.5f * sin(translationAngle),
-            transform.translation().y(),
-            transform.translation().z() + 1.5f * cos(translationAngle)
-        );
-    }
-    moon->update();
+    // translate moon
+    static float translationAngle = 0.0;
+    translationAngle += 0.070;
+    moon->transform.setTranslation(
+        transform.translation().x() + 1.5f * sin(translationAngle),
+        transform.translation().y(),
+        transform.translation().z() + 1.5f * cos(translationAngle)
+    );
 
-    
+    moon->update();    
 }
 
 void Earth::teardownGL()

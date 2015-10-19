@@ -155,6 +155,11 @@ void OGLWidget::swapPause()
     paused = !paused;
 }
 
+void OGLWidget::swapScaledView()
+{
+    Planet::SCALED = !Planet::SCALED;
+}
+
 //
 // INPUT EVENTS ////////////////////////////////////////////////////////////////
 // 

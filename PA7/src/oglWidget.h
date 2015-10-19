@@ -40,6 +40,7 @@ public:
 protected slots:
     void update();
     void swapPause();
+    void swapScaledView();
 
 protected:
     void keyPressEvent( QKeyEvent* event );
