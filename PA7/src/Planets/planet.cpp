@@ -3,7 +3,7 @@
 //
 // STATIC VARIABLE INITILIZATION ///////////////////////////////////////////////
 // 
-bool Planet::SCALED = true;
+bool Planet::SCALED = false;
 QOpenGLBuffer* Planet::vbo = NULL;
 QOpenGLVertexArrayObject* Planet::vao = NULL;
 QOpenGLShaderProgram* Planet::program = NULL;

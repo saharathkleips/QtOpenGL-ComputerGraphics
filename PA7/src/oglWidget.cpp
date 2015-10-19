@@ -22,6 +22,12 @@ OGLWidget::OGLWidget()
 
     renderables.push_back( new Sun() );
     renderables.push_back( new Skybox() );
+
+    // this is so all the planets aren't stacked together in the beginning
+    for( auto renderable : renderables )
+    {
+        renderable->update();
+    }
 }
 
 /**

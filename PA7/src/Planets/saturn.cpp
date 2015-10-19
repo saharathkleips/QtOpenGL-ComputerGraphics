@@ -7,7 +7,10 @@
 Saturn::Saturn()
     :   Planet( ":/texture/saturn.jpg" )
 {
-    transform.setScale( 0.166f );
+    actualSize = 0.166f;
+    scaledSize = 2.0f;
+
+    transform.setScale( actualSize );
     ring = new Ring( ":/texture/saturnring.jpg" );
 }
 
@@ -30,11 +33,21 @@ void Saturn::paintGL( Camera3D& camera, QMatrix4x4& projection )
 
 void Saturn::update()
 {
-    if( Planet::SCALED )
-        updateScaled();
-    else
-        updateReal();
+    transform.rotate( 1.44f, 0, 1, 0 );
 
+    if( Planet::SCALED )
+    {
+        transform.setScale( scaledSize );
+        ring->transform.setScale( scaledSize );
+    }
+
+    else
+    {
+        transform.setScale( actualSize );
+        ring->transform.setScale( actualSize );
+    }
+
+    ring->transform.setTranslation( transform.translation() );
     ring->update();   
 }
 
@@ -42,26 +55,4 @@ void Saturn::teardownGL()
 {
     ring->teardownGL();
     Planet::teardownGL();
-}
-
-//
-// PRIVATE HELPER FUNCTIONS ////////////////////////////////////////////////////
-//
-
-void Saturn::updateScaled()
-{
-    // SATURN
-    {
-        transform.rotate( 1.44f, 0, 1, 0 );
-    }
-    // RING
-    {
-        ring->transform.setScale( 0.166f );
-        ring->transform.setTranslation( transform.translation() );
-    }
-}
-
-void Saturn::updateReal()
-{
-
 }

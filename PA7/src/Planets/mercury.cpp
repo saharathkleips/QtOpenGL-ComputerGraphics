@@ -7,7 +7,10 @@
 Mercury::Mercury()
     :   Planet( ":/texture/mercury.jpg" )
 {
-    transform.setScale( .0055f );
+    actualSize = 0.0055f;
+    scaledSize = 0.2f;
+
+    transform.setScale( actualSize );
 }
 
 //
@@ -16,4 +19,14 @@ Mercury::Mercury()
 void Mercury::update()
 {
     transform.rotate( 5.865f, 0, 1, 0 );
+
+    if( Planet::SCALED )
+    {
+        transform.setScale( scaledSize );
+    }
+
+    else
+    {
+        transform.setScale( actualSize );
+    }
 }

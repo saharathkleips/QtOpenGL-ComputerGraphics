@@ -27,8 +27,6 @@ public:
     void teardownGL();
 
 private:
-    void updateScaled();
-    void updateReal();
     QMap<QString, Planet*> planets;
 };
 

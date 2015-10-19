@@ -7,7 +7,9 @@
 EarthMoon::EarthMoon()
     :   Planet( ":/texture/moonmap.jpg" )
 {
-    transform.setScale( .50f );
+    actualSize = 0.011f;
+    scaledSize = 0.100f;
+    transform.setScale( actualSize );
 }
 
 //
@@ -16,5 +18,14 @@ EarthMoon::EarthMoon()
 
 void EarthMoon::update()
 {
+    if( Planet::SCALED )
+    {
+        transform.setScale( scaledSize );
+    }
+    else
+    {
+        transform.setScale( actualSize );
+    }
+
     transform.rotate( 0.27f, 0, 1, 0 );
 }
