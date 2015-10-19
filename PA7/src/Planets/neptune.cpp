@@ -7,7 +7,10 @@
 Neptune::Neptune()
     :   Planet( ":/texture/neptune.jpg" )
 {
-    transform.setScale( .0172f );
+    actualSize = 0.0172f;
+    scaledSize = 0.4f;
+
+    transform.setScale( actualSize );
 }
 
 //
@@ -17,4 +20,14 @@ Neptune::Neptune()
 void Neptune::update()
 {
     transform.rotate( 1.72f, 0, 1, 0 );
+
+    if( Planet::SCALED )
+    {
+        transform.setScale( scaledSize );
+    }
+
+    else
+    {
+        transform.setScale( actualSize );
+    }
 }

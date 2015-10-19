@@ -23,6 +23,7 @@ protected:
     Planet();
     Planet( QString texturePath );
     ~Planet();
+    
     // Scaling information
     float actualSize;
     float scaledSize;

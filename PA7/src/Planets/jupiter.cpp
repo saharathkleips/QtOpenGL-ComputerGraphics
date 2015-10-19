@@ -7,7 +7,10 @@
 Jupiter::Jupiter()
     :   Planet( ":/texture/jupiter.jpg" )
 {
-    transform.setScale( .3180f );
+    actualSize = 0.3180f;
+    scaledSize = 0.8f;
+
+    transform.setScale( actualSize );
 }
 
 //
@@ -17,4 +20,14 @@ Jupiter::Jupiter()
 void Jupiter::update()
 {
     transform.rotate( 1.41f, 0, 1, 0 );
+
+    if( Planet::SCALED )
+    {
+        transform.setScale( scaledSize );
+    }
+
+    else
+    {
+        transform.setScale( actualSize );
+    }
 }

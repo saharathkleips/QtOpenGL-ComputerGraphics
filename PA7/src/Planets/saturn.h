@@ -15,8 +15,6 @@ public:
     void teardownGL();
 
 private:
-    void updateReal();
-    void updateScaled();
     Ring *ring;
 };
 

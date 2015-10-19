@@ -9,6 +9,7 @@ Earth::Earth()
 {
     actualSize = 0.09158f;
     scaledSize = 0.6f;
+    
     transform.setScale( actualSize );
 
     moon = new EarthMoon();

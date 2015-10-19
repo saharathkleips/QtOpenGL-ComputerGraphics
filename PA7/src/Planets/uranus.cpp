@@ -7,7 +7,10 @@
 Uranus::Uranus()
     :   Planet( ":/texture/uranus.jpg" )
 {
-    transform.setScale( 0.0145f );
+    actualSize = 0.0145f;
+    scaledSize = 0.4f;
+
+    transform.setScale( actualSize );
     ring = new Ring( ":/texture/uranusring.jpg" );
 }
 
@@ -30,11 +33,21 @@ void Uranus::paintGL( Camera3D& camera, QMatrix4x4& projection )
 
 void Uranus::update()
 {
-    if( Planet::SCALED )
-        updateScaled();
-    else
-        updateReal();
+    transform.rotate( -1.72f, 0, 1, 0 );
 
+    if( Planet::SCALED )
+    {
+        transform.setScale( scaledSize );
+        ring->transform.setScale( scaledSize );
+    }
+
+    else
+    {
+        transform.setScale( actualSize );
+        ring->transform.setScale( actualSize );
+    }
+
+    ring->transform.setTranslation( transform.translation() );
     ring->update();   
 }
 
@@ -42,26 +55,4 @@ void Uranus::teardownGL()
 {
     ring->teardownGL();
     Planet::teardownGL();
-}
-
-//
-// PRIVATE HELPER FUNCTIONS ////////////////////////////////////////////////////
-//
-
-void Uranus::updateScaled()
-{
-    // URANUS
-    {
-        transform.rotate( -1.72f, 0, 1, 0 );
-    }
-    // RING
-    {
-        ring->transform.setScale( 0.0145f );
-        ring->transform.setTranslation( transform.translation() );
-    }
-}
-
-void Uranus::updateReal()
-{
-
 }
