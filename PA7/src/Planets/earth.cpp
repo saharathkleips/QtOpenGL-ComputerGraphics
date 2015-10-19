@@ -68,9 +68,9 @@ void Earth::updateScaled()
         static float translationAngle = 0.0;
         translationAngle += 0.070;
         moon->transform.setTranslation(
-            transform.translation().x() + 1.5f * sin(translationAngle),
+            transform.translation().x() + 0.85f * sin(translationAngle),
             transform.translation().y(),
-            transform.translation().z() + 1.5f * cos(translationAngle));
+            transform.translation().z() + 0.85f * cos(translationAngle));
     }
 }
 
