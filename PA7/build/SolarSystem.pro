@@ -29,6 +29,7 @@ HEADERS += \
     ../src/modelLoader.h \
     ../src/oglWidget.h \
     ../src/renderable.h \
+    ../src/ring.h \
     ../src/skybox.h \
     ../src/transform3d.h \
     ../src/vertex.h \
@@ -54,6 +55,7 @@ SOURCES += \
     ../src/mainWindow.cpp \
     ../src/modelLoader.cpp \
     ../src/oglWidget.cpp \
+    ../src/ring.cpp \
     ../src/skybox.cpp \
     ../src/transform3d.cpp \
     ../src/vertex.cpp \

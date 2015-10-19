@@ -2,13 +2,22 @@
 #define SATURN_H
 
 #include "planet.h"
+#include "../ring.h"
 
 class Saturn     :   public Planet
 {
 public:
     Saturn();
 
+    void initializeGL();
+    void paintGL( Camera3D& camera, QMatrix4x4& projection );
     void update();
+    void teardownGL();
+
+private:
+    void updateReal();
+    void updateScaled();
+    Ring *ring;
 };
 
 #endif  //  SATURN_H
