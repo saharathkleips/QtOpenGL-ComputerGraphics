@@ -2,6 +2,7 @@
 #define SATURN_H
 
 #include "planet.h"
+#include "../rings.h"
 
 class Saturn     :   public Planet
 {
@@ -16,6 +17,7 @@ public:
 private:
     void updateReal();
     void updateScaled();
+    Rings *ring;
 };
 
 #endif  //  SATURN_H
