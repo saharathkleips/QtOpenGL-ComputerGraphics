@@ -30,14 +30,20 @@ MainWindow::MainWindow()
 
 void MainWindow::createActions()
 {
-    pauseAction = new QAction( "Pause Simulation", this );
+    pauseAction = new QAction( "Start Simulation", this );
     pauseAction->setCheckable( true );
     pauseAction->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_P ) );
     pauseAction->setStatusTip( "Pauses / Unpauses the Simulation." );
     connect( pauseAction, SIGNAL( triggered() ), 
         oglWidget, SLOT( swapPause() ) );
-    connect( pauseAction, SIGNAL( triggered() ), 
-        this, SLOT( updatePauseActionText() ) );
+    
+    scaledAction = new QAction( "Realistic View", this );
+    scaledAction->setCheckable( true );
+    scaledAction->setChecked( true );
+    scaledAction->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_R ) );
+    scaledAction->setStatusTip( "Swaps the scale of the solar system." );
+    connect( scaledAction, SIGNAL( triggered() ), 
+        oglWidget, SLOT( swapScaledView() ) );
 
     exitAction = new QAction( "Exit", this );
     exitAction->setShortcuts( QKeySequence::Quit );
@@ -74,6 +80,7 @@ void MainWindow::createMenus()
 {
     fileMenu = new QMenu( "&File" );
     fileMenu->addAction( pauseAction );
+    fileMenu->addAction( scaledAction );
     fileMenu->addAction( exitAction );
     helpMenu = new QMenu( "&Help" );
     helpMenu->addAction( aboutAction );
@@ -95,14 +102,6 @@ void MainWindow::showWebPage( QString url )
     webWidget->setWindowTitle( "" );
     webWidget->show();
     webview->show();
-}
-
-void MainWindow::updatePauseActionText()
-{
-    if( pauseAction->isChecked() )
-        pauseAction->setText( "Resume Simulation" );
-    else
-        pauseAction->setText( "Pause Simulation" );
 }
 
 void MainWindow::showAbout()

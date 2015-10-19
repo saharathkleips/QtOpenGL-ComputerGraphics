@@ -111,9 +111,9 @@ void Sun::updateScaled()
         static float translationAngle = 10.0;
         translationAngle += .0090;
         planets["Earth"]->transform.setTranslation( 
-        transform.translation().x() + 9.0f * sin( translationAngle ),
+        transform.translation().x() + 11.0f * sin( translationAngle ),
         transform.translation().y(),
-        transform.translation().z() + 9.0f * cos( translationAngle ) );
+        transform.translation().z() + 11.0f * cos( translationAngle ) );
     }
 
     // MARS
@@ -121,9 +121,9 @@ void Sun::updateScaled()
         static float translationAngle = 8.0;
         translationAngle += .00018;
         planets["Mars"]->transform.setTranslation( 
-        transform.translation().x() + 15.0f * sin( translationAngle ),
+        transform.translation().x() + 18.0f * sin( translationAngle ),
         transform.translation().y(),
-        transform.translation().z() + 15.0f * cos( translationAngle ) );
+        transform.translation().z() + 18.0f * cos( translationAngle ) );
     }
 
     // JUPITER

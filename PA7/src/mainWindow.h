@@ -19,7 +19,6 @@ public:
     MainWindow();
 
 protected slots:
-void updatePauseActionText();
 void showAbout();
 void showAboutQt();
 void showControls();
@@ -41,6 +40,7 @@ private:
 
     QMenu* fileMenu;
     QAction* pauseAction;
+    QAction* scaledAction;
     QAction* exitAction;
 
     QMenu* helpMenu;
