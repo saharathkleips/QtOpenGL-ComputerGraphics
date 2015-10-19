@@ -40,7 +40,7 @@ private:
     static QOpenGLShaderProgram* program;
 
     // Model Information
-    const QString MODEL_PATH = "models/planet.obj";
+    const QString MODEL_PATH = "models/rings.obj";
     static Vertex* model;
     static int numVertices;
 
