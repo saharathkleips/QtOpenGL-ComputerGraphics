@@ -7,13 +7,12 @@
 Earth::Earth()
     :   Planet( ":/texture/earth.jpg" )
 {
-<<<<<<< HEAD
-    transform.setScale( 0.10f );
-=======
-    transform.setScale( .75f );
+
+    transform.setScale( 0.09158f );
+
 
     moon = new EarthMoon();
->>>>>>> 6c7539bce2040a622babd09f7da58d1cba4bdf33
+
 }
 
 //
@@ -65,7 +64,7 @@ void Earth::updateScaled()
 
     // MOON
     {
-        moon->transform.setScale(0.35f);
+        moon->transform.setScale(0.011f);
         static float translationAngle = 0.0;
         translationAngle += 0.090;
         moon->transform.setTranslation(
