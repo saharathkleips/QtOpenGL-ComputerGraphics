@@ -2,7 +2,7 @@
 #define URANUS_H
 
 #include "planet.h"
-#include "../rings.h"
+#include "../ring.h"
 
 class Uranus     :   public Planet
 {

@@ -2,7 +2,7 @@
 #define SATURN_H
 
 #include "planet.h"
-#include "../rings.h"
+#include "../ring.h"
 
 class Saturn     :   public Planet
 {
