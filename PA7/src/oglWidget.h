@@ -58,7 +58,7 @@ private:
     Camera3D camera;
 
     // Control
-    bool paused = false;
+    bool paused = true;
 };
 
 #endif  //  OGL_WIDGET_H
