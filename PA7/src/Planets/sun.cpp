@@ -109,7 +109,7 @@ void Sun::update()
     // SATURN
     {
         static float translationAngle = 28.0;
-        translationAngle += .00070;
+        translationAngle += .00040;
         planets["Saturn"]->transform.setTranslation( 
             transform.translation().x() + 72.0f * sin( translationAngle ),
             transform.translation().y(),
@@ -119,7 +119,7 @@ void Sun::update()
     // URANUS
     {
         static float translationAngle = 30.0;
-        translationAngle += .00085;
+        translationAngle += .00035;
         planets["Uranus"]->transform.setTranslation( 
             transform.translation().x() + 100.0f * sin( translationAngle ),
             transform.translation().y(),
@@ -129,7 +129,7 @@ void Sun::update()
     // NEPTUNE
     {
         static float translationAngle = 46.0;
-        translationAngle += .00090;
+        translationAngle += .00020;
         planets["Neptune"]->transform.setTranslation( 
             transform.translation().x() + 200.0f * sin( translationAngle ),
             transform.translation().y(),
