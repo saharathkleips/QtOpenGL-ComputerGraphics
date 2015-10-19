@@ -39,7 +39,8 @@ The projects focus on an understanding of 3D computer graphics and its implement
 ## PA6 - [Assimp Texture](PA6)
 [Documentation](PA6/README.md)
 
-## PA7 - Solar System
+## PA7 - [Solar System](PA7)
+[Documentation](PA7/README.md)
 
 ## PA8 - Bullet
 
