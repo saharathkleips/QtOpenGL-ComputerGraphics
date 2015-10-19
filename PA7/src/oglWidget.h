@@ -41,9 +41,6 @@ protected slots:
     void update();
     void swapPause();
 
-signals:
-    void pause();
-
 protected:
     void keyPressEvent( QKeyEvent* event );
     void keyReleaseEvent( QKeyEvent* event );

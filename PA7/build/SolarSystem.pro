@@ -5,7 +5,7 @@ TEMPLATE = app
 TARGET = ../bin/SolarSystem.exe
 
 #QT += to add libraries this project uses
-QT += core gui opengl
+QT += core gui opengl webkitwidgets
 
 #Necessary for Qt5 and above
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -74,4 +74,5 @@ SOURCES += \
 # Resource files are .qrc - they will be compiled into the binary
 RESOURCES += \
     shader_resource.qrc \
-    texture_resource.qrc
+    texture_resource.qrc \
+    html_resource.qrc

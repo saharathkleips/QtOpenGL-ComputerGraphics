@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/html">
+    <file alias="about.html">html/about.html</file>
+    <file alias="controls.html">html/controls.html</file>
+</qresource>
+</RCC>
