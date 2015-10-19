@@ -2,9 +2,12 @@
 
 MainWindow::MainWindow()
 {
-    createActions();
-    createMenus();
-    createMenuBar();
+    webWidget = new QWidget();
+    webWidget->setFixedHeight( 600 );
+    webWidget->setFixedWidth( 800 );
+    webview = new QWebView( webWidget );
+    webview->setFixedHeight( 600 );
+    webview->setFixedWidth( 800 );
 
     QSurfaceFormat format;
     format.setDepthBufferSize( 24 );
@@ -16,27 +19,108 @@ MainWindow::MainWindow()
     oglWidget = new OGLWidget();
     oglWidget->setFormat( format );
 
+    createActions();
+    createMenus();
+    createMenuBar();
+
     setCentralWidget( oglWidget );
     setMenuBar( menuBar );
+
 }
 
 void MainWindow::createActions()
 {
+    pauseAction = new QAction( "Pause Simulation", this );
+    pauseAction->setCheckable( true );
+    pauseAction->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_P ) );
+    pauseAction->setStatusTip( "Pauses / Unpauses the Simulation." );
+    connect( pauseAction, SIGNAL( triggered() ), 
+        oglWidget, SLOT( swapPause() ) );
+    connect( pauseAction, SIGNAL( triggered() ), 
+        this, SLOT( updatePauseActionText() ) );
+
     exitAction = new QAction( "Exit", this );
     exitAction->setShortcuts( QKeySequence::Quit );
     exitAction->setStatusTip( "Exits the program." );
     connect( exitAction, SIGNAL( triggered() ), 
         QApplication::instance(), SLOT( quit() ) );
+
+    aboutAction = new QAction( "About", this );
+    aboutAction->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_A  ) );
+    aboutAction->setStatusTip( "Details about the program." );
+    connect( aboutAction, SIGNAL( triggered() ), 
+        this, SLOT( showAbout() ) );
+
+    aboutQtAction = new QAction( "About Qt", this );
+    aboutQtAction->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_T  ) );
+    aboutQtAction->setStatusTip( "Details about the Qt Framework." );
+    connect( aboutQtAction, SIGNAL( triggered() ), 
+        this, SLOT( showAboutQt() ) );
+
+    controlsAction = new QAction( "Controls", this );
+    controlsAction->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_C  ) );
+    controlsAction->setStatusTip( "Details about controlling the program." );
+    connect( controlsAction, SIGNAL( triggered() ), 
+        this, SLOT( showControls() ) );
+
+    moreHelpAction = new QAction( "More Help?", this );
+    moreHelpAction->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_H  ) );
+    moreHelpAction->setStatusTip( "You need more help." );
+    connect( moreHelpAction, SIGNAL( triggered() ), 
+        this, SLOT( showLmgtfy() ) );
 }
 
 void MainWindow::createMenus()
 {
     fileMenu = new QMenu( "&File" );
+    fileMenu->addAction( pauseAction );
     fileMenu->addAction( exitAction );
+    helpMenu = new QMenu( "&Help" );
+    helpMenu->addAction( aboutAction );
+    helpMenu->addAction( controlsAction );
+    helpMenu->addAction( moreHelpAction );
+    helpMenu->addAction( aboutQtAction );
 }
 
 void MainWindow::createMenuBar()
 {
     menuBar = new QMenuBar( );
     menuBar->addMenu( fileMenu );
+    menuBar->addMenu( helpMenu );
+}
+
+void MainWindow::showWebPage( QString url )
+{
+    webview->setUrl( QUrl( url ) );
+    webWidget->setWindowTitle( "" );
+    webWidget->show();
+    webview->show();
+}
+
+void MainWindow::updatePauseActionText()
+{
+    if( pauseAction->isChecked() )
+        pauseAction->setText( "Resume Simulation" );
+    else
+        pauseAction->setText( "Pause Simulation" );
+}
+
+void MainWindow::showAbout()
+{
+    showWebPage( "qrc:/html/about.html" );
+}
+
+void MainWindow::showAboutQt()
+{
+    showWebPage( "https://www.qt.io/about-us/" );
+}
+
+void MainWindow::showControls()
+{
+    showWebPage( "qrc:/html/controls.html" );
+}
+
+void MainWindow::showLmgtfy()
+{
+    showWebPage( "http://bfy.tw/2M1q" );
 }
