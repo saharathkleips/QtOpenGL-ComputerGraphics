@@ -8,7 +8,7 @@ Saturn::Saturn()
     :   Planet( ":/texture/saturn.jpg" )
 {
     transform.setScale( 0.166f );
-    ring = new Ring( ":/texture/saturnring.jpg" );
+    ring = new Rings( ":/texture/saturnring.jpg" );
 }
 
 //
@@ -57,7 +57,7 @@ void Saturn::updateScaled()
     // RING
     {
         ring->transform.setScale( 0.166f );
-        ring->setTranslation( transform.translation() );
+        ring->transform.setTranslation( transform.translation() );
     }
 }
 

@@ -8,25 +8,25 @@
 #include <QOpenGLShaderProgram>
 #include <QDebug>
 
-#include "../renderable.h"
-#include "../modelLoader.h"
-#include "../transform3d.h"
-#include "../vertex.h"
+#include "renderable.h"
+#include "modelLoader.h"
+#include "transform3d.h"
+#include "vertex.h"
 
 class QOpenGLShaderProgram;
 
 class Rings    :   public Renderable,
                     protected ModelLoader
 {
-protected:
+public:
     Rings();
     Rings( QString texturePath );
     ~Rings();
 
-public:
+
     void initializeGL();
     void paintGL( Camera3D& camera, QMatrix4x4& projection );
-    virtual void update();
+    void update();
     void teardownGL();
 
     // Rings Information
