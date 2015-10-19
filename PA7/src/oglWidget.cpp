@@ -16,8 +16,6 @@ OGLWidget::OGLWidget()
     // Allows keyboard input to fall through
     setFocusPolicy( Qt::ClickFocus );
 
-    connect( this, SIGNAL(pause()), this, SLOT(swapPause()) );
-
     // Setup the Camera
     camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 0.0f, 30.0f, 45.0f );
@@ -137,9 +135,6 @@ void OGLWidget::update()
             cameraTranslations += camera.up();
         camera.translate( cameraTranslationSpeed * cameraTranslations );
     }
-
-    if( Input::keyReleased( Qt::Key_P ))
-        emit pause();
 
     if( !paused )
     {
