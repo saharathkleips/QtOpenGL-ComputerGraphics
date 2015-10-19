@@ -4,28 +4,28 @@
 // STATIC VARIABLE INITILIZATION ///////////////////////////////////////////////
 // 
 
-QOpenGLBuffer* Rings::vbo = NULL;
-QOpenGLVertexArrayObject* Rings::vao = NULL;
-QOpenGLShaderProgram* Rings::program = NULL;
-Vertex* Rings::model = NULL;
-int Rings::numVertices = -1;
-int Rings::modelWorld = -1;
-int Rings::worldEye = -1;
-int Rings::eyeClip = -1;
+QOpenGLBuffer* Ring::vbo = NULL;
+QOpenGLVertexArrayObject* Ring::vao = NULL;
+QOpenGLShaderProgram* Ring::program = NULL;
+Vertex* Ring::model = NULL;
+int Ring::numVertices = -1;
+int Ring::modelWorld = -1;
+int Ring::worldEye = -1;
+int Ring::eyeClip = -1;
 
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
 
 
-Rings::Rings()
+Ring::Ring()
 {
     m_texturePath = ":/texture/saturnringmap.jpg";
     if( model == NULL )
         loadModel( MODEL_PATH, model, numVertices );
 }
 
-Rings::Rings( QString texturePath )
+Ring::Ring( QString texturePath )
     :   m_texturePath( texturePath )
 {
     if( model == NULL )
@@ -34,7 +34,7 @@ Rings::Rings( QString texturePath )
     }
 }
 
-Rings::~Rings()
+Ring::~Ring()
 {
     this->teardownGL();
 }
@@ -47,7 +47,7 @@ Rings::~Rings()
  * @brief      Initializes all OpenGL related processes.
  * @details    Loads the shader programs
  */
-void Rings::initializeGL()
+void Ring::initializeGL()
 {
     initializeOpenGLFunctions();
     // Create the shader this ring will be using
@@ -117,7 +117,7 @@ void Rings::initializeGL()
     program->release();
 }
 
-void Rings::paintGL( Camera3D& camera, QMatrix4x4& projection )
+void Ring::paintGL( Camera3D& camera, QMatrix4x4& projection )
 {
     glEnable( GL_DEPTH_TEST );
     glDepthFunc( GL_LEQUAL );
@@ -141,11 +141,11 @@ void Rings::paintGL( Camera3D& camera, QMatrix4x4& projection )
     program->release();
 }
 
-void Rings::update()
+void Ring::update()
 {
 }
 
-void Rings::teardownGL()
+void Ring::teardownGL()
 {
     delete texture;
 }

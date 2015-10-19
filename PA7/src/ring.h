@@ -1,5 +1,5 @@
-#ifndef RINGS_H
-#define RINGS_H
+#ifndef RING_H
+#define RING_H
 
 #include <QOpenGLFunctions>
 #include <QOpenGLBuffer>
@@ -15,13 +15,13 @@
 
 class QOpenGLShaderProgram;
 
-class Rings    :   public Renderable,
+class Ring    :   public Renderable,
                     protected ModelLoader
 {
 public:
-    Rings();
-    Rings( QString texturePath );
-    ~Rings();
+    Ring();
+    Ring( QString texturePath );
+    ~Ring();
 
 
     void initializeGL();
@@ -29,7 +29,7 @@ public:
     void update();
     void teardownGL();
 
-    // Rings Information
+    // Ring Information
     Transform3D transform;
 
 private:
@@ -39,7 +39,7 @@ private:
     static QOpenGLShaderProgram* program;
 
     // Model Information
-    const QString MODEL_PATH = "models/rings.obj";
+    const QString MODEL_PATH = "models/ring.obj";
     static Vertex* model;
     static int numVertices;
 
@@ -55,4 +55,4 @@ private:
     static int eyeClip;
 };
 
-#endif  //  RINGS_H
+#endif  //  RING_H

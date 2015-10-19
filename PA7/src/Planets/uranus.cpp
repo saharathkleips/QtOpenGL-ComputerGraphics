@@ -8,7 +8,7 @@ Uranus::Uranus()
     :   Planet( ":/texture/uranus.jpg" )
 {
     transform.setScale( 0.0145f );
-    ring = new Rings( ":/texture/uranusring.jpg" );
+    ring = new Ring( ":/texture/uranusring.jpg" );
 }
 
 //

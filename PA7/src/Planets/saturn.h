@@ -17,7 +17,7 @@ public:
 private:
     void updateReal();
     void updateScaled();
-    Rings *ring;
+    Ring *ring;
 };
 
 #endif  //  SATURN_H
