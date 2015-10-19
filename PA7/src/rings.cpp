@@ -3,7 +3,7 @@
 //
 // STATIC VARIABLE INITILIZATION ///////////////////////////////////////////////
 // 
-bool Rings::SCALED = true;
+
 QOpenGLBuffer* Rings::vbo = NULL;
 QOpenGLVertexArrayObject* Rings::vao = NULL;
 QOpenGLShaderProgram* Rings::program = NULL;

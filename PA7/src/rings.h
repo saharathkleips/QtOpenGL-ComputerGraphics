@@ -31,7 +31,6 @@ public:
 
     // Rings Information
     Transform3D transform;
-    static bool SCALED;
 
 private:
     // OpenGL State Information
