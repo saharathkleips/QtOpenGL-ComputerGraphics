@@ -23,11 +23,9 @@ OGLWidget::OGLWidget()
     renderables.push_back( new Sun() );
     renderables.push_back( new Skybox() );
 
-    // this is so all the planets aren't stacked together in the beginning
-    for( auto renderable : renderables )
-    {
-        renderable->update();
-    }
+    // update the solar system once in the beginning
+    // this is so all the planets aren't stacked on top of each other
+    renderables[0]->update();
 }
 
 /**
@@ -164,6 +162,12 @@ void OGLWidget::swapPause()
 void OGLWidget::swapScaledView()
 {
     Planet::SCALED = !Planet::SCALED;
+
+    // want to see the scale change even if paused
+    if(paused)
+    {
+        renderables[0]->update();
+    }
 }
 
 //
