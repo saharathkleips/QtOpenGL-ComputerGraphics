@@ -83,7 +83,7 @@ void Sun::updateScaled()
 {
     // SUN
     {
-        transform.rotate( 1.0f, 0, 1, 0 );
+        transform.rotate( 0.27f, 0, 1, 0 );
     }
 
     // MERCURY

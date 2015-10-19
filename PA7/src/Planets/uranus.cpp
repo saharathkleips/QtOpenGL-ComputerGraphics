@@ -16,5 +16,5 @@ Uranus::Uranus()
 
 void Uranus::update()
 {
-    transform.rotate( 1.0f, 0, 1, 0 );
+    transform.rotate( -1.72f, 0, 1, 0 );
 }

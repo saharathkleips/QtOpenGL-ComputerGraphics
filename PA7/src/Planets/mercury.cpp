@@ -15,5 +15,5 @@ Mercury::Mercury()
 // 
 void Mercury::update()
 {
-    transform.rotate( 1.0f, 0, 1, 0 );
+    transform.rotate( 5.865f, 0, 1, 0 );
 }
