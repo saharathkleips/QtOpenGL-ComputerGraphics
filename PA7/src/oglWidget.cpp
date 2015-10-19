@@ -138,7 +138,7 @@ void OGLWidget::update()
         camera.translate( cameraTranslationSpeed * cameraTranslations );
     }
 
-    if( Input::keyPressed( Qt::Key_P ))
+    if( Input::keyReleased( Qt::Key_P ))
         emit pause();
 
     if( !paused )
