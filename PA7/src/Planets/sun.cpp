@@ -121,9 +121,9 @@ void Sun::updateScaled()
         static float translationAngle = 8.0;
         translationAngle += .00018;
         planets["Mars"]->transform.setTranslation( 
-        transform.translation().x() + 12.0f * sin( translationAngle ),
+        transform.translation().x() + 15.0f * sin( translationAngle ),
         transform.translation().y(),
-        transform.translation().z() + 12.0f * cos( translationAngle ) );
+        transform.translation().z() + 15.0f * cos( translationAngle ) );
     }
 
     // JUPITER
@@ -131,9 +131,9 @@ void Sun::updateScaled()
         static float translationAngle = 20.0;
         translationAngle += .00050;
         planets["Jupiter"]->transform.setTranslation( 
-        transform.translation().x() + 15.0f * sin( translationAngle ),
+        transform.translation().x() + 36.0f * sin( translationAngle ),
         transform.translation().y(),
-        transform.translation().z() + 15.0f * cos( translationAngle ) );
+        transform.translation().z() + 36.0f * cos( translationAngle ) );
     }
 
     // SATURN
@@ -141,9 +141,9 @@ void Sun::updateScaled()
         static float translationAngle = 28.0;
         translationAngle += .00070;
         planets["Saturn"]->transform.setTranslation( 
-        transform.translation().x() + 18.0f * sin( translationAngle ),
+        transform.translation().x() + 72.0f * sin( translationAngle ),
         transform.translation().y(),
-        transform.translation().z() + 18.0f * cos( translationAngle ) );
+        transform.translation().z() + 72.0f * cos( translationAngle ) );
     }
 
     // URANUS
@@ -151,9 +151,9 @@ void Sun::updateScaled()
         static float translationAngle = 30.0;
         translationAngle += .00085;
         planets["Uranus"]->transform.setTranslation( 
-        transform.translation().x() + 21.0f * sin( translationAngle ),
+        transform.translation().x() + 100.0f * sin( translationAngle ),
         transform.translation().y(),
-        transform.translation().z() + 21.0f * cos( translationAngle ) );
+        transform.translation().z() + 100.0f * cos( translationAngle ) );
     }
 
     // NEPTUNE
@@ -161,9 +161,9 @@ void Sun::updateScaled()
         static float translationAngle = 46.0;
         translationAngle += .00090;
         planets["Neptune"]->transform.setTranslation( 
-        transform.translation().x() + 24.0f * sin( translationAngle ),
+        transform.translation().x() + 200.0f * sin( translationAngle ),
         transform.translation().y(),
-        transform.translation().z() + 24.0f * cos( translationAngle ) );
+        transform.translation().z() + 200.0f * cos( translationAngle ) );
     }
 
     // PLUTO
@@ -171,9 +171,9 @@ void Sun::updateScaled()
         static float translationAngle = 55.0;
         translationAngle += .000010;
         planets["Pluto"]->transform.setTranslation( 
-        transform.translation().x() + 27.0f * sin( translationAngle ),
+        transform.translation().x() + 300.0f * sin( translationAngle ),
         transform.translation().y(),
-        transform.translation().z() + 27.0f * cos( translationAngle ) );
+        transform.translation().z() + 300.0f * cos( translationAngle ) );
     }
 }
 
