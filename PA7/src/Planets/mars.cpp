@@ -7,7 +7,7 @@
 Mars::Mars()
     :   Planet( ":/texture/mars.jpg" )
 {
-    transform.setScale( .75f );
+    transform.setScale( .0107f );
 }
 
 //

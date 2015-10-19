@@ -7,7 +7,7 @@
 Venus::Venus()
     :   Planet( ":/texture/venus.jpg" )
 {
-    transform.setScale( .75f );
+    transform.setScale( .0815f );
 }
 
 //

@@ -7,7 +7,7 @@
 Neptune::Neptune()
     :   Planet( ":/texture/neptune.jpg" )
 {
-    transform.setScale( .75f );
+    transform.setScale( .0172f );
 }
 
 //

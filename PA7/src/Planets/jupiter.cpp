@@ -7,7 +7,7 @@
 Jupiter::Jupiter()
     :   Planet( ":/texture/jupiter.jpg" )
 {
-    transform.setScale( .75f );
+    transform.setScale( .5180f );
 }
 
 //

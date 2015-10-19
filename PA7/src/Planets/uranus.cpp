@@ -7,7 +7,7 @@
 Uranus::Uranus()
     :   Planet( ":/texture/uranus.jpg" )
 {
-    transform.setScale( .75f );
+    transform.setScale( .0145f );
 }
 
 //

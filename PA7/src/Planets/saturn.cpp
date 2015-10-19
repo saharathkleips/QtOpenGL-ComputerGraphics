@@ -7,7 +7,7 @@
 Saturn::Saturn()
     :   Planet( ":/texture/saturn.jpg" )
 {
-    transform.setScale( .75f );
+    transform.setScale( 0.166f );
 }
 
 //

@@ -7,7 +7,7 @@
 Earth::Earth()
     :   Planet( ":/texture/earth.jpg" )
 {
-    transform.setScale( .75f );
+    transform.setScale( 0.10f );
 }
 
 //
