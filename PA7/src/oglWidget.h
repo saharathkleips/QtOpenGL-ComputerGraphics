@@ -39,6 +39,10 @@ public:
 
 protected slots:
     void update();
+    void swapPause();
+
+signals:
+    void pause();
 
 protected:
     void keyPressEvent( QKeyEvent* event );
@@ -54,6 +58,9 @@ private:
 
     QMatrix4x4 projection;
     Camera3D camera;
+
+    // Control
+    bool paused = false;
 };
 
 #endif  //  OGL_WIDGET_H
