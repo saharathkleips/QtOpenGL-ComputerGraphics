@@ -43,7 +43,8 @@ HEADERS += \
     ../src/Planets/saturn.h \
     ../src/Planets/uranus.h \
     ../src/Planets/neptune.h \
-    ../src/Planets/pluto.h
+    ../src/Planets/pluto.h \
+    ../src/Planets/earthMoon.h
 
 
 SOURCES += \
@@ -67,7 +68,8 @@ SOURCES += \
     ../src/Planets/saturn.cpp \
     ../src/Planets/uranus.cpp \
     ../src/Planets/neptune.cpp \
-    ../src/Planets/pluto.cpp
+    ../src/Planets/pluto.cpp \
+    ../src/Planets/earthMoon.cpp
 
 # Resource files are .qrc - they will be compiled into the binary
 RESOURCES += \
