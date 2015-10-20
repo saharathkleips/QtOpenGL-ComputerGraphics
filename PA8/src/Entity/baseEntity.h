@@ -9,7 +9,6 @@
 
 #include "3D/renderable.h"
 #include "3D/modelLoader.h"
-#include "3D/transform3d.h"
 #include "3D/vertex.h"
 
 class BaseEntity    :   public Renderable
@@ -23,8 +22,6 @@ protected:
     void paintGL( Camera3D& camera, QMatrix4x4& projection );
     virtual void update();
     void teardownGL();
-
-    Transform3D Transform;
 
 private:
     // OpenGL State Data
