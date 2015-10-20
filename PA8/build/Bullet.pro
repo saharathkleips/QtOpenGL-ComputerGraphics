@@ -35,6 +35,8 @@ HEADERS += \
     #Controls
     ../src/Controls/camera3d.h \
     ../src/Controls/input.h \
+    #Entity
+    ../src/Entity/baseEntity.h \
     #UI
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h
@@ -48,6 +50,8 @@ SOURCES += \
     #Controls
     ../src/Controls/camera3d.cpp \
     ../src/Controls/input.cpp \
+    #Entity
+    ../src/Entity/baseEntity.cpp \
     #UI
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
