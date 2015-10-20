@@ -16,6 +16,7 @@ The projects focus on an understanding of 3D computer graphics and its implement
 + [PA9 - Air Hockey](#pa9---air-hockey)  
 + [PA10 - Lighting](#pa10---lighting)  
 + [PA11 - Labyrinth](#pa11---labyrinth)  
++ [License](#license)
 + [Contact Information](#contact-information)  
 
 ## PA0 - [Pass Through Shader](PA0)
@@ -42,7 +43,8 @@ The projects focus on an understanding of 3D computer graphics and its implement
 ## PA7 - [Solar System](PA7)
 [Documentation](PA7/README.md)
 
-## PA8 - Bullet
+## PA8 - [Bullet](PA8)
+[Documentation](PA8/README.md)
 
 ## PA9 - Air Hockey
 
@@ -50,6 +52,9 @@ The projects focus on an understanding of 3D computer graphics and its implement
 
 ## PA11 - Labyrinth
 
+## License
+This repository is released under the [MIT License](LICENSE.md).
+
 ## Contact Information
 **LinkedIn:** http://www.linkedin.com/in/SaharathKleips  
-**Email:** SaharathKleips@yahoo.com
+**Email:** SaharathKleips@gmail.com
