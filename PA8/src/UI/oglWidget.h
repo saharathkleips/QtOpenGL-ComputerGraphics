@@ -14,6 +14,8 @@
 #include <QDebug>
 #include <QString>
 
+#include <btBulletDynamicsCommon.h>
+
 #include "Controls/input.h"
 #include "Controls/camera3d.h"
 #include "3D/renderable.h"
@@ -46,14 +48,24 @@ protected:
     void mouseReleaseEvent( QMouseEvent* event );
 
 private:
+    void initializeBullet();
+    void teardownBullet();
     void flyThroughCamera();
     void printContextInfo();
 
-    // 3D Information
+    // OpenGL Objects
     QMap<QString, Renderable*> renderables;
 
+    // 3D data
     QMatrix4x4 projection;
     Camera3D camera;
+
+    // Bullet data
+    btBroadphaseInterface* m_broadphase;
+    btDefaultCollisionConfiguration* m_collisionConfig;
+    btCollisionDispatcher* m_dispatcher;
+    btSequentialImpulseConstraintSolver* m_solver;
+    btDiscreteDynamicsWorld* m_dynamicsWorld;
 };
 
 #endif  //  OGL_WIDGET_H

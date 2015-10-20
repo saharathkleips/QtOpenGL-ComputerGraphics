@@ -14,7 +14,7 @@ QT += core gui opengl
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 #Any external libraries this build uses
-LIBS += -lassimp -I/usr/include/bullet -lBulletDynamics -lBulletSoftBody -lBulletCollision -lLinearMath
+LIBS += -lassimp -lBulletDynamics -lBulletSoftBody -lBulletCollision -lLinearMath
 
 #General project configuration options.
 CONFIG += warn_on c++11
@@ -23,7 +23,7 @@ CONFIG += warn_on c++11
 QMAKE_CXXFLAGS_WARD_ON += -Wall -pedantic
 
 #Specifies the #include directories which should be searched when compiling the project.
-INCLUDEPATH = ../src/
+INCLUDEPATH = ../src/ /usr/include/bullet
 
 #A list of filenames of header (.h) files used when building the project.
 HEADERS += \

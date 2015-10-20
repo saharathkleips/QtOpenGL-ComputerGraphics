@@ -37,6 +37,7 @@ OGLWidget::~OGLWidget()
 {
     makeCurrent();
     teardownGL();
+    teardownBullet();
 }
 
 //
@@ -51,6 +52,7 @@ void OGLWidget::initializeGL()
     // Init OpenGL Backend
     initializeOpenGLFunctions();
     printContextInfo();
+    initializeBullet();
 
     for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
         iter != renderables.end(); iter++ )
@@ -183,6 +185,27 @@ void OGLWidget::mouseReleaseEvent( QMouseEvent* event )
 //
 // PRIVATE HELPER FUNCTIONS ////////////////////////////////////////////////////
 //
+
+void OGLWidget::initializeBullet()
+{
+    m_broadphase = new btDbvtBroadphase();
+    m_collisionConfig = new btDefaultCollisionConfiguration();
+    m_dispatcher = new btCollisionDispatcher( m_collisionConfig );
+    m_solver = new btSequentialImpulseConstraintSolver();
+    m_dynamicsWorld = new btDiscreteDynamicsWorld( m_dispatcher, m_broadphase,
+        m_solver, m_collisionConfig );
+
+    m_dynamicsWorld->setGravity( btVector3( 0, -9.81, 0 ) );
+}
+
+void OGLWidget::teardownBullet()
+{
+    delete m_dynamicsWorld;
+    delete m_solver;
+    delete m_dispatcher;
+    delete m_collisionConfig;
+    delete m_broadphase;
+}
 
 /**
  * @brief      Updates the main camera to behave like a Fly-Through Camera.
