@@ -38,6 +38,8 @@ HEADERS += \
     #Entity
     ../src/Entity/baseEntity.h \
     ../src/Entity/cube.h \
+    ../src/Entity/cylindar.h \
+    ../src/Entity/sphere.h \
     #UI
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h
@@ -54,6 +56,8 @@ SOURCES += \
     #Entity
     ../src/Entity/baseEntity.cpp \
     ../src/Entity/cube.cpp \
+    ../src/Entity/cylindar.cpp \
+    ../src/Entity/sphere.cpp \
     #UI
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \

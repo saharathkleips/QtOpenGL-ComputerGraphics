@@ -18,6 +18,8 @@
 #include "Controls/camera3d.h"
 #include "3D/renderable.h"
 #include "Entity/cube.h"
+#include "Entity/cylindar.h"
+#include "Entity/sphere.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions

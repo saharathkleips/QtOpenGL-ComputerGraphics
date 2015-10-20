@@ -21,6 +21,10 @@ OGLWidget::OGLWidget()
     camera.translate( 0.0f, 4.0f, 10.0f );
 
     renderables["Cube"] = new Cube();
+    renderables["Cylindar"] = new Cylindar();
+    renderables["Cylindar"]->Transform.translate( -5, 0, 0 );
+    renderables["Sphere"] = new Sphere();
+    renderables["Sphere"]->Transform.translate( 5, 0, 0 );
 }
 
 /**
