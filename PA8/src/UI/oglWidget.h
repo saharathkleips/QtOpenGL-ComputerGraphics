@@ -17,6 +17,7 @@
 #include "Controls/input.h"
 #include "Controls/camera3d.h"
 #include "3D/renderable.h"
+#include "Entity/cube.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions

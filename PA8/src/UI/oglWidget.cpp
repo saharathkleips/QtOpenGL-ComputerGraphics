@@ -15,6 +15,12 @@ OGLWidget::OGLWidget()
 
     // Allows keyboard input to fall through
     setFocusPolicy( Qt::ClickFocus );
+
+    // Default camera view
+    camera.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
+    camera.translate( 0.0f, 4.0f, 10.0f );
+
+    renderables["Cube"] = new Cube();
 }
 
 /**
@@ -176,14 +182,17 @@ void OGLWidget::mouseReleaseEvent( QMouseEvent* event )
  */
 void OGLWidget::flyThroughCamera()
 {
-    static const float cameraTranslationSpeed = 0.3f;
-    static const float cameraRotationSpeed = 0.1f;
+    static const float cameraTranslationSpeed = 0.03f;
+    static const float cameraRotationSpeed = 0.2f;
 
-    // Rotate the camera based on mouse movement
-    camera.rotate( -cameraRotationSpeed * Input::mouseDelta().x(), 
-        Camera3D::LocalUp );
-    camera.rotate( -cameraRotationSpeed * Input::mouseDelta().y(),
-        camera.right() );
+    if( Input::buttonPressed( Qt::RightButton ) )
+    {
+        // Rotate the camera based on mouse movement
+        camera.rotate( -cameraRotationSpeed * Input::mouseDelta().x(), 
+            Camera3D::LocalUp );
+        camera.rotate( -cameraRotationSpeed * Input::mouseDelta().y(),
+            camera.right() );
+    }
 
     // Translate the camera based on keyboard input
     QVector3D cameraTranslations;
