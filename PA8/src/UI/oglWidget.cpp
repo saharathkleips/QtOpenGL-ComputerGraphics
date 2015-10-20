@@ -18,13 +18,16 @@ OGLWidget::OGLWidget()
 
     // Default camera view
     camera.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
-    camera.translate( 0.0f, 4.0f, 10.0f );
+    camera.translate( 0.0f, 8.0f, 15.0f );
 
     renderables["Cube"] = new Cube();
+    renderables["Cube"]->Transform.translate( 0, 3, 0 );
     renderables["Cylindar"] = new Cylindar();
-    renderables["Cylindar"]->Transform.translate( -5, 0, 0 );
+    renderables["Cylindar"]->Transform.translate( -3, 3, 0 );
     renderables["Sphere"] = new Sphere();
-    renderables["Sphere"]->Transform.translate( 5, 0, 0 );
+    renderables["Sphere"]->Transform.translate( 3, 3, 0 );
+    renderables["Board"] = new Board();
+    renderables["Board"]->Transform.rotate( 90, 0, 1, 0 );
 }
 
 /**

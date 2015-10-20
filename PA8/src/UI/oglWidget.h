@@ -20,6 +20,7 @@
 #include "Entity/cube.h"
 #include "Entity/cylindar.h"
 #include "Entity/sphere.h"
+#include "Entity/board.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions
