@@ -12,7 +12,7 @@
 #include "3D/transform3d.h"
 #include "3D/vertex.h"
 
-class BaseEntity    :   private Renderable
+class BaseEntity    :   public Renderable
 {
 protected:
     BaseEntity( QString pathToModel, QString pathToTexture );
@@ -43,7 +43,7 @@ private:
 
     // Shader Information
     const QString PATH_TO_V_SHADER = ":/shader/simple.vs";
-    const QString PATH_TO_F_SHADER = ":/shader.simple.fs";
+    const QString PATH_TO_F_SHADER = ":/shader/simple.fs";
     int m_modelWorld;
     int m_worldEye;
     int m_eyeClip;
