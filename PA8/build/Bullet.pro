@@ -37,6 +37,7 @@ HEADERS += \
     ../src/Controls/input.h \
     #Entity
     ../src/Entity/baseEntity.h \
+    ../src/Entity/cube.h \
     #UI
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h
@@ -52,6 +53,7 @@ SOURCES += \
     ../src/Controls/input.cpp \
     #Entity
     ../src/Entity/baseEntity.cpp \
+    ../src/Entity/cube.cpp \
     #UI
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \

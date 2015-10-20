@@ -8,13 +8,12 @@
 class Cube  :   public BaseEntity
 {
 public:
-    Cube();
+    Cube( QString pathToModel = "models/cube.obj", 
+        QString pathToTexture = "textures/texture.png" );
     ~Cube();
 
+    void paintGL( Camera3D& camera, QMatrix4x4& projection );
     void update();
-
-private:
-    const QString PATH_TO_MODEL = "models/cube.obj";
 };
 
 #endif  //  CUBE_H
