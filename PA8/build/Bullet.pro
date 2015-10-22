@@ -37,6 +37,7 @@ HEADERS += \
     ../src/Controls/input.h \
     #Entity
     ../src/Entity/baseEntity.h \
+    ../src/Entity/physicsEntity.h \
     ../src/Entity/board.h \
     ../src/Entity/cube.h \
     ../src/Entity/cylindar.h \
@@ -56,6 +57,7 @@ SOURCES += \
     ../src/Controls/input.cpp \
     #Entity
     ../src/Entity/baseEntity.cpp \
+    ../src/Entity/physicsEntity.cpp \
     ../src/Entity/board.cpp \
     ../src/Entity/cube.cpp \
     ../src/Entity/cylindar.cpp \
