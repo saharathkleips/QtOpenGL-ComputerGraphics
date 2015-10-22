@@ -55,3 +55,43 @@ bool ModelLoader::loadModel( QString filePath, Vertex*& geometry,
     geometry = geo;
     return true;
 }
+
+bool ModelLoader::loadTriMesh( QString filePath, btTriangleMesh*& triMesh )
+{
+    Assimp::Importer importer;
+    const aiScene* scene = importer.ReadFile( filePath.toStdString(), 
+        aiProcess_GenSmoothNormals |
+        aiProcess_CalcTangentSpace |
+        aiProcess_Triangulate |
+        aiProcess_JoinIdenticalVertices |
+        aiProcess_SortByPType );
+
+    if( scene == NULL )
+    {
+        qDebug() << importer.GetErrorString();
+        return false;
+    }
+
+    aiMesh* mesh = scene->mMeshes[0];
+
+    btTriangleMesh* tempTriMesh = new btTriangleMesh();
+    btVector3* triMeshVertices = new btVector3[3];
+
+    for( unsigned int i = 0; i < mesh->mNumFaces; i++ )
+    {
+        const aiFace& face = mesh->mFaces[i];
+
+        for( unsigned int j = 0; j < 3; j++ )
+        {
+            aiVector3D pos = mesh->mVertices[ face.mIndices[j] ];
+            triMeshVertices[j] = btVector3( pos.x, pos.y, pos.z );
+        }
+
+        tempTriMesh->addTriangle( triMeshVertices[0], triMeshVertices[1], 
+            triMeshVertices[2] );
+    }
+
+    triMesh = tempTriMesh;
+    return true;
+}
+

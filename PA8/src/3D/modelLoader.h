@@ -10,10 +10,12 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+#include <btBulletDynamicsCommon.h>
+
 namespace ModelLoader
 {
-    bool loadModel( QString filePath, Vertex*& geometry, 
-        int& numVertices );
+    bool loadModel( QString filePath, Vertex*& geometry, int& numVertices );
+    bool loadTriMesh( QString filePath, btTriangleMesh*& collisionMesh );
 };
 
 #endif  //  MODEL_LOADER_H
