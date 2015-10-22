@@ -6,8 +6,10 @@
 
 
 Cube::Cube( QString pathToModel, QString pathToTexture )
-    :   BaseEntity( pathToModel, pathToTexture )
+    :   BaseEntity( pathToModel, pathToTexture ),
+        PhysicsEntity( pathToModel )
 {
+    Mass = 1;
 }
 
 //
