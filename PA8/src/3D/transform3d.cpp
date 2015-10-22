@@ -210,6 +210,11 @@ void Transform3D::setRotation( float angle, float x, float y, float z )
     setRotation( QQuaternion::fromAxisAndAngle( x, y, z, angle ) );
 }
 
+void Transform3D::setMatrix( QMatrix4x4 matrix )
+{
+    m_world = matrix;
+}
+
 //
 // ACCESSORS ///////////////////////////////////////////////////////////////////
 // 
