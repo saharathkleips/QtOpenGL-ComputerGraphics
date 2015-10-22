@@ -59,6 +59,8 @@ void OGLWidget::initializeGL()
     {
         (*iter)->initializeGL();
     }
+
+    m_dynamicsWorld->addRigidBody( ((Cube*)renderables["Cube"])->RigidBody );
 }
 
 /**
@@ -128,6 +130,17 @@ void OGLWidget::update()
     {
         (*iter)->update();
     }
+
+    // TESTING BULLET STUFF
+    btTransform trans;
+    btScalar m[16];
+    m_dynamicsWorld->stepSimulation( 1, 10 );
+    ((Cube*)renderables["Cube"])->
+        RigidBody->getMotionState()->getWorldTransform( trans );
+    trans.getOpenGLMatrix(m);
+    QMatrix4x4 testing = QMatrix4x4( m );
+    renderables["Cube"]->Transform.setMatrix( testing );
+    // TESTING BULLET STUFF
 
     QOpenGLWidget::update();
 }
