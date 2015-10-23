@@ -25,6 +25,10 @@ private:
     QMenuBar* menuBar;
     QMenu* menuFile;
     QAction* actionExitProgram;
+
+    QMenu* interactionMenu;
+	QAction* actionSphereMove;
+	QAction* actionCylinderMove;
 };
 
 #endif  //  MAIN_WINDOW_H

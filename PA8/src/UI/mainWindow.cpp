@@ -44,6 +44,20 @@ void MainWindow::createActions()
     actionExitProgram->setStatusTip( "Exits the program." );
     connect( actionExitProgram, SIGNAL( triggered() ), 
         QApplication::instance(), SLOT( quit() ) );
+
+    actionSphereMove = new QAction( "Control Sphere", this );
+    actionSphereMove->setCheckable( true );
+    actionSphereMove->setChecked( true );
+    actionSphereMove->setStatusTip( "Take control of the sphere." );
+    // connect( actionSphereMove, SIGNAL( triggered() ), 
+    //     oglWidget, SLOT( swapScaledView() ) );
+   
+    actionCylinderMove = new QAction( "Control Cylinder", this );
+    actionCylinderMove->setCheckable( true );
+    actionCylinderMove->setStatusTip( "Take control of the cylinder." );
+        // connect( actionCylinderMove, SIGNAL( triggered() ), 
+    //     oglWidget, SLOT( swapScaledView() ) );
+
 }
 
 /**
@@ -53,6 +67,10 @@ void MainWindow::createMenus()
 {
     menuFile = new QMenu( "&File" );
     menuFile->addAction( actionExitProgram );
+
+    interactionMenu = new QMenu( "&Interaction" ); 
+    interactionMenu->addAction( actionSphereMove );
+    interactionMenu->addAction( actionCylinderMove );
 }
 
 /**
@@ -62,4 +80,5 @@ void MainWindow::createMenuBar()
 {
     menuBar = new QMenuBar();
     menuBar->addMenu( menuFile );
+    menuBar->addMenu( interactionMenu );
 }
