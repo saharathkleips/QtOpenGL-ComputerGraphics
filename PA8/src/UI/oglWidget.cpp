@@ -1,5 +1,4 @@
 #include "oglWidget.h"
-
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
@@ -98,6 +97,7 @@ void OGLWidget::paintGL()
     {
         (*iter)->paintGL( camera, projection );
     }
+
 }
 
 /**
@@ -137,9 +137,12 @@ void OGLWidget::update()
     m_dynamicsWorld->stepSimulation( 1, 10 );
     ((Cube*)renderables["Cube"])->
         RigidBody->getMotionState()->getWorldTransform( trans );
-    trans.getOpenGLMatrix(m);
-    QMatrix4x4 testing = QMatrix4x4( m );
-    renderables["Cube"]->Transform.setMatrix( testing );
+
+    renderables["Cube"]->Transform.translate(
+        trans.getOrigin().getX(),
+        trans.getOrigin().getY(),
+        trans.getOrigin().getZ()
+    );
     // TESTING BULLET STUFF
 
     QOpenGLWidget::update();

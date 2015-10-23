@@ -23,8 +23,6 @@ protected:
     virtual void update();
     void teardownGL();
 
-    btCollisionShape* entityShape;
-
 private:
     // OpenGL State Data
     QOpenGLBuffer* m_vbo;
