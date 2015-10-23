@@ -19,10 +19,11 @@ public:
     btVector3 Inertia;
     
     btRigidBody* RigidBody;
-    btCollisionShape* m_collisionShape;
+    
 
 private:
     btTriangleMesh* m_triMesh;
+    btCollisionShape* m_collisionShape;
 
     btDefaultMotionState* m_motionState;
     btRigidBody::btRigidBodyConstructionInfo* m_rigidBodyCI;
