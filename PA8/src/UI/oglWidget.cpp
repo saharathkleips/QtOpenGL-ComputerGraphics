@@ -133,7 +133,6 @@ void OGLWidget::update()
 
     // TESTING BULLET STUFF
     btTransform trans;
-    btScalar m[16];
     m_dynamicsWorld->stepSimulation( 1, 10 );
     ((Cube*)renderables["Cube"])->
         RigidBody->getMotionState()->getWorldTransform( trans );
@@ -148,6 +147,11 @@ void OGLWidget::update()
     QOpenGLWidget::update();
 }
 
+void OGLWidget::setObjectControl(){
+
+    selectedObject = !selectedObject;
+
+}
 //
 // INPUT EVENTS ////////////////////////////////////////////////////////////////
 // 
@@ -256,6 +260,31 @@ void OGLWidget::flyThroughCamera()
         cameraTranslations += camera.up();
     camera.translate( cameraTranslationSpeed * cameraTranslations );
 } 
+
+/**
+ * @brief      Updates either the sphere or cylinder object to move based on arrow input.
+ */
+ void OGLWidget::controlObject()
+ {
+    // if( object == true )
+    //     // set object equal to sphere
+    //     // else set equal to cylinder
+
+    // // QVector3D objectTranslations;
+    // if( Input::keyPressed( Qt::Key_Up ) )
+    //     objectTranslations += object.forward();
+    // if( Input::keyPressed( Qt::Key_Down ) )
+    //     objectTranslations -= object.forward();
+    // if( Input::keyPressed( Qt::Key_Left ) )
+    //     objectTranslations -= object.right();
+    // if( Input::keyPressed( Qt::Key_Right ) )
+    //     objectTranslations += object.right();
+    // object.translate()
+
+
+ }
+
+
 
 /**
  * @brief      Helper function to print OpenGL Context information to the debug.

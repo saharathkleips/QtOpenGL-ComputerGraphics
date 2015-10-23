@@ -50,13 +50,13 @@ void MainWindow::createActions()
     actionSphereMove->setChecked( true );
     actionSphereMove->setStatusTip( "Take control of the sphere." );
     // connect( actionSphereMove, SIGNAL( triggered() ), 
-    //     oglWidget, SLOT( swapScaledView() ) );
+    //     oglWidget, SLOT( setSphereMove() ) );
    
     actionCylinderMove = new QAction( "Control Cylinder", this );
     actionCylinderMove->setCheckable( true );
     actionCylinderMove->setStatusTip( "Take control of the cylinder." );
         // connect( actionCylinderMove, SIGNAL( triggered() ), 
-    //     oglWidget, SLOT( swapScaledView() ) );
+    //     oglWidget, SLOT( setSphereMove() ) );
 
 }
 

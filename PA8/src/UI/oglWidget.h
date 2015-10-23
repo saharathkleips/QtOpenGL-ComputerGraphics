@@ -40,6 +40,7 @@ public:
 
 protected slots:
     void update();
+    void setObjectControl();
 
 protected:
     void keyPressEvent( QKeyEvent* event );
@@ -51,7 +52,11 @@ private:
     void initializeBullet();
     void teardownBullet();
     void flyThroughCamera();
+    void controlObject();
     void printContextInfo();
+
+    // Object Control Flag
+    bool selectedObject = true; // true starts at sphere
 
     // OpenGL Objects
     QMap<QString, Renderable*> renderables;
