@@ -134,12 +134,16 @@ void OGLWidget::update()
     btScalar m[16];
 
     ((PhysicsEntity*)renderables["Cube"])->
-        RigidBody->applyCentralImpulse( btVector3( 0, -1, 0 ) );
-    ((PhysicsEntity*)renderables["Cube"])->
         RigidBody->getMotionState()->getWorldTransform( trans );
     trans.getOpenGLMatrix( m );
+
     ((PhysicsEntity*)renderables["Cube"])->Transform = QMatrix4x4( m );
-    
+        for( auto i : m )
+    {
+        qDebug() << i;
+    }
+    qDebug();
+    qDebug() << ((PhysicsEntity*)renderables["Cube"])->Transform;
 
     m_dynamicsWorld->stepSimulation( 1, 10 );
     QOpenGLWidget::update();
@@ -208,7 +212,7 @@ void OGLWidget::initializeBullet()
     m_dynamicsWorld = new btDiscreteDynamicsWorld( m_dispatcher, m_broadphase,
         m_solver, m_collisionConfig );
 
-    m_dynamicsWorld->setGravity( btVector3( 0, -9.81, 0 ) );
+    m_dynamicsWorld->setGravity( btVector3( 0, .35, 0 ) );
 }
 
 void OGLWidget::teardownBullet()

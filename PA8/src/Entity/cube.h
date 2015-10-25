@@ -9,7 +9,8 @@ class Cube  :   public PhysicsEntity
 {
 public:
     Cube( QString pathToModel = "models/cube.obj", 
-        QString pathToTexture = "textures/texture.png" );
+          QString pathToTexture = "textures/texture.png",
+          btScalar mass = 1 );
     ~Cube();
 
     void paintGL( Camera3D& camera, QMatrix4x4& projection );

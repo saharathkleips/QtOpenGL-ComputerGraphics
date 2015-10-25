@@ -16,13 +16,12 @@
 class PhysicsEntity     :   public Renderable
 {
 public:
-    btScalar Mass;
     btVector3 Inertia;
     btRigidBody* RigidBody;
     QMatrix4x4 Transform;
 
 protected:
-    PhysicsEntity( QString pathToModel, QString pathToTexture );
+    PhysicsEntity( QString pathToModel, QString pathToTexture, btScalar mass );
     ~PhysicsEntity();
 
     // Renderable Functions
@@ -57,6 +56,7 @@ private:
     btTriangleMesh* m_triMesh;
     btCollisionShape* m_collisionShape;
     btDefaultMotionState* m_motionState;
+    btScalar m_mass;
     btRigidBody::btRigidBodyConstructionInfo* m_rigidBodyCI;
 };
 

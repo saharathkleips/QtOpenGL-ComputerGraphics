@@ -5,10 +5,9 @@
 //
 
 
-Cube::Cube( QString pathToModel, QString pathToTexture )
-    :   PhysicsEntity( pathToModel, pathToTexture )
+Cube::Cube( QString pathToModel, QString pathToTexture, btScalar mass )
+    :   PhysicsEntity( pathToModel, pathToTexture, mass )
 {
-    Mass = 1;
 }
 
 //

@@ -5,27 +5,27 @@
 //
 
 
-PhysicsEntity::PhysicsEntity( QString pathToModel, QString pathToTexture )
-    :   m_pathToModel( pathToModel ), m_pathToTexture( pathToTexture )
+PhysicsEntity::PhysicsEntity( QString pathToModel, QString pathToTexture, 
+    btScalar mass )
+    :   m_pathToModel( pathToModel ), m_pathToTexture( pathToTexture ),
+        m_mass( mass )
 {
     ModelLoader::loadModel( pathToModel, m_model, m_numVertices );
     ModelLoader::loadTriMesh( pathToModel, m_triMesh );
 
     // Initialize Bullet
     m_collisionShape = new btBvhTriangleMeshShape( m_triMesh, true );
-    
+
     m_motionState = new btDefaultMotionState( btTransform( 
         btQuaternion( 0, 0, 0, 1 ), btVector3( 0, 0, 0 ) ) );
-    Mass = 0;
+    
     Inertia = btVector3( 0, 0, 0 );
 
-    m_collisionShape->calculateLocalInertia( Mass, Inertia );
+    m_collisionShape->calculateLocalInertia( m_mass, Inertia );
     m_rigidBodyCI = new btRigidBody::btRigidBodyConstructionInfo( 
-        Mass, m_motionState, m_collisionShape, Inertia );
+        m_mass, m_motionState, m_collisionShape, Inertia );
 
     RigidBody = new btRigidBody( *m_rigidBodyCI );
-    RigidBody->setLinearFactor( btVector3( 1, 1, 1 ) );
-    RigidBody->setAngularFactor( btVector3( 1, 1, 1 ) );
 }
 
 PhysicsEntity::~PhysicsEntity()
