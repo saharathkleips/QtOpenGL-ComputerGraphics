@@ -3,11 +3,9 @@
 
 #include <QString>
 
-#include "baseEntity.h"
 #include "physicsEntity.h"
 
-class Cube  :   public BaseEntity,
-                public PhysicsEntity
+class Cube  :   public PhysicsEntity
 {
 public:
     Cube( QString pathToModel = "models/cube.obj", 

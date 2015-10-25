@@ -9,10 +9,14 @@
 
 #include "3D/renderable.h"
 #include "3D/modelLoader.h"
+#include "3D/transform3d.h"
 #include "3D/vertex.h"
 
 class BaseEntity    :   public Renderable
 {
+public:
+    Transform3D Transform;
+    
 protected:
     BaseEntity( QString pathToModel, QString pathToTexture );
     ~BaseEntity();
@@ -22,8 +26,6 @@ protected:
     void paintGL( Camera3D& camera, QMatrix4x4& projection );
     virtual void update();
     void teardownGL();
-
-    btCollisionShape* entityShape;
 
 private:
     // OpenGL State Data

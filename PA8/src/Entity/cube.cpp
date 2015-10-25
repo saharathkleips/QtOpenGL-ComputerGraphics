@@ -6,8 +6,7 @@
 
 
 Cube::Cube( QString pathToModel, QString pathToTexture )
-    :   BaseEntity( pathToModel, pathToTexture ),
-        PhysicsEntity( pathToModel )
+    :   PhysicsEntity( pathToModel, pathToTexture )
 {
     Mass = 1;
 }
@@ -23,7 +22,7 @@ void Cube::paintGL( Camera3D& camera, QMatrix4x4& projection )
     glDepthFunc( GL_LEQUAL );
     glDepthMask( GL_TRUE );
     glEnable( GL_CULL_FACE );
-    BaseEntity::paintGL( camera, projection );
+    PhysicsEntity::paintGL( camera, projection );
 }
 
 void Cube::update()

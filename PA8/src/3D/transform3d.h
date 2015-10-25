@@ -35,7 +35,6 @@ public:
     void setRotation( const QQuaternion& r );
     void setRotation( float angle, const QVector3D& axis );
     void setRotation( float angle, float ax, float ay, float az );
-    void setMatrix( QMatrix4x4 matrix );
 
     // Accessors
     const QVector3D& translation() const;
