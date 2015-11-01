@@ -3,13 +3,14 @@
 
 #include <QString>
 
-#include "baseEntity.h"
+#include "physicsEntity.h"
 
-class Board  :   public BaseEntity
+class Board  :   public PhysicsEntity
 {
 public:
     Board( QString pathToModel = "models/board.obj", 
-        QString pathToTexture = "textures/texture.png" );
+           QString pathToTexture = "textures/texture.png",
+           btScalar mass = 0 );
     ~Board();
 
     void paintGL( Camera3D& camera, QMatrix4x4& projection );

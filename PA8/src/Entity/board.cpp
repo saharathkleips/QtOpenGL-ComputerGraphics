@@ -5,8 +5,8 @@
 //
 
 
-Board::Board( QString pathToModel, QString pathToTexture )
-    :   BaseEntity( pathToModel, pathToTexture )
+Board::Board( QString pathToModel, QString pathToTexture, btScalar mass )
+    :   PhysicsEntity( pathToModel, pathToTexture, mass )
 {
 }
 
@@ -21,7 +21,7 @@ void Board::paintGL( Camera3D& camera, QMatrix4x4& projection )
     glDepthFunc( GL_LEQUAL );
     glDepthMask( GL_TRUE );
     glDisable( GL_CULL_FACE );
-    BaseEntity::paintGL( camera, projection );
+    PhysicsEntity::paintGL( camera, projection );
 }
 
 void Board::update()

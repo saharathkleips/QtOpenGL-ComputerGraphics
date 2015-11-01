@@ -17,7 +17,7 @@ PhysicsEntity::PhysicsEntity( QString pathToModel, QString pathToTexture,
     m_collisionShape = new btBvhTriangleMeshShape( m_triMesh, true );
 
     ////////// temporary ///////////
-    // set initial position of object to be 6 units above the table, 
+    // set initial position of object to be 6 meters above the table, 
     // to see if gravity & collision works (currently only affects cube)
     // todo: pass btVector3 initialPos(x,y,z) to constructor of physicsEntity
     // or rework passing information to physics entity
@@ -31,6 +31,14 @@ PhysicsEntity::PhysicsEntity( QString pathToModel, QString pathToTexture,
         m_mass, m_motionState, m_collisionShape, Inertia );
 
     RigidBody = new btRigidBody( *m_rigidBodyCI );
+
+    // make static objects kinematic
+    // see http://www.cse.unr.edu/~fredh/class/480/F2015/proj/PA08/PA8.php
+    if( mass == 0 )
+    {
+        RigidBody->setCollisionFlags(RigidBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
+        RigidBody->setActivationState(DISABLE_DEACTIVATION);
+    }
 }
 
 PhysicsEntity::~PhysicsEntity()

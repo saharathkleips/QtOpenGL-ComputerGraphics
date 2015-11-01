@@ -39,7 +39,6 @@ OGLWidget::OGLWidget()
     renderables["Sphere"] = new Sphere();
     ((BaseEntity*)renderables["Sphere"])->Transform.translate( 3, 3, 0 );
     renderables["Board"] = new Board();
-    ((BaseEntity*)renderables["Board"])->Transform.rotate( 90, 0, 1, 0 );
 }
 
 /**
@@ -72,7 +71,10 @@ void OGLWidget::initializeGL()
         (*iter)->initializeGL();
     }
 
-    m_dynamicsWorld->addRigidBody( ((Cube*)renderables["Cube"])->RigidBody );
+    m_dynamicsWorld->addRigidBody(
+        ((Board*)renderables["Board"])->RigidBody, COL_TABLE, tableCollidesWith );
+    m_dynamicsWorld->addRigidBody( 
+        ((Cube*)renderables["Cube"])->RigidBody, COL_CUBE, cubeCollidesWith );
 }
 
 /**
