@@ -20,13 +20,12 @@ OGLWidget::OGLWidget()
     camera.translate( 0.0f, 8.0f, 15.0f );
 
     renderables["Cube"] = new Cube();
-    renderables["Cube"]->Transform.translate( 0, 3, 0 );
     renderables["Cylindar"] = new Cylindar();
-    renderables["Cylindar"]->Transform.translate( -3, 3, 0 );
+    ((BaseEntity*)renderables["Cylindar"])->Transform.translate( -3, 3, 0 );
     renderables["Sphere"] = new Sphere();
-    renderables["Sphere"]->Transform.translate( 3, 3, 0 );
+    ((BaseEntity*)renderables["Sphere"])->Transform.translate( 3, 3, 0 );
     renderables["Board"] = new Board();
-    renderables["Board"]->Transform.rotate( 90, 0, 1, 0 );
+    ((BaseEntity*)renderables["Board"])->Transform.rotate( 90, 0, 1, 0 );
 }
 
 /**
@@ -131,9 +130,11 @@ void OGLWidget::update()
         (*iter)->update();
     }
 
-    // TESTING BULLET STUFF
     btTransform trans;
+    btScalar m[16];
     m_dynamicsWorld->stepSimulation( 1, 10 );
+
+    /*
     ((Cube*)renderables["Cube"])->
         RigidBody->getMotionState()->getWorldTransform( trans );
 
@@ -142,7 +143,22 @@ void OGLWidget::update()
         trans.getOrigin().getY(),
         trans.getOrigin().getZ()
     );
-    // TESTING BULLET STUFF
+
+    */
+    
+
+    ((PhysicsEntity*)renderables["Cube"])->
+        RigidBody->getMotionState()->getWorldTransform( trans );
+    trans.getOpenGLMatrix( m );
+    ((PhysicsEntity*)renderables["Cube"])->Transform = QMatrix4x4( m );
+
+
+    for( auto i : m )
+    {
+        qDebug() << i;
+    }
+    qDebug();
+    qDebug() << ((PhysicsEntity*)renderables["Cube"])->Transform;
 
     QOpenGLWidget::update();
 }
@@ -215,7 +231,7 @@ void OGLWidget::initializeBullet()
     m_dynamicsWorld = new btDiscreteDynamicsWorld( m_dispatcher, m_broadphase,
         m_solver, m_collisionConfig );
 
-    m_dynamicsWorld->setGravity( btVector3( 0, -9.81, 0 ) );
+    m_dynamicsWorld->setGravity( btVector3( 0, .35, 0 ) );
 }
 
 void OGLWidget::teardownBullet()
