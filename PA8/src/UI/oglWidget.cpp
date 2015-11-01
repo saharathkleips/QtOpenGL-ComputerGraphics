@@ -1,4 +1,18 @@
 #include "oglWidget.h"
+
+
+
+
+
+
+#define BIT(x) (1<<(x))
+const short COL_TABLE = BIT(0);
+const short COL_CUBE = BIT(1);
+
+short tableCollidesWith = COL_CUBE;
+short cubeCollidesWith = COL_TABLE;
+
+
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
