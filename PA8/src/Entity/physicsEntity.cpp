@@ -20,7 +20,7 @@ PhysicsEntity::PhysicsEntity( QString pathToModel, QString pathToTexture,
     btQuaternion( 0, 0, 0, 1 ), btVector3( 0, 0, 0 ) ) );
     // try changing one of the vectors
     Inertia = btVector3( 0, 0, 0 );
-    // m_mass??
+
     m_collisionShape->calculateLocalInertia( m_mass, Inertia );
     m_rigidBodyCI = new btRigidBody::btRigidBodyConstructionInfo( 
         m_mass, m_motionState, m_collisionShape, Inertia );
