@@ -130,42 +130,17 @@ void OGLWidget::update()
         (*iter)->update();
     }
 
-    static int i = 0;
-    i++;
-    ((BaseEntity*)renderables["Cube"])->Transform.translate( i, 0, 0 );
-
-    btTransform trans;
-    btScalar m[16];
+    btScalar rawMatrix[16];
     m_dynamicsWorld->stepSimulation( 1, 10 );
 
-    /*
-    ((Cube*)renderables["Cube"])->
-        RigidBody->getMotionState()->getWorldTransform( trans );
-
-    renderables["Cube"]->Transform.translate(
-        trans.getOrigin().getX(),
-        trans.getOrigin().getY(),
-        trans.getOrigin().getZ()
-    );
-
-    
-    */
-
     ((PhysicsEntity*)renderables["Cube"])->
-        RigidBody->getWorldTransform().getOpenGLMatrix(m);
+        RigidBody->getWorldTransform().getOpenGLMatrix(rawMatrix);
 
-    QMatrix4x4 newMatrix = QMatrix4x4(m);
+    QMatrix4x4 newMatrix = QMatrix4x4(rawMatrix);
     newMatrix = newMatrix.transposed();
 
     ((PhysicsEntity*)renderables["Cube"])->Transform = newMatrix;
 
-
-    for( auto i : m )
-    {
-        qDebug() << i;
-    }
-    qDebug();
-    qDebug() << ((PhysicsEntity*)renderables["Cube"])->Transform;
 
     QOpenGLWidget::update();
 }
