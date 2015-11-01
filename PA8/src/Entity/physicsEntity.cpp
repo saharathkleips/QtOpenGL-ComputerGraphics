@@ -17,8 +17,8 @@ PhysicsEntity::PhysicsEntity( QString pathToModel, QString pathToTexture,
     m_collisionShape = new btBvhTriangleMeshShape( m_triMesh, true );
 
     m_motionState = new btDefaultMotionState( btTransform( 
-    btQuaternion( 0, 0, 0, 1 ), btVector3( 0, 0, 0 ) ) );
-    // try changing one of the vectors
+    btQuaternion( 0, 0, 0, 1 ), btVector3( 0, 6, 0 ) ) );
+    
     Inertia = btVector3( 0, 0, 0 );
 
     m_collisionShape->calculateLocalInertia( m_mass, Inertia );

@@ -130,6 +130,10 @@ void OGLWidget::update()
         (*iter)->update();
     }
 
+    static int i = 0;
+    i++;
+    ((BaseEntity*)renderables["Cube"])->Transform.translate( i, 0, 0 );
+
     btTransform trans;
     btScalar m[16];
     m_dynamicsWorld->stepSimulation( 1, 10 );
@@ -144,13 +148,16 @@ void OGLWidget::update()
         trans.getOrigin().getZ()
     );
 
-    */
     
+    */
 
     ((PhysicsEntity*)renderables["Cube"])->
-        RigidBody->getMotionState()->getWorldTransform( trans );
-    trans.getOpenGLMatrix( m );
-    ((PhysicsEntity*)renderables["Cube"])->Transform = QMatrix4x4( m );
+        RigidBody->getWorldTransform().getOpenGLMatrix(m);
+
+    QMatrix4x4 newMatrix = QMatrix4x4(m);
+    newMatrix = newMatrix.transposed();
+
+    ((PhysicsEntity*)renderables["Cube"])->Transform = newMatrix;
 
 
     for( auto i : m )
@@ -231,7 +238,7 @@ void OGLWidget::initializeBullet()
     m_dynamicsWorld = new btDiscreteDynamicsWorld( m_dispatcher, m_broadphase,
         m_solver, m_collisionConfig );
 
-    m_dynamicsWorld->setGravity( btVector3( 0, .35, 0 ) );
+    m_dynamicsWorld->setGravity( btVector3( 0, -0.5, 0 ) );
 }
 
 void OGLWidget::teardownBullet()
