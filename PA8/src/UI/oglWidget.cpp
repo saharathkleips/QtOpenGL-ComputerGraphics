@@ -140,6 +140,19 @@ void OGLWidget::update()
 
     flyThroughCamera();
 
+    if( Input::keyPressed( Qt::Key_Up ) )
+        ((PhysicsEntity*)renderables["Cube"])->RigidBody->applyCentralImpulse(
+            btVector3( 0, 0, -.2 ) );
+    if( Input::keyPressed( Qt::Key_Down ) )
+        ((PhysicsEntity*)renderables["Cube"])->RigidBody->applyCentralImpulse(
+            btVector3( 0, 0, .2 ) );
+    if( Input::keyPressed( Qt::Key_Left ) )
+        ((PhysicsEntity*)renderables["Cube"])->RigidBody->applyCentralImpulse(
+            btVector3( -.2, 0, 0 ) );
+    if( Input::keyPressed( Qt::Key_Right ) )
+        ((PhysicsEntity*)renderables["Cube"])->RigidBody->applyCentralImpulse(
+            btVector3( .2, 0, 0 ) );
+
     for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
         iter != renderables.end(); iter++ )
     {
