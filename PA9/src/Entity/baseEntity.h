@@ -15,7 +15,7 @@
 class BaseEntity    :   public Renderable
 {
 public:
-    Transform3D Transform;
+    Transform3D GTransform;
     
 protected:
     BaseEntity( QString pathToModel, QString pathToTexture );

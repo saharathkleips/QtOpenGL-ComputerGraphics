@@ -83,7 +83,7 @@ void BaseEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
     m_vao->bind();
     m_texture->bind();
 
-    m_program->setUniformValue( m_modelWorld, Transform.toMatrix() );
+    m_program->setUniformValue( m_modelWorld, GTransform.toMatrix() );
 
     glDrawArrays( GL_TRIANGLES, 0, m_numVertices );
 
