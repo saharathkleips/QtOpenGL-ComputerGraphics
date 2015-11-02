@@ -21,7 +21,8 @@ public:
     QMatrix4x4 Transform;
 
 protected:
-    PhysicsEntity( QString pathToModel, QString pathToTexture, btScalar mass );
+    PhysicsEntity( QString pathToModel, QString pathToTexture, btScalar mass,
+        btTransform startingState );
     ~PhysicsEntity();
 
     // Renderable Functions

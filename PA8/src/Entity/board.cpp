@@ -5,8 +5,9 @@
 //
 
 
-Board::Board( QString pathToModel, QString pathToTexture, btScalar mass )
-    :   PhysicsEntity( pathToModel, pathToTexture, mass )
+Board::Board( QString pathToModel, QString pathToTexture, btScalar mass,
+    btTransform startingState )
+    :   PhysicsEntity( pathToModel, pathToTexture, mass, startingState )
 {
 }
 

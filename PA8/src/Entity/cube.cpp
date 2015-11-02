@@ -5,8 +5,9 @@
 //
 
 
-Cube::Cube( QString pathToModel, QString pathToTexture, btScalar mass )
-    :   PhysicsEntity( pathToModel, pathToTexture, mass )
+Cube::Cube( QString pathToModel, QString pathToTexture, btScalar mass,
+    btTransform startingState )
+    :   PhysicsEntity( pathToModel, pathToTexture, mass, startingState )
 {
 }
 

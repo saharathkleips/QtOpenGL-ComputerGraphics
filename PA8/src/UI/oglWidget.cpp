@@ -146,9 +146,10 @@ void OGLWidget::update()
         (*iter)->update();
     }
 
-    btScalar rawMatrix[16];
     m_dynamicsWorld->stepSimulation( 1, 10 );
 
+{
+    btScalar rawMatrix[16];
     ((PhysicsEntity*)renderables["Cube"])->
         RigidBody->getWorldTransform().getOpenGLMatrix(rawMatrix);
 
@@ -156,7 +157,18 @@ void OGLWidget::update()
     newMatrix = newMatrix.transposed();
 
     ((PhysicsEntity*)renderables["Cube"])->Transform = newMatrix;
+}
 
+{
+    btScalar rawMatrix[16];
+    ((PhysicsEntity*)renderables["Board"])->
+        RigidBody->getWorldTransform().getOpenGLMatrix(rawMatrix);
+
+    QMatrix4x4 newMatrix = QMatrix4x4(rawMatrix);
+    newMatrix = newMatrix.transposed();
+
+    ((PhysicsEntity*)renderables["Board"])->Transform = newMatrix;
+}
 
     QOpenGLWidget::update();
 }
