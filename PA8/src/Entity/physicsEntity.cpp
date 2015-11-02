@@ -14,7 +14,10 @@ PhysicsEntity::PhysicsEntity( QString pathToModel, QString pathToTexture,
     ModelLoader::loadTriMesh( pathToModel, m_triMesh );
 
     // Initialize Bullet
-    m_collisionShape = new btBvhTriangleMeshShape( m_triMesh, true );
+    if( mass == 0 )
+        m_collisionShape = new btBvhTriangleMeshShape( m_triMesh, true );
+    else
+        m_collisionShape = new btConvexTriangleMeshShape( m_triMesh );
 
     m_motionState = new btDefaultMotionState( startingState );
     
