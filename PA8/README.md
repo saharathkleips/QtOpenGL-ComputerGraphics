@@ -2,6 +2,8 @@
 This project highlights the [Bullet Physics Engine](http://bulletphysics.org/wordpress/). The project demonstrates custom collision meshes as well as collisions between a static object (the board) and a kinematic object (the cube). You may move around the cube and observe it colliding with the board beneth it. The world does contain gravity and the cube can fly off the board if you hit the walls hard enough.
 
 Note: This project is not completed and as a result, the sphere and cylinder are not physics objects and are simply there on display. The "Interaction" menu also currently provides no functionality. I am also aware that I've apparently spelt "cylindar" wrong, but due to time constraints, we will not be refactoring this issue. For a better example of Bullet interactions please check the next assignment, PA9. 
+
+The codebase might also be a bit messy as many attempts were taken inorder to get Bullet functional, to see a cleaner implementation, visit PA9.
  
 ![](.screenshot.png "Screenshot")
 
