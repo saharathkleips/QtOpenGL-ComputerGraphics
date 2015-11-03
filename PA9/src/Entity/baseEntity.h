@@ -27,7 +27,6 @@ protected:
     virtual void update();
     void teardownGL();
 
-private:
     // OpenGL State Data
     QOpenGLBuffer* m_vbo;
     QOpenGLVertexArrayObject* m_vao;

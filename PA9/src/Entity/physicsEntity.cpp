@@ -6,10 +6,8 @@
 
 PhysicsEntity::PhysicsEntity( btTransform startingState, btScalar mass,
     QString pathToModel, QString pathToTexture )
-    :   m_mass( mass ), m_pathToModel( pathToModel ), 
-        m_pathToTexture( pathToTexture )
+    : BaseEntity( pathToModel, pathToTexture ), m_mass( mass )
 {
-    BaseEntity::BaseEntity( pathToModel, pathToTexture );
     ModelLoader::loadTriMesh( pathToModel, m_triMesh );
 
     // The object is static, so use BvhTriMesh
@@ -21,11 +19,11 @@ PhysicsEntity::PhysicsEntity( btTransform startingState, btScalar mass,
 
     m_motionState = new btDefaultMotionState( startingState );
 
-    Inertia = btVector3( 0, 0, 0 );
+    m_inertia = btVector3( 0, 0, 0 );
 
-    m_collisionShape->calculateLocalInertia( m_mass, Inertia );
+    m_collisionShape->calculateLocalInertia( m_mass, m_inertia );
     m_rigidBodyCI = new btRigidBody::btRigidBodyConstructionInfo( 
-        m_mass, m_motionState, m_collisionShape, Inertia );
+        m_mass, m_motionState, m_collisionShape, m_inertia );
 
     RigidBody = new btRigidBody( *m_rigidBodyCI );
 
@@ -44,10 +42,9 @@ PhysicsEntity::~PhysicsEntity()
     delete m_motionState;
     delete m_rigidBodyCI;
     delete RigidBody;
-    BaseEntity::~BaseEntity();
 }
 
-PhysicsEntity::paintGL( Camera3D& camrea, QMatrix4x4& projection )
+void PhysicsEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
 {
     m_program->bind();
 
@@ -64,4 +61,14 @@ PhysicsEntity::paintGL( Camera3D& camrea, QMatrix4x4& projection )
     m_texture->release();
     m_vao->release();
     m_program->release();
+}
+
+void PhysicsEntity::update()
+{
+    btScalar rawMatrix[16];
+    RigidBody->getWorldTransform().getOpenGLMatrix( rawMatrix );
+
+    QMatrix4x4 newMatrix = QMatrix4x4( rawMatrix ).transposed();
+
+    BTransform = newMatrix;
 }

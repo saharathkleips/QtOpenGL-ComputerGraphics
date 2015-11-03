@@ -63,6 +63,17 @@ private:
     btCollisionDispatcher* m_dispatcher;
     btSequentialImpulseConstraintSolver* m_solver;
     btDiscreteDynamicsWorld* m_dynamicsWorld;
+
+    // Collision Tables
+    // enum collisionTypes
+    // {
+    //     COL_NOTHING = 0,
+    //     COL_SOMETHING = 1 << 0,
+    //     COL_SOMETHING_ELSE = 1 << 1
+    // };
+
+    // const int m_somethingCollidesWith = (COL_SOMETHING | COL_SOMETHING_ELSE);
+    // const int m_somethingElseCollidesWith = COL_SOMETHING;
 };
 
 #endif  //  OGL_WIDGET_H

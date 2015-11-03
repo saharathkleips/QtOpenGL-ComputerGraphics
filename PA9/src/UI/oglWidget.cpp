@@ -50,6 +50,9 @@ void OGLWidget::initializeGL()
     {
         (*iter)->initializeGL();
     }
+
+    //m_dynamicsWorld->addRigidBody(
+    //    PHYSICS_ENTITY->RigidBody, COLLISION_BIT, COLLISION_MASK );
 }
 
 /**

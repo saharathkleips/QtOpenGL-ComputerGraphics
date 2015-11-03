@@ -1,23 +1,12 @@
 #ifndef PHYSICS_ENTITY
 #define PHYSICS_ENTITY
 
-#include <QOpenGLFunctions>
-#include <QOpenGLBuffer>
-#include <QOpenGLVertexArrayObject>
-#include <QOpenGLTexture>
-#include <QOpenGLShaderProgram>
-
-#include "3D/renderable.h"
-#include "3D/modelLoader.h"
-#include "3D/vertex.h"
-
+#include "baseEntity.h"
 #include <btBulletDynamicsCommon.h>
 
 class PhysicsEntity     :   public BaseEntity
 {
 public:
-    // CAN WE MAKE INERTIA PRIVATE?
-    btVector3 Inertia;
     btRigidBody* RigidBody;
     QMatrix4x4 BTransform;
 
@@ -28,7 +17,7 @@ protected:
 
     // Renderable Functions
     void paintGL( Camera3D& camera, QMatrix4x4& projection );
-    virtual void update();
+    void update();
 
 private:
     // Bullet Information
@@ -36,6 +25,7 @@ private:
     btCollisionShape* m_collisionShape;
 
     btDefaultMotionState* m_motionState;
+    btVector3 m_inertia;
     btScalar m_mass;
     btRigidBody::btRigidBodyConstructionInfo* m_rigidBodyCI;
 };
