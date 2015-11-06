@@ -121,28 +121,45 @@ Vertex* Suzanne::loadObj( QString path )
         aiProcess_JoinIdenticalVertices |
         aiProcess_SortByPType );
 
-    aiMesh* mesh = scene->mMeshes[0];
+    aiMesh** mesh = new aiMesh*[scene->mNumMeshes];
 
-    numVertices = mesh->mNumFaces * 3;
-    Vertex* geometry = new Vertex[ numVertices ];
-
-    for( unsigned int i = 0; i < mesh->mNumFaces; i++ )
+    for( unsigned int i = 0; i < scene->mNumMeshes; i++ )
     {
-        const aiFace& face = mesh->mFaces[i];
+        mesh[i] = scene->mMeshes[i];
 
-        for( unsigned int j = 0; j < 3; j++ )
+        for( unsigned int j = 0; j < mesh[i]->mNumFaces; j++ )
         {
-            aiVector3D pos = mesh->mVertices[ face.mIndices[j] ];
-
-            QVector3D position( pos.x, pos.y, pos.z) ;
-            QVector3D color( 255.0f, 165.0f, 0.0f );
-            geometry->setPosition( position );
-            geometry->setColor( color );
-            geometry++;
+            numVertices += mesh[i]->mFaces[j].mNumIndices;
         }
     }
 
-    geometry -= mesh->mNumFaces * 3;
+    Vertex* geometry = new Vertex[ numVertices ];
+
+    for( unsigned int h = 0; h < scene->mNumMeshes; h++ )
+    {
+        for( unsigned int i = 0; i < mesh[h]->mNumFaces; i++ )
+        {
+            const aiFace& face = mesh[h]->mFaces[i];
+
+            for( unsigned int j = 0; j < 3; j++ )
+            {
+                qDebug() << "Fuck me2";
+                qDebug() << face.mIndices[j];
+                qDebug() << "Fuck me3";
+                aiVector3D pos = mesh[h]->mVertices[ face.mIndices[j] ];
+                QVector3D position( pos.x, pos.y, pos.z) ;
+                QVector3D color( 255.0f, 165.0f, 0.0f );
+
+                geometry->setPosition( position );
+                geometry->setColor( color );
+
+                geometry++;
+            }
+        }
+    }
+
+    qDebug() << "Hello";
+    geometry -= numVertices;
 
     return geometry;
 }
