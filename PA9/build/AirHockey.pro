@@ -31,13 +31,15 @@ HEADERS += \
     ../src/3D/modelLoader.h \
     ../src/3D/renderable.h \
     ../src/3D/transform3d.h \
-    ../src/3D/vertex.h \
+    ../src/3D/colorVertex.h \
+    ../src/3D/uvVertex.h \
     #Controls
     ../src/Controls/camera3d.h \
     ../src/Controls/input.h \
     #Entity
-    ../src/Entity/baseEntity.h \
-    ../src/Entity/physicsEntity.h \
+    ../src/Entity/colorEntity.h \
+    ../src/Entity/uvEntity.h \
+    #../src/Entity/physicsEntity.h \
     #UI
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h
@@ -47,13 +49,15 @@ SOURCES += \
     #3D
     ../src/3D/modelLoader.cpp \
     ../src/3D/transform3d.cpp \
-    ../src/3D/vertex.cpp \
+    ../src/3D/colorVertex.cpp \
+    ../src/3D/uvVertex.cpp \
     #Controls
     ../src/Controls/camera3d.cpp \
     ../src/Controls/input.cpp \
     #Entity
-    ../src/Entity/baseEntity.cpp \
-    ../src/Entity/physicsEntity.cpp \
+    ../src/Entity/colorEntity.cpp \
+    ../src/Entity/uvEntity.cpp \
+    #../src/Entity/physicsEntity.cpp \
     #UI
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
