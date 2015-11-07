@@ -16,6 +16,7 @@ Suzanne::Suzanne()
 Suzanne::Suzanne( QString path )
 {
     model = loadObj( path );
+    transform.setScale( .07 );
 }
 
 
@@ -121,6 +122,7 @@ Vertex* Suzanne::loadObj( QString path )
         aiProcess_JoinIdenticalVertices |
         aiProcess_SortByPType );
 
+
     aiMesh** mesh = new aiMesh*[scene->mNumMeshes];
 
     for( unsigned int i = 0; i < scene->mNumMeshes; i++ )
@@ -140,15 +142,22 @@ Vertex* Suzanne::loadObj( QString path )
         for( unsigned int i = 0; i < mesh[h]->mNumFaces; i++ )
         {
             const aiFace& face = mesh[h]->mFaces[i];
+            const aiMaterial* mtl = scene->mMaterials[ mesh[h]->mMaterialIndex ];
 
             for( unsigned int j = 0; j < 3; j++ )
             {
-                qDebug() << "Fuck me2";
-                qDebug() << face.mIndices[j];
-                qDebug() << "Fuck me3";
                 aiVector3D pos = mesh[h]->mVertices[ face.mIndices[j] ];
                 QVector3D position( pos.x, pos.y, pos.z) ;
-                QVector3D color( 255.0f, 165.0f, 0.0f );
+                
+                QVector3D color( 255.0, 165.0, 0.0 );
+                aiColor4D diffuse;
+                if( AI_SUCCESS == aiGetMaterialColor( 
+                    mtl, AI_MATKEY_COLOR_DIFFUSE, &diffuse ) )
+                {
+                    color.setX( diffuse.r );
+                    color.setY( diffuse.g );
+                    color.setZ( diffuse.b );
+                }
 
                 geometry->setPosition( position );
                 geometry->setColor( color );
@@ -158,7 +167,6 @@ Vertex* Suzanne::loadObj( QString path )
         }
     }
 
-    qDebug() << "Hello";
     geometry -= numVertices;
 
     return geometry;
