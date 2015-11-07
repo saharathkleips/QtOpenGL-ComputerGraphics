@@ -4,7 +4,8 @@
 #include <QString>
 #include <QDebug>
 
-#include "vertex.h"
+#include "uvVertex.h"
+#include "colorVertex.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -14,7 +15,9 @@
 
 namespace ModelLoader
 {
-    bool loadModel( QString filePath, Vertex*& geometry, int& numVertices );
+    bool loadUVModel( QString filePath, UVVertex*& geometry, int& numVertices );
+    bool loadColorModel( QString filePath, ColorVertex*& geometry, 
+        int& numVertices );
     bool loadTriMesh( QString filePath, btTriangleMesh*& collisionMesh );
 };
 
