@@ -38,8 +38,9 @@ HEADERS += \
     ../src/Controls/input.h \
     #Entity
     ../src/Entity/colorEntity.h \
+    ../src/Entity/colorPhysicsEntity.h \
     ../src/Entity/uvEntity.h \
-    #../src/Entity/physicsEntity.h \
+    ../src/Entity/uvPhysicsEntity.h \
     #UI
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h
@@ -56,8 +57,9 @@ SOURCES += \
     ../src/Controls/input.cpp \
     #Entity
     ../src/Entity/colorEntity.cpp \
+    ../src/Entity/colorPhysicsEntity.cpp \
     ../src/Entity/uvEntity.cpp \
-    #../src/Entity/physicsEntity.cpp \
+    ../src/Entity/uvPhysicsEntity.cpp \
     #UI
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
