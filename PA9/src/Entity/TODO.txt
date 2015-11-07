@@ -1,0 +1,3 @@
+I'm pretty sure creating a graphics entity and a physics entity should be replaced by some sort of Factory, i.e. Factory Pattern. But considering the deadline is in 2 days, there will simply be a lot of copy-pasting code.
+
+Entity Factory -> Spits out Color Entity, UV Entity, Physics Entity with parent UV Entity, Physics Entity with parent Color Entity.
