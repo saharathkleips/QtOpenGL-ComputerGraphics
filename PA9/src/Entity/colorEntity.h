@@ -18,7 +18,7 @@ public:
     Transform3D GTransform;
     
 protected:
-    ColorEntity( QString pathToModel, QString pathToTexture );
+    ColorEntity( QString pathToModel );
     ~ColorEntity();
 
     // Renderable Functions
@@ -36,10 +36,6 @@ protected:
     QString m_pathToModel;
     ColorVertex* m_model;
     int m_numVertices;
-
-    // Texture Information
-    QString m_pathToTexture;
-    QOpenGLTexture* m_texture;
 
     // Shader Information
     const QString PATH_TO_V_SHADER = ":/shader/simple.vs";

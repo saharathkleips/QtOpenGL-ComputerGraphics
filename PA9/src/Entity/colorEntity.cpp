@@ -4,8 +4,8 @@
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 //
 
-ColorEntity::ColorEntity( QString pathToModel, QString pathToTexture )
-    :   m_pathToModel( pathToModel ), m_pathToTexture( pathToTexture )
+ColorEntity::ColorEntity( QString pathToModel )
+    :   m_pathToModel( pathToModel )
 {
     ModelLoader::loadColorModel( m_pathToModel, m_model, m_numVertices );
 }
@@ -37,11 +37,6 @@ void ColorEntity::initializeGL()
     m_worldEye = m_program->uniformLocation( "world_to_eye" );
     m_eyeClip = m_program->uniformLocation( "eye_to_clip" );
 
-    // Create the Texture Buffer Object
-    m_texture = new QOpenGLTexture( QImage( m_pathToTexture ).mirrored() );
-    m_texture->setMinificationFilter( QOpenGLTexture::LinearMipMapLinear );
-    m_texture->setMagnificationFilter( QOpenGLTexture::Linear );
-
     // Create the Vertex Buffer Object
     m_vbo = new QOpenGLBuffer();
     m_vbo->create();
@@ -69,7 +64,6 @@ void ColorEntity::initializeGL()
     // Release all in order
     m_vao->release();
     m_vbo->release();
-    m_texture->release();
     m_program->release();
 }
 
@@ -81,13 +75,11 @@ void ColorEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
     m_program->setUniformValue( m_eyeClip, projection );
 
     m_vao->bind();
-    m_texture->bind();
 
     m_program->setUniformValue( m_modelWorld, GTransform.toMatrix() );
 
     glDrawArrays( GL_TRIANGLES, 0, m_numVertices );
 
-    m_texture->release();
     m_vao->release();
     m_program->release();
 }
@@ -102,5 +94,4 @@ void ColorEntity::teardownGL()
     delete m_vao;
     delete m_program;
     delete m_model;
-    delete m_texture;
 }
