@@ -5,6 +5,11 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 
+#include <QPainter>
+#include <QFont>
+#include <QRect>
+#include <QFontDatabase>
+
 #include <QKeyEvent>
 #include <QMouseEvent>
 
@@ -64,6 +69,9 @@ private:
     btCollisionDispatcher* m_dispatcher;
     btSequentialImpulseConstraintSolver* m_solver;
     btDiscreteDynamicsWorld* m_dynamicsWorld;
+
+    // Fonts
+    //QFontDatabase
 
     // Collision Tables
     // enum collisionTypes
