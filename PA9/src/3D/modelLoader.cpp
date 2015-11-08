@@ -132,7 +132,6 @@ bool ModelLoader::loadColorModel( QString filePath, ColorVertex*& geometry,
                 
                 geo->setPosition( position );
                 geo->setColor( color );
-                
                 geo++;
             }
         }
