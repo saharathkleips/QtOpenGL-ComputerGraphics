@@ -19,6 +19,7 @@
 #include "Controls/input.h"
 #include "Controls/camera3d.h"
 #include "3D/renderable.h"
+#include "GameObjects/hockeyTable.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions
