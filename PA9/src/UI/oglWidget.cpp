@@ -17,8 +17,8 @@ OGLWidget::OGLWidget()
     setFocusPolicy( Qt::ClickFocus );
 
     // Default camera view
-    camera.rotate( -25.0f, 1.0f, 0.0f, 0.0f );
-    camera.translate( 0.0f, 8.0f, 15.0f );
+    camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
+    camera.translate( 0.0f, 75.0f, 65.0f );
     renderables["Table"] = new HockeyTable();
 }
 

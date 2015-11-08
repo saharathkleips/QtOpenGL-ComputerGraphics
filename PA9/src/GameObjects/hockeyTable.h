@@ -1,9 +1,9 @@
 #ifndef HOCKEY_TABLE_H
 #define HOCKEY_TABLE_H
 
-#include "Entity/colorEntity.h"
+#include "Entity/colorPhysicsEntity.h"
 
-class HockeyTable	:	public ColorEntity
+class HockeyTable	:	public ColorPhysicsEntity
 {
 public:
 	HockeyTable();
