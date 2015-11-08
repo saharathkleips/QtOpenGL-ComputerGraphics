@@ -3,9 +3,9 @@
 //
 // STATIC CONSTANTS ////////////////////////////////////////////////////////////
 //
-const QVector3D Camera3D::LocalForward( 0.0f, 0.0f, -1.0f );
-const QVector3D Camera3D::LocalUp( 0.0f, 1.0f, 0.0f );
-const QVector3D Camera3D::LocalRight( 1.0f, 0.0f, 0.0f );
+const QVector3D Camera3D::LocalForward( 0.0f, 0.0f, -10.0f );
+const QVector3D Camera3D::LocalUp( 0.0f, 10.0f, 0.0f );
+const QVector3D Camera3D::LocalRight( 10.0f, 0.0f, 0.0f );
 
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////

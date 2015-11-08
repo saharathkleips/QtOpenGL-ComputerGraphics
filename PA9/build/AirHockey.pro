@@ -43,6 +43,8 @@ HEADERS += \
     ../src/Entity/uvPhysicsEntity.h \
     #GameObjects
     ../src/GameObjects/hockeyTable.h \
+    ../src/GameObjects/hockeyPuck.h \
+    ../src/GameObjects/hockeyPaddle.h \
     #UI
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h
@@ -64,6 +66,8 @@ SOURCES += \
     ../src/Entity/uvPhysicsEntity.cpp \
     #GameObjects
     ../src/GameObjects/hockeyTable.cpp \
+    ../src/GameObjects/hockeyPuck.cpp \
+    ../src/GameObjects/hockeyPaddle.cpp \
     #UI
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
