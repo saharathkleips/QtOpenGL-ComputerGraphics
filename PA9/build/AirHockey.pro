@@ -72,4 +72,5 @@ SOURCES += \
 
 #A list of resource (.qrc / .rc) files to be included in the final project.
 RESOURCES += \
-    shader_resource.qrc
+    shader_resource.qrc \
+    font_resource.qrc

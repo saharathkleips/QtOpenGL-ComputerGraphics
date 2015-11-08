@@ -1,0 +1,5 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/fonts">
+    <file alias="NHL.ttf">fonts/NHL.ttf</file>
+</qresource>
+</RCC>
