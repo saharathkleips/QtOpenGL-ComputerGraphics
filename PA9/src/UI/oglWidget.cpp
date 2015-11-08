@@ -20,6 +20,9 @@ OGLWidget::OGLWidget()
     camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 0.0f, 75.0f, 65.0f );
     renderables["Table"] = new HockeyTable();
+    renderables["Puck"] = new HockeyPuck();
+    renderables["Paddle"] = new HockeyPaddle( "Red" );
+    renderables["Paddle2"] = new HockeyPaddle( "Blue" );
 }
 
 /**
@@ -52,8 +55,18 @@ void OGLWidget::initializeGL()
         (*iter)->initializeGL();
     }
 
-    //m_dynamicsWorld->addRigidBody(
-    //    PHYSICS_ENTITY->RigidBody, COLLISION_BIT, COLLISION_MASK );
+    m_dynamicsWorld->addRigidBody(
+        ((HockeyTable*)renderables["Table"])->RigidBody, COL_TABLE, m_TableCollidesWith
+    );
+    m_dynamicsWorld->addRigidBody(
+        ((HockeyPuck*)renderables["Puck"])->RigidBody, COL_PUCK, m_PuckCollidesWith
+    );
+    m_dynamicsWorld->addRigidBody(
+        ((HockeyPaddle*)renderables["Paddle"])->RigidBody, COL_PADDLE, m_PaddleCollidesWith
+    );
+    m_dynamicsWorld->addRigidBody(
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody, COL_PADDLE, m_PaddleCollidesWith
+    );
 }
 
 /**
