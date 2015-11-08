@@ -12,6 +12,8 @@
 bool ModelLoader::loadUVModel( QString filePath, UVVertex*& geometry, 
     int& numVertices )
 {
+    numVertices = 0;
+
     Assimp::Importer importer;
     const aiScene* scene = importer.ReadFile( filePath.toStdString(), 
         aiProcess_GenSmoothNormals |
@@ -79,6 +81,8 @@ bool ModelLoader::loadUVModel( QString filePath, UVVertex*& geometry,
 bool ModelLoader::loadColorModel( QString filePath, ColorVertex*& geometry, 
     int& numVertices )
 {
+    numVertices = 0;
+
     Assimp::Importer importer;
     const aiScene* scene = importer.ReadFile( filePath.toStdString(), 
         aiProcess_GenSmoothNormals |
