@@ -38,8 +38,8 @@ protected:
     int m_numVertices;
 
     // Shader Information
-    const QString PATH_TO_V_SHADER = ":/shader/simple.vs";
-    const QString PATH_TO_F_SHADER = ":/shader/simple.fs";
+    const QString PATH_TO_V_SHADER = ":/shader/colorShader.vs";
+    const QString PATH_TO_F_SHADER = ":/shader/colorShader.fs";
     int m_modelWorld;
     int m_worldEye;
     int m_eyeClip;

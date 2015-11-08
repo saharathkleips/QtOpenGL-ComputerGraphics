@@ -42,8 +42,8 @@ protected:
     QOpenGLTexture* m_texture;
 
     // Shader Information
-    const QString PATH_TO_V_SHADER = ":/shader/simple.vs";
-    const QString PATH_TO_F_SHADER = ":/shader/simple.fs";
+    const QString PATH_TO_V_SHADER = ":/shader/uvShader.vs";
+    const QString PATH_TO_F_SHADER = ":/shader/uvShader.fs";
     int m_modelWorld;
     int m_worldEye;
     int m_eyeClip;

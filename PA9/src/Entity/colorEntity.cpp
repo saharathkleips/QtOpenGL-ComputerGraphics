@@ -8,6 +8,7 @@ ColorEntity::ColorEntity( QString pathToModel )
     :   m_pathToModel( pathToModel )
 {
     ModelLoader::loadColorModel( m_pathToModel, m_model, m_numVertices );
+    qDebug() << m_model[0].color();
 }
 
 ColorEntity::~ColorEntity()
