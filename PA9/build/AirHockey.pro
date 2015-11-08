@@ -41,6 +41,8 @@ HEADERS += \
     ../src/Entity/colorPhysicsEntity.h \
     ../src/Entity/uvEntity.h \
     ../src/Entity/uvPhysicsEntity.h \
+    #GameObjects
+    ../src/GameObjects/hockeyTable.h \
     #UI
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h
@@ -60,6 +62,8 @@ SOURCES += \
     ../src/Entity/colorPhysicsEntity.cpp \
     ../src/Entity/uvEntity.cpp \
     ../src/Entity/uvPhysicsEntity.cpp \
+    #GameObjects
+    ../src/GameObjects/hockeyTable.cpp \
     #UI
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
