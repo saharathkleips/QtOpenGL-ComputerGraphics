@@ -163,23 +163,29 @@ bool ModelLoader::loadTriMesh( QString filePath, btTriangleMesh*& triMesh )
         return false;
     }
 
-    aiMesh* mesh = scene->mMeshes[0];
+    aiMesh** mesh = new aiMesh*[scene->mNumMeshes];
+
+    for( unsigned int i = 0; i < scene->mNumMeshes; i++ )
+        mesh[i] = scene->mMeshes[i];
 
     btTriangleMesh* tempTriMesh = new btTriangleMesh();
     btVector3* triMeshVertices = new btVector3[3];
 
-    for( unsigned int i = 0; i < mesh->mNumFaces; i++ )
+    for( unsigned int h = 0; h < scene->mNumMeshes; h++ )
     {
-        const aiFace& face = mesh->mFaces[i];
-
-        for( unsigned int j = 0; j < 3; j++ )
+        for( unsigned int i = 0; i < mesh[h]->mNumFaces; i++ )
         {
-            aiVector3D pos = mesh->mVertices[ face.mIndices[j] ];
-            triMeshVertices[j] = btVector3( pos.x, pos.y, pos.z );
-        }
+            const aiFace& face = mesh[h]->mFaces[i];
 
-        tempTriMesh->addTriangle( triMeshVertices[0], triMeshVertices[1], 
-            triMeshVertices[2] );
+            for( unsigned int j = 0; j < 3; j++ )
+            {
+                aiVector3D pos = mesh[h]->mVertices[ face.mIndices[j] ];
+                triMeshVertices[j] = btVector3( pos.x, pos.y, pos.z );
+            }
+
+            tempTriMesh->addTriangle( triMeshVertices[0], triMeshVertices[1], 
+                triMeshVertices[2] );
+        }
     }
 
     triMesh = tempTriMesh;
