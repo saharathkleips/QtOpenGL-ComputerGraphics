@@ -9,6 +9,7 @@ TARGET = AirHockey.exe
 
 #QT libraries this project uses
 QT += core gui opengl
+QT += multimedia
 
 #Necessary for Qt5 and above
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
