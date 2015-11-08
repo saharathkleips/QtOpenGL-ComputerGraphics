@@ -20,6 +20,8 @@
 #include "Controls/camera3d.h"
 #include "3D/renderable.h"
 #include "GameObjects/hockeyTable.h"
+#include "GameObjects/hockeyPuck.h"
+#include "GameObjects/hockeyPaddle.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions
@@ -66,15 +68,17 @@ private:
     btDiscreteDynamicsWorld* m_dynamicsWorld;
 
     // Collision Tables
-    // enum collisionTypes
-    // {
-    //     COL_NOTHING = 0,
-    //     COL_SOMETHING = 1 << 0,
-    //     COL_SOMETHING_ELSE = 1 << 1
-    // };
+    //enum collisionTypes
+    //{
+    const short    COL_NOTHING = 0;
+    const short    COL_TABLE = 1 << 0;
+    const short    COL_PUCK = 1 << 1;
+    const short    COL_PADDLE = 1 << 2;
+    //};
 
-    // const int m_somethingCollidesWith = (COL_SOMETHING | COL_SOMETHING_ELSE);
-    // const int m_somethingElseCollidesWith = COL_SOMETHING;
+    const short m_TableCollidesWith = (COL_PUCK);// | COL_PADDLE);
+    const short m_PuckCollidesWith = (COL_TABLE);// | COL_PADDLE);
+    const short m_PaddleCollidesWith = (COL_PUCK | COL_TABLE);
 };
 
 #endif  //  OGL_WIDGET_H
