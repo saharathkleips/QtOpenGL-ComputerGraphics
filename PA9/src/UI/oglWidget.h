@@ -67,14 +67,15 @@ private:
     btSequentialImpulseConstraintSolver* m_solver;
     btDiscreteDynamicsWorld* m_dynamicsWorld;
 
-    const short    COL_NOTHING = 0;
-    const short    COL_TABLE = 1 << 0;
-    const short    COL_PUCK = 1 << 1;
-    const short    COL_PADDLE = 1 << 2;
 
-    const short m_TableCollidesWith = COL_PUCK;
-    const short m_PuckCollidesWith = COL_TABLE;
-    const short m_PaddleCollidesWith = (COL_PUCK | COL_TABLE);
+    // Collision information
+    const short COL_NOTHING = 0;
+    const short COL_TABLE = 1 << 0;
+    const short COL_PUCK = 1 << 1;
+    const short COL_PADDLE = 1 << 2;
+    const short m_TableCollidesWith = (COL_PUCK | COL_PADDLE);
+    const short m_PuckCollidesWith = (COL_TABLE | COL_PADDLE);
+    const short m_PaddleCollidesWith = (COL_TABLE | COL_PUCK);
 };
 
 #endif  //  OGL_WIDGET_H
