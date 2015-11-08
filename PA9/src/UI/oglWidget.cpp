@@ -138,29 +138,6 @@ void OGLWidget::update()
 
     m_dynamicsWorld->stepSimulation( 1, 10 );
 
-    {
-        btScalar rawMatrix[16];
-        ((ColorPhysicsEntity*)renderables["Puck"])->
-            RigidBody->getWorldTransform().getOpenGLMatrix(rawMatrix);
-
-        QMatrix4x4 newMatrix = QMatrix4x4(rawMatrix);
-        newMatrix = newMatrix.transposed();
-
-        ((ColorPhysicsEntity*)renderables["Puck"])->BTransform = newMatrix;
-    }
-
-    {
-        btScalar rawMatrix[16];
-        ((ColorPhysicsEntity*)renderables["Table"])->
-            RigidBody->getWorldTransform().getOpenGLMatrix(rawMatrix);
-
-        QMatrix4x4 newMatrix = QMatrix4x4(rawMatrix);
-        newMatrix = newMatrix.transposed();
-
-        ((ColorPhysicsEntity*)renderables["Table"])->BTransform = newMatrix;
-    }
-    
-
     QOpenGLWidget::update();
 }
 

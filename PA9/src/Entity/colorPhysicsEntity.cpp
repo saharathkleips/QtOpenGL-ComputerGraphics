@@ -64,12 +64,10 @@ void ColorPhysicsEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
 
 void ColorPhysicsEntity::update()
 {
-    /*
     btScalar rawMatrix[16];
     RigidBody->getWorldTransform().getOpenGLMatrix( rawMatrix );
 
     QMatrix4x4 newMatrix = QMatrix4x4( rawMatrix ).transposed();
 
     BTransform = newMatrix;
-    */
 }
