@@ -1,6 +1,8 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource prefix="/shader">
-    <file alias="simple.vs">shaders/simple.vs</file>
-    <file alias="simple.fs">shaders/simple.fs</file>
+    <file alias="uvShader.vs">shaders/uvShader.vs</file>
+    <file alias="uvShader.fs">shaders/uvShader.fs</file>
+    <file alias="colorShader.vs">shaders/colorShader.vs</file>
+    <file alias="colorShader.fs">shaders/colorShader.fs</file>
 </qresource>
 </RCC>
