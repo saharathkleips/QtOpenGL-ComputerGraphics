@@ -131,6 +131,30 @@ void OGLWidget::update()
 
     flyThroughCamera();
 
+    if( Input::keyPressed( Qt::Key_Up ) )
+    {
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->clearForces();
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->applyCentralImpulse(
+            btVector3( 0, 0, -.2 ) );
+    }
+    if( Input::keyPressed( Qt::Key_Down ) ){
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->clearForces();
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->applyCentralImpulse(
+            btVector3( 0, 0, .2 ) );
+    }
+    if( Input::keyPressed( Qt::Key_Left ) ){
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->clearForces();
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->applyCentralImpulse(
+            btVector3( -.2, 0, 0 ) );
+    }
+    if( Input::keyPressed( Qt::Key_Right ) )
+    {
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->clearForces();
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->applyCentralImpulse(
+            btVector3( .2, 0, 0 ) );
+    }
+
+
     for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
         iter != renderables.end(); iter++ )
     {
@@ -205,7 +229,7 @@ void OGLWidget::initializeBullet()
     m_dynamicsWorld = new btDiscreteDynamicsWorld( m_dispatcher, m_broadphase,
         m_solver, m_collisionConfig );
 
-    m_dynamicsWorld->setGravity( btVector3( 0, -0.5, 0 ) );
+    m_dynamicsWorld->setGravity( btVector3( 0, -9.8, 0 ) );
 }
 
 void OGLWidget::teardownBullet()
