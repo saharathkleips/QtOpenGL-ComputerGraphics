@@ -1,5 +1,4 @@
 #include "oglWidget.h"
-// #include <iostream> // for debug
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
@@ -206,6 +205,12 @@ void OGLWidget::update()
     }
 
     m_dynamicsWorld->stepSimulation( 1, 10 );
+
+    m_dynamicsWorld->contactPairTest( 
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody,
+        ((HockeyPuck*)renderables["Puck"])->RigidBody,
+        callback
+    );
 
     QOpenGLWidget::update();
 }

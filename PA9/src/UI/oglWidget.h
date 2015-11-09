@@ -30,6 +30,8 @@
 #include "GameObjects/skybox.h"
 #include "GameObjects/wall.h"
 
+#include <iostream>
+
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions
 {
@@ -54,6 +56,23 @@ protected:
     void mouseReleaseEvent( QMouseEvent* event );
 
 private:
+    struct MyContactResultCallback : public btCollisionWorld::ContactResultCallback
+    {
+        btScalar addSingleResult(btManifoldPoint& cp,
+            const btCollisionObjectWrapper* colObj0Wrap,
+            int partId0,
+            int index0,
+            const btCollisionObjectWrapper* colObj1Wrap,
+            int partId1,
+            int index1)
+        {
+            // your callback code here
+            std::cout << "GOAL" << std::endl;
+        }
+    };
+    MyContactResultCallback callback;
+    
+
     void initializeBullet();
     void teardownBullet();
     void flyThroughCamera();
