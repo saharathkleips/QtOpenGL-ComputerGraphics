@@ -1,3 +1,10 @@
+/** @file main.cpp
+ * @mainpage PA9 Air Hockey
+ * @author Ben Nicholes, Denis Morozov, Saharath Kleips
+ * @version 1.00
+ * @brief This project showcases a physics-based air hockey video game.
+ */
+
 #include <QApplication>
 #include "UI/mainWindow.h"
 

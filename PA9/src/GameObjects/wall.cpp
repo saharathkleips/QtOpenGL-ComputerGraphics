@@ -4,6 +4,12 @@
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 //
 
+/**
+ * @brief      Constructor for Wall.
+ *
+ * @param[in]  size      The size of the wall.
+ * @param[in]  location  The location of the wall.
+ */
 Wall::Wall( btVector3 size, btVector3 location )
 {
     m_collisionShape = new btBoxShape( size );
@@ -21,6 +27,9 @@ Wall::Wall( btVector3 size, btVector3 location )
     RigidBody = new btRigidBody( *m_rigidBodyCI );
 }
 
+/**
+ * @brief      Destructor for Wall.
+ */
 Wall::~Wall()
 {
     delete m_triMesh;

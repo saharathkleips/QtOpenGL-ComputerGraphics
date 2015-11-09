@@ -1,5 +1,9 @@
 #include "teamSelectWidget.h"
 
+/**
+ * @brief      Default constructor for TeamSelectWidget.
+ * @details    Creates a grid of 30 logos representing different NHL teams.
+ */
 TeamSelectWidget::TeamSelectWidget()
 {
     // Allows keyboard input to fall through
@@ -164,6 +168,9 @@ TeamSelectWidget::TeamSelectWidget()
     setLayout( m_layout );
 }
 
+/**
+ * @brief      Destructor for TeamSelectWidget.
+ */
 TeamSelectWidget::~TeamSelectWidget()
 {
     for( int i = 0; i < 30; i++ )
@@ -175,6 +182,11 @@ TeamSelectWidget::~TeamSelectWidget()
     delete m_signalMapper;
 }
 
+/**
+ * @brief      Sets the current player's team.
+ *
+ * @param[in]  team  The team to give to the current player.
+ */
 void TeamSelectWidget::setTeams( QString team )
 {
     static int selecting = 0;
@@ -194,6 +206,12 @@ void TeamSelectWidget::setTeams( QString team )
     }
 }
 
+/**
+ * @brief      Overloaded resizeEvent function.
+ * @details    Scales the logos based on the screen size.
+ *
+ * @param      event  The QResizeEvent.
+ */
 void TeamSelectWidget::resizeEvent( QResizeEvent* event )
 {
     (void)event;

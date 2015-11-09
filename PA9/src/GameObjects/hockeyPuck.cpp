@@ -1,5 +1,8 @@
 #include "hockeyPuck.h"
 
+/**
+ * @brief      Default constructor for HockeyPuck.
+ */
 HockeyPuck::HockeyPuck()
     :   ColorPhysicsEntity( btTransform( btQuaternion( 0, 0, 0, 1 ), 
         btVector3( 0, 30.5, 0 ) ), 0.5, "models/Puck150.obj" )

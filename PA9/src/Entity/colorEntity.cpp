@@ -4,12 +4,20 @@
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 //
 
+/**
+ * @brief      Constructor for ColorEntity.
+ *
+ * @param[in]  pathToModel  The path the this object's model.
+ */
 ColorEntity::ColorEntity( QString pathToModel )
     :   m_pathToModel( pathToModel )
 {
     ModelLoader::loadColorModel( m_pathToModel, m_model, m_numVertices );
 }
 
+/**
+ * @brief      Destructor for ColorEntity.
+ */
 ColorEntity::~ColorEntity()
 {
     teardownGL();
@@ -19,6 +27,9 @@ ColorEntity::~ColorEntity()
 // RENDERABLE FUNCTIONS ////////////////////////////////////////////////////////
 //
 
+/**
+ * @brief      Initializes the OpenGL data for drawing.
+ */
 void ColorEntity::initializeGL()
 {
     initializeOpenGLFunctions();
@@ -67,6 +78,12 @@ void ColorEntity::initializeGL()
     m_program->release();
 }
 
+/**
+ * @brief      Draws the object to the screen.
+ *
+ * @param      camera      The camera of the world.
+ * @param      projection  The projection of the world.
+ */
 void ColorEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
 {
     m_program->bind();
@@ -84,10 +101,16 @@ void ColorEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
     m_program->release();
 }
 
+/**
+ * @brief      Virtual update function.
+ */
 void ColorEntity::update()
 {
 }
 
+/**
+ * @brief      Helper function to delete OpenGL data.
+ */
 void ColorEntity::teardownGL()
 {
     delete m_vbo;

@@ -1,6 +1,9 @@
 #include "hockeyTable.h"
 #include <QFileInfo>
 
+/**
+ * @brief      Default constructor for Hockey Table.
+ */
 HockeyTable::HockeyTable()
 	:	ColorPhysicsEntity( btTransform( btQuaternion( 0, 0, 0, 1 ), 
 		btVector3( 0, 0, 0 ) ), 0, "models/HockeyTable.obj" )
@@ -13,6 +16,10 @@ HockeyTable::HockeyTable()
     player->play();
 }
 
+/**
+ * @brief      Overloaded update function.
+ * @details    Plays a huming sound to simulate air.
+ */
 void HockeyTable::update(){
 
 	if(QMediaPlayer::StoppedState){

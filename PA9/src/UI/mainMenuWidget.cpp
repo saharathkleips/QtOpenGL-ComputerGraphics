@@ -1,5 +1,8 @@
 #include "mainMenuWidget.h"
 
+/**
+ * @brief      Default constructor for MainMenuWidget.
+ */
 MainMenuWidget::MainMenuWidget()
 {
 	// Allows keyboard input to fall through
@@ -57,6 +60,9 @@ MainMenuWidget::MainMenuWidget()
 		this, SIGNAL ( clickedExit() ) );
 }
 
+/**
+ * @brief      Default destructor for MainMenuWidget.
+ */
 MainMenuWidget::~MainMenuWidget()
 {
     delete m_lbBackground;
@@ -74,6 +80,11 @@ MainMenuWidget::~MainMenuWidget()
     delete m_imgNhlLogo;
 }
 
+/**
+ * @brief      Overloaded function to resize elements within MainMenuWidget.
+ *
+ * @param      event  The QResizeEvent.
+ */
 void MainMenuWidget::resizeEvent( QResizeEvent* event )
 {
 	(void)event;
@@ -81,6 +92,10 @@ void MainMenuWidget::resizeEvent( QResizeEvent* event )
 	resize();
 }
 
+/**
+ * @brief      Helper function to resize the graphics and buttons within the
+ * main menu.
+ */
 void MainMenuWidget::resize()
 {
 	m_lbBackground->setGeometry( 0, 0, QWidget::width(), QWidget::height() );

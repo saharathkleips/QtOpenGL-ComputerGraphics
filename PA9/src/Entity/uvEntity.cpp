@@ -4,12 +4,21 @@
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 //
 
+/**
+ * @brief      Constructor for UVEntity.
+ *
+ * @param[in]  pathToModel    The path to this object's model.
+ * @param[in]  pathToTexture  The path to this object's texture.
+ */
 UVEntity::UVEntity( QString pathToModel, QString pathToTexture )
     :   m_pathToModel( pathToModel ), m_pathToTexture( pathToTexture )
 {
     ModelLoader::loadUVModel( m_pathToModel, m_model, m_numVertices );
 }
 
+/**
+ * @brief      Destructor for UVEntity.
+ */
 UVEntity::~UVEntity()
 {
     teardownGL();
@@ -19,6 +28,9 @@ UVEntity::~UVEntity()
 // RENDERABLE FUNCTIONS ////////////////////////////////////////////////////////
 //
 
+/**
+ * @brief      Initializes the OpenGL data for drawing.
+ */
 void UVEntity::initializeGL()
 {
     initializeOpenGLFunctions();
@@ -73,6 +85,12 @@ void UVEntity::initializeGL()
     m_program->release();
 }
 
+/**
+ * @brief      Draws the object to the screen.
+ *
+ * @param      camera      The camera of the world.
+ * @param      projection  The projection of the world.
+ */
 void UVEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
 {
     glEnable( GL_DEPTH_TEST );
@@ -97,10 +115,16 @@ void UVEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
     m_program->release();
 }
 
+/**
+ * @brief      Virtual update function.
+ */
 void UVEntity::update()
 {
 }
 
+/**
+ * @brief      Helper function to delete OpenGL data.
+ */
 void UVEntity::teardownGL()
 {
     delete m_vbo;

@@ -1,6 +1,10 @@
 #include "hockeyPaddle.h"
 
-
+/**
+ * @brief      Default constructor for HockeyPaddle.
+ *
+ * @param[in]  color  The color of the paddle, Red or Blue.
+ */
 HockeyPaddle::HockeyPaddle( const QString &color ) : ColorPhysicsEntity( 
     // initial position and rotation
     btTransform( 

@@ -38,6 +38,10 @@ MainWindow::MainWindow()
 //
 // PUBILC SLOTS ////////////////////////////////////////////////////////////////
 //
+
+/**
+ * @brief      Slot to swap to the Team Select window.
+ */
 void MainWindow::swapToTeamSelect()
 {
     if( teamSelectWidget == NULL )
@@ -54,6 +58,12 @@ void MainWindow::swapToTeamSelect()
     }
 }
 
+/**
+ * @brief      Slot to swap to the Game window.
+ *
+ * @param[in]  team1  Player 1's selected team.
+ * @param[in]  team2  Player 2's selected team.
+ */
 void MainWindow::swapToGame( QString team1, QString team2 )
 {
     QSurfaceFormat format;
@@ -96,6 +106,9 @@ void MainWindow::swapToGame( QString team1, QString team2 )
     }
 }
 
+/**
+ * @brief      Slot to restart the entire game.
+ */
 void MainWindow::restartGame()
 {
     if( mainMenuWidget == NULL )

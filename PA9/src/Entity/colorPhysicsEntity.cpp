@@ -4,6 +4,13 @@
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 //
 
+/**
+ * @brief      Constructor for ColorPhysicsEntity.
+ *
+ * @param[in]  startingState  The location and rotation of the object.
+ * @param[in]  mass           The mass of the object.
+ * @param[in]  pathToModel    The path to the object's model.
+ */
 ColorPhysicsEntity::ColorPhysicsEntity( btTransform startingState, 
     btScalar mass, QString pathToModel )
     : ColorEntity( pathToModel ), m_mass( mass )
@@ -37,6 +44,9 @@ ColorPhysicsEntity::ColorPhysicsEntity( btTransform startingState,
     }
 }
 
+/**
+ * @brief      Destructor for ColorPhysicsEntity.
+ */
 ColorPhysicsEntity::~ColorPhysicsEntity()
 {
     delete m_triMesh;
@@ -46,6 +56,13 @@ ColorPhysicsEntity::~ColorPhysicsEntity()
     delete RigidBody;
 }
 
+/**
+ * @brief      Overloaded paintGL function.
+ * @details    Draws using a BTransform instead of a GTransform.
+ *
+ * @param      camera      The camera of the world.
+ * @param      projection  The projection of the world.
+ */
 void ColorPhysicsEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
 {
     m_program->bind();
@@ -64,6 +81,9 @@ void ColorPhysicsEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
     m_program->release();
 }
 
+/**
+ * @brief      Updates the RigidBody based on the dynamics world it is in.
+ */
 void ColorPhysicsEntity::update()
 {
     btScalar rawMatrix[16];

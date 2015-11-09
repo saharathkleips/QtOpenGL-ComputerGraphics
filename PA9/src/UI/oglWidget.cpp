@@ -333,11 +333,21 @@ if( isPaused == false )
     QOpenGLWidget::update();
 }
 
+/**
+ * @brief      Public slot to invert the pause state of the game.
+ */
 void OGLWidget::pause()
 {
     isPaused = !isPaused;
 }
 
+/**
+ * @brief      Sets the camera's perspective to predefined values.
+ * details     0: Behind player 1. 1: Behind player 2. 2: Side perspective.
+ * 3: Top-Down perspective.
+ *
+ * @param[in]  perspective  The index of the perspective desired.
+ */
 void OGLWidget::setPerspective( int perspective )
 {
     switch( perspective )
@@ -423,6 +433,9 @@ void OGLWidget::mouseReleaseEvent( QMouseEvent* event )
 // PRIVATE HELPER FUNCTIONS ////////////////////////////////////////////////////
 //
 
+/**
+ * @brief      Helper function to initialize bullet data.
+ */
 void OGLWidget::initializeBullet()
 {
     m_broadphase = new btDbvtBroadphase();
@@ -435,6 +448,9 @@ void OGLWidget::initializeBullet()
     m_dynamicsWorld->setGravity( btVector3( 0, -9.8, 0 ) );
 }
 
+/**
+ * @brief      Helper function to delete bullet allocations.
+ */
 void OGLWidget::teardownBullet()
 {
     delete m_dynamicsWorld;
@@ -516,6 +532,9 @@ void OGLWidget::printContextInfo()
         "(" << qPrintable( glProfile ) << ")";
 }
 
+/**
+ * @brief      Resets the game state after a goal.
+ */
 void OGLWidget::processGoal()
 {
     // play goal sound
@@ -535,6 +554,9 @@ void OGLWidget::processGoal()
     );
 }
 
+/**
+ * @brief      Plays a sound whenever a puck collides.
+ */
 void OGLWidget::puckContactSound()
 {
    	const QString file = "sounds/collision.mp3";

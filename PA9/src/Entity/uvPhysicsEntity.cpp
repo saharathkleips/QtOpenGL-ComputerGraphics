@@ -4,6 +4,14 @@
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 //
 
+/**
+ * @brief      Constructor for a UVPhysicsEntity.
+ *
+ * @param[in]  startingState  The starting location and rotation of the object.
+ * @param[in]  mass           The mass of the object.
+ * @param[in]  pathToModel    The path to the object's model.
+ * @param[in]  pathToTexture  The path to the object's texture.
+ */
 UVPhysicsEntity::UVPhysicsEntity( btTransform startingState, btScalar mass,
     QString pathToModel, QString pathToTexture )
     : UVEntity( pathToModel, pathToTexture ), m_mass( mass )
@@ -35,6 +43,9 @@ UVPhysicsEntity::UVPhysicsEntity( btTransform startingState, btScalar mass,
     }
 }
 
+/**
+ * @brief      Default destructor for UVPhysicsEntity.
+ */
 UVPhysicsEntity::~UVPhysicsEntity()
 {
     delete m_triMesh;
@@ -44,6 +55,13 @@ UVPhysicsEntity::~UVPhysicsEntity()
     delete RigidBody;
 }
 
+/**
+ * @brief      Overloaded paintGL function.
+ * @details    Draws using a BTransform rather than a GTrasform.
+ *
+ * @param      camera      The camera of the world.
+ * @param      projection  The projection of the world.
+ */
 void UVPhysicsEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
 {
     m_program->bind();
@@ -63,6 +81,9 @@ void UVPhysicsEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
     m_program->release();
 }
 
+/**
+ * @brief      Updates the RigidBody based on the dynamics world it is in.
+ */
 void UVPhysicsEntity::update()
 {
     btScalar rawMatrix[16];
