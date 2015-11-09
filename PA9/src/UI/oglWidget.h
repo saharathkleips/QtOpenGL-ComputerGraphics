@@ -5,6 +5,11 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 
+#include <QPainter>
+#include <QFont>
+#include <QRect>
+#include <QFontDatabase>
+
 #include <QKeyEvent>
 #include <QMouseEvent>
 
@@ -72,9 +77,7 @@ private:
     btSequentialImpulseConstraintSolver* m_solver;
     btDiscreteDynamicsWorld* m_dynamicsWorld;
 
-
     /* Collision information */
-
     const short COL_NOTHING = 0;
     // Renderables
     const short COL_TABLE = 1 << 0;

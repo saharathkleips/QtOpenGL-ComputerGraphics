@@ -126,6 +126,27 @@ void OGLWidget::paintGL()
     {
         (*iter)->paintGL( camera, projection );
     }
+
+    // 2D Elements
+    QFont NHLFont( "NHL", 47 );
+    QFont ConsolasFont( "Consolas", 35, QFont::Bold );
+
+    // Draw 2D Elements
+    QPainter painter(this);
+    QRect rect( 0, 10, QWidget::width(), QWidget::height() / 4 );
+    painter.beginNativePainting();
+
+    painter.setPen( QColor( 255, 255, 255, 255 ) );
+    painter.setFont( ConsolasFont );
+    painter.drawText( rect, Qt::AlignHCenter, "0 - 0" );
+    
+    painter.setFont( NHLFont );
+    painter.setPen( QColor( 255, 0, 0, 255 ) );
+    painter.drawText( rect, Qt::AlignLeft, "\t\t\t\td" );
+    painter.setPen( QColor( 0, 0, 255, 255 ) );
+    painter.drawText( rect, Qt::AlignRight, "e\t\t\t\t" );
+
+    painter.endNativePainting();
 }
 
 /**
