@@ -105,5 +105,9 @@
 	    <td>Ctrl + F4</td>
 	    <td>Switch Camera to Top of Table Perspective</td>
 	</tr>
+	<tr>
+	    <td>Ctrl + P</td>
+	    <td>Pause Game</td>
+	</tr>
     </tbody>
 </table>
