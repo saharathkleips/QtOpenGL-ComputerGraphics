@@ -1,5 +1,4 @@
 #include "oglWidget.h"
-// #include <iostream> // for debug
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
@@ -230,6 +229,26 @@ void OGLWidget::update()
 
     m_dynamicsWorld->stepSimulation( 1, 10 );
 
+    GoalCallback goalCallback(this);
+    m_dynamicsWorld->contactTest(
+        walls["Goal"]->RigidBody,
+        goalCallback
+    );
+
+    Goal2Callback goal2Callback(this);
+    m_dynamicsWorld->contactTest(
+        walls["Goal2"]->RigidBody,
+        goal2Callback
+    );
+
+    /* Example of contactPairTest
+    m_dynamicsWorld->contactPairTest( 
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody,
+        ((HockeyPuck*)renderables["Puck"])->RigidBody,
+        callback
+    );
+    */
+
     QOpenGLWidget::update();
 }
 //
@@ -377,4 +396,13 @@ void OGLWidget::printContextInfo()
 
     qDebug() << qPrintable( glType ) << qPrintable( glVersion ) << 
         "(" << qPrintable( glProfile ) << ")";
+}
+
+void OGLWidget::resetPuck()
+{
+    btTransform startingState = btTransform( btQuaternion( 0, 0, 0, 1 ), 
+        btVector3( 0, 30.5, 0 ) );
+
+    btDefaultMotionState* motionState = new btDefaultMotionState( startingState );
+    ((HockeyPuck*)renderables["Puck"])->RigidBody->setMotionState(motionState);
 }
