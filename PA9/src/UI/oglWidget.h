@@ -53,6 +53,7 @@ public slots:
     void setPerspective( int perspective );
 
 protected slots:
+    void pause();
     void update();
 
 protected:
@@ -182,6 +183,8 @@ private:
     // Walls
     const short m_MiddleCollidesWith = COL_PADDLE;
     const short m_GoalCollidesWith = (COL_PUCK);
+
+    bool isPaused;
 
     QString m_pathToTeam1 = "images/Team Logos/Avalanches.png";
     QString m_pathToTeam2 = "images/Team Logos/Blackhawks.png";

@@ -15,6 +15,8 @@ OGLWidget::OGLWidget()
     // Allows keyboard input to fall through
     setFocusPolicy( Qt::ClickFocus );
 
+    isPaused = false;
+
     m_imgTeam1 = new QPixmap( m_pathToTeam1 );
     m_p1Team = new QLabel( this );
     m_p1Team->setPixmap( *m_imgTeam1 );
@@ -69,6 +71,8 @@ OGLWidget::OGLWidget( QString team1, QString team2 )
     // Allows keyboard input to fall through
     setFocusPolicy( Qt::ClickFocus );
 
+    isPaused = false;
+
     m_imgTeam1 = new QPixmap( m_pathToTeam1 );
     m_p1Team = new QLabel( this );
     m_p1Team->setPixmap( *m_imgTeam1 );
@@ -82,7 +86,7 @@ OGLWidget::OGLWidget( QString team1, QString team2 )
     m_p2Score = 0;
 
     // Default camera view
-    setPerspective( 0 );
+    setPerspective( 1 );
 
     renderables["Table"] = new HockeyTable();
     renderables["Puck"] = new HockeyPuck();
@@ -262,6 +266,8 @@ void OGLWidget::update()
         linearVelocity[2] = -5;
     }
 
+if( isPaused == false )
+{
     ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->setLinearVelocity(
         linearVelocity
     );
@@ -323,8 +329,13 @@ void OGLWidget::update()
         callback
     );
     */
-
+}
     QOpenGLWidget::update();
+}
+
+void OGLWidget::pause()
+{
+    isPaused = !isPaused;
 }
 
 void OGLWidget::setPerspective( int perspective )

@@ -49,8 +49,8 @@ MainMenuWidget::MainMenuWidget()
 
 	resize();
 
-	connect( m_btnSinglePlayer, SIGNAL ( released() ), 
-		this, SIGNAL ( clickedSinglePlayer() ) );
+	// connect( m_btnSinglePlayer, SIGNAL ( released() ), 
+	// 	this, SIGNAL ( clickedSinglePlayer() ) );
 	connect( m_btnTwoPlayer, SIGNAL ( released() ), 
 		this, SIGNAL ( clickedTwoPlayer() ) );
 	connect( m_btnExit, SIGNAL ( released() ), 

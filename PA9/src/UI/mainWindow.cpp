@@ -62,6 +62,9 @@ void MainWindow::swapToGame( QString team1, QString team2 )
     oglWidget = new OGLWidget( team1, team2 );
     oglWidget->setFormat( format );
 
+    connect( actionPauseProgram, SIGNAL( triggered() ), 
+        oglWidget , SLOT( pause() ) );
+
     m_signalMapper = new QSignalMapper( oglWidget );
     connect( actionSideAngled, SIGNAL ( triggered() ),
         m_signalMapper, SLOT( map() ) );
@@ -103,7 +106,9 @@ void MainWindow::createActions()
     connect( actionExitProgram, SIGNAL( triggered() ), 
         QApplication::instance(), SLOT( quit() ) );
 
-
+    actionPauseProgram = new QAction( "Pause Program", this );
+    actionPauseProgram->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_P ) );
+    actionPauseProgram->setStatusTip( "Pauses the program." );
 
     actionSideAngled = new QAction( "Side Perspective", this );
     actionSideAngled->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_F3 ) );
@@ -128,6 +133,7 @@ void MainWindow::createActions()
 void MainWindow::createMenus()
 {
     menuFile = new QMenu( "&File" );
+    menuFile->addAction( actionPauseProgram );
     menuFile->addAction( actionExitProgram );
 
     menuCamera = new QMenu( "&Camera" );
