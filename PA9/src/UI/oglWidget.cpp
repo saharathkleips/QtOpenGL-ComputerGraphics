@@ -411,5 +411,8 @@ void OGLWidget::resetPuck()
         btVector3( 0, 30.5, 0 ) );
 
     btDefaultMotionState* motionState = new btDefaultMotionState( startingState );
-    ((HockeyPuck*)renderables["Puck"])->RigidBody->setMotionState(motionState);
+    ((HockeyPuck*)renderables["Puck"])->RigidBody->setMotionState( motionState );
+    ((HockeyPuck*)renderables["Puck"])->RigidBody->setLinearVelocity(
+        btVector3(0,0,0)
+    );
 }

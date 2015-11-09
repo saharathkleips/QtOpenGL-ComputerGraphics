@@ -72,6 +72,7 @@ private:
             int index1)
         {
             context->resetPuck();
+            return 1.0f;
         }
 
         OGLWidget* context;
@@ -92,6 +93,7 @@ private:
             int index1)
         {
             context->resetPuck();
+            return 1.0f;
         }
 
         OGLWidget* context;
