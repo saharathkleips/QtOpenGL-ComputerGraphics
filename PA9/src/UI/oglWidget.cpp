@@ -333,21 +333,25 @@ void OGLWidget::setPerspective( int perspective )
     {
         //Behind player 1
         case 0:
-        camera.setRotation( -40.0f, 1.0f, 0.0f, 0.0f );
+        camera.setRotation( -32.0f, 1.0f, 0.0f, 0.0f );
         camera.rotate( -90.0f, 0.0f, 1.0f, 0.0f );
-        camera.setTranslation( -55.8f, 56.7f, 2.0f );
+        camera.setTranslation( -55.8f, 56.7f, 0.0f );
         break;
         //Behind player 2
         case 1:
-        camera.setRotation( -40.0f, 1.0f, 0.0f, 0.0f );
+        camera.setRotation( -32.0f, 1.0f, 0.0f, 0.0f );
         camera.rotate( 90.0f, 0.0f, 1.0f, 0.0f );
-        camera.setTranslation( 55.8f, 56.7f, 2.0f );
+        camera.setTranslation( 57.8f, 56.7f, 0.0f );
         break;
         //Side perspective
         case 2:
+        camera.setRotation( -45.0f, 1.0f, 0.0f, 0.0f );
+        camera.setTranslation( 1.7f, 70.0f, 50.0f );
         break;
         //Top down perspective
         case 3:
+        camera.setRotation( -90.0f, 1.0f, 0.0f, 0.0f );
+        camera.setTranslation( 1.9f, 85.0f, 0.0f );
         break;
         default:
         break;

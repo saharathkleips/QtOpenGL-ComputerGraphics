@@ -133,8 +133,8 @@ void MainWindow::createMenus()
     menuCamera = new QMenu( "&Camera" );
     menuCamera->addAction( actionBehindPlayer1 );
     menuCamera->addAction( actionBehindPlayer2 );
-    menuCamera->addAction( actionTopDown );
     menuCamera->addAction( actionSideAngled );
+    menuCamera->addAction( actionTopDown );
 }
 
 /**
