@@ -198,6 +198,29 @@ void OGLWidget::update()
         linearVelocity
     );
 
+    btVector3 linearVelocity2(0,0,0);
+
+    if( Input::keyPressed( Qt::Key_I ) )
+    {
+        linearVelocity2[0] = -5;
+
+    }
+    else if( Input::keyPressed( Qt::Key_K ) ){
+        linearVelocity2[0] = 5;
+    }
+
+    if( Input::keyPressed( Qt::Key_J ) ){
+        linearVelocity2[2] = 5;
+    }
+    else if( Input::keyPressed( Qt::Key_L ) )
+    {
+        linearVelocity2[2] = -5;
+    }
+
+    ((HockeyPaddle*)renderables["Paddle"])->RigidBody->setLinearVelocity(
+        linearVelocity2
+    );
+
     for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
         iter != renderables.end(); iter++ )
     {
@@ -380,5 +403,6 @@ void OGLWidget::resetPuck()
     btTransform startingState = btTransform( btQuaternion( 0, 0, 0, 1 ), 
         btVector3( 0, 30.5, 0 ) );
 
-    ((HockeyPuck*)renderables["Puck"])->RigidBody->setMotionState(btDefaultMotionState( startingState ));
+    btDefaultMotionState* motionState = new btDefaultMotionState( startingState );
+    ((HockeyPuck*)renderables["Puck"])->RigidBody->setMotionState(motionState);
 }
