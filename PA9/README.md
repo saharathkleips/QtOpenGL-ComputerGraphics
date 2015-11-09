@@ -11,6 +11,8 @@ This project showcases a physics-based air hockey video game.
 + Main Menu
 + Team Select
 + 2 Players 
++ Text2D display
++ Game Restart
 
 
 ## Table of Contents
