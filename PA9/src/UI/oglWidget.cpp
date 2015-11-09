@@ -131,29 +131,27 @@ void OGLWidget::update()
 
     flyThroughCamera();
 
+    btVector3 linearVelocity(0,0,0);
+
     if( Input::keyPressed( Qt::Key_Up ) )
     {
-        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->clearForces();
-        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->applyCentralImpulse(
-            btVector3( 0, 0, -.2 ) );
+        linearVelocity[0] = -5;
+
     }
-    if( Input::keyPressed( Qt::Key_Down ) ){
-        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->clearForces();
-        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->applyCentralImpulse(
-            btVector3( 0, 0, .2 ) );
+    else if( Input::keyPressed( Qt::Key_Down ) ){
+        linearVelocity[0] = 5;
     }
     if( Input::keyPressed( Qt::Key_Left ) ){
-        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->clearForces();
-        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->applyCentralImpulse(
-            btVector3( -.2, 0, 0 ) );
+        linearVelocity[2] = 5;
     }
-    if( Input::keyPressed( Qt::Key_Right ) )
+    else if( Input::keyPressed( Qt::Key_Right ) )
     {
-        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->clearForces();
-        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->applyCentralImpulse(
-            btVector3( .2, 0, 0 ) );
+        linearVelocity[2] = -5;
     }
 
+    ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->setLinearVelocity(
+        linearVelocity
+    );
 
     for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
         iter != renderables.end(); iter++ )
@@ -165,7 +163,6 @@ void OGLWidget::update()
 
     QOpenGLWidget::update();
 }
-
 //
 // INPUT EVENTS ////////////////////////////////////////////////////////////////
 // 
