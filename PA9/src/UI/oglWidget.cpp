@@ -1,5 +1,5 @@
 #include "oglWidget.h"
-#include <iostream>
+// #include <iostream> // for debug
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
@@ -26,15 +26,15 @@ OGLWidget::OGLWidget()
     renderables["Paddle2"] = new HockeyPaddle( "Blue" );
     renderables["Skybox"] = new Skybox();
 
-
-    const btVector3 goalSize = btVector3(0.5,50,4.5);
-    btVector3 stublocation = btVector3(0.0, 0.0, 0.0);
-    
-    walls["Goal"] = new Wall(goalSize, stublocation);
-    walls["Goal2"] = new Wall(goalSize, stublocation);
-
+    // Note: Actual height of the table is around 30.5
+    // So all of these walls are underneath the table but are really tall
+    const btVector3 goalSize = btVector3(0.5,35,4.5);
+    // red goal
+    walls["Goal"] = new Wall(goalSize, btVector3(-30.5, 0, 1));
+    // blue goal
+    walls["Goal2"] = new Wall(goalSize, btVector3( 33.5, 0, 1));
     // invisible wall in the middle is offset just a little bit to be in table's center
-    walls["Middle"] = new Wall(btVector3(0.5,50,20), btVector3(1,0,0)); 
+    walls["Middle"] = new Wall(btVector3(0.5,35,20), btVector3(1,0,0)); 
 }
 
 /**
@@ -316,6 +316,12 @@ void OGLWidget::flyThroughCamera()
     if( Input::keyPressed( Qt::Key_E ) )
         cameraTranslations += camera.up();
     camera.translate( cameraTranslationSpeed * cameraTranslations );
+
+    /* Insanely useful for debugging
+    std::cout << camera.translation().x() << ' '
+              << camera.translation().y() << ' '
+              << camera.translation().z() << std::endl;
+    */
     
 } 
 
