@@ -37,12 +37,15 @@ MainMenuWidget::MainMenuWidget()
 	m_btnSinglePlayer = new QPushButton( "SINGLE PLAYER", this );
 	m_btnSinglePlayer->setFont( NHLFont );
 	m_btnSinglePlayer->setFlat( true );
+	m_btnSinglePlayer->setStyleSheet("color: blue");
 	m_btnTwoPlayer = new QPushButton( "VERSUS MODE", this );
 	m_btnTwoPlayer->setFont( NHLFont );
 	m_btnTwoPlayer->setFlat( true );
+	m_btnTwoPlayer->setStyleSheet("color: blue");
 	m_btnExit = new QPushButton( "EXIT GAME", this );
 	m_btnExit->setFont( NHLFont );
 	m_btnExit->setFlat( true );
+	m_btnExit->setStyleSheet("color: blue");
 
 	resize();
 
