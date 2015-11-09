@@ -136,12 +136,9 @@ private:
     void flyThroughCamera();
     void controlObject();
     void printContextInfo();
-<<<<<<< HEAD
     void processGoal();
     void puckContactSound();
-=======
-    void processGoal();
->>>>>>> 671809cc974f78ed512b4cb1aa5b596b2886c9aa
+
 
     // OpenGL Objects
     QMap<QString, Renderable*> renderables;
