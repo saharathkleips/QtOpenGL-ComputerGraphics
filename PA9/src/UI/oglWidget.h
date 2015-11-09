@@ -17,6 +17,8 @@
 
 #include <QMap>
 #include <QMatrix4x4>
+#include <QMediaPlayer>
+#include <QFileInfo>
 
 #include <QDebug>
 #include <QString>
@@ -71,7 +73,12 @@ private:
             int partId1,
             int index1)
         {
-            context->resetPuck();
+            // silence unused variable noise
+            (void)partId0;(void)partId1;(void)index0;(void)index1;(void)colObj0Wrap;(void)colObj1Wrap;(void)cp;
+            context->processGoal();
+            context->m_p1Score++;
+            // return doesn't actually do anything
+            return 1.0f;
         }
 
         OGLWidget* context;
@@ -91,7 +98,12 @@ private:
             int partId1,
             int index1)
         {
-            context->resetPuck();
+            // silence unused variable noise
+            (void)partId0;(void)partId1;(void)index0;(void)index1;(void)colObj0Wrap;(void)colObj1Wrap;(void)cp;
+            context->processGoal();
+            context->m_p2Score++;
+            // return doesn't actually do anything
+            return 1.0f;
         }
 
         OGLWidget* context;
@@ -103,7 +115,7 @@ private:
     void flyThroughCamera();
     void controlObject();
     void printContextInfo();
-    void resetPuck();
+    void processGoal();
 
     // OpenGL Objects
     QMap<QString, Renderable*> renderables;
@@ -121,6 +133,9 @@ private:
     btCollisionDispatcher* m_dispatcher;
     btSequentialImpulseConstraintSolver* m_solver;
     btDiscreteDynamicsWorld* m_dynamicsWorld;
+
+    // media player
+    QMediaPlayer *player;
 
     /* Collision information */
     const short COL_NOTHING = 0;

@@ -45,7 +45,11 @@ OGLWidget::OGLWidget()
     // blue goal
     walls["Goal2"] = new Wall(goalSize, btVector3( 33.5, 0, 1));
     // invisible wall in the middle is offset just a little bit to be in table's center
-    walls["Middle"] = new Wall(btVector3(0.5,35,20), btVector3(1,0,0)); 
+    walls["Middle"] = new Wall(btVector3(0.5,35,20), btVector3(1,0,0));
+
+    // create sound player
+	player = new QMediaPlayer(); 
+
 }
 
 /**
@@ -58,7 +62,7 @@ OGLWidget::OGLWidget( QString team1, QString team2 )
 {
     m_pathToTeam1 = "images/Team Logos/" + team1 + ".png";
     m_pathToTeam2 = "images/Team Logos/" + team2 + ".png";
-    
+
     // Update the widget after a frameswap
     connect( this, SIGNAL( frameSwapped() ),
         this, SLOT( update() ) );
@@ -96,7 +100,10 @@ OGLWidget::OGLWidget( QString team1, QString team2 )
     // blue goal
     walls["Goal2"] = new Wall(goalSize, btVector3( 33.5, 0, 1));
     // invisible wall in the middle is offset just a little bit to be in table's center
-    walls["Middle"] = new Wall(btVector3(0.5,35,20), btVector3(1,0,0)); 
+    walls["Middle"] = new Wall(btVector3(0.5,35,20), btVector3(1,0,0));
+
+    // create sound player
+    player = new QMediaPlayer(); 
 }
 
 /**
@@ -292,6 +299,7 @@ void OGLWidget::update()
 
     m_dynamicsWorld->stepSimulation( 1, 10 );
 
+    // p1 
     GoalCallback goalCallback(this);
     m_dynamicsWorld->contactTest(
         walls["Goal"]->RigidBody,
@@ -461,11 +469,21 @@ void OGLWidget::printContextInfo()
         "(" << qPrintable( glProfile ) << ")";
 }
 
-void OGLWidget::resetPuck()
+void OGLWidget::processGoal()
 {
+    // play goal sound
+    const QString file = "sounds/goal.mp3";
+    QUrl url = QUrl::fromLocalFile(QFileInfo(file).absoluteFilePath());
+    player->setMedia(url);
+    player->setVolume(800);	 
+    player->play();
+
+    // reset puck
     btTransform startingState = btTransform( btQuaternion( 0, 0, 0, 1 ), 
         btVector3( 0, 30.5, 0 ) );
-
     btDefaultMotionState* motionState = new btDefaultMotionState( startingState );
-    ((HockeyPuck*)renderables["Puck"])->RigidBody->setMotionState(motionState);
+    ((HockeyPuck*)renderables["Puck"])->RigidBody->setMotionState( motionState );
+    ((HockeyPuck*)renderables["Puck"])->RigidBody->setLinearVelocity(
+        btVector3(0,0,0)
+    );
 }
