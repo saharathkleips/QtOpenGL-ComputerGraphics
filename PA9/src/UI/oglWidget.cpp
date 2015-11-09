@@ -25,6 +25,14 @@ OGLWidget::OGLWidget()
     renderables["Paddle"] = new HockeyPaddle( "Red" );
     renderables["Paddle2"] = new HockeyPaddle( "Blue" );
     renderables["Skybox"] = new Skybox();
+
+
+    btVector3 goalSize = btVector3(1.0, 10.0, 3.0);
+    btVector3 stublocation = btVector3(0.0, 0.0, 0.0);
+    // SET LOCATIONS
+    walls["Goal"] = new Wall(goalSize, stublocation);
+    walls["Goal2"] = new Wall(goalSize, stublocation);
+    walls["Middle"] = new Wall(btVector3(1,50,50), btVector3(0,0,0)); 
 }
 
 /**
@@ -57,6 +65,7 @@ void OGLWidget::initializeGL()
         (*iter)->initializeGL();
     }
 
+    // renderables
     m_dynamicsWorld->addRigidBody(
         ((HockeyTable*)renderables["Table"])->RigidBody, COL_TABLE, m_TableCollidesWith
     );
@@ -68,6 +77,17 @@ void OGLWidget::initializeGL()
     );
     m_dynamicsWorld->addRigidBody(
         ((HockeyPaddle*)renderables["Paddle2"])->RigidBody, COL_PADDLE, m_PaddleCollidesWith
+    );
+
+    // walls
+    m_dynamicsWorld->addRigidBody(
+        walls["Goal"]->RigidBody, COL_GOAL, m_GoalCollidesWith
+    );
+    m_dynamicsWorld->addRigidBody(
+        walls["Goal2"]->RigidBody, COL_GOAL, m_GoalCollidesWith
+    );
+    m_dynamicsWorld->addRigidBody(
+        walls["Middle"]->RigidBody, COL_MIDDLE, m_MiddleCollidesWith
     );
 }
 
