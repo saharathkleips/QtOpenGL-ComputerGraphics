@@ -16,9 +16,6 @@ OGLWidget::OGLWidget()
     // Allows keyboard input to fall through
     setFocusPolicy( Qt::ClickFocus );
 
-    // Load Fonts
-    QFontDatabase::addApplicationFont( ":/fonts/NHL.ttf" );
-
     // Default camera view
     camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 0.0f, 75.0f, 65.0f );
