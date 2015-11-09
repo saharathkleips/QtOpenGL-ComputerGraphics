@@ -1,5 +1,5 @@
 #include "oglWidget.h"
-#include <iostream>
+// #include <iostream> // for debug
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
@@ -25,6 +25,16 @@ OGLWidget::OGLWidget()
     renderables["Paddle"] = new HockeyPaddle( "Red" );
     renderables["Paddle2"] = new HockeyPaddle( "Blue" );
     renderables["Skybox"] = new Skybox();
+
+    // Note: Actual height of the table is around 30.5
+    // So all of these walls are underneath the table but are really tall
+    const btVector3 goalSize = btVector3(0.5,35,4.5);
+    // red goal
+    walls["Goal"] = new Wall(goalSize, btVector3(-30.5, 0, 1));
+    // blue goal
+    walls["Goal2"] = new Wall(goalSize, btVector3( 33.5, 0, 1));
+    // invisible wall in the middle is offset just a little bit to be in table's center
+    walls["Middle"] = new Wall(btVector3(0.5,35,20), btVector3(1,0,0)); 
 }
 
 /**
@@ -57,6 +67,7 @@ void OGLWidget::initializeGL()
         (*iter)->initializeGL();
     }
 
+    // renderables
     m_dynamicsWorld->addRigidBody(
         ((HockeyTable*)renderables["Table"])->RigidBody, COL_TABLE, m_TableCollidesWith
     );
@@ -68,6 +79,17 @@ void OGLWidget::initializeGL()
     );
     m_dynamicsWorld->addRigidBody(
         ((HockeyPaddle*)renderables["Paddle2"])->RigidBody, COL_PADDLE, m_PaddleCollidesWith
+    );
+
+    // walls
+    m_dynamicsWorld->addRigidBody(
+        walls["Goal"]->RigidBody, COL_GOAL, m_GoalCollidesWith
+    );
+    m_dynamicsWorld->addRigidBody(
+        walls["Goal2"]->RigidBody, COL_GOAL, m_GoalCollidesWith
+    );
+    m_dynamicsWorld->addRigidBody(
+        walls["Middle"]->RigidBody, COL_MIDDLE, m_MiddleCollidesWith
     );
 }
 
@@ -294,6 +316,12 @@ void OGLWidget::flyThroughCamera()
     if( Input::keyPressed( Qt::Key_E ) )
         cameraTranslations += camera.up();
     camera.translate( cameraTranslationSpeed * cameraTranslations );
+
+    /* Insanely useful for debugging
+    std::cout << camera.translation().x() << ' '
+              << camera.translation().y() << ' '
+              << camera.translation().z() << std::endl;
+    */
     
 } 
 
