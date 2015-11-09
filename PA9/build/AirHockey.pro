@@ -48,6 +48,7 @@ HEADERS += \
     ../src/GameObjects/hockeyPaddle.h \
     ../src/GameObjects/skybox.h \
     #UI
+    ../src/UI/mainMenuWidget.h \
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h
 
@@ -72,6 +73,7 @@ SOURCES += \
     ../src/GameObjects/hockeyPaddle.cpp \
     ../src/GameObjects/skybox.cpp \
     #UI
+    ../src/UI/mainMenuWidget.cpp \
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
     #Main
@@ -79,4 +81,5 @@ SOURCES += \
 
 #A list of resource (.qrc / .rc) files to be included in the final project.
 RESOURCES += \
-    shader_resource.qrc
+    shader_resource.qrc \
+    font_resource.qrc
