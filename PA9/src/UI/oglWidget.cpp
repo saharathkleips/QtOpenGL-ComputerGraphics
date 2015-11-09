@@ -312,6 +312,12 @@ void OGLWidget::update()
         goal2Callback
     );
 
+    PuckCallback puckCallback(this);
+    m_dynamicsWorld->contactTest(
+    	((HockeyPuck*)renderables["Puck"])->RigidBody,
+    	puckCallback
+    );
+
     /* Example of contactPairTest
     m_dynamicsWorld->contactPairTest( 
         ((HockeyPaddle*)renderables["Paddle2"])->RigidBody,
@@ -486,4 +492,14 @@ void OGLWidget::processGoal()
     ((HockeyPuck*)renderables["Puck"])->RigidBody->setLinearVelocity(
         btVector3(0,0,0)
     );
+}
+
+void OGLWidget::puckContactSound()
+{
+   	const QString file = "sounds/collision.mp3";
+    QUrl url = QUrl::fromLocalFile(QFileInfo(file).absoluteFilePath());
+    player->setMedia(url);
+    player->setVolume(500);	 
+    player->play();
+
 }
