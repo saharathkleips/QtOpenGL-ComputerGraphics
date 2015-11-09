@@ -240,6 +240,7 @@ void OGLWidget::update()
 
     m_dynamicsWorld->stepSimulation( 1, 10 );
 
+    // p1 
     GoalCallback goalCallback(this);
     m_dynamicsWorld->contactTest(
         walls["Goal"]->RigidBody,
@@ -415,16 +416,18 @@ void OGLWidget::printContextInfo()
         "(" << qPrintable( glProfile ) << ")";
 }
 
-void OGLWidget::resetPuck()
+void OGLWidget::processGoal()
 {
+    // play goal sound
     const QString file = "sounds/goal.mp3";
     QUrl url = QUrl::fromLocalFile(QFileInfo(file).absoluteFilePath());
     player->setMedia(url);
     player->setVolume(800);	 
     player->play();
+
+    // reset puck
     btTransform startingState = btTransform( btQuaternion( 0, 0, 0, 1 ), 
         btVector3( 0, 30.5, 0 ) );
-
     btDefaultMotionState* motionState = new btDefaultMotionState( startingState );
     ((HockeyPuck*)renderables["Puck"])->RigidBody->setMotionState( motionState );
     ((HockeyPuck*)renderables["Puck"])->RigidBody->setLinearVelocity(
