@@ -102,6 +102,27 @@ private:
 
         OGLWidget* context;
     };
+
+       struct PuckCallback : public btCollisionWorld::ContactResultCallback
+    {
+        PuckCallback(OGLWidget* scopePtr) : context(scopePtr)
+        {            
+        }
+
+        btScalar addSingleResult(btManifoldPoint& cp,
+            const btCollisionObjectWrapper* colObj0Wrap,
+            int partId0,
+            int index0,
+            const btCollisionObjectWrapper* colObj1Wrap,
+            int partId1,
+            int index1)
+        {
+            context->puckContactSound();
+            return 1.0f;
+        }
+
+        OGLWidget* context;
+    };
     
 
     void initializeBullet();
@@ -110,6 +131,7 @@ private:
     void controlObject();
     void printContextInfo();
     void resetPuck();
+    void puckContactSound();
 
     // OpenGL Objects
     QMap<QString, Renderable*> renderables;
