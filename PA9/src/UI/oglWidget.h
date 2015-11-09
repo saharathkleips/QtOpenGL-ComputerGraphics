@@ -72,6 +72,7 @@ private:
             int index1)
         {
             context->resetPuck();
+            context->m_p1Score++;
             return 1.0f;
         }
 
@@ -93,6 +94,7 @@ private:
             int index1)
         {
             context->resetPuck();
+            context->m_p2Score++;
             return 1.0f;
         }
 

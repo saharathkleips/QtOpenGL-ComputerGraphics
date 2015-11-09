@@ -17,7 +17,7 @@ OGLWidget::OGLWidget()
 
     // m_p1Team = "a";
     // m_p2Team = "b";
-    m_p1Score = 1;
+    m_p1Score = 0;
     m_p2Score = 0;
 
     // Default camera view
