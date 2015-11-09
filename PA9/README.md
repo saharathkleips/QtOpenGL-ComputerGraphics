@@ -1,5 +1,6 @@
 # PA9 - Air Hockey (Ben Nicholes, Denis Morozov, Saharath Kleips)
-This project showcases a physics-based air hockey video game.
+This project showcases a physics-based air hockey video game.  
+![](.screenshot.png "Screenshot")
 
 ## Notes
 + Single Player is disabled
@@ -11,7 +12,6 @@ This project showcases a physics-based air hockey video game.
 + Team Select
 + 2 Players 
 
-![](.screenshot.png "Screenshot")
 
 ## Table of Contents
 + [Instructions](#instructions)
@@ -110,6 +110,10 @@ Program Controls
     <tr>
         <td>Ctrl + P</td>
         <td>Pause Game</td>
+    </tr>
+    <tr>
+        <td>Ctrl + R</td>
+        <td>Restart Game</td>
     </tr>
     <tr>
         <td>Ctrl + Q</td>

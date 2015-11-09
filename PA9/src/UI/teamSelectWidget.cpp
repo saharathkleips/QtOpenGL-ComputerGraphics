@@ -186,7 +186,7 @@ void TeamSelectWidget::setTeams( QString team )
             break;
         case 1:
             m_team2 = team;
-            selecting++;
+            selecting = 0;
             emit selectedTeams( m_team1, m_team2 );
             break;
         default:

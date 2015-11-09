@@ -33,8 +33,6 @@ MainWindow::MainWindow()
         this, SLOT( swapToTeamSelect() ) );
     connect( mainMenuWidget, SIGNAL( clickedExit() ), 
         QApplication::instance(), SLOT( quit() ) );
-    connect( teamSelectWidget, SIGNAL( selectedTeams( QString, QString ) ),
-        this, SLOT( swapToGame( QString, QString ) ) );
 }
 
 //
@@ -42,6 +40,12 @@ MainWindow::MainWindow()
 //
 void MainWindow::swapToTeamSelect()
 {
+    if( teamSelectWidget == NULL )
+        teamSelectWidget = new TeamSelectWidget();
+
+    connect( teamSelectWidget, SIGNAL( selectedTeams( QString, QString ) ),
+        this, SLOT( swapToGame( QString, QString ) ) );
+
     setCentralWidget( teamSelectWidget );
     if( mainMenuWidget != NULL )
     {
@@ -84,10 +88,32 @@ void MainWindow::swapToGame( QString team1, QString team2 )
 
     setCentralWidget( oglWidget );
     setMenuBar( menuBar );
+    menuBar->show();
     if( teamSelectWidget != NULL )
     {
         delete teamSelectWidget;
         teamSelectWidget = NULL;
+    }
+}
+
+void MainWindow::restartGame()
+{
+    if( mainMenuWidget == NULL )
+        mainMenuWidget = new MainMenuWidget();
+
+    connect( mainMenuWidget, SIGNAL( clickedSinglePlayer() ), 
+        this, SLOT( swapToTeamSelect() ) );
+    connect( mainMenuWidget, SIGNAL( clickedTwoPlayer() ), 
+        this, SLOT( swapToTeamSelect() ) );
+    connect( mainMenuWidget, SIGNAL( clickedExit() ), 
+        QApplication::instance(), SLOT( quit() ) );
+
+    setCentralWidget( mainMenuWidget );
+    menuBar->hide();
+    if( oglWidget != NULL )
+    {
+        delete oglWidget;
+        oglWidget = NULL;
     }
 }
 
@@ -109,6 +135,12 @@ void MainWindow::createActions()
     actionPauseProgram = new QAction( "Pause Program", this );
     actionPauseProgram->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_P ) );
     actionPauseProgram->setStatusTip( "Pauses the program." );
+
+    actionRestartGame = new QAction( "Restart Game", this );
+    actionRestartGame->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_R ) );
+    actionRestartGame->setStatusTip( "Restarts the game." );
+    connect( actionRestartGame, SIGNAL( triggered() ), 
+        this, SLOT( restartGame() ) );
 
     actionSideAngled = new QAction( "Side Perspective", this );
     actionSideAngled->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_F3 ) );
@@ -134,6 +166,7 @@ void MainWindow::createMenus()
 {
     menuFile = new QMenu( "&File" );
     menuFile->addAction( actionPauseProgram );
+    menuFile->addAction( actionRestartGame );
     menuFile->addAction( actionExitProgram );
 
     menuCamera = new QMenu( "&Camera" );

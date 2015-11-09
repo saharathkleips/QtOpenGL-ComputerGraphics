@@ -23,6 +23,7 @@ public:
 public slots:
     void swapToTeamSelect();
     void swapToGame( QString team1, QString team2 );
+    void restartGame();
 
 private:
     void createActions();
@@ -37,6 +38,7 @@ private:
     QMenuBar* menuBar;
     QMenu* menuFile;
     QAction* actionPauseProgram;
+    QAction* actionRestartGame;
     QAction* actionExitProgram;
 
     QMenu* menuCamera;
