@@ -1,6 +1,9 @@
 # PA9 - Air Hockey (Ben Nicholes, Denis Morozov, Saharath Kleips)
 ## UPDATE THIS
 
+## Notes
++ Single Player is disabled
+
 ## Extra Credit
 + Sound for Hockey Table, Puck Collisions, and Goals
 + Main Menu
@@ -82,6 +85,29 @@
 	    <td>K Arrow</td>
 	    <td>Move Player Two Puck Down</td>
 	</tr>
-	
+	<tr>
+	    <td>Ctrl + Q</td>
+	    <td>Quit the Program</td>
+	</tr>
+	<tr>
+	    <td>Ctrl + F1</td>
+	    <td>Switch Camera to Player 1 Perspective</td>
+	</tr>
+	<tr>
+	    <td>Ctrl + F2</td>
+	    <td>Switch Camera to Player 2 Perspective</td>
+	</tr>
+	<tr>
+	    <td>Ctrl + F3</td>
+	    <td>Switch Camera to Side of the Table</td>
+	</tr>
+	<tr>
+	    <td>Ctrl + F4</td>
+	    <td>Switch Camera to Top of Table Perspective</td>
+	</tr>
+	<tr>
+	    <td>Ctrl + P</td>
+	    <td>Pause Game</td>
+	</tr>
     </tbody>
 </table>
