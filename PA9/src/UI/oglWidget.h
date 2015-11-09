@@ -73,8 +73,11 @@ private:
             int partId1,
             int index1)
         {
+            // silence unused variable noise
+            (void)partId0;(void)partId1;(void)index0;(void)index1;(void)colObj0Wrap;(void)colObj1Wrap;(void)cp;
             context->resetPuck();
             context->m_p1Score++;
+            // return doesn't actually do anything
             return 1.0f;
         }
 
@@ -95,8 +98,11 @@ private:
             int partId1,
             int index1)
         {
+            // silence unused variable noise
+            (void)partId0;(void)partId1;(void)index0;(void)index1;(void)colObj0Wrap;(void)colObj1Wrap;(void)cp;
             context->resetPuck();
             context->m_p2Score++;
+            // return doesn't actually do anything
             return 1.0f;
         }
 
