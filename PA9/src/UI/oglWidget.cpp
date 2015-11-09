@@ -15,9 +15,67 @@ OGLWidget::OGLWidget()
     // Allows keyboard input to fall through
     setFocusPolicy( Qt::ClickFocus );
 
-    // m_p1Team = "a";
-    // m_p2Team = "b";
-    m_p1Score = 1;
+    m_imgTeam1 = new QPixmap( m_pathToTeam1 );
+    m_p1Team = new QLabel( this );
+    m_p1Team->setPixmap( *m_imgTeam1 );
+    m_p1Team->setScaledContents( true );
+    m_imgTeam2 = new QPixmap( m_pathToTeam2 );
+    m_p2Team = new QLabel( this );
+    m_p2Team->setPixmap( *m_imgTeam2 );
+    m_p2Team->setScaledContents( true );
+
+    m_p1Score = 0;
+    m_p2Score = 0;
+
+    // Default camera view
+    camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
+    camera.rotate( 90.0f, 0.0f, 1.0f, 0.0f );
+    camera.translate( 55.8f, 56.7f, 1.74f );
+    renderables["Table"] = new HockeyTable();
+    renderables["Puck"] = new HockeyPuck();
+    renderables["Paddle"] = new HockeyPaddle( "Red" );
+    renderables["Paddle2"] = new HockeyPaddle( "Blue" );
+    renderables["Skybox"] = new Skybox();
+
+    // Note: Actual height of the table is around 30.5
+    // So all of these walls are underneath the table but are really tall
+    const btVector3 goalSize = btVector3(0.5,35,4.5);
+    // red goal
+    walls["Goal"] = new Wall(goalSize, btVector3(-30.5, 0, 1));
+    // blue goal
+    walls["Goal2"] = new Wall(goalSize, btVector3( 33.5, 0, 1));
+    // invisible wall in the middle is offset just a little bit to be in table's center
+    walls["Middle"] = new Wall(btVector3(0.5,35,20), btVector3(1,0,0)); 
+}
+
+/**
+ * @brief      Overloaded constructor, sets custom team logos.
+ *
+ * @param[in]  team1  Name of logo for team 1.
+ * @param[in]  team2  Name of logo for team 2.
+ */
+OGLWidget::OGLWidget( QString team1, QString team2 )
+{
+    m_pathToTeam1 = "images/Team Logos/" + team1 + ".png";
+    m_pathToTeam2 = "images/Team Logos/" + team2 + ".png";
+    
+    // Update the widget after a frameswap
+    connect( this, SIGNAL( frameSwapped() ),
+        this, SLOT( update() ) );
+
+    // Allows keyboard input to fall through
+    setFocusPolicy( Qt::ClickFocus );
+
+    m_imgTeam1 = new QPixmap( m_pathToTeam1 );
+    m_p1Team = new QLabel( this );
+    m_p1Team->setPixmap( *m_imgTeam1 );
+    m_p1Team->setScaledContents( true );
+    m_imgTeam2 = new QPixmap( m_pathToTeam2 );
+    m_p2Team = new QLabel( this );
+    m_p2Team->setPixmap( *m_imgTeam2 );
+    m_p2Team->setScaledContents( true );
+
+    m_p1Score = 0;
     m_p2Score = 0;
 
     // Default camera view
@@ -110,6 +168,11 @@ void OGLWidget::resizeGL( int width, int height )
                             float( width ) / float( height ),   // Aspect Ratio
                             0.001f,  // Near Plane (MUST BE GREATER THAN 0)
                             1500.0f );  // Far Plane
+
+    m_p1Team->setGeometry( QWidget::width() / 2 - m_p1Team->width() / 2 - 120, 
+        10, 80, 80 );    
+    m_p2Team->setGeometry( QWidget::width() / 2 - m_p2Team->width() / 2 + 120, 
+        10, 80, 80 );
 }
 
 /**
@@ -146,13 +209,6 @@ void OGLWidget::paintGL()
     painter.setFont( ConsolasFont );
     painter.drawText( rect, Qt::AlignHCenter, QString::number( m_p1Score ) 
         + " - " + QString::number( m_p2Score ) );
-    painter.setFont( NHLFont );
-    painter.setPen( QColor( 255, 0, 0, 255 ) );
-    painter.drawText( rect, Qt::AlignHCenter,  m_p1Team + 
-        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" );
-    painter.setPen( QColor( 0, 0, 255, 255 ) );
-    painter.drawText( rect, Qt::AlignHCenter, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" 
-        + m_p2Team );
 
     painter.endNativePainting();
 }

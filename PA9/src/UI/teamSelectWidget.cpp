@@ -136,7 +136,7 @@ TeamSelectWidget::TeamSelectWidget()
     m_signalMapper->setMapping( m_btnLogos[6], "Canucks" );
     m_signalMapper->setMapping( m_btnLogos[7], "Capitals" );
     m_signalMapper->setMapping( m_btnLogos[8], "Coyotes" );
-    m_signalMapper->setMapping( m_btnLogos[9], "Coyotes" );
+    m_signalMapper->setMapping( m_btnLogos[9], "Devils" );
     m_signalMapper->setMapping( m_btnLogos[10], "Ducks" );
     m_signalMapper->setMapping( m_btnLogos[11], "Flames" );
     m_signalMapper->setMapping( m_btnLogos[12], "Flyers" );

@@ -9,6 +9,8 @@
 #include <QFont>
 #include <QRect>
 #include <QFontDatabase>
+#include <QLabel>
+#include <QPixmap>
 
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -29,8 +31,6 @@
 #include "GameObjects/hockeyPaddle.h"
 #include "GameObjects/skybox.h"
 #include "GameObjects/wall.h"
-
-#include <iostream>
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions
@@ -141,7 +141,10 @@ private:
     const short m_MiddleCollidesWith = COL_PADDLE;
     const short m_GoalCollidesWith = (COL_PUCK);
 
-    QString m_p1Team, m_p2Team;
+    QString m_pathToTeam1 = "images/Team Logos/Avalanches.png";
+    QString m_pathToTeam2 = "images/Team Logos/Blackhawks.png";
+    QPixmap *m_imgTeam1, *m_imgTeam2;
+    QLabel *m_p1Team, *m_p2Team;
     int m_p1Score, m_p2Score;
 };
 

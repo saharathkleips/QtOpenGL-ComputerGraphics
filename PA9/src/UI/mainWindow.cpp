@@ -17,16 +17,6 @@ MainWindow::MainWindow()
 
     setMinimumSize( 800, 600 );
 
-    QSurfaceFormat format;
-    format.setDepthBufferSize( 24 );
-    format.setSwapBehavior( QSurfaceFormat::DoubleBuffer );
-    format.setRenderableType( QSurfaceFormat::OpenGL );
-    format.setProfile( QSurfaceFormat::NoProfile );
-    format.setVersion( 2,1 );
-
-    oglWidget = new OGLWidget();
-    oglWidget->setFormat( format );
-
     mainMenuWidget = new MainMenuWidget();
 
     teamSelectWidget = new TeamSelectWidget(); 
@@ -36,7 +26,6 @@ MainWindow::MainWindow()
     createMenuBar();
 
     setCentralWidget( mainMenuWidget );
-    setMenuBar( menuBar );
 
     connect( mainMenuWidget, SIGNAL( clickedSinglePlayer() ), 
         this, SLOT( swapToTeamSelect() ) );
@@ -63,8 +52,18 @@ void MainWindow::swapToTeamSelect()
 
 void MainWindow::swapToGame( QString team1, QString team2 )
 {
-    qDebug() << team1 << team2;
+    QSurfaceFormat format;
+    format.setDepthBufferSize( 24 );
+    format.setSwapBehavior( QSurfaceFormat::DoubleBuffer );
+    format.setRenderableType( QSurfaceFormat::OpenGL );
+    format.setProfile( QSurfaceFormat::NoProfile );
+    format.setVersion( 2,1 );
+
+    oglWidget = new OGLWidget( team1, team2 );
+    oglWidget->setFormat( format );
+
     setCentralWidget( oglWidget );
+    setMenuBar( menuBar );
     if( teamSelectWidget != NULL )
     {
         delete teamSelectWidget;
