@@ -35,6 +35,7 @@ class OGLWidget    :    public QOpenGLWidget,
 
 public:
     OGLWidget();
+    OGLWidget( QString team1, QString team2 );
     ~OGLWidget();
 
     virtual void initializeGL();
@@ -80,6 +81,9 @@ private:
     const short m_TableCollidesWith = (COL_PUCK | COL_PADDLE);
     const short m_PuckCollidesWith = (COL_TABLE | COL_PADDLE);
     const short m_PaddleCollidesWith = (COL_TABLE | COL_PUCK);
+
+    QString m_p1Team, m_p2Team;
+    int m_p1Score, m_p2Score;
 };
 
 #endif  //  OGL_WIDGET_H
