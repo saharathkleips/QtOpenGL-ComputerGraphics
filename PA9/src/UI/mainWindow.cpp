@@ -29,6 +29,8 @@ MainWindow::MainWindow()
 
     mainMenuWidget = new MainMenuWidget();
 
+    teamSelectWidget = new TeamSelectWidget(); 
+
     createActions();
     createMenus();
     createMenuBar();
@@ -37,11 +39,13 @@ MainWindow::MainWindow()
     setMenuBar( menuBar );
 
     connect( mainMenuWidget, SIGNAL( clickedSinglePlayer() ), 
-        this, SLOT( swapToGame() ) );
+        this, SLOT( swapToTeamSelect() ) );
     connect( mainMenuWidget, SIGNAL( clickedTwoPlayer() ), 
-        this, SLOT( swapToGame() ) );
+        this, SLOT( swapToTeamSelect() ) );
     connect( mainMenuWidget, SIGNAL( clickedExit() ), 
         QApplication::instance(), SLOT( quit() ) );
+    connect( teamSelectWidget, SIGNAL( selectedTeams( QString, QString ) ),
+        this, SLOT( swapToGame( QString, QString ) ) );
 }
 
 //
@@ -49,16 +53,22 @@ MainWindow::MainWindow()
 //
 void MainWindow::swapToTeamSelect()
 {
-
-}
-
-void MainWindow::swapToGame()
-{
-    setCentralWidget( oglWidget );
+    setCentralWidget( teamSelectWidget );
     if( mainMenuWidget != NULL )
     {
         delete mainMenuWidget;
         mainMenuWidget = NULL;
+    }
+}
+
+void MainWindow::swapToGame( QString team1, QString team2 )
+{
+    qDebug() << team1 << team2;
+    setCentralWidget( oglWidget );
+    if( teamSelectWidget != NULL )
+    {
+        delete teamSelectWidget;
+        teamSelectWidget = NULL;
     }
 }
 
