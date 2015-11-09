@@ -28,9 +28,8 @@ OGLWidget::OGLWidget()
     m_p2Score = 0;
 
     // Default camera view
-    camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
-    camera.rotate( 90.0f, 0.0f, 1.0f, 0.0f );
-    camera.translate( 55.8f, 56.7f, 1.74f );
+    setPerspective( 0 );
+
     renderables["Table"] = new HockeyTable();
     renderables["Puck"] = new HockeyPuck();
     renderables["Paddle"] = new HockeyPaddle( "Red" );
@@ -83,9 +82,8 @@ OGLWidget::OGLWidget( QString team1, QString team2 )
     m_p2Score = 0;
 
     // Default camera view
-    camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
-    camera.rotate( 90.0f, 0.0f, 1.0f, 0.0f );
-    camera.translate( 55.8f, 56.7f, 1.74f );
+    setPerspective( 0 );
+
     renderables["Table"] = new HockeyTable();
     renderables["Puck"] = new HockeyPuck();
     renderables["Paddle"] = new HockeyPaddle( "Red" );
@@ -328,6 +326,34 @@ void OGLWidget::update()
 
     QOpenGLWidget::update();
 }
+
+void OGLWidget::setPerspective( int perspective )
+{
+    switch( perspective )
+    {
+        //Behind player 1
+        case 0:
+        camera.setRotation( -40.0f, 1.0f, 0.0f, 0.0f );
+        camera.rotate( -90.0f, 0.0f, 1.0f, 0.0f );
+        camera.setTranslation( -55.8f, 56.7f, 2.0f );
+        break;
+        //Behind player 2
+        case 1:
+        camera.setRotation( -40.0f, 1.0f, 0.0f, 0.0f );
+        camera.rotate( 90.0f, 0.0f, 1.0f, 0.0f );
+        camera.setTranslation( 55.8f, 56.7f, 2.0f );
+        break;
+        //Side perspective
+        case 2:
+        break;
+        //Top down perspective
+        case 3:
+        break;
+        default:
+        break;
+    }
+}
+
 //
 // INPUT EVENTS ////////////////////////////////////////////////////////////////
 // 

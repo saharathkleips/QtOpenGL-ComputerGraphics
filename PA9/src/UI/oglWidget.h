@@ -49,6 +49,9 @@ public:
     virtual void paintGL();
     virtual void teardownGL();
 
+public slots:
+    void setPerspective( int perspective );
+
 protected slots:
     void update();
 
@@ -123,6 +126,7 @@ private:
             int partId1,
             int index1)
         {
+            (void)partId0;(void)partId1;(void)index0;(void)index1;(void)colObj0Wrap;(void)colObj1Wrap;(void)cp;
             context->puckContactSound();
             return 1.0f;
         }

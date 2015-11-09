@@ -6,6 +6,8 @@
 #include <QMenu>
 #include <QAction>
 #include <QActionGroup>
+#include <QKeySequence>
+#include <QSignalMapper>
 
 #include "mainMenuWidget.h"
 #include "teamSelectWidget.h"
@@ -34,7 +36,16 @@ private:
 
     QMenuBar* menuBar;
     QMenu* menuFile;
+    QAction* actionPauseProgram;
     QAction* actionExitProgram;
+
+    QMenu* menuCamera;
+
+    QSignalMapper* m_signalMapper;
+    QAction* actionSideAngled;
+    QAction* actionBehindPlayer1;
+    QAction* actionBehindPlayer2;
+    QAction* actionTopDown;
 };
 
 #endif  //  MAIN_WINDOW_H

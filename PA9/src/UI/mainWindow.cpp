@@ -17,8 +17,8 @@ MainWindow::MainWindow()
 
     setMinimumSize( 800, 600 );
 
+    oglWidget = new OGLWidget();
     mainMenuWidget = new MainMenuWidget();
-
     teamSelectWidget = new TeamSelectWidget(); 
 
     createActions();
@@ -62,6 +62,23 @@ void MainWindow::swapToGame( QString team1, QString team2 )
     oglWidget = new OGLWidget( team1, team2 );
     oglWidget->setFormat( format );
 
+    m_signalMapper = new QSignalMapper( oglWidget );
+    connect( actionSideAngled, SIGNAL ( triggered() ),
+        m_signalMapper, SLOT( map() ) );
+    m_signalMapper->setMapping( actionSideAngled, 2 );    
+    connect( actionBehindPlayer1, SIGNAL ( triggered() ),
+        m_signalMapper, SLOT( map() ) );
+    m_signalMapper->setMapping( actionBehindPlayer1, 0 );
+    connect( actionBehindPlayer2, SIGNAL ( triggered() ),
+        m_signalMapper, SLOT( map() ) );
+    m_signalMapper->setMapping( actionBehindPlayer2, 1 );
+        connect( actionTopDown, SIGNAL ( triggered() ),
+        m_signalMapper, SLOT( map() ) );
+    m_signalMapper->setMapping( actionTopDown, 3 );
+
+    connect( m_signalMapper, SIGNAL( mapped( int ) ),
+        oglWidget, SLOT( setPerspective( int ) ) );
+
     setCentralWidget( oglWidget );
     setMenuBar( menuBar );
     if( teamSelectWidget != NULL )
@@ -85,6 +102,24 @@ void MainWindow::createActions()
     actionExitProgram->setStatusTip( "Exits the program." );
     connect( actionExitProgram, SIGNAL( triggered() ), 
         QApplication::instance(), SLOT( quit() ) );
+
+
+
+    actionSideAngled = new QAction( "Side Perspective", this );
+    actionSideAngled->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_F3 ) );
+    actionSideAngled->setStatusTip( "View the table from the side." );
+
+    actionBehindPlayer1 = new QAction( "Player 1 Perspective", this );
+    actionBehindPlayer1->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_F1 ) );
+    actionBehindPlayer1->setStatusTip( "View the table from behind player 1." );
+
+    actionBehindPlayer2 = new QAction( "Player 2 Perspective", this );
+    actionBehindPlayer2->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_F2 ) );
+    actionBehindPlayer2->setStatusTip( "View the table from behind player 2." );
+
+    actionTopDown = new QAction( "Top Down Perspective", this );
+    actionTopDown->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_F4 ) );
+    actionTopDown->setStatusTip( "View the table from top down." );
 }
 
 /**
@@ -94,6 +129,12 @@ void MainWindow::createMenus()
 {
     menuFile = new QMenu( "&File" );
     menuFile->addAction( actionExitProgram );
+
+    menuCamera = new QMenu( "&Camera" );
+    menuCamera->addAction( actionBehindPlayer1 );
+    menuCamera->addAction( actionBehindPlayer2 );
+    menuCamera->addAction( actionTopDown );
+    menuCamera->addAction( actionSideAngled );
 }
 
 /**
@@ -103,4 +144,5 @@ void MainWindow::createMenuBar()
 {
     menuBar = new QMenuBar();
     menuBar->addMenu( menuFile );
+    menuBar->addMenu( menuCamera );
 }
