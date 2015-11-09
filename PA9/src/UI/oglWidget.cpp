@@ -1,5 +1,5 @@
 #include "oglWidget.h"
-
+#include <iostream>
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
@@ -18,7 +18,8 @@ OGLWidget::OGLWidget()
 
     // Default camera view
     camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
-    camera.translate( 0.0f, 75.0f, 65.0f );
+    camera.rotate( 90.0f, 0.0f, 1.0f, 0.0f );
+    camera.translate( 55.8f, 56.7f, 1.74f );
     renderables["Table"] = new HockeyTable();
     renderables["Puck"] = new HockeyPuck();
     renderables["Paddle"] = new HockeyPaddle( "Red" );
@@ -141,6 +142,7 @@ void OGLWidget::update()
     else if( Input::keyPressed( Qt::Key_Down ) ){
         linearVelocity[0] = 5;
     }
+
     if( Input::keyPressed( Qt::Key_Left ) ){
         linearVelocity[2] = 5;
     }
@@ -270,6 +272,7 @@ void OGLWidget::flyThroughCamera()
     if( Input::keyPressed( Qt::Key_E ) )
         cameraTranslations += camera.up();
     camera.translate( cameraTranslationSpeed * cameraTranslations );
+    
 } 
 
 /**

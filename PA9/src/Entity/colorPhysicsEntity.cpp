@@ -25,6 +25,8 @@ ColorPhysicsEntity::ColorPhysicsEntity( btTransform startingState,
     m_rigidBodyCI = new btRigidBody::btRigidBodyConstructionInfo( 
         m_mass, m_motionState, m_collisionShape, m_inertia );
 
+    m_rigidBodyCI->m_restitution = 0.95f;
+
     RigidBody = new btRigidBody( *m_rigidBodyCI );
 
     if( mass == 0 )
