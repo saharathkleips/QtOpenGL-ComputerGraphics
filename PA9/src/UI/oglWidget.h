@@ -75,7 +75,7 @@ private:
         {
             // silence unused variable noise
             (void)partId0;(void)partId1;(void)index0;(void)index1;(void)colObj0Wrap;(void)colObj1Wrap;(void)cp;
-            context->resetPuck();
+            context->processGoal();
             context->m_p1Score++;
             // return doesn't actually do anything
             return 1.0f;
@@ -100,7 +100,7 @@ private:
         {
             // silence unused variable noise
             (void)partId0;(void)partId1;(void)index0;(void)index1;(void)colObj0Wrap;(void)colObj1Wrap;(void)cp;
-            context->resetPuck();
+            context->processGoal();
             context->m_p2Score++;
             // return doesn't actually do anything
             return 1.0f;
@@ -115,7 +115,7 @@ private:
     void flyThroughCamera();
     void controlObject();
     void printContextInfo();
-    void resetPuck();
+    void processGoal();
 
     // OpenGL Objects
     QMap<QString, Renderable*> renderables;
