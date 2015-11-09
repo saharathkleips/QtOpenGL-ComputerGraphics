@@ -47,6 +47,7 @@ HEADERS += \
     ../src/GameObjects/hockeyPuck.h \
     ../src/GameObjects/hockeyPaddle.h \
     #UI
+    ../src/UI/mainMenuWidget.h \
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h
 
@@ -70,6 +71,7 @@ SOURCES += \
     ../src/GameObjects/hockeyPuck.cpp \
     ../src/GameObjects/hockeyPaddle.cpp \
     #UI
+    ../src/UI/mainMenuWidget.cpp \
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
     #Main

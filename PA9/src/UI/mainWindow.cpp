@@ -12,6 +12,11 @@
  */
 MainWindow::MainWindow()
 {
+    // Load Fonts
+    QFontDatabase::addApplicationFont( ":/fonts/NHL.ttf" );
+
+    setMinimumSize( 800, 600 );
+
     QSurfaceFormat format;
     format.setDepthBufferSize( 24 );
     format.setSwapBehavior( QSurfaceFormat::DoubleBuffer );
@@ -22,12 +27,39 @@ MainWindow::MainWindow()
     oglWidget = new OGLWidget();
     oglWidget->setFormat( format );
 
+    mainMenuWidget = new MainMenuWidget();
+
     createActions();
     createMenus();
     createMenuBar();
 
-    setCentralWidget( oglWidget );
+    setCentralWidget( mainMenuWidget );
     setMenuBar( menuBar );
+
+    connect( mainMenuWidget, SIGNAL( clickedSinglePlayer() ), 
+        this, SLOT( swapToGame() ) );
+    connect( mainMenuWidget, SIGNAL( clickedTwoPlayer() ), 
+        this, SLOT( swapToGame() ) );
+    connect( mainMenuWidget, SIGNAL( clickedExit() ), 
+        QApplication::instance(), SLOT( quit() ) );
+}
+
+//
+// PUBILC SLOTS ////////////////////////////////////////////////////////////////
+//
+void MainWindow::swapToTeamSelect()
+{
+
+}
+
+void MainWindow::swapToGame()
+{
+    setCentralWidget( oglWidget );
+    if( mainMenuWidget != NULL )
+    {
+        delete mainMenuWidget;
+        mainMenuWidget = NULL;
+    }
 }
 
 //
