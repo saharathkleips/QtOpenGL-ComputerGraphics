@@ -15,6 +15,8 @@
 
 #include <QMap>
 #include <QMatrix4x4>
+#include <QMediaPlayer>
+#include <QFileInfo>
 
 #include <QDebug>
 #include <QString>
@@ -120,6 +122,9 @@ private:
     btCollisionDispatcher* m_dispatcher;
     btSequentialImpulseConstraintSolver* m_solver;
     btDiscreteDynamicsWorld* m_dynamicsWorld;
+
+    // media player
+    QMediaPlayer *player;
 
     /* Collision information */
     const short COL_NOTHING = 0;

@@ -33,7 +33,11 @@ OGLWidget::OGLWidget()
     // blue goal
     walls["Goal2"] = new Wall(goalSize, btVector3( 33.5, 0, 1));
     // invisible wall in the middle is offset just a little bit to be in table's center
-    walls["Middle"] = new Wall(btVector3(0.5,35,20), btVector3(1,0,0)); 
+    walls["Middle"] = new Wall(btVector3(0.5,35,20), btVector3(1,0,0));
+
+    // create sound player
+	player = new QMediaPlayer(); 
+
 }
 
 /**
@@ -400,6 +404,11 @@ void OGLWidget::printContextInfo()
 
 void OGLWidget::resetPuck()
 {
+    const QString file = "sounds/goal.mp3";
+    QUrl url = QUrl::fromLocalFile(QFileInfo(file).absoluteFilePath());
+    player->setMedia(url);
+    player->setVolume(800);	 
+    player->play();
     btTransform startingState = btTransform( btQuaternion( 0, 0, 0, 1 ), 
         btVector3( 0, 30.5, 0 ) );
 
