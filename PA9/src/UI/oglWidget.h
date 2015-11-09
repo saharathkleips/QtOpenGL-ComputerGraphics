@@ -56,7 +56,7 @@ protected:
     void mouseReleaseEvent( QMouseEvent* event );
 
 private:
-    struct MyContactResultCallback : public btCollisionWorld::ContactResultCallback
+    struct GoalCallback : public btCollisionWorld::ContactResultCallback
     {
         btScalar addSingleResult(btManifoldPoint& cp,
             const btCollisionObjectWrapper* colObj0Wrap,
@@ -67,10 +67,26 @@ private:
             int index1)
         {
             // your callback code here
-            std::cout << "GOAL" << std::endl;
+            std::cout << "GOAL RED" << std::endl;
         }
     };
-    MyContactResultCallback callback;
+
+    struct Goal2Callback : public btCollisionWorld::ContactResultCallback
+    {
+        btScalar addSingleResult(btManifoldPoint& cp,
+            const btCollisionObjectWrapper* colObj0Wrap,
+            int partId0,
+            int index0,
+            const btCollisionObjectWrapper* colObj1Wrap,
+            int partId1,
+            int index1)
+        {
+            std::cout << "GOAL BLUE" << std::endl;
+        }
+    };
+
+    GoalCallback goalCallback;
+    Goal2Callback goal2Callback;
     
 
     void initializeBullet();
@@ -109,11 +125,10 @@ private:
     // Renderables
     const short m_TableCollidesWith = ( COL_PUCK | COL_PADDLE );
     const short m_PuckCollidesWith = ( COL_TABLE | COL_PADDLE | COL_GOAL );
-    //// paddle shouldn't collide with goal but this is for testing    
-    const short m_PaddleCollidesWith = ( COL_TABLE | COL_PUCK | COL_MIDDLE | COL_GOAL ); 
+    const short m_PaddleCollidesWith = ( COL_TABLE | COL_PUCK | COL_MIDDLE ); 
     // Walls
     const short m_MiddleCollidesWith = COL_PADDLE;
-    const short m_GoalCollidesWith = (COL_PUCK | COL_PADDLE);
+    const short m_GoalCollidesWith = (COL_PUCK);
 
 };
 

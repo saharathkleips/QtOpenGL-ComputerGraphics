@@ -206,11 +206,23 @@ void OGLWidget::update()
 
     m_dynamicsWorld->stepSimulation( 1, 10 );
 
+    m_dynamicsWorld->contactTest(
+        walls["Goal"]->RigidBody,
+        goalCallback
+    );
+
+    m_dynamicsWorld->contactTest(
+        walls["Goal2"]->RigidBody,
+        goal2Callback
+    );
+
+    /* Example of contactPairTest
     m_dynamicsWorld->contactPairTest( 
         ((HockeyPaddle*)renderables["Paddle2"])->RigidBody,
         ((HockeyPuck*)renderables["Puck"])->RigidBody,
         callback
     );
+    */
 
     QOpenGLWidget::update();
 }
