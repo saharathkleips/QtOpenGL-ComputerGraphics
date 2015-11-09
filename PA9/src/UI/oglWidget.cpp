@@ -27,12 +27,14 @@ OGLWidget::OGLWidget()
     renderables["Skybox"] = new Skybox();
 
 
-    btVector3 goalSize = btVector3(1.0, 10.0, 3.0);
+    const btVector3 goalSize = btVector3(0.5,50,4.5);
     btVector3 stublocation = btVector3(0.0, 0.0, 0.0);
-    // SET LOCATIONS
+    
     walls["Goal"] = new Wall(goalSize, stublocation);
     walls["Goal2"] = new Wall(goalSize, stublocation);
-    walls["Middle"] = new Wall(btVector3(1,50,50), btVector3(0,0,0)); 
+
+    // invisible wall in the middle is offset just a little bit to be in table's center
+    walls["Middle"] = new Wall(btVector3(0.5,50,20), btVector3(1,0,0)); 
 }
 
 /**
