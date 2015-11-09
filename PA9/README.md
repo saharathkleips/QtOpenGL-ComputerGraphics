@@ -1,6 +1,9 @@
 # PA9 - Air Hockey (Ben Nicholes, Denis Morozov, Saharath Kleips)
 ## UPDATE THIS
 
+## Notes
++ Single Player is disabled
+
 ## Extra Credit
 + Sound for Hockey Table, Puck Collisions, and Goals
 + Main Menu

@@ -49,3 +49,9 @@ Note: The version string should now contain Mesa rather than Chromium.
 Download and install VMWare Workstation Player 12.  
 Migrate your current virtual machine image and boot from VMWare.  
 Install VMWare tools.  
+
+**Segmentation Fault after Team Select:**
+A very rare occurence happens after team select resulting in a segmentation fault.  
+The segmentation fault is in QSignalMapper::map(QObject*) ()
+This is an rare occurence and running the program again should bypass the issue.
+
