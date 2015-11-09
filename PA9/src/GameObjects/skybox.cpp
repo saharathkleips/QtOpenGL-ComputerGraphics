@@ -6,9 +6,9 @@
 
 
 Skybox::Skybox()
-    :   UVEntity( "models/skybox.obj", "textures/skyboxmap.jpg" )
+    :   UVEntity( "models/skybox.obj", "textures/room.jpg" )
 {
-    GTransform.setScale( 10.0f );
+    GTransform.setScale( 400.0f );
 }
 
 
