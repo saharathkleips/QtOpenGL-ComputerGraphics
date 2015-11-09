@@ -51,7 +51,8 @@ HEADERS += \
     #UI
     ../src/UI/mainMenuWidget.h \
     ../src/UI/mainWindow.h \
-    ../src/UI/oglWidget.h
+    ../src/UI/oglWidget.h \
+    ../src/UI/teamSelectWidget.h
 
 #A list of source code files to be used when building the project.
 SOURCES += \
@@ -78,6 +79,7 @@ SOURCES += \
     ../src/UI/mainMenuWidget.cpp \
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
+    ../src/UI/teamSelectWidget.cpp \
     #Main
     ../src/main.cpp
 

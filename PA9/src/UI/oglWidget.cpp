@@ -15,6 +15,11 @@ OGLWidget::OGLWidget()
     // Allows keyboard input to fall through
     setFocusPolicy( Qt::ClickFocus );
 
+    // m_p1Team = "a";
+    // m_p2Team = "b";
+    m_p1Score = 1;
+    m_p2Score = 0;
+
     // Default camera view
     camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
     camera.rotate( 90.0f, 0.0f, 1.0f, 0.0f );
@@ -139,13 +144,15 @@ void OGLWidget::paintGL()
 
     painter.setPen( QColor( 255, 255, 255, 255 ) );
     painter.setFont( ConsolasFont );
-    painter.drawText( rect, Qt::AlignHCenter, "0 - 0" );
-    
+    painter.drawText( rect, Qt::AlignHCenter, QString::number( m_p1Score ) 
+        + " - " + QString::number( m_p2Score ) );
     painter.setFont( NHLFont );
     painter.setPen( QColor( 255, 0, 0, 255 ) );
-    painter.drawText( rect, Qt::AlignLeft, "\t\t\t\td" );
+    painter.drawText( rect, Qt::AlignHCenter,  m_p1Team + 
+        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" );
     painter.setPen( QColor( 0, 0, 255, 255 ) );
-    painter.drawText( rect, Qt::AlignRight, "e\t\t\t\t" );
+    painter.drawText( rect, Qt::AlignHCenter, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" 
+        + m_p2Team );
 
     painter.endNativePainting();
 }
