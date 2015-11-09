@@ -44,6 +44,7 @@ HEADERS += \
     #GameObjects
     ../src/GameObjects/hockeyTable.h \
     #UI
+    ../src/UI/mainMenuWidget.h \
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h
 
@@ -65,6 +66,7 @@ SOURCES += \
     #GameObjects
     ../src/GameObjects/hockeyTable.cpp \
     #UI
+    ../src/UI/mainMenuWidget.cpp \
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
     #Main
