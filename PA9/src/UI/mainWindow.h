@@ -8,6 +8,7 @@
 #include <QActionGroup>
 
 #include "mainMenuWidget.h"
+#include "teamSelectWidget.h"
 #include "oglWidget.h"
 
 class MainWindow : public QMainWindow
@@ -19,7 +20,7 @@ public:
 
 public slots:
     void swapToTeamSelect();
-    void swapToGame();
+    void swapToGame( QString team1, QString team2 );
 
 private:
     void createActions();
@@ -29,6 +30,7 @@ private:
 
     OGLWidget* oglWidget;
     MainMenuWidget* mainMenuWidget;
+    TeamSelectWidget* teamSelectWidget;
 
     QMenuBar* menuBar;
     QMenu* menuFile;
