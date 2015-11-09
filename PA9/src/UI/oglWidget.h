@@ -58,6 +58,10 @@ protected:
 private:
     struct GoalCallback : public btCollisionWorld::ContactResultCallback
     {
+        GoalCallback(OGLWidget* scopePtr) : context(scopePtr)
+        {            
+        }
+
         btScalar addSingleResult(btManifoldPoint& cp,
             const btCollisionObjectWrapper* colObj0Wrap,
             int partId0,
@@ -66,13 +70,18 @@ private:
             int partId1,
             int index1)
         {
-            // your callback code here
-            std::cout << "GOAL RED" << std::endl;
+            context->resetPuck();
         }
+
+        OGLWidget* context;
     };
 
     struct Goal2Callback : public btCollisionWorld::ContactResultCallback
     {
+        Goal2Callback(OGLWidget* scopePtr) : context(scopePtr)
+        {            
+        }
+
         btScalar addSingleResult(btManifoldPoint& cp,
             const btCollisionObjectWrapper* colObj0Wrap,
             int partId0,
@@ -81,12 +90,11 @@ private:
             int partId1,
             int index1)
         {
-            std::cout << "GOAL BLUE" << std::endl;
+            context->resetPuck();
         }
-    };
 
-    GoalCallback goalCallback;
-    Goal2Callback goal2Callback;
+        OGLWidget* context;
+    };
     
 
     void initializeBullet();
@@ -94,6 +102,7 @@ private:
     void flyThroughCamera();
     void controlObject();
     void printContextInfo();
+    void resetPuck();
 
     // OpenGL Objects
     QMap<QString, Renderable*> renderables;
