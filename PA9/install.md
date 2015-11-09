@@ -46,6 +46,11 @@ Restart your terminal.
 sudo apt-get install libassimp-dev
 ```
 
+**Gstreamer Install**
+sudo add-apt-repository ppa:gstreamer-developers/ppa
+sudo apt-get update
+sudo apt-get install gstreamer1.0
+
 ## Ubuntu 12.04 LTS
 Tested with a clean install of Ubuntu 12.04 x64 LTS on VirtualBox 5.0.2r102096 with Guest Additions installed and Windows 8.1 x64 host.  
 

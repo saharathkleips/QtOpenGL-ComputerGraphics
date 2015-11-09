@@ -1,5 +1,5 @@
 #include "oglWidget.h"
-
+#include <iostream>
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
@@ -21,8 +21,12 @@ OGLWidget::OGLWidget()
 
     // Default camera view
     camera.rotate( -40.0f, 1.0f, 0.0f, 0.0f );
-    camera.translate( 0.0f, 75.0f, 65.0f );
+    camera.rotate( 90.0f, 0.0f, 1.0f, 0.0f );
+    camera.translate( 55.8f, 56.7f, 1.74f );
     renderables["Table"] = new HockeyTable();
+    renderables["Puck"] = new HockeyPuck();
+    renderables["Paddle"] = new HockeyPaddle( "Red" );
+    renderables["Paddle2"] = new HockeyPaddle( "Blue" );
 }
 
 /**
@@ -55,8 +59,18 @@ void OGLWidget::initializeGL()
         (*iter)->initializeGL();
     }
 
-    //m_dynamicsWorld->addRigidBody(
-    //    PHYSICS_ENTITY->RigidBody, COLLISION_BIT, COLLISION_MASK );
+    m_dynamicsWorld->addRigidBody(
+        ((HockeyTable*)renderables["Table"])->RigidBody, COL_TABLE, m_TableCollidesWith
+    );
+    m_dynamicsWorld->addRigidBody(
+        ((HockeyPuck*)renderables["Puck"])->RigidBody, COL_PUCK, m_PuckCollidesWith
+    );
+    m_dynamicsWorld->addRigidBody(
+        ((HockeyPaddle*)renderables["Paddle"])->RigidBody, COL_PADDLE, m_PaddleCollidesWith
+    );
+    m_dynamicsWorld->addRigidBody(
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody, COL_PADDLE, m_PaddleCollidesWith
+    );
 }
 
 /**
@@ -142,6 +156,29 @@ void OGLWidget::update()
 
     flyThroughCamera();
 
+    btVector3 linearVelocity(0,0,0);
+
+    if( Input::keyPressed( Qt::Key_Up ) )
+    {
+        linearVelocity[0] = -5;
+
+    }
+    else if( Input::keyPressed( Qt::Key_Down ) ){
+        linearVelocity[0] = 5;
+    }
+
+    if( Input::keyPressed( Qt::Key_Left ) ){
+        linearVelocity[2] = 5;
+    }
+    else if( Input::keyPressed( Qt::Key_Right ) )
+    {
+        linearVelocity[2] = -5;
+    }
+
+    ((HockeyPaddle*)renderables["Paddle2"])->RigidBody->setLinearVelocity(
+        linearVelocity
+    );
+
     for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
         iter != renderables.end(); iter++ )
     {
@@ -152,7 +189,6 @@ void OGLWidget::update()
 
     QOpenGLWidget::update();
 }
-
 //
 // INPUT EVENTS ////////////////////////////////////////////////////////////////
 // 
@@ -216,7 +252,7 @@ void OGLWidget::initializeBullet()
     m_dynamicsWorld = new btDiscreteDynamicsWorld( m_dispatcher, m_broadphase,
         m_solver, m_collisionConfig );
 
-    m_dynamicsWorld->setGravity( btVector3( 0, -0.5, 0 ) );
+    m_dynamicsWorld->setGravity( btVector3( 0, -9.8, 0 ) );
 }
 
 void OGLWidget::teardownBullet()
@@ -260,6 +296,7 @@ void OGLWidget::flyThroughCamera()
     if( Input::keyPressed( Qt::Key_E ) )
         cameraTranslations += camera.up();
     camera.translate( cameraTranslationSpeed * cameraTranslations );
+    
 } 
 
 /**
