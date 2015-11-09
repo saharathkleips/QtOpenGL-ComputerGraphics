@@ -22,6 +22,7 @@
 #include "GameObjects/hockeyTable.h"
 #include "GameObjects/hockeyPuck.h"
 #include "GameObjects/hockeyPaddle.h"
+#include "GameObjects/skybox.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions

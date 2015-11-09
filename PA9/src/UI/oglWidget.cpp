@@ -24,6 +24,7 @@ OGLWidget::OGLWidget()
     renderables["Puck"] = new HockeyPuck();
     renderables["Paddle"] = new HockeyPaddle( "Red" );
     renderables["Paddle2"] = new HockeyPaddle( "Blue" );
+    renderables["Skybox"] = new Skybox();
 }
 
 /**
