@@ -46,6 +46,8 @@ HEADERS += \
     ../src/GameObjects/hockeyTable.h \
     ../src/GameObjects/hockeyPuck.h \
     ../src/GameObjects/hockeyPaddle.h \
+    ../src/GameObjects/skybox.h \
+    ../src/GameObjects/wall.h \
     #UI
     ../src/UI/mainMenuWidget.h \
     ../src/UI/mainWindow.h \
@@ -71,6 +73,8 @@ SOURCES += \
     ../src/GameObjects/hockeyTable.cpp \
     ../src/GameObjects/hockeyPuck.cpp \
     ../src/GameObjects/hockeyPaddle.cpp \
+    ../src/GameObjects/skybox.cpp \
+    ../src/GameObjects/wall.cpp \
     #UI
     ../src/UI/mainMenuWidget.cpp \
     ../src/UI/mainWindow.cpp \

@@ -75,6 +75,11 @@ void UVEntity::initializeGL()
 
 void UVEntity::paintGL( Camera3D& camera, QMatrix4x4& projection )
 {
+    glEnable( GL_DEPTH_TEST );
+    glDepthFunc( GL_LEQUAL );
+    glDepthMask( GL_TRUE );
+    glDisable( GL_CULL_FACE );
+
     m_program->bind();
 
     m_program->setUniformValue( m_worldEye, camera.toMatrix() );

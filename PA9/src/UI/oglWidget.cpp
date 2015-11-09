@@ -1,5 +1,4 @@
 #include "oglWidget.h"
-#include <iostream>
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
@@ -29,6 +28,17 @@ OGLWidget::OGLWidget()
     renderables["Puck"] = new HockeyPuck();
     renderables["Paddle"] = new HockeyPaddle( "Red" );
     renderables["Paddle2"] = new HockeyPaddle( "Blue" );
+    renderables["Skybox"] = new Skybox();
+
+    // Note: Actual height of the table is around 30.5
+    // So all of these walls are underneath the table but are really tall
+    const btVector3 goalSize = btVector3(0.5,35,4.5);
+    // red goal
+    walls["Goal"] = new Wall(goalSize, btVector3(-30.5, 0, 1));
+    // blue goal
+    walls["Goal2"] = new Wall(goalSize, btVector3( 33.5, 0, 1));
+    // invisible wall in the middle is offset just a little bit to be in table's center
+    walls["Middle"] = new Wall(btVector3(0.5,35,20), btVector3(1,0,0)); 
 }
 
 /**
@@ -61,6 +71,7 @@ void OGLWidget::initializeGL()
         (*iter)->initializeGL();
     }
 
+    // renderables
     m_dynamicsWorld->addRigidBody(
         ((HockeyTable*)renderables["Table"])->RigidBody, COL_TABLE, m_TableCollidesWith
     );
@@ -72,6 +83,17 @@ void OGLWidget::initializeGL()
     );
     m_dynamicsWorld->addRigidBody(
         ((HockeyPaddle*)renderables["Paddle2"])->RigidBody, COL_PADDLE, m_PaddleCollidesWith
+    );
+
+    // walls
+    m_dynamicsWorld->addRigidBody(
+        walls["Goal"]->RigidBody, COL_GOAL, m_GoalCollidesWith
+    );
+    m_dynamicsWorld->addRigidBody(
+        walls["Goal2"]->RigidBody, COL_GOAL, m_GoalCollidesWith
+    );
+    m_dynamicsWorld->addRigidBody(
+        walls["Middle"]->RigidBody, COL_MIDDLE, m_MiddleCollidesWith
     );
 }
 
@@ -183,6 +205,29 @@ void OGLWidget::update()
         linearVelocity
     );
 
+    btVector3 linearVelocity2(0,0,0);
+
+    if( Input::keyPressed( Qt::Key_I ) )
+    {
+        linearVelocity2[0] = -5;
+
+    }
+    else if( Input::keyPressed( Qt::Key_K ) ){
+        linearVelocity2[0] = 5;
+    }
+
+    if( Input::keyPressed( Qt::Key_J ) ){
+        linearVelocity2[2] = 5;
+    }
+    else if( Input::keyPressed( Qt::Key_L ) )
+    {
+        linearVelocity2[2] = -5;
+    }
+
+    ((HockeyPaddle*)renderables["Paddle"])->RigidBody->setLinearVelocity(
+        linearVelocity2
+    );
+
     for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
         iter != renderables.end(); iter++ )
     {
@@ -190,6 +235,26 @@ void OGLWidget::update()
     }
 
     m_dynamicsWorld->stepSimulation( 1, 10 );
+
+    GoalCallback goalCallback(this);
+    m_dynamicsWorld->contactTest(
+        walls["Goal"]->RigidBody,
+        goalCallback
+    );
+
+    Goal2Callback goal2Callback(this);
+    m_dynamicsWorld->contactTest(
+        walls["Goal2"]->RigidBody,
+        goal2Callback
+    );
+
+    /* Example of contactPairTest
+    m_dynamicsWorld->contactPairTest( 
+        ((HockeyPaddle*)renderables["Paddle2"])->RigidBody,
+        ((HockeyPuck*)renderables["Puck"])->RigidBody,
+        callback
+    );
+    */
 
     QOpenGLWidget::update();
 }
@@ -300,6 +365,12 @@ void OGLWidget::flyThroughCamera()
     if( Input::keyPressed( Qt::Key_E ) )
         cameraTranslations += camera.up();
     camera.translate( cameraTranslationSpeed * cameraTranslations );
+
+    /* Insanely useful for debugging
+    std::cout << camera.translation().x() << ' '
+              << camera.translation().y() << ' '
+              << camera.translation().z() << std::endl;
+    */
     
 } 
 
@@ -332,4 +403,13 @@ void OGLWidget::printContextInfo()
 
     qDebug() << qPrintable( glType ) << qPrintable( glVersion ) << 
         "(" << qPrintable( glProfile ) << ")";
+}
+
+void OGLWidget::resetPuck()
+{
+    btTransform startingState = btTransform( btQuaternion( 0, 0, 0, 1 ), 
+        btVector3( 0, 30.5, 0 ) );
+
+    btDefaultMotionState* motionState = new btDefaultMotionState( startingState );
+    ((HockeyPuck*)renderables["Puck"])->RigidBody->setMotionState(motionState);
 }
