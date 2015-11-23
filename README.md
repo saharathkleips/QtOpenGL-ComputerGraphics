@@ -14,7 +14,6 @@ The projects focus on an understanding of 3D computer graphics and its implement
 + [PA7 - Solar System](#pa7---solar-system)  
 + [PA8 - Bullet](#pa8---bullet)  
 + [PA9 - Air Hockey](#pa9---air-hockey)  
-+ [PA10 - Lighting](#pa10---lighting)  
 + [PA11 - Labyrinth](#pa11---labyrinth)  
 + [License](#license)
 + [Contact Information](#contact-information)  
@@ -46,9 +45,8 @@ The projects focus on an understanding of 3D computer graphics and its implement
 ## PA8 - [Bullet](PA8)
 [Documentation](PA8/README.md)
 
-## PA9 - Air Hockey
-
-## PA10 - Lighting
+## PA9 - [Air Hockey](PA9)
+[Documentation](PA9/README.md)
 
 ## PA11 - Labyrinth
 
