@@ -48,7 +48,8 @@ The projects focus on an understanding of 3D computer graphics and its implement
 ## PA9 - [Air Hockey](PA9)
 [Documentation](PA9/README.md)
 
-## PA11 - Labyrinth
+## PA11 - [Labyrinth](PA11)
+[Documentation](PA11/README.md)
 
 ## License
 This repository is released under the [MIT License](LICENSE.md).
