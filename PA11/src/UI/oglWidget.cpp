@@ -105,6 +105,7 @@ void OGLWidget::teardownGL()
  */
 void OGLWidget::update()
 {
+    float dt = updateTimer.deltaTime();
     Input::update();
     flyThroughCamera();
 
@@ -115,7 +116,7 @@ void OGLWidget::update()
     }
 
 
-    m_dynamicsWorld->stepSimulation( 1, 10 );
+    m_dynamicsWorld->stepSimulation( dt, 10 );
     QOpenGLWidget::update();
 }
 
@@ -232,13 +233,6 @@ void OGLWidget::flyThroughCamera()
     if( Input::keyPressed( Qt::Key_E ) )
         cameraTranslations += camera.up();
     camera.translate( cameraTranslationSpeed * cameraTranslations );
-
-    /* Insanely useful for debugging
-    std::cout << camera.translation().x() << ' '
-              << camera.translation().y() << ' '
-              << camera.translation().z() << std::endl;
-    */
-    
 } 
 
 /**

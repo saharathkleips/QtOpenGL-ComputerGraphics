@@ -5,6 +5,8 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 
+#include <QTime>
+
 #include <QKeyEvent>
 #include <QMouseEvent>
 
@@ -18,6 +20,7 @@
 
 #include "Controls/input.h"
 #include "Controls/camera3d.h"
+#include "Controls/time.h"
 #include "3D/renderable.h"
 
 class OGLWidget    :    public QOpenGLWidget,
@@ -63,6 +66,9 @@ private:
     btCollisionDispatcher* m_dispatcher;
     btSequentialImpulseConstraintSolver* m_solver;
     btDiscreteDynamicsWorld* m_dynamicsWorld;
+
+    // World Timer
+    Time updateTimer;
 };
 
 #endif  //  OGL_WIDGET_H

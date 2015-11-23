@@ -36,6 +36,7 @@ HEADERS += \
     #Controls
     ../src/Controls/camera3d.h \
     ../src/Controls/input.h \
+    ../src/Controls/time.h \
     #Entity
     ../src/Entity/colorEntity.h \
     ../src/Entity/colorPhysicsEntity.h \
@@ -55,6 +56,7 @@ SOURCES += \
     #Controls
     ../src/Controls/camera3d.cpp \
     ../src/Controls/input.cpp \
+    ../src/Controls/time.cpp \
     #Entity
     ../src/Entity/colorEntity.cpp \
     ../src/Entity/colorPhysicsEntity.cpp \
