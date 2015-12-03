@@ -42,6 +42,8 @@ HEADERS += \
     ../src/Entity/colorPhysicsEntity.h \
     ../src/Entity/uvEntity.h \
     ../src/Entity/uvPhysicsEntity.h \
+    #Maze
+    ../src/Maze/mazeGenerator.h \
     #UI
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h
@@ -62,6 +64,8 @@ SOURCES += \
     ../src/Entity/colorPhysicsEntity.cpp \
     ../src/Entity/uvEntity.cpp \
     ../src/Entity/uvPhysicsEntity.cpp \
+    #Maze
+    ../src/Maze/mazeGenerator.cpp \
     #UI
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
