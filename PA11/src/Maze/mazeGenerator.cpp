@@ -1,129 +1,98 @@
 #include "mazeGenerator.h"
+
 #include <iostream>
-#include <QDebug>
 
-/**
- * @brief      Creates a randomly generated maze which guarantees only one path
- * from one point of the maze to another point. 
- * @details  Start = 0, End = 1, Floor = 2, Wall = 3.
- * 
- * @param[in]  seed    The seed to generate the maze with.
- * @param[in]  width   The width of the maze.
- * @param[in]  height  The height of the maze.
- *
- * @return     A 2D Vector containing integer representations for each element.
- */
-std::vector< std::vector< int > > MazeGenerator::makeMaze( int seed, int width, 
-    int height )
+Grid MazeGenerator::makeMaze( int seed, int width, int height )
 {
-    srand(seed);
+    srand( seed );
 
-    std::vector< std::vector< int > > maze;
-    std::list< std::tuple< int, int > > workers;
-
-    maze.resize( width );
-    for( int x = 0; x < width; ++x )
-        maze[x].resize( height );
-
-    for( int x = 0; x < width; ++x )
-        for( int y = 0; y < height; ++y )
-            maze[x][y] = WALL;
+    Grid maze( width, std::vector<int>( height, WALL ) );
+    std::list<Cell> workers;
 
     workers.push_back( std::make_tuple( width / 2, height / 2 ) );
     while( workers.size() > 0 )
     {
-        std::list< std::tuple< int, int > >::iterator iBegin, iEnd,temp;
-        iBegin = workers.begin();
-        iEnd = workers.end();
+        std::list<Cell>::iterator iter = workers.begin();
 
-        while( iBegin != iEnd )
+        while( iter != workers.end() )
         {
             bool removeWorker = false;
 
             switch( rand() % 4 )
             {
                 case 0:
-                    std::get<0>( *iBegin ) -= 2;
-                    if( std::get<0>( *iBegin ) <= 0 || 
-                        maze[ std::get<0>( *iBegin ) ]
-                            [ std::get<1>( *iBegin ) ] == FLOOR )
+                    col( *iter ) -= 2;
+                    if( col( *iter ) < 0 || 
+                        maze[row( *iter )][col( *iter )] == FLOOR )
                     {
                         removeWorker = true;
                         break;
                     }
-                    maze[ std::get<0>( *iBegin ) + 1 ][ std::get<1>( *iBegin ) ]
-                        = FLOOR;
+                    maze[row( *iter )][col( *iter ) + 1] = FLOOR;
                     break;
                 case 1:
-                    std::get<0>( *iBegin ) += 2;
-                    if( std::get<0>( *iBegin ) >= width || 
-                        maze[ std::get<0>( *iBegin ) ]
-                            [ std::get<1>( *iBegin ) ] == FLOOR )
+                    col( *iter ) += 2;
+                    if( col( *iter ) >= height || 
+                        maze[row( *iter )][col( *iter )] == FLOOR )
                     {
                         removeWorker = true;
                         break;
                     }
-                    maze[ std::get<0>( *iBegin ) - 1 ][ std::get<1>( *iBegin ) ]
-                        = FLOOR;
+                    maze[row( *iter )][col( *iter ) - 1] = FLOOR;
                     break;
                 case 2:
-                    std::get<1>( *iBegin ) -= 2;
-                    if( std::get<1>( *iBegin ) <= 0 || 
-                        maze[ std::get<0>( *iBegin ) ]
-                            [ std::get<1>( *iBegin ) ] == FLOOR )
+                    row( *iter ) -= 2;
+                    if( row( *iter ) < 0 || 
+                        maze[row( *iter )][col( *iter )] == FLOOR )
                     {
                         removeWorker = true;
                         break;
                     }
-                    maze[ std::get<0>( *iBegin ) ][ std::get<1>( *iBegin ) + 1 ]
-                        = FLOOR;
+                    maze[row( *iter ) + 1][col( *iter )] = FLOOR;
                     break;
                 case 3:
-                    std::get<1>( *iBegin ) += 2;
-                    if( std::get<1>( *iBegin ) >= height || 
-                        maze[ std::get<0>( *iBegin ) ]
-                            [ std::get<1>( *iBegin ) ] == FLOOR )
+                    row( *iter ) += 2;
+                    if( row( *iter ) >= width || 
+                        maze[row( *iter )][col( *iter )] == FLOOR )
                     {
                         removeWorker = true;
                         break;
                     }
-                    maze[ std::get<0>( *iBegin ) ][ std::get<1>( *iBegin ) - 1 ]
-                        = FLOOR;
-                    break;
-                default:
+                    maze[row( *iter ) - 1][col( *iter )] = FLOOR;
                     break;
             }
-            if( removeWorker == true ){
-                iBegin = workers.erase( iBegin );
-            }
+
+            if( removeWorker )
+                iter = workers.erase( iter );
             else
             {
-                workers.push_back( std::make_tuple( 
-                    std::get<0>( *iBegin ), std::get<1>( *iBegin ) ) );
-                workers.push_back( std::make_tuple( 
-                    std::get<0>( *iBegin ), std::get<1>( *iBegin ) ) );
-                
-                maze[ std::get<0>( *iBegin ) ][ std::get<1>( *iBegin ) ]
-                    = FLOOR;
+                workers.push_back( 
+                    std::make_tuple( row( *iter ), col( *iter ) ) );
+                workers.push_back( 
+                    std::make_tuple( row( *iter ), col( *iter ) ) );
 
-                ++iBegin;
+                maze[row( *iter )][col( *iter )] = FLOOR;
+                ++iter;
             }
         }
     }
 
-    for( int y = 0; y < height; ++y )
+    return maze;
+}
+
+void MazeGenerator::printMaze( Grid maze )
+{
+    for( unsigned int y = 0; y < maze[0].size(); ++y )
     {
-        for( int x = 0; x < width; ++x )
+        for( unsigned int x = 0; x < maze.size(); ++x )
         {
             if( maze[x][y] == FLOOR )
-                std::cout << " ";
-            else if( maze[x][y] == WALL )
+                std::cout << "-";
+            else if(  maze[x][y] == WALL )
                 std::cout << "|";
             else
                 std::cout << "*";
         }
         std::cout << std::endl;
     }
-
-    return maze;
 }
