@@ -4,6 +4,7 @@
 #include <tuple>
 #include <vector>
 #include <list>
+#include <iostream>
 
 #define Grid std::vector< std::vector<int> >
 #define Cell std::tuple<int, int>
@@ -19,5 +20,10 @@ namespace MazeGenerator
     Grid makeMaze( int seed, int width, int height );
     void printMaze( Grid maze );
 }
+
+#undef Grid
+#undef Cell
+#undef row
+#undef col
 
 #endif  //  MAZE_GENERATOR_H

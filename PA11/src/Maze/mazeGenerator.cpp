@@ -1,6 +1,9 @@
 #include "mazeGenerator.h"
 
-#include <iostream>
+#define Grid std::vector< std::vector<int> >
+#define Cell std::tuple<int, int>
+#define row( x ) std::get<0>( x ) 
+#define col( x ) std::get<1>( x ) 
 
 Grid MazeGenerator::makeMaze( int seed, int width, int height )
 {
@@ -96,3 +99,8 @@ void MazeGenerator::printMaze( Grid maze )
         std::cout << std::endl;
     }
 }
+
+#undef Grid
+#undef Cell
+#undef row
+#undef col
