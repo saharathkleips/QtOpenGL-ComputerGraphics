@@ -43,6 +43,8 @@ HEADERS += \
     ../src/Entity/uvEntity.h \
     ../src/Entity/uvPhysicsEntity.h \
     #Maze
+    ../src/Maze/cell.h \
+    ../src/Maze/labyrinth.h \
     ../src/Maze/mazeGenerator.h \
     #UI
     ../src/UI/mainWindow.h \
@@ -65,6 +67,8 @@ SOURCES += \
     ../src/Entity/uvEntity.cpp \
     ../src/Entity/uvPhysicsEntity.cpp \
     #Maze
+    ../src/Maze/cell.cpp \
+    ../src/Maze/labyrinth.cpp \
     ../src/Maze/mazeGenerator.cpp \
     #UI
     ../src/UI/mainWindow.cpp \
