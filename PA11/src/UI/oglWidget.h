@@ -22,6 +22,7 @@
 #include "Controls/camera3d.h"
 #include "Controls/time.h"
 #include "3D/renderable.h"
+#include "Maze/labyrinth.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions

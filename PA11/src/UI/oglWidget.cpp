@@ -14,6 +14,8 @@ OGLWidget::OGLWidget()
 
     // Allows keyboard input to fall through
     setFocusPolicy( Qt::ClickFocus );
+
+    renderables["Labyrinth"] = new Labyrinth( 50, 10, 10 );
 }
 
 /**
@@ -45,6 +47,8 @@ void OGLWidget::initializeGL()
     {
         (*iter)->initializeGL();
     }
+
+    ((Labyrinth*)renderables["Labyrinth"])->addRigidBodys( m_dynamicsWorld );
 }
 
 /**
@@ -206,8 +210,8 @@ void OGLWidget::teardownBullet()
  */
 void OGLWidget::flyThroughCamera()
 {
-    static const float cameraTranslationSpeed = 0.03f;
-    static const float cameraRotationSpeed = 0.2f;
+    static const float cameraTranslationSpeed = 0.01f;
+    static const float cameraRotationSpeed = 0.1f;
 
     if( Input::buttonPressed( Qt::RightButton ) )
     {
