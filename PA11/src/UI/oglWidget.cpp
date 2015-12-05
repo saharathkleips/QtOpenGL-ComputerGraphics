@@ -15,7 +15,10 @@ OGLWidget::OGLWidget()
     // Allows keyboard input to fall through
     setFocusPolicy( Qt::ClickFocus );
 
-    renderables["Labyrinth"] = new Labyrinth( 50, 10, 10 );
+    camera.rotate( -55.0f, 1.0f, 0.0f, 0.0f );
+    camera.translate( 4.0f, 14.0f, 15.0f );
+
+    renderables["Labyrinth"] = new Labyrinth( 8, 5, 5 );
 }
 
 /**
