@@ -120,6 +120,9 @@ void OGLWidget::update()
     Input::update();
     flyThroughCamera();
 
+    // not sure what to call this method
+    controlBoard();
+
     for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
         iter != renderables.end(); iter++ )
     {
@@ -245,6 +248,43 @@ void OGLWidget::flyThroughCamera()
     camera.translate( cameraTranslationSpeed * cameraTranslations );
 } 
 
+void OGLWidget::controlBoard()
+{
+    const float rotationSpeed = 0.5f;
+    const float rollingSpeed = 0.25f;
+    btVector3 gravity = m_dynamicsWorld->getGravity();
+
+    // Update horizontal rotation
+    if( Input::keyPressed( Qt::Key_Left ) )
+    {
+        camera.rotate( -rotationSpeed, QVector3D(0, 0, 1) );
+        gravity -= btVector3( rollingSpeed, 0, 0 );
+    }
+
+    else if( Input::keyPressed( Qt::Key_Right ) )
+    {
+        camera.rotate( rotationSpeed, QVector3D(0, 0, 1) );        
+        gravity += btVector3( rollingSpeed, 0, 0 );
+    }
+
+
+    // Update vertical rotation
+    if( Input::keyPressed( Qt::Key_Up ) )
+    {
+        camera.rotate( rotationSpeed, QVector3D(1, 0, 0) );        
+        gravity -= btVector3( 0, 0, rollingSpeed );
+    }
+
+    else if( Input::keyPressed( Qt::Key_Down ) )
+    {
+        camera.rotate( -rotationSpeed, QVector3D(1, 0, 0) );        
+        gravity += btVector3( 0, 0, rollingSpeed );
+    }
+
+    // Update gravity
+    m_dynamicsWorld->setGravity( gravity );
+
+}
 /**
  * @brief      Helper function to print OpenGL Context information to the debug.
  */

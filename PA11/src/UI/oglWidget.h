@@ -53,6 +53,7 @@ private:
     void initializeBullet();
     void teardownBullet();
     void flyThroughCamera();
+    void controlBoard();
     void printContextInfo();
 
     // OpenGL Objects
