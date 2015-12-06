@@ -46,6 +46,7 @@ HEADERS += \
     ../src/Maze/cell.h \
     ../src/Maze/labyrinth.h \
     ../src/Maze/mazeGenerator.h \
+    ../src/Maze/ball.h \
     #UI
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h
@@ -70,6 +71,7 @@ SOURCES += \
     ../src/Maze/cell.cpp \
     ../src/Maze/labyrinth.cpp \
     ../src/Maze/mazeGenerator.cpp \
+    ../src/Maze/ball.cpp \
     #UI
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
