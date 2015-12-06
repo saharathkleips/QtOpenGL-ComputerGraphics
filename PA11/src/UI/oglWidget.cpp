@@ -18,7 +18,7 @@ OGLWidget::OGLWidget()
     camera.rotate( -55.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 4.0f, 14.0f, 15.0f );
 
-    renderables["Labyrinth"] = new Labyrinth( 8, 5, 5 );
+    renderables["Labyrinth"] = new Labyrinth( 8, 30, 30 );
 }
 
 /**
@@ -213,7 +213,7 @@ void OGLWidget::teardownBullet()
  */
 void OGLWidget::flyThroughCamera()
 {
-    static const float cameraTranslationSpeed = 0.01f;
+    static const float cameraTranslationSpeed = 0.02f;
     static const float cameraRotationSpeed = 0.1f;
 
     if( Input::buttonPressed( Qt::RightButton ) )
