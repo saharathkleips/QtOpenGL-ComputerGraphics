@@ -1,4 +1,5 @@
 #include "oglWidget.h"
+#include <iostream>
 //
 // CONSTRUCTORS ////////////////////////////////////////////////////////////////
 // 
@@ -214,6 +215,7 @@ void OGLWidget::teardownBullet()
     delete m_broadphase;
 }
 
+
 /**
  * @brief      Updates the main camera to behave like a Fly-Through Camera.
  */
@@ -248,11 +250,22 @@ void OGLWidget::flyThroughCamera()
     camera.translate( cameraTranslationSpeed * cameraTranslations );
 } 
 
+/**
+ * @brief      Updates board based on user input.
+ */
 void OGLWidget::controlBoard()
 {
     const float rotationSpeed = 0.5f;
     const float rollingSpeed = 0.25f;
     btVector3 gravity = m_dynamicsWorld->getGravity();
+
+    /*
+    float cameraAngle;
+    QVector3D cameraAxis;
+    camera.rotation().getAxisAndAngle( &cameraAxis, &cameraAngle );
+    //std::cout << cameraAngle << std::endl;
+    //std::cout << cameraAxis.x() << std::endl;
+    */
 
     // Update horizontal rotation
     if( Input::keyPressed( Qt::Key_Left ) )
