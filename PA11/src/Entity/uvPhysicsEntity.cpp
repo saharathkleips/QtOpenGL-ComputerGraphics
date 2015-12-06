@@ -21,9 +21,13 @@ UVPhysicsEntity::UVPhysicsEntity( btTransform startingState, btScalar mass,
     // The object is static, so use BvhTriMesh
     if( mass == 0 )
         m_collisionShape = new btBvhTriangleMeshShape( m_triMesh, true );
+
     // The object is dynamic, so use ConvexTriMesh
     else
-        m_collisionShape = new btConvexTriangleMeshShape( m_triMesh );
+        // set radius of the sphere to 0.5, the model that's being used is actually 0.5 scaled too
+        m_collisionShape = new btSphereShape( 0.5 );
+
+        //m_collisionShape = new btConvexTriangleMeshShape( m_triMesh );
 
     m_motionState = new btDefaultMotionState( startingState );
 
