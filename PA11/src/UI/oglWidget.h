@@ -71,6 +71,10 @@ private:
 
     // World Timer
     Time updateTimer;
+
+    /* Collision information */
+    const short COL_CELL = 1 << 0;
+    const short COL_BALL = 1 << 1;
 };
 
 #endif  //  OGL_WIDGET_H

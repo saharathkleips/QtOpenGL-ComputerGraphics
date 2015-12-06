@@ -7,10 +7,10 @@ Labyrinth::Labyrinth( int seed, int width, int height )
     MazeGenerator::printMaze( m_maze );
 }
 
-void Labyrinth::addRigidBodys( btDiscreteDynamicsWorld* dynamicsWorld )
+void Labyrinth::addRigidBodys( btDiscreteDynamicsWorld* const dynamicsWorld, const short group, const short mask )
 {
     for( Cell* cell : m_cells )
-        dynamicsWorld->addRigidBody( cell->RigidBody );
+        dynamicsWorld->addRigidBody( cell->RigidBody, group, mask );
 }
 
 void Labyrinth::initializeGL()

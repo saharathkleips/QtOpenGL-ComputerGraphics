@@ -14,7 +14,7 @@ class Labyrinth     :   public Renderable
 {
 public:
     Labyrinth( int seed, int width, int height );
-    void addRigidBodys( btDiscreteDynamicsWorld* dynamicsWorld );
+    void addRigidBodys( btDiscreteDynamicsWorld* const dynamicsWorld, const short group, const short mask );
 
     // Renderable Functions
     void initializeGL();
