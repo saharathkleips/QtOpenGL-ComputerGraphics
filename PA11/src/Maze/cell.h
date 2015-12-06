@@ -24,7 +24,13 @@ enum Texture
     RockWall3,
     RockWall4,
     RockWall5,
-    DirtFloor1
+    DirtFloor,
+    IceWall1,
+    IceWall2,
+    IceWall3,
+    IceWall4,
+    IceWall5,
+    SnowFloor
 };
 
 class Cell  :   public Renderable
@@ -39,6 +45,7 @@ public:
     void teardownGL();
 
     static Texture getRandomRockWall();
+    static Texture getRandomIceWall();
 
     btRigidBody* RigidBody;
     QMatrix4x4 Transform;
@@ -56,12 +63,10 @@ private:
 
     // Texture Information
     Texture m_selectedTexture;
-    static QOpenGLTexture* m_rockWallTexture1;
-    static QOpenGLTexture* m_rockWallTexture2;
-    static QOpenGLTexture* m_rockWallTexture3;
-    static QOpenGLTexture* m_rockWallTexture4;
-    static QOpenGLTexture* m_rockWallTexture5;
-    static QOpenGLTexture* m_floorTexture1;
+    static QOpenGLTexture* m_rockWallTexture[5];
+    static QOpenGLTexture* m_dirtFloorTexture;
+    static QOpenGLTexture* m_iceWallTexture[5];
+    static QOpenGLTexture* m_snowFloorTexture;
 
     // Shader Information
     const QString PATH_TO_V_SHADER = ":/shader/uvShader.vs";

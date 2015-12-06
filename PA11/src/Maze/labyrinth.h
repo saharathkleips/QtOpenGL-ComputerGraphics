@@ -9,11 +9,16 @@
 
 #include "Controls/camera3d.h"
 
+enum Environment
+{
+    Rock,
+    Ice
+};
 
 class Labyrinth     :   public Renderable
 {
 public:
-    Labyrinth( int seed, int width, int height );
+    Labyrinth( Environment env, int seed, int width, int height );
     void addRigidBodys( btDiscreteDynamicsWorld* dynamicsWorld );
 
     // Renderable Functions
@@ -23,6 +28,10 @@ public:
     void teardownGL();
 
 private:
+    btQuaternion getRandomRotation();
+
+    Environment m_env;
+
     std::vector< Cell* > m_cells;
     std::vector< std::vector<int> > m_maze;
     int m_seed;
