@@ -5,7 +5,7 @@
  */
 Ball::Ball()
     :   UVPhysicsEntity( 
-            btTransform( btQuaternion(0, 0, 0, 1), btVector3(2, 5, 9.5f) ), // initial state
+            btTransform( btQuaternion(0, 0, 0, 1), btVector3(2, 5, 10.0f) ), // initial state
             1, // mass
             "models/UVSphere.obj", 
             "textures/Sphere_Boulder.jpg"

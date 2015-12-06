@@ -20,6 +20,10 @@
 enum Texture
 {
     RockWall1,
+    RockWall2,
+    RockWall3,
+    RockWall4,
+    RockWall5,
     DirtFloor1
 };
 
@@ -33,6 +37,8 @@ public:
     void paintGL( Camera3D& camera, QMatrix4x4& projection );
     void update();
     void teardownGL();
+
+    static Texture getRandomRockWall();
 
     btRigidBody* RigidBody;
     QMatrix4x4 Transform;
@@ -50,7 +56,11 @@ private:
 
     // Texture Information
     Texture m_selectedTexture;
-    static QOpenGLTexture* m_wallTexture1;
+    static QOpenGLTexture* m_rockWallTexture1;
+    static QOpenGLTexture* m_rockWallTexture2;
+    static QOpenGLTexture* m_rockWallTexture3;
+    static QOpenGLTexture* m_rockWallTexture4;
+    static QOpenGLTexture* m_rockWallTexture5;
     static QOpenGLTexture* m_floorTexture1;
 
     // Shader Information

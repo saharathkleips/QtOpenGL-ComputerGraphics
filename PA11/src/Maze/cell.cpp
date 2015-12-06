@@ -8,7 +8,11 @@ QOpenGLVertexArrayObject* Cell::m_vao = NULL;
 QOpenGLShaderProgram* Cell::m_program = NULL;
 UVVertex* Cell::m_model = NULL;
 int Cell::m_numVertices = -1;
-QOpenGLTexture* Cell::m_wallTexture1 = NULL;
+QOpenGLTexture* Cell::m_rockWallTexture1 = NULL;
+QOpenGLTexture* Cell::m_rockWallTexture2 = NULL;
+QOpenGLTexture* Cell::m_rockWallTexture3 = NULL;
+QOpenGLTexture* Cell::m_rockWallTexture4 = NULL;
+QOpenGLTexture* Cell::m_rockWallTexture5 = NULL;
 QOpenGLTexture* Cell::m_floorTexture1 = NULL;
 int Cell::m_modelWorld = -1;
 int Cell::m_worldEye = -1;
@@ -17,6 +21,7 @@ btTriangleMesh* Cell::m_triMesh = NULL;
 btCollisionShape* Cell::m_collisionShape = NULL;
 
 Cell::Cell( btTransform startingState, Texture selectedTexture )
+    :   m_selectedTexture( selectedTexture )
 {
     if( m_model == NULL )
         ModelLoader::loadUVModel( PATH_TO_MODEL, m_model, m_numVertices );
@@ -37,13 +42,6 @@ Cell::Cell( btTransform startingState, Texture selectedTexture )
     RigidBody->setCollisionFlags( RigidBody->getCollisionFlags() | 
         btCollisionObject::CF_KINEMATIC_OBJECT );
     RigidBody->setActivationState( DISABLE_DEACTIVATION );
-
-    if( selectedTexture == Texture::RockWall1 )
-        m_selectedTexture = selectedTexture;
-    else if ( selectedTexture == Texture::DirtFloor1 )
-        m_selectedTexture = selectedTexture;
-    else
-        m_selectedTexture = Texture::RockWall1;
 }
 
 Cell::~Cell()
@@ -76,13 +74,45 @@ void Cell::initializeGL()
     else
         m_program->bind();
 
-    if( m_wallTexture1 == NULL )
+    if( m_rockWallTexture1 == NULL )
     {
-        m_wallTexture1 = new QOpenGLTexture( 
-            QImage( "textures/Cube_RockWall.jpg" ).mirrored() );
-        m_wallTexture1->setMinificationFilter( 
+        m_rockWallTexture1 = new QOpenGLTexture( 
+            QImage( "textures/Cube_RockWall1.jpg" ).mirrored() );
+        m_rockWallTexture1->setMinificationFilter( 
             QOpenGLTexture::LinearMipMapLinear );
-        m_wallTexture1->setMagnificationFilter( QOpenGLTexture::Linear );
+        m_rockWallTexture1->setMagnificationFilter( QOpenGLTexture::Linear );
+    }
+    if( m_rockWallTexture2 == NULL )
+    {
+        m_rockWallTexture2 = new QOpenGLTexture( 
+            QImage( "textures/Cube_RockWall2.jpg" ).mirrored() );
+        m_rockWallTexture2->setMinificationFilter( 
+            QOpenGLTexture::LinearMipMapLinear );
+        m_rockWallTexture2->setMagnificationFilter( QOpenGLTexture::Linear );
+    }
+    if( m_rockWallTexture3 == NULL )
+    {
+        m_rockWallTexture3 = new QOpenGLTexture( 
+            QImage( "textures/Cube_RockWall3.jpg" ).mirrored() );
+        m_rockWallTexture3->setMinificationFilter( 
+            QOpenGLTexture::LinearMipMapLinear );
+        m_rockWallTexture3->setMagnificationFilter( QOpenGLTexture::Linear );
+    }
+    if( m_rockWallTexture4 == NULL )
+    {
+        m_rockWallTexture4 = new QOpenGLTexture( 
+            QImage( "textures/Cube_RockWall4.jpg" ).mirrored() );
+        m_rockWallTexture4->setMinificationFilter( 
+            QOpenGLTexture::LinearMipMapLinear );
+        m_rockWallTexture4->setMagnificationFilter( QOpenGLTexture::Linear );
+    }
+    if( m_rockWallTexture5 == NULL )
+    {
+        m_rockWallTexture5 = new QOpenGLTexture( 
+            QImage( "textures/Cube_RockWall5.jpg" ).mirrored() );
+        m_rockWallTexture5->setMinificationFilter( 
+            QOpenGLTexture::LinearMipMapLinear );
+        m_rockWallTexture5->setMagnificationFilter( QOpenGLTexture::Linear );
     }
 
     if( m_floorTexture1 == NULL )
@@ -139,10 +169,30 @@ void Cell::paintGL( Camera3D& camera, QMatrix4x4& projection )
     glDisable( GL_CULL_FACE );
 
     QOpenGLTexture* texture = NULL;
-    if( m_selectedTexture == Texture::RockWall1 )
-        texture = m_wallTexture1;
-    else if ( m_selectedTexture == Texture::DirtFloor1 )
-        texture = m_floorTexture1;
+    switch( m_selectedTexture )
+    {
+        case Texture::RockWall1:
+            texture = m_rockWallTexture1;
+            break;
+        case Texture::RockWall2:
+            texture = m_rockWallTexture2;
+            break;
+        case Texture::RockWall3:
+            texture = m_rockWallTexture3;
+            break;
+        case Texture::RockWall4:
+            texture = m_rockWallTexture4;
+            break;
+        case Texture::RockWall5:
+            texture = m_rockWallTexture5;
+            break;
+        case Texture::DirtFloor1:
+            texture = m_floorTexture1;
+            break;
+        default:
+            texture = m_rockWallTexture1;
+            break;
+    }
 
     m_program->bind();
 
@@ -174,4 +224,29 @@ void Cell::update()
 void Cell::teardownGL()
 {
 
+}
+
+Texture Cell::getRandomRockWall()
+{
+    int switchVal = rand() % 5;
+    switch( switchVal )
+    {
+        case 0:
+            return Texture::RockWall1;
+            break;
+        case 1:
+            return Texture::RockWall2;
+            break;
+        case 2:
+            return Texture::RockWall3;
+            break;
+        case 3:
+            return Texture::RockWall4;
+            break;
+        case 4:
+            return Texture::RockWall5;
+            break;
+        default:
+            return Texture::RockWall3;
+    }
 }

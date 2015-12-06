@@ -23,7 +23,7 @@ void Labyrinth::initializeGL()
             if( m_maze[x][y] == MazeGenerator::WALL )
             {
                 m_cells.push_back( new Cell( btTransform( btQuaternion( 0, 0, 0, 1 ), 
-                    btVector3( xpos, 2.0f, zpos ) ), Texture::RockWall1 ) );
+                    btVector3( xpos, 2.0f, zpos ) ), Cell::getRandomRockWall() ) );
             }
             else if ( m_maze[x][y] == MazeGenerator::FLOOR )
             {
@@ -39,19 +39,19 @@ void Labyrinth::initializeGL()
     // North
     for( float i = -2.0f; i <= m_maze.size() * 2.0f; i += 2.0f )
         m_cells.push_back( new Cell( btTransform( btQuaternion( 0, 0, 0, 1 ), 
-                    btVector3( i, 2.0f, -2.0f ) ), Texture::RockWall1 ) );
+                    btVector3( i, 2.0f, -2.0f ) ), Cell::getRandomRockWall() ) );
     // South
     for( float i = -2.0f; i <= m_maze.size() * 2.0f; i += 2.0f )
         m_cells.push_back( new Cell( btTransform( btQuaternion( 0, 0, 0, 1 ), 
-                    btVector3( i, 2.0f, m_maze[0].size() * 2.0f ) ), Texture::RockWall1 ) );
+                    btVector3( i, 2.0f, m_maze[0].size() * 2.0f ) ), Cell::getRandomRockWall() ) );
     // East
     for( float i = 0.0f; i < m_maze.size() * 2.0f; i += 2.0f )
         m_cells.push_back( new Cell( btTransform( btQuaternion( 0, 0, 0, 1 ), 
-                    btVector3( -2.0, 2.0f, i ) ), Texture::RockWall1 ) );
+                    btVector3( -2.0, 2.0f, i ) ), Cell::getRandomRockWall() ) );
     // West
     for( float i = -2.0f; i < m_maze.size() * 2.0f; i += 2.0f )
         m_cells.push_back( new Cell( btTransform( btQuaternion( 0, 0, 0, 1 ), 
-                    btVector3(  m_maze[0].size() * 2.0f, 2.0f, i ) ), Texture::RockWall1 ) );
+                    btVector3(  m_maze[0].size() * 2.0f, 2.0f, i ) ), Cell::getRandomRockWall() ) );
     
 
     for( Cell* cell : m_cells )
