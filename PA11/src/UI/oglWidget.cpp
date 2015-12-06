@@ -19,6 +19,7 @@ OGLWidget::OGLWidget()
     camera.translate( 4.0f, 14.0f, 15.0f );
 
     renderables["Labyrinth"] = new Labyrinth( 8, 30, 30 );
+    renderables["Ball"] = new Ball();
 }
 
 /**
@@ -52,6 +53,9 @@ void OGLWidget::initializeGL()
     }
 
     ((Labyrinth*)renderables["Labyrinth"])->addRigidBodys( m_dynamicsWorld );
+    m_dynamicsWorld->addRigidBody(
+        ((Ball*)renderables["Ball"])->RigidBody
+    );
 }
 
 /**
@@ -192,7 +196,6 @@ void OGLWidget::initializeBullet()
     m_solver = new btSequentialImpulseConstraintSolver();
     m_dynamicsWorld = new btDiscreteDynamicsWorld( m_dispatcher, m_broadphase,
         m_solver, m_collisionConfig );
-
     m_dynamicsWorld->setGravity( btVector3( 0, -9.8, 0 ) );
 }
 
