@@ -83,14 +83,6 @@ void MainWindow::swapToWin()
 {
     winWidget = new WinWidget();
     setCentralWidget( winWidget );
-    if( titleWidget != NULL ){
-        delete titleWidget;
-        titleWidget = NULL;
-    }
-    if( oglWidget != NULL ){
-        delete oglWidget;
-        oglWidget = NULL;
-    }
 }
 
 /**
