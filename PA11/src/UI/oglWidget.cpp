@@ -254,7 +254,7 @@ void OGLWidget::flyThroughCamera()
  */
 void OGLWidget::controlBoard()
 {
-    const float rotationSpeed = 0.5f;
+    const float rotationSpeed = 0.7f;
     const float rollingSpeed = 0.5f;
     btVector3 gravity = m_dynamicsWorld->getGravity();
 
@@ -273,14 +273,14 @@ void OGLWidget::controlBoard()
     if( Input::keyPressed( Qt::Key_Left ) )
     {
         camera.rotate( -rotationSpeed, QVector3D(0, 0, 1) );            
-        camera.translate( 0.5f, 0, 0);
+        camera.translate( 0.70f, 0, 0);
         gravity -= btVector3( rollingSpeed, 0, 0 );
     }
 
     else if( Input::keyPressed( Qt::Key_Right ) )
     {
         camera.rotate( rotationSpeed, QVector3D(0, 0, 1) );            
-        camera.translate( -0.5f, 0, 0);                
+        camera.translate( -0.70f, 0, 0);                
         gravity += btVector3( rollingSpeed, 0, 0 );
     }
 
@@ -289,14 +289,14 @@ void OGLWidget::controlBoard()
     if( Input::keyPressed( Qt::Key_Up ) )
     {
         camera.rotate( rotationSpeed, QVector3D(1, 0, 0) );
-        camera.translate( 0, 0, 0.75f );        
+        camera.translate( 0, 0, 0.70f );        
         gravity -= btVector3( 0, 0, rollingSpeed );
     }
 
     else if( Input::keyPressed( Qt::Key_Down ) )
     {
         camera.rotate( -rotationSpeed, QVector3D(1, 0, 0) );
-        camera.translate( 0, 0, -0.75f );        
+        camera.translate( 0, 0, -0.70f );        
         gravity += btVector3( 0, 0, rollingSpeed );
     }
 
