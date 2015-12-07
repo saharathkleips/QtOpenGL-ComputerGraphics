@@ -28,7 +28,7 @@ void Labyrinth::initializeGL()
                     m_cells.push_back( new Cell( btTransform( getRandomRotation(), 
                         btVector3( xpos, 2.0f, zpos ) ), Cell::getRandomIceWall() ) );
             }
-            else if ( m_maze[x][y] == MazeGenerator::FLOOR )
+            else if ( m_maze[x][y] == MazeGenerator::FLOOR || m_maze[x][y] == MazeGenerator::START )
             {
                 if( m_env == Environment::Rock )
                     m_cells.push_back( new Cell( btTransform( getRandomRotation(), 

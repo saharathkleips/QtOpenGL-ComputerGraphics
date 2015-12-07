@@ -25,7 +25,7 @@ Grid MazeGenerator::makeMaze( int seed, int width, int height )
             {
                 case 0:
                     col( *iter ) -= 2;
-                    if( col( *iter ) < 0 || 
+                    if( col( *iter ) <= -1 || 
                         maze[row( *iter )][col( *iter )] == FLOOR )
                     {
                         removeWorker = true;
@@ -45,7 +45,7 @@ Grid MazeGenerator::makeMaze( int seed, int width, int height )
                     break;
                 case 2:
                     row( *iter ) -= 2;
-                    if( row( *iter ) < 0 || 
+                    if( row( *iter ) <= -1 || 
                         maze[row( *iter )][col( *iter )] == FLOOR )
                     {
                         removeWorker = true;
@@ -82,6 +82,52 @@ Grid MazeGenerator::makeMaze( int seed, int width, int height )
                 ++iter;
             }
         }
+    }
+
+    maze[width / 2][height / 2] = START;
+
+    switch( rand() % 4 )
+    {
+        case 0:
+            for(int i = 0; i < std::min(width, height); i++)
+            {
+                if( maze[i][i] == FLOOR )
+                {
+                    maze[i][i] = END;
+                    break;
+                }
+            }
+            break;
+        case 1:
+            for(int i = 0; i < std::min(width, height); i++)
+            {
+                if( maze[width - i][i] == FLOOR )
+                {
+                    maze[width - i][i] = END;
+                    break;
+                }
+            }
+            break;
+        case 2:
+            for(int i = 0; i < std::min(width, height); i++)
+            {
+                if( maze[i][height - i] == FLOOR )
+                {
+                    maze[i][height - i] = END;
+                    break;
+                }
+            }
+            break;
+        case 3:
+            for(int i = 0; i < std::min(width, height); i++)
+            {
+                if( maze[width - i][height - i] == FLOOR )
+                {
+                    maze[width - i][height - i] = END;
+                    break;
+                }
+            }
+            break;
     }
 
     return maze;

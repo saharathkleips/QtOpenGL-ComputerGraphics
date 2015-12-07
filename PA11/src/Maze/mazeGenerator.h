@@ -1,6 +1,7 @@
 #ifndef MAZE_GENERATOR_H
 #define MAZE_GENERATOR_H
 
+#include <algorithm>
 #include <tuple>
 #include <vector>
 #include <list>
