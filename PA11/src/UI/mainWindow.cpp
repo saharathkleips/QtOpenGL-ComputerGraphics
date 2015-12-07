@@ -12,7 +12,7 @@
  */
 MainWindow::MainWindow()
 {
-    showFullScreen();
+    showMaximized();
 
     titleWidget = NULL;
     oglWidget = NULL;

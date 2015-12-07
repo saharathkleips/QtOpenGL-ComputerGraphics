@@ -16,20 +16,17 @@ TitleWidget::TitleWidget()
     QIcon iconPlay = QIcon( *m_imgPlay );
     m_btnPlay = new QPushButton( this );
     m_btnPlay->setIcon( iconPlay );
-    m_btnPlay->setIconSize( QSize( 65, 70 ) );
-    m_btnPlay->setStyleSheet("QPushButton{background-color: rgba(0,0,0,0%);}");
+    m_btnPlay->setStyleSheet("QPushButton{background-color: rgba(0,0,0,0%); outline: none;}");
 
     QIcon iconCross = QIcon( *m_imgCross );
     m_btnExit = new QPushButton( this );
     m_btnExit->setIcon( iconCross );
-    m_btnExit->setIconSize( QSize( 69, 70 ) );
-    m_btnExit->setStyleSheet("QPushButton{background-color: rgba(0,0,0,0%);}");
+    m_btnExit->setStyleSheet("QPushButton{background-color: rgba(0,0,0,0%); outline: none;}");
 
     QIcon iconGear = QIcon( *m_imgGear );
     m_btnSettings = new QPushButton( this );
     m_btnSettings->setIcon( iconGear );
-    m_btnSettings->setIconSize( QSize( 80, 79 ) );
-    m_btnSettings->setStyleSheet("QPushButton{background-color: rgba(0,0,0,0%);}");
+    m_btnSettings->setStyleSheet("QPushButton{background-color: rgba(0,0,0,0%); outline: none;}");
 
     resize();
 
@@ -57,13 +54,23 @@ void TitleWidget::resizeEvent( QResizeEvent* event )
     resize();
 }
 
+#include <QDebug>
 void TitleWidget::resize()
 {
+    float percentWidth = QWidget::width() / 1855.0f;
+    float percentHeight = QWidget::height() / 1056.0f;
+
     m_lbBackground->setGeometry( 0, 0, QWidget::width(), QWidget::height() );
-    m_btnPlay->setGeometry( QWidget::width() - 450, QWidget::height() - 170,
-        80, 80 );
-    m_btnExit->setGeometry( QWidget::width() - 350, QWidget::height() - 170,
-        80, 80 );
-    m_btnSettings->setGeometry( QWidget::width() - 250, QWidget::height() - 170,
-        80, 80 );
+
+    m_btnPlay->setIconSize( QSize( 65 * percentWidth, 70 * percentHeight ) );
+    m_btnPlay->setGeometry( QWidget::width() - (450.0f * percentWidth), QWidget::height() - (170 * percentHeight),
+        80 * percentWidth, 80 * percentHeight );
+
+    m_btnExit->setIconSize( QSize( 69 * percentWidth, 70 * percentHeight ) );
+    m_btnExit->setGeometry( QWidget::width() - (350.0f * percentWidth), QWidget::height() - (170 * percentHeight),
+        80 * percentWidth, 80 * percentHeight );
+
+    m_btnSettings->setIconSize( QSize( 80 * percentWidth, 79 * percentHeight ) );
+    m_btnSettings->setGeometry( QWidget::width() - (250.0f * percentWidth), QWidget::height() - (170 * percentHeight),
+        80 * percentWidth, 80 * percentHeight );
 }
