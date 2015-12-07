@@ -122,8 +122,6 @@ void OGLWidget::update()
     float dt = updateTimer.deltaTime();
     Input::update();
     flyThroughCamera();
-
-    // not sure what to call this method
     controlBoard();
 
     for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 

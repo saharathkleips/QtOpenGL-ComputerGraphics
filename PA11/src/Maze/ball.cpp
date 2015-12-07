@@ -11,9 +11,4 @@ Ball::Ball( const float x, const float y, const float z )
             "textures/Sphere_Boulder.jpg"
         )
 {
-    // limit movement to x and z
-    RigidBody->setLinearFactor(btVector3(1, 0, 1));
-
-    // limit rotation to y
-    RigidBody->setAngularFactor(btVector3(0, 1, 0));
 }
