@@ -66,6 +66,7 @@ void MainWindow::swapToGame()
     oglWidget->setFormat( format );
 
     connect( actionPauseProgram, SIGNAL(triggered()), oglWidget , SLOT(pause()) );
+    connect( oglWidget, SIGNAL(win()), this, SLOT(swapToWin()));
 
     setCentralWidget( oglWidget );
     if( titleWidget != NULL ){

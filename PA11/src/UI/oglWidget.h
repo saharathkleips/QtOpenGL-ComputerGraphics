@@ -43,6 +43,9 @@ public:
     virtual void paintGL();
     virtual void teardownGL();
 
+signals:
+    void win();
+
 protected slots:
     void pause();
     void update();
