@@ -99,21 +99,5 @@ Program Controls
         <td>Ctrl + Q</td>
         <td>Quit the Program</td>
     </tr>
-    <tr>
-        <td>Ctrl + F1</td>
-        <td>Switch Camera to Player 1 Perspective</td>
-    </tr>
-    <tr>
-        <td>Ctrl + F2</td>
-        <td>Switch Camera to Player 2 Perspective</td>
-    </tr>
-    <tr>
-        <td>Ctrl + F3</td>
-        <td>Switch Camera to Side of the Table</td>
-    </tr>
-    <tr>
-        <td>Ctrl + F4</td>
-        <td>Switch Camera to Top of Table Perspective</td>
-    </tr>
     </tbody>
 </table>
