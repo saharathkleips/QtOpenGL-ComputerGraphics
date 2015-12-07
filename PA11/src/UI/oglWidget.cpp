@@ -16,8 +16,8 @@ OGLWidget::OGLWidget()
     // Allows keyboard input to fall through
     setFocusPolicy( Qt::ClickFocus );
 
-    camera.rotate( -55.0f, 1.0f, 0.0f, 0.0f );
-    camera.translate( 4.0f, 14.0f, 15.0f );
+    camera.rotate( -90.0f, 1.0f, 0.0f, 0.0f );
+    camera.translate( 30.0f, 75.0f, 30.0f );
 
     renderables["Labyrinth"] = new Labyrinth( Environment::Ice, 8, 30, 30 );
     renderables["Ball"] = new Ball();
@@ -129,7 +129,6 @@ void OGLWidget::update()
     {
         (*iter)->update();
     }
-
 
     m_dynamicsWorld->stepSimulation( dt, 10 );
     QOpenGLWidget::update();
