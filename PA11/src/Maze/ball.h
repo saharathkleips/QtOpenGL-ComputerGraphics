@@ -6,7 +6,7 @@
 class Ball    :   public UVPhysicsEntity
 {
 public:
-    Ball();
+    Ball( const float x = 2.0f, const float y = 5.0f, const float z = 10.0f );
 };
 
 #endif  //  BALL_H
