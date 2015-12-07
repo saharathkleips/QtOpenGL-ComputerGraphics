@@ -73,6 +73,10 @@ Grid MazeGenerator::makeMaze( int seed, int width, int height )
                     std::make_tuple( row( *iter ), col( *iter ) ) );
                 workers.push_back( 
                     std::make_tuple( row( *iter ), col( *iter ) ) );
+                workers.push_back( 
+                    std::make_tuple( row( *iter ), col( *iter ) ) );
+                workers.push_back( 
+                    std::make_tuple( row( *iter ), col( *iter ) ) );
 
                 maze[row( *iter )][col( *iter )] = FLOOR;
                 ++iter;
