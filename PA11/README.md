@@ -64,6 +64,9 @@ Program Controls
         <td>Rotate camera</td>
     </tr>
     <tr>
+        <td>Space</td>
+        <td>Snap camera to starting position</td>
+    <tr>
         <td>Q</td>
         <td>Move camera down</td>
     </tr>
