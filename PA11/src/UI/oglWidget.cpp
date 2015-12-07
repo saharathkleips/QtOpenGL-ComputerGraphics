@@ -259,7 +259,9 @@ void OGLWidget::controlBoard()
     const float rollingSpeed = 0.25f;
     btVector3 gravity = m_dynamicsWorld->getGravity();
 
-    /*
+    /* I suppose gravity being relative to camera would be best, here is some code incase you want
+    to figure out a good way to do it.
+
     float cameraAngle;
     QVector3D cameraAxis;
     camera.rotation().getAxisAndAngle( &cameraAxis, &cameraAngle );
@@ -267,31 +269,64 @@ void OGLWidget::controlBoard()
     //std::cout << cameraAxis.x() << std::endl;
     */
 
-    // Update horizontal rotation
-    if( Input::keyPressed( Qt::Key_Left ) )
+    if( Input::keyPressed( Qt::Key_Z ) )
     {
-        camera.rotate( -rotationSpeed, QVector3D(0, 0, 1) );
-        gravity -= btVector3( rollingSpeed, 0, 0 );
+        // Update horizontal rotation
+        if( Input::keyPressed( Qt::Key_Left ) )
+        {
+            camera.rotate( -rotationSpeed, QVector3D(0, 0, 1) );
+            gravity -= btVector3( rollingSpeed, 0, 0 );
+        }
+
+        else if( Input::keyPressed( Qt::Key_Right ) )
+        {
+            camera.rotate( rotationSpeed, QVector3D(0, 0, 1) );        
+            gravity += btVector3( rollingSpeed, 0, 0 );
+        }
+
+
+        // Update vertical rotation
+        if( Input::keyPressed( Qt::Key_Up ) )
+        {
+            camera.rotate( rotationSpeed, QVector3D(1, 0, 0) );        
+            gravity -= btVector3( 0, 0, rollingSpeed );
+        }
+
+        else if( Input::keyPressed( Qt::Key_Down ) )
+        {
+            camera.rotate( -rotationSpeed, QVector3D(1, 0, 0) );        
+            gravity += btVector3( 0, 0, rollingSpeed );
+        }
     }
 
-    else if( Input::keyPressed( Qt::Key_Right ) )
+    else
     {
-        camera.rotate( rotationSpeed, QVector3D(0, 0, 1) );        
-        gravity += btVector3( rollingSpeed, 0, 0 );
-    }
+        // Update horizontal rotation
+        if( Input::keyPressed( Qt::Key_Left ) )
+        {
+            camera.rotate( rotationSpeed, QVector3D(0, 0, 1) );
+            gravity -= btVector3( rollingSpeed, 0, 0 );
+        }
+
+        else if( Input::keyPressed( Qt::Key_Right ) )
+        {
+            camera.rotate( -rotationSpeed, QVector3D(0, 0, 1) );        
+            gravity += btVector3( rollingSpeed, 0, 0 );
+        }
 
 
-    // Update vertical rotation
-    if( Input::keyPressed( Qt::Key_Up ) )
-    {
-        camera.rotate( rotationSpeed, QVector3D(1, 0, 0) );        
-        gravity -= btVector3( 0, 0, rollingSpeed );
-    }
+        // Update vertical rotation
+        if( Input::keyPressed( Qt::Key_Up ) )
+        {
+            camera.rotate( -rotationSpeed, QVector3D(1, 0, 0) );        
+            gravity -= btVector3( 0, 0, rollingSpeed );
+        }
 
-    else if( Input::keyPressed( Qt::Key_Down ) )
-    {
-        camera.rotate( -rotationSpeed, QVector3D(1, 0, 0) );        
-        gravity += btVector3( 0, 0, rollingSpeed );
+        else if( Input::keyPressed( Qt::Key_Down ) )
+        {
+            camera.rotate( rotationSpeed, QVector3D(1, 0, 0) );        
+            gravity += btVector3( 0, 0, rollingSpeed );
+        }
     }
 
     // Update gravity

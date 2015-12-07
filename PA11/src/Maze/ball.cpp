@@ -11,9 +11,10 @@ Ball::Ball()
             "textures/Sphere_Boulder.jpg"
         )
 {
+    // TODO: uncomment this when we figure out how to place the ball
     // limit movement to x and z
-    //RigidBody->setLinearFactor(btVector3(1, 0, 1));
+    // RigidBody->setLinearFactor(btVector3(1, 0, 1));
 
     // limit rotation to y
-    //RigidBody->setAngularFactor(btVector3(0, 1, 0));
+    // RigidBody->setAngularFactor(btVector3(0, 1, 0));
 }

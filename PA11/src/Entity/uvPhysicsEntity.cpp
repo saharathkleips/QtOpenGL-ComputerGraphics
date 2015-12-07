@@ -24,10 +24,11 @@ UVPhysicsEntity::UVPhysicsEntity( btTransform startingState, btScalar mass,
 
     // The object is dynamic, so use ConvexTriMesh
     else
+        // sphere is being used instead of convex triangle for more optimized collision calculations
         // set radius of the sphere to 0.5, the model that's being used is actually 0.5 scaled too
         m_collisionShape = new btSphereShape( 0.5 );
-
-        //m_collisionShape = new btConvexTriangleMeshShape( m_triMesh );
+        // todo: Have a way to do this still:
+        // m_collisionShape = new btConvexTriangleMeshShape( m_triMesh );
 
     m_motionState = new btDefaultMotionState( startingState );
 
@@ -37,8 +38,8 @@ UVPhysicsEntity::UVPhysicsEntity( btTransform startingState, btScalar mass,
     m_rigidBodyCI = new btRigidBody::btRigidBodyConstructionInfo( 
         m_mass, m_motionState, m_collisionShape, m_inertia );
 
-    // Makes objects bouncy (Used in Air Hockey)
-    // m_rigidBodyCI->m_restitution = 0.95f;
+    // Make objects bouncy
+    m_rigidBodyCI->m_restitution = 0.95f;
 
     RigidBody = new btRigidBody( *m_rigidBodyCI );
 
