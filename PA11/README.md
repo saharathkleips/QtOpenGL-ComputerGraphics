@@ -1,6 +1,6 @@
 # PA11 - Labyrinth Hockey (Ben Nicholes, Denis Morozov, Saharath Kleips)
 This project showcases a physics-based labyrinth game. 
-![](.screenshot.png "Screenshot")
+![](GameScreen.png "Screenshot")
 
 ## Notes
 + 2 ball play is default.
@@ -25,9 +25,9 @@ This project showcases a physics-based labyrinth game.
 
 ##Instructions
 When the game starts you will be shown a title screen. That allows you to start a game or to exit. 
-![](.TitleScreen.png "Title Screen")  
+![](TitleScreen.png "Title Screen")  
 Once you start a game tilt the board to guide the marbles toward their goal.
-![](.GameScreen.png "Game Screen")  
+![](GameScreen.png "Game Screen")  
 Once you have reached your goal you will be shown a win message, then you can choose to restart the game or quit.
 
 ##Controls
