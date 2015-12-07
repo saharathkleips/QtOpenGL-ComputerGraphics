@@ -22,7 +22,7 @@ Labyrinth::Labyrinth( Environment env, int seed, int width, int height )
     player->play();
 }
 
-void Labyrinth::addRigidBodys( btDiscreteDynamicsWorld* dynamicsWorld )
+void Labyrinth::addRigidBodies( btDiscreteDynamicsWorld* dynamicsWorld )
 {
     for( Cell* cell : m_cells )
         dynamicsWorld->addRigidBody( cell->RigidBody );
