@@ -54,7 +54,6 @@ void TitleWidget::resizeEvent( QResizeEvent* event )
     resize();
 }
 
-#include <QDebug>
 void TitleWidget::resize()
 {
     float percentWidth = QWidget::width() / 1855.0f;

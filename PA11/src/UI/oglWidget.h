@@ -16,6 +16,7 @@
 #include <QDebug>
 #include <QString>
 #include <QMediaPlayer>
+#include <QPainter>
 
 #include <btBulletDynamicsCommon.h>
 
@@ -59,6 +60,8 @@ private:
 
     // OpenGL Objects
     QMap<QString, Renderable*> renderables;
+
+    int score;
 
     // 3D data
     QMatrix4x4 projection;
