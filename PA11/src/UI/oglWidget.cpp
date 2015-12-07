@@ -19,7 +19,7 @@ OGLWidget::OGLWidget()
     camera.rotate( -90.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 30.0f, 75.0f, 30.0f );
 
-    renderables["Labyrinth"] = new Labyrinth( Environment::Ice, 8, 30, 30 );
+    renderables["Labyrinth"] = new Labyrinth( Environment::Ice, 10, 30, 30 );
     renderables["Ball"] = new Ball();
 }
 
