@@ -122,7 +122,7 @@ void OGLWidget::update()
     flyThroughCamera();
 
     // not sure what to call this method
-    controlBoard();
+    camera.lookAt(QVector3D(20,0,0));
 
     for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
         iter != renderables.end(); iter++ )

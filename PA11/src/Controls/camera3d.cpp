@@ -144,10 +144,10 @@ void Camera3D::setRotation( float angle, float x, float y, float z )
     setRotation( QQuaternion::fromAxisAndAngle( x, y, z, angle ) );
 }
 
-void Camera3D::setMatrix( const QMatrix4x4 &newMatrix )
+void Camera3D::lookAt( const QVector3D &target )
 {
     m_matrixWasSet = true;
-    m_world = newMatrix;
+    m_world.lookAt( translation(), target, QVector3D(1,0,0) );
 }
 
 

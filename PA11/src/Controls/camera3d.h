@@ -29,7 +29,7 @@ public:
     void setRotation( const QQuaternion& r );
     void setRotation( float angle, const QVector3D& axis );
     void setRotation( float angle, float ax, float ay, float az );
-    void setMatrix( const QMatrix4x4 &newMatrix );
+    void lookAt( const QVector3D &target );
 
     // Accessors
     const QVector3D& translation() const;
