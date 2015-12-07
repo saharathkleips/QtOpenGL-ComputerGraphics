@@ -1,6 +1,6 @@
 # PA11 - Labyrinth Hockey (Ben Nicholes, Denis Morozov, Saharath Kleips)
 This project showcases a physics-based labyrinth game. 
-![](.screenshot.png "Screenshot")
+![](Gamescreen.png "Screenshot")
 
 ## Notes
 + 2 ball play is default.
