@@ -52,7 +52,7 @@ void OGLWidget::initializeGL()
         (*iter)->initializeGL();
     }
 
-    ((Labyrinth*)renderables["Labyrinth"])->addRigidBodys( m_dynamicsWorld );
+    ((Labyrinth*)renderables["Labyrinth"])->addRigidBodies( m_dynamicsWorld );
     m_dynamicsWorld->addRigidBody(
         ((Ball*)renderables["Ball"])->RigidBody
     );

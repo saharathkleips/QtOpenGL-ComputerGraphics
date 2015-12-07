@@ -22,7 +22,7 @@ class Labyrinth     :   public Renderable
 {
 public:
     Labyrinth( Environment env, int seed, int width, int height );
-    void addRigidBodys( btDiscreteDynamicsWorld* dynamicsWorld );
+    void addRigidBodies( btDiscreteDynamicsWorld* dynamicsWorld );
 
     // Renderable Functions
     void initializeGL();
