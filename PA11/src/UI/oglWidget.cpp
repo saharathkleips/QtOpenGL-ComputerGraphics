@@ -24,12 +24,22 @@ OGLWidget::OGLWidget()
 
     std::pair<float, float> startingLocation = ((Labyrinth*)renderables["Labyrinth"])->getStartingLocation();
 
-    if( selectedEnvironment == Environment::Rock )
+    if( selectedEnvironment == Environment::Rock ){
         renderables["Ball"] = new Ball( startingLocation.first, 1.5f, startingLocation.second, true );
-    else if( selectedEnvironment == Environment::Ice )
+        renderables["Ball2"] = new Ball( startingLocation.first+0.5, 1.5f, startingLocation.second+0.5f, true);
+    }
+    else if( selectedEnvironment == Environment::Ice ){
         renderables["Ball"] = new Ball( startingLocation.first, 1.5f, startingLocation.second, false );
-    else
+        renderables["Ball2"] = new Ball( startingLocation.first+0.5, 1.5f, startingLocation.second+0.5f, false);
+    }
+    else{
         renderables["Ball"] = new Ball( startingLocation.first, 1.5f, startingLocation.second, true );
+        renderables["Ball2"] = new Ball( startingLocation.first+0.5, 1.5f, startingLocation.second+0.5f, true);
+    }
+
+    const btVector3 wallSize = btVector3(100, 50, 100);
+    const btVector3 location = btVector3(0, 52.5, 0 );
+    m_invisibleWall = new Wall( wallSize, location );
 }
 
 /**
@@ -63,9 +73,11 @@ void OGLWidget::initializeGL()
     }
 
     ((Labyrinth*)renderables["Labyrinth"])->addRigidBodies( m_dynamicsWorld );
-    m_dynamicsWorld->addRigidBody(
-        ((Ball*)renderables["Ball"])->RigidBody
-    );
+    m_dynamicsWorld->addRigidBody( ((Ball*)renderables["Ball"])->RigidBody );    
+    m_dynamicsWorld->addRigidBody( ((Ball*)renderables["Ball2"])->RigidBody );
+    m_dynamicsWorld->addRigidBody( m_invisibleWall->RigidBody );
+
+
 }
 
 /**
@@ -141,18 +153,30 @@ void OGLWidget::update()
     float dt = updateTimer.deltaTime();
     Input::update();
     flyThroughCamera();
-    controlBoard();
 
-    for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
-        iter != renderables.end(); iter++ )
+    if( !isPaused )
     {
-        (*iter)->update();
+        controlBoard();
+
+        for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
+            iter != renderables.end(); iter++ )
+        {
+            (*iter)->update();
+        }
+
+        score += dt * 100;
+        m_dynamicsWorld->stepSimulation( dt, 10 );        
     }
 
-    score += dt * 100;
-
-    m_dynamicsWorld->stepSimulation( dt, 10 );
     QOpenGLWidget::update();
+}
+
+/**
+ * @brief      Public slot to invert the pause state of the game.
+ */
+void OGLWidget::pause()
+{
+    isPaused = !isPaused;
 }
 
 //

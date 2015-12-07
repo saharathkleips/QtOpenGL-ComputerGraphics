@@ -26,6 +26,7 @@
 #include "3D/renderable.h"
 #include "Maze/labyrinth.h"
 #include "Maze/ball.h"
+#include "Maze/wall.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions
@@ -43,6 +44,7 @@ public:
     virtual void teardownGL();
 
 protected slots:
+    void pause();
     void update();
 
 protected:
@@ -61,6 +63,8 @@ private:
     // OpenGL Objects
     QMap<QString, Renderable*> renderables;
 
+    // Invisible Bullet object
+    Wall* m_invisibleWall;
     int score;
 
     // 3D data
@@ -76,6 +80,9 @@ private:
 
     // World Timer
     Time updateTimer;
+
+    // Pause flag
+    bool isPaused = false;
 };
 
 #endif  //  OGL_WIDGET_H
