@@ -105,6 +105,22 @@ void Labyrinth::teardownGL()
         cell->teardownGL();
 }
 
+Environment Labyrinth::getRandomEnvironment()
+{
+    switch( rand() % 2 )
+    {
+        case 0:
+            return Environment::Rock;
+            break;
+        case 1:
+            return Environment::Ice;
+            break;
+        default:
+            return Environment::Rock;
+            break;
+    }
+}
+
 btQuaternion Labyrinth::getRandomRotation()
 {
     switch( rand() % 4 )

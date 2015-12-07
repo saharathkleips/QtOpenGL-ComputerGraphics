@@ -27,6 +27,8 @@ public:
     void update();
     void teardownGL();
 
+    static Environment getRandomEnvironment();
+
 private:
     btQuaternion getRandomRotation();
 

@@ -1,4 +1,5 @@
 #include "mazeGenerator.h"
+#include <QDebug>
 
 #define Grid std::vector< std::vector<int> >
 #define Cell std::tuple<int, int>
@@ -25,7 +26,7 @@ Grid MazeGenerator::makeMaze( int seed, int width, int height )
             {
                 case 0:
                     col( *iter ) -= 2;
-                    if( col( *iter ) <= -1 || 
+                    if( col( *iter ) < 0 || 
                         maze[row( *iter )][col( *iter )] == FLOOR )
                     {
                         removeWorker = true;
@@ -45,7 +46,7 @@ Grid MazeGenerator::makeMaze( int seed, int width, int height )
                     break;
                 case 2:
                     row( *iter ) -= 2;
-                    if( row( *iter ) <= -1 || 
+                    if( row( *iter ) < 0 || 
                         maze[row( *iter )][col( *iter )] == FLOOR )
                     {
                         removeWorker = true;
@@ -101,9 +102,9 @@ Grid MazeGenerator::makeMaze( int seed, int width, int height )
         case 1:
             for(int i = 0; i < std::min(width, height); i++)
             {
-                if( maze[width - i][i] == FLOOR )
+                if( maze[width - i - 1][i] == FLOOR )
                 {
-                    maze[width - i][i] = END;
+                    maze[width - i - 1][i] = END;
                     break;
                 }
             }
@@ -111,15 +112,15 @@ Grid MazeGenerator::makeMaze( int seed, int width, int height )
         case 2:
             for(int i = 0; i < std::min(width, height); i++)
             {
-                if( maze[i][height - i] == FLOOR )
+                if( maze[i][height - i - 1] == FLOOR )
                 {
-                    maze[i][height - i] = END;
+                    maze[i][height - i - 1] = END;
                     break;
                 }
             }
             break;
         case 3:
-            for(int i = 0; i < std::min(width, height); i++)
+            for(int i = 1; i < std::min(width, height); i++)
             {
                 if( maze[width - i][height - i] == FLOOR )
                 {
