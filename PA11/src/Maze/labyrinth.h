@@ -9,6 +9,9 @@
 
 #include "Controls/camera3d.h"
 
+#include <QMediaPlayer>
+
+
 enum Environment
 {
     Rock,
@@ -28,6 +31,9 @@ public:
     void teardownGL();
 
 private:
+
+    QMediaPlayer *player;
+
     btQuaternion getRandomRotation();
 
     Environment m_env;

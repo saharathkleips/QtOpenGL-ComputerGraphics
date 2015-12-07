@@ -1,9 +1,25 @@
 #include "labyrinth.h"
-
+#include <QFileInfo>
 Labyrinth::Labyrinth( Environment env, int seed, int width, int height )
     :   m_env( env ), m_seed( seed ), m_width( width ), m_height( height )
 {
     m_maze = MazeGenerator::makeMaze( m_seed, m_width, m_height );
+
+
+    player = new QMediaPlayer(); 
+      
+    QString file;  
+    if( m_env == Environment::Rock ){
+        file = "sounds/rock.mp3";
+    }
+    else{
+        file = "sounds/ice.mp3";
+    }
+
+    QUrl url = QUrl::fromLocalFile(QFileInfo(file).absoluteFilePath());
+    player->setMedia(url);
+    player->setVolume(800); 
+    player->play();
 }
 
 void Labyrinth::addRigidBodys( btDiscreteDynamicsWorld* dynamicsWorld )
@@ -97,6 +113,10 @@ void Labyrinth::update()
 {
     for( Cell* cell : m_cells )
         cell->update();
+
+    if(QMediaPlayer::StoppedState){
+        player->play();
+    }
 }
 
 void Labyrinth::teardownGL()
