@@ -59,6 +59,7 @@ private:
     void flyThroughCamera();
     void controlBoard();
     void printContextInfo();
+    void checkIfWon();
 
     // OpenGL Objects
     QMap<QString, Renderable*> renderables;

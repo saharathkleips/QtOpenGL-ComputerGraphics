@@ -164,6 +164,7 @@ void OGLWidget::update()
 
     if( !isPaused )
     {
+        checkIfWon();
         controlBoard();
 
         for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
@@ -301,6 +302,24 @@ void OGLWidget::flyThroughCamera()
         cameraTranslations += camera.up();
     camera.translate( cameraTranslationSpeed * cameraTranslations );
 } 
+
+/**
+ * @brief      Shows victory message if both balls go through the hole.
+ */
+void OGLWidget::checkIfWon()
+{
+    btTransform firstObject; 
+    (((Ball*)renderables["Ball"])->RigidBody->getMotionState())->getWorldTransform(firstObject);
+
+    btTransform secondObject;
+    (((Ball*)renderables["Ball2"])->RigidBody->getMotionState())->getWorldTransform(secondObject);
+
+    if( firstObject.getOrigin().y() < 0 && secondObject.getOrigin().y() < 0 )
+    {
+        emit win();
+    }
+}
+
 
 /**
  * @brief      Updates board based on user input.
