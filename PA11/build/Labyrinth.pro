@@ -52,7 +52,8 @@ HEADERS += \
     #UI
     ../src/UI/mainWindow.h \
     ../src/UI/oglWidget.h \
-    ../src/UI/titleWidget.h
+    ../src/UI/titleWidget.h \
+    ../src/UI/winWidget.h
 
 #A list of source code files to be used when building the project.
 SOURCES += \
@@ -80,6 +81,7 @@ SOURCES += \
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
     ../src/UI/titleWidget.cpp \
+    ../src/UI/winWidget.cpp \
     #Main
     ../src/main.cpp
 

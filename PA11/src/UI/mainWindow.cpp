@@ -16,6 +16,7 @@ MainWindow::MainWindow()
 
     titleWidget = NULL;
     oglWidget = NULL;
+    winWidget = NULL;
 
     createActions();
     createMenus();
@@ -45,6 +46,10 @@ void MainWindow::swapToTitle()
         delete oglWidget;
         oglWidget = NULL;
     }
+    if( winWidget != NULL ){
+        delete winWidget;
+        winWidget = NULL;
+    }
 }
 
 void MainWindow::swapToGame()
@@ -66,6 +71,24 @@ void MainWindow::swapToGame()
     if( titleWidget != NULL ){
         delete titleWidget;
         titleWidget = NULL;
+    }
+    if( winWidget != NULL ){
+        delete winWidget;
+        winWidget = NULL;
+    }
+}
+
+void MainWindow::swapToWin()
+{
+    winWidget = new WinWidget();
+    setCentralWidget( winWidget );
+    if( titleWidget != NULL ){
+        delete titleWidget;
+        titleWidget = NULL;
+    }
+    if( oglWidget != NULL ){
+        delete oglWidget;
+        oglWidget = NULL;
     }
 }
 

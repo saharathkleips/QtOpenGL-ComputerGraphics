@@ -18,12 +18,24 @@ OGLWidget::OGLWidget()
     camera.rotate( -90.0f, 1.0f, 0.0f, 0.0f );
     camera.translate( 30.0f, 75.0f, 30.0f );
 
-    renderables["Labyrinth"] = new Labyrinth( Labyrinth::getRandomEnvironment(), time(NULL), 30, 30 );
+    Environment selectedEnvironment = Labyrinth::getRandomEnvironment();
+
+    renderables["Labyrinth"] = new Labyrinth( selectedEnvironment, time(NULL), 30, 30 );
 
     std::pair<float, float> startingLocation = ((Labyrinth*)renderables["Labyrinth"])->getStartingLocation();
 
-    renderables["Ball"] = new Ball( startingLocation.first, 1.5f, startingLocation.second );
-    renderables["Ball2"] = new Ball( startingLocation.first+0.5, 1.5f, startingLocation.second+0.5f);
+    if( selectedEnvironment == Environment::Rock ){
+        renderables["Ball"] = new Ball( startingLocation.first, 1.5f, startingLocation.second, true );
+        renderables["Ball2"] = new Ball( startingLocation.first+0.5, 1.5f, startingLocation.second+0.5f, true);
+    }
+    else if( selectedEnvironment == Environment::Ice ){
+        renderables["Ball"] = new Ball( startingLocation.first, 1.5f, startingLocation.second, false );
+        renderables["Ball2"] = new Ball( startingLocation.first+0.5, 1.5f, startingLocation.second+0.5f, false);
+    }
+    else{
+        renderables["Ball"] = new Ball( startingLocation.first, 1.5f, startingLocation.second, true );
+        renderables["Ball2"] = new Ball( startingLocation.first+0.5, 1.5f, startingLocation.second+0.5f, true);
+    }
 
     const btVector3 wallSize = btVector3(100, 50, 100);
     const btVector3 location = btVector3(0, 52.5, 0 );
