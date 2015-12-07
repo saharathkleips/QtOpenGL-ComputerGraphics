@@ -19,7 +19,10 @@ OGLWidget::OGLWidget()
     camera.translate( 30.0f, 75.0f, 30.0f );
 
     renderables["Labyrinth"] = new Labyrinth( Labyrinth::getRandomEnvironment(), time(NULL), 30, 30 );
-    renderables["Ball"] = new Ball();
+
+    std::pair<float, float> startingLocation = ((Labyrinth*)renderables["Labyrinth"])->getStartingLocation();
+
+    renderables["Ball"] = new Ball( startingLocation.first, 1.5f, startingLocation.second );
 }
 
 /**
@@ -131,8 +134,6 @@ void OGLWidget::update()
     float dt = updateTimer.deltaTime();
     Input::update();
     flyThroughCamera();
-
-    // not sure what to call this method
     controlBoard();
 
     for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
