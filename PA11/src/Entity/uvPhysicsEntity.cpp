@@ -41,6 +41,9 @@ UVPhysicsEntity::UVPhysicsEntity( btTransform startingState, btScalar mass,
     // Make objects bouncy
     m_rigidBodyCI->m_restitution = 0.95f;
 
+    // Increase friction
+    // /m_rigidBodyCI->m_friction = 20.0f;
+
     RigidBody = new btRigidBody( *m_rigidBodyCI );
 
     if( mass == 0 )
