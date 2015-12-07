@@ -23,6 +23,7 @@ OGLWidget::OGLWidget()
     std::pair<float, float> startingLocation = ((Labyrinth*)renderables["Labyrinth"])->getStartingLocation();
 
     renderables["Ball"] = new Ball( startingLocation.first, 1.5f, startingLocation.second );
+    renderables["Ball2"] = new Ball( startingLocation.first+0.5, 1.5f, startingLocation.second+0.5f);
 
     const btVector3 wallSize = btVector3(100, 50, 100);
     const btVector3 location = btVector3(0, 52.5, 0 );
@@ -60,7 +61,8 @@ void OGLWidget::initializeGL()
     }
 
     ((Labyrinth*)renderables["Labyrinth"])->addRigidBodies( m_dynamicsWorld );
-    m_dynamicsWorld->addRigidBody( ((Ball*)renderables["Ball"])->RigidBody );
+    m_dynamicsWorld->addRigidBody( ((Ball*)renderables["Ball"])->RigidBody );    
+    m_dynamicsWorld->addRigidBody( ((Ball*)renderables["Ball2"])->RigidBody );
     m_dynamicsWorld->addRigidBody( m_invisibleWall->RigidBody );
 
 
