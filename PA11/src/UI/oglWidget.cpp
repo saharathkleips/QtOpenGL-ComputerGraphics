@@ -96,11 +96,23 @@ void OGLWidget::paintGL()
     // Clear the screen
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
+
     for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
         iter != renderables.end(); iter++ )
     {
         (*iter)->paintGL( camera, projection );
     }
+
+    // 2D Elements
+    QFont ConsolasFont( "Consolas", std::min( 35 * (QWidget::width() / 1855.0f), 35 * (QWidget::height() / 1056.0f)), QFont::Bold );
+    // Draw 2D Elements
+    QPainter painter(this);
+    QRect rect( 0, 10, QWidget::width(), QWidget::height() / 4 );
+    painter.beginNativePainting();
+    painter.setPen( QColor( 255, 255, 255, 255 ) );
+    painter.setFont( ConsolasFont );
+    painter.drawText( rect, Qt::AlignHCenter, QString::number( score ) );
+    painter.endNativePainting();
 }
 
 /**
@@ -134,6 +146,8 @@ void OGLWidget::update()
     {
         (*iter)->update();
     }
+
+    score += dt * 100;
 
     m_dynamicsWorld->stepSimulation( dt, 10 );
     QOpenGLWidget::update();

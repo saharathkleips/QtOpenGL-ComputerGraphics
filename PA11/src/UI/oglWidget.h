@@ -16,6 +16,7 @@
 #include <QDebug>
 #include <QString>
 #include <QMediaPlayer>
+#include <QPainter>
 
 #include <btBulletDynamicsCommon.h>
 
@@ -63,6 +64,7 @@ private:
 
     // Invisible Bullet object
     Wall* m_invisibleWall;
+    int score;
 
     // 3D data
     QMatrix4x4 projection;
