@@ -1,5 +1,6 @@
 #include "labyrinth.h"
 #include <QFileInfo>
+
 Labyrinth::Labyrinth( Environment env, int seed, int width, int height )
     :   m_env( env ), m_seed( seed ), m_width( width ), m_height( height )
 {
@@ -20,21 +21,18 @@ Labyrinth::Labyrinth( Environment env, int seed, int width, int height )
     player->setMedia(url);
     player->setVolume(800); 
     player->play();
-}
 
-void Labyrinth::addRigidBodies( btDiscreteDynamicsWorld* dynamicsWorld )
-{
-    for( Cell* cell : m_cells )
-        dynamicsWorld->addRigidBody( cell->RigidBody );
-}
-
-void Labyrinth::initializeGL()
-{
     float xpos = 0.0f, zpos = 0.0f;
     for( unsigned int y = 0; y < m_maze[0].size(); ++y )
     {
         for( unsigned int x = 0; x < m_maze.size(); ++x )
         {
+            if( m_maze[x][y] == MazeGenerator::START )
+            {
+                m_startingLocation.first = xpos;
+                m_startingLocation.second = zpos;
+            }
+
             if( m_maze[x][y] == MazeGenerator::WALL )
             {
                 if( m_env == Environment::Rock )
@@ -97,8 +95,22 @@ void Labyrinth::initializeGL()
             m_cells.push_back( new Cell( btTransform( getRandomRotation(), 
                         btVector3(  m_maze[0].size() * 2.0f, 2.0f, i ) ), Cell::getRandomIceWall() ) );
     }
-    
+}
 
+void Labyrinth::addRigidBodies( btDiscreteDynamicsWorld* dynamicsWorld )
+{
+    for( Cell* cell : m_cells )
+        dynamicsWorld->addRigidBody( cell->RigidBody );
+}
+
+
+std::pair<float, float> Labyrinth::getStartingLocation()
+{
+    return m_startingLocation;
+}
+
+void Labyrinth::initializeGL()
+{
     for( Cell* cell : m_cells )
         cell->initializeGL();
 }

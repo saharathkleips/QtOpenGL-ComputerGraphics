@@ -23,6 +23,7 @@ class Labyrinth     :   public Renderable
 public:
     Labyrinth( Environment env, int seed, int width, int height );
     void addRigidBodies( btDiscreteDynamicsWorld* dynamicsWorld );
+    std::pair<float, float> getStartingLocation();
 
     // Renderable Functions
     void initializeGL();
@@ -44,6 +45,7 @@ private:
     std::vector< std::vector<int> > m_maze;
     int m_seed;
     int m_width, m_height;
+    std::pair<float, float> m_startingLocation;
 };
 
 #endif  //  LABYRINTH_H
