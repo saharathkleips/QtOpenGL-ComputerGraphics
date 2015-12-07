@@ -142,6 +142,14 @@ void OGLWidget::update()
     Input::update();
     flyThroughCamera();
 
+    // Reset camera and gravity if space is pressed
+    if( Input::keyPressed( Qt::Key_Space ) )
+    {
+        camera.setRotation( -90.0f, 1.0f, 0.0f, 0.0f );
+        camera.setTranslation( 30.0f, 75.0f, 30.0f );
+        m_dynamicsWorld->setGravity( btVector3( 0, -9.8, 0 ) );
+    }
+
     if( !isPaused )
     {
         controlBoard();
@@ -290,17 +298,6 @@ void OGLWidget::controlBoard()
     const float rotationSpeed = 0.7f;
     const float rollingSpeed = 0.5f;
     btVector3 gravity = m_dynamicsWorld->getGravity();
-
-    /* I suppose gravity being relative to camera would be best, here is some code incase you want
-    to figure out a good way to do it.
-
-    float cameraAngle;
-    QVector3D cameraAxis;
-    camera.rotation().getAxisAndAngle( &cameraAxis, &cameraAngle );
-    //std::cout << cameraAngle << std::endl;
-    //std::cout << cameraAxis.x() << std::endl;
-    */
-
 
     // Update horizontal rotation
     if( Input::keyPressed( Qt::Key_Left ) )
