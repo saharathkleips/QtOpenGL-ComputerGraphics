@@ -8,12 +8,10 @@ QOpenGLVertexArrayObject* Cell::m_vao = NULL;
 QOpenGLShaderProgram* Cell::m_program = NULL;
 UVVertex* Cell::m_model = NULL;
 int Cell::m_numVertices = -1;
-QOpenGLTexture* Cell::m_rockWallTexture1 = NULL;
-QOpenGLTexture* Cell::m_rockWallTexture2 = NULL;
-QOpenGLTexture* Cell::m_rockWallTexture3 = NULL;
-QOpenGLTexture* Cell::m_rockWallTexture4 = NULL;
-QOpenGLTexture* Cell::m_rockWallTexture5 = NULL;
-QOpenGLTexture* Cell::m_floorTexture1 = NULL;
+QOpenGLTexture* Cell::m_rockWallTexture[5] = { NULL, NULL, NULL, NULL, NULL };
+QOpenGLTexture* Cell::m_dirtFloorTexture = NULL;
+QOpenGLTexture* Cell::m_iceWallTexture[5] = { NULL, NULL, NULL, NULL, NULL };
+QOpenGLTexture* Cell::m_snowFloorTexture = NULL;
 int Cell::m_modelWorld = -1;
 int Cell::m_worldEye = -1;
 int Cell::m_eyeClip = -1;
@@ -74,55 +72,103 @@ void Cell::initializeGL()
     else
         m_program->bind();
 
-    if( m_rockWallTexture1 == NULL )
+    if( m_rockWallTexture[0] == NULL )
     {
-        m_rockWallTexture1 = new QOpenGLTexture( 
+        m_rockWallTexture[0] = new QOpenGLTexture( 
             QImage( "textures/Cube_RockWall1.jpg" ).mirrored() );
-        m_rockWallTexture1->setMinificationFilter( 
+        m_rockWallTexture[0]->setMinificationFilter( 
             QOpenGLTexture::LinearMipMapLinear );
-        m_rockWallTexture1->setMagnificationFilter( QOpenGLTexture::Linear );
+        m_rockWallTexture[0]->setMagnificationFilter( QOpenGLTexture::Linear );
     }
-    if( m_rockWallTexture2 == NULL )
+    if( m_rockWallTexture[1] == NULL )
     {
-        m_rockWallTexture2 = new QOpenGLTexture( 
+        m_rockWallTexture[1] = new QOpenGLTexture( 
             QImage( "textures/Cube_RockWall2.jpg" ).mirrored() );
-        m_rockWallTexture2->setMinificationFilter( 
+        m_rockWallTexture[1]->setMinificationFilter( 
             QOpenGLTexture::LinearMipMapLinear );
-        m_rockWallTexture2->setMagnificationFilter( QOpenGLTexture::Linear );
+        m_rockWallTexture[1]->setMagnificationFilter( QOpenGLTexture::Linear );
     }
-    if( m_rockWallTexture3 == NULL )
+    if( m_rockWallTexture[2] == NULL )
     {
-        m_rockWallTexture3 = new QOpenGLTexture( 
+        m_rockWallTexture[2] = new QOpenGLTexture( 
             QImage( "textures/Cube_RockWall3.jpg" ).mirrored() );
-        m_rockWallTexture3->setMinificationFilter( 
+        m_rockWallTexture[2]->setMinificationFilter( 
             QOpenGLTexture::LinearMipMapLinear );
-        m_rockWallTexture3->setMagnificationFilter( QOpenGLTexture::Linear );
+        m_rockWallTexture[2]->setMagnificationFilter( QOpenGLTexture::Linear );
     }
-    if( m_rockWallTexture4 == NULL )
+    if( m_rockWallTexture[3] == NULL )
     {
-        m_rockWallTexture4 = new QOpenGLTexture( 
+        m_rockWallTexture[3] = new QOpenGLTexture( 
             QImage( "textures/Cube_RockWall4.jpg" ).mirrored() );
-        m_rockWallTexture4->setMinificationFilter( 
+        m_rockWallTexture[3]->setMinificationFilter( 
             QOpenGLTexture::LinearMipMapLinear );
-        m_rockWallTexture4->setMagnificationFilter( QOpenGLTexture::Linear );
+        m_rockWallTexture[3]->setMagnificationFilter( QOpenGLTexture::Linear );
     }
-    if( m_rockWallTexture5 == NULL )
+    if( m_rockWallTexture[4] == NULL )
     {
-        m_rockWallTexture5 = new QOpenGLTexture( 
+        m_rockWallTexture[4] = new QOpenGLTexture( 
             QImage( "textures/Cube_RockWall5.jpg" ).mirrored() );
-        m_rockWallTexture5->setMinificationFilter( 
+        m_rockWallTexture[4]->setMinificationFilter( 
             QOpenGLTexture::LinearMipMapLinear );
-        m_rockWallTexture5->setMagnificationFilter( QOpenGLTexture::Linear );
+        m_rockWallTexture[4]->setMagnificationFilter( QOpenGLTexture::Linear );
+    }
+    if( m_dirtFloorTexture == NULL )
+    {
+        m_dirtFloorTexture = new QOpenGLTexture( 
+            QImage( "textures/Cube_DirtFloor.jpg" ).mirrored() );
+        m_dirtFloorTexture->setMinificationFilter( 
+            QOpenGLTexture::LinearMipMapLinear );
+        m_dirtFloorTexture->setMagnificationFilter( QOpenGLTexture::Linear );
+    }
+    if( m_iceWallTexture[0] == NULL )
+    {
+        m_iceWallTexture[0] = new QOpenGLTexture( 
+            QImage( "textures/Cube_IceWall1.jpg" ).mirrored() );
+        m_iceWallTexture[0]->setMinificationFilter( 
+            QOpenGLTexture::LinearMipMapLinear );
+        m_iceWallTexture[0]->setMagnificationFilter( QOpenGLTexture::Linear );
+    }
+    if( m_iceWallTexture[1] == NULL )
+    {
+        m_iceWallTexture[1] = new QOpenGLTexture( 
+            QImage( "textures/Cube_IceWall2.jpg" ).mirrored() );
+        m_iceWallTexture[1]->setMinificationFilter( 
+            QOpenGLTexture::LinearMipMapLinear );
+        m_iceWallTexture[1]->setMagnificationFilter( QOpenGLTexture::Linear );
+    }
+    if( m_iceWallTexture[2] == NULL )
+    {
+        m_iceWallTexture[2] = new QOpenGLTexture( 
+            QImage( "textures/Cube_IceWall3.jpg" ).mirrored() );
+        m_iceWallTexture[2]->setMinificationFilter( 
+            QOpenGLTexture::LinearMipMapLinear );
+        m_iceWallTexture[2]->setMagnificationFilter( QOpenGLTexture::Linear );
+    }
+    if( m_iceWallTexture[3] == NULL )
+    {
+        m_iceWallTexture[3] = new QOpenGLTexture( 
+            QImage( "textures/Cube_IceWall4.jpg" ).mirrored() );
+        m_iceWallTexture[3]->setMinificationFilter( 
+            QOpenGLTexture::LinearMipMapLinear );
+        m_iceWallTexture[3]->setMagnificationFilter( QOpenGLTexture::Linear );
+    }
+    if( m_iceWallTexture[4] == NULL )
+    {
+        m_iceWallTexture[4] = new QOpenGLTexture( 
+            QImage( "textures/Cube_IceWall5.jpg" ).mirrored() );
+        m_iceWallTexture[4]->setMinificationFilter( 
+            QOpenGLTexture::LinearMipMapLinear );
+        m_iceWallTexture[4]->setMagnificationFilter( QOpenGLTexture::Linear );
+    }
+    if( m_snowFloorTexture == NULL )
+    {
+        m_snowFloorTexture = new QOpenGLTexture( 
+            QImage( "textures/Cube_SnowFloor.jpg" ).mirrored() );
+        m_snowFloorTexture->setMinificationFilter( 
+            QOpenGLTexture::LinearMipMapLinear );
+        m_snowFloorTexture->setMagnificationFilter( QOpenGLTexture::Linear );
     }
 
-    if( m_floorTexture1 == NULL )
-    {
-        m_floorTexture1 = new QOpenGLTexture( 
-            QImage( "textures/Cube_DirtFloor.jpg" ).mirrored() );
-        m_floorTexture1->setMinificationFilter( 
-            QOpenGLTexture::LinearMipMapLinear );
-        m_floorTexture1->setMagnificationFilter( QOpenGLTexture::Linear );
-    }
 
     if( m_vbo == NULL )
     {
@@ -172,25 +218,43 @@ void Cell::paintGL( Camera3D& camera, QMatrix4x4& projection )
     switch( m_selectedTexture )
     {
         case Texture::RockWall1:
-            texture = m_rockWallTexture1;
+            texture = m_rockWallTexture[0];
             break;
         case Texture::RockWall2:
-            texture = m_rockWallTexture2;
+            texture = m_rockWallTexture[1];
             break;
         case Texture::RockWall3:
-            texture = m_rockWallTexture3;
+            texture = m_rockWallTexture[2];
             break;
         case Texture::RockWall4:
-            texture = m_rockWallTexture4;
+            texture = m_rockWallTexture[3];
             break;
         case Texture::RockWall5:
-            texture = m_rockWallTexture5;
+            texture = m_rockWallTexture[4];
             break;
-        case Texture::DirtFloor1:
-            texture = m_floorTexture1;
+        case Texture::DirtFloor:
+            texture = m_dirtFloorTexture;
+            break;
+        case Texture::IceWall1:
+            texture = m_iceWallTexture[0];
+            break;
+        case Texture::IceWall2:
+            texture = m_iceWallTexture[1];
+            break;
+        case Texture::IceWall3:
+            texture = m_iceWallTexture[2];
+            break;
+        case Texture::IceWall4:
+            texture = m_iceWallTexture[3];
+            break;
+        case Texture::IceWall5:
+            texture = m_iceWallTexture[4];
+            break;
+        case Texture::SnowFloor:
+            texture = m_snowFloorTexture;
             break;
         default:
-            texture = m_rockWallTexture1;
+            texture = m_snowFloorTexture;
             break;
     }
 
@@ -247,6 +311,31 @@ Texture Cell::getRandomRockWall()
             return Texture::RockWall5;
             break;
         default:
-            return Texture::RockWall3;
+            return Texture::DirtFloor;
+    }
+}
+
+Texture Cell::getRandomIceWall()
+{
+    int switchVal = rand() % 5;
+    switch( switchVal )
+    {
+        case 0:
+            return Texture::IceWall1;
+            break;
+        case 1:
+            return Texture::IceWall2;
+            break;
+        case 2:
+            return Texture::IceWall3;
+            break;
+        case 3:
+            return Texture::IceWall4;
+            break;
+        case 4:
+            return Texture::IceWall5;
+            break;
+        default:
+            return Texture::SnowFloor;
     }
 }

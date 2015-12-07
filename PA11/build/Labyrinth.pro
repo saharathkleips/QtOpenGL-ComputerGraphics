@@ -49,7 +49,8 @@ HEADERS += \
     ../src/Maze/ball.h \
     #UI
     ../src/UI/mainWindow.h \
-    ../src/UI/oglWidget.h
+    ../src/UI/oglWidget.h \
+    ../src/UI/titleWidget.h
 
 #A list of source code files to be used when building the project.
 SOURCES += \
@@ -75,6 +76,7 @@ SOURCES += \
     #UI
     ../src/UI/mainWindow.cpp \
     ../src/UI/oglWidget.cpp \
+    ../src/UI/titleWidget.cpp \
     #Main
     ../src/main.cpp
 

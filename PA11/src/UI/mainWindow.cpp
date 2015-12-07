@@ -12,31 +12,44 @@
  */
 MainWindow::MainWindow()
 {
-    setMinimumSize( 800, 600 );
-    oglWidget = NULL;
+    showFullScreen();
 
-    restartGame();
+    titleWidget = NULL;
+    oglWidget = NULL;
 
     createActions();
     createMenus();
     createMenuBar();
 
     setMenuBar( menuBar );
-    menuBar->show();
+
+    swapToTitle();
 }
 
 //
 // PUBILC SLOTS ////////////////////////////////////////////////////////////////
 //
 
-/**
- * @brief      Slot to restart the entire game.
- */
-void MainWindow::restartGame()
+void MainWindow::swapToTitle()
 {
+    menuBar->hide();
 
-    if( oglWidget != NULL )
+    titleWidget = new TitleWidget();
+
+    connect( titleWidget, SIGNAL( clickedPlay() ), this, SLOT( swapToGame() ) );
+    connect( titleWidget, SIGNAL( clickedExit() ), QApplication::instance(),
+        SLOT( quit() ) );
+
+    setCentralWidget( titleWidget );
+    if( oglWidget != NULL ){
         delete oglWidget;
+        oglWidget = NULL;
+    }
+}
+
+void MainWindow::swapToGame()
+{
+    menuBar->show();
 
     QSurfaceFormat format;
     format.setDepthBufferSize( 24 );
@@ -48,6 +61,19 @@ void MainWindow::restartGame()
     oglWidget->setFormat( format );
 
     setCentralWidget( oglWidget );
+    if( titleWidget != NULL ){
+        delete titleWidget;
+        titleWidget = NULL;
+    }
+}
+
+/**
+ * @brief      Slot to restart the entire game.
+ */
+void MainWindow::restartGame()
+{
+    QProcess::startDetached(QApplication::applicationFilePath());
+    exit(12);
 }
 
 //
