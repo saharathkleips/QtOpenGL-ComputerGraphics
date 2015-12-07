@@ -44,6 +44,7 @@ public:
     virtual void teardownGL();
 
 protected slots:
+    void pause();
     void update();
 
 protected:
@@ -79,6 +80,9 @@ private:
 
     // World Timer
     Time updateTimer;
+
+    // Pause flag
+    bool isPaused = false;
 };
 
 #endif  //  OGL_WIDGET_H

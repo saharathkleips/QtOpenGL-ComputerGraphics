@@ -141,18 +141,30 @@ void OGLWidget::update()
     float dt = updateTimer.deltaTime();
     Input::update();
     flyThroughCamera();
-    controlBoard();
 
-    for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
-        iter != renderables.end(); iter++ )
+    if( !isPaused )
     {
-        (*iter)->update();
+        controlBoard();
+
+        for( QMap<QString, Renderable*>::iterator iter = renderables.begin(); 
+            iter != renderables.end(); iter++ )
+        {
+            (*iter)->update();
+        }
+
+        score += dt * 100;
+        m_dynamicsWorld->stepSimulation( dt, 10 );        
     }
 
-    score += dt * 100;
-
-    m_dynamicsWorld->stepSimulation( dt, 10 );
     QOpenGLWidget::update();
+}
+
+/**
+ * @brief      Public slot to invert the pause state of the game.
+ */
+void OGLWidget::pause()
+{
+    isPaused = !isPaused;
 }
 
 //
