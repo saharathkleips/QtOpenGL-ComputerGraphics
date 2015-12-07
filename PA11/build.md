@@ -17,7 +17,7 @@ make
 ## Execute Program
 Navigate to the `bin` directory.
 ```
-./AirHockey.exe
+./Labyrinth.exe
 ```  
 
 ## Clean Compilation Files
