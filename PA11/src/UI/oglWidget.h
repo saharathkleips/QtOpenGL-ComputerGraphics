@@ -25,6 +25,7 @@
 #include "3D/renderable.h"
 #include "Maze/labyrinth.h"
 #include "Maze/ball.h"
+#include "Maze/wall.h"
 
 class OGLWidget    :    public QOpenGLWidget,
                         protected QOpenGLFunctions
@@ -59,6 +60,9 @@ private:
 
     // OpenGL Objects
     QMap<QString, Renderable*> renderables;
+
+    // Invisible Bullet object
+    Wall* m_invisibleWall;
 
     // 3D data
     QMatrix4x4 projection;
