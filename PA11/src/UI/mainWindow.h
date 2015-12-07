@@ -32,6 +32,7 @@ private:
 
     QMenuBar* menuBar;
     QMenu* menuFile;
+    QAction* actionPauseProgram;
     QAction* actionRestartGame;
     QAction* actionExitProgram;
 };

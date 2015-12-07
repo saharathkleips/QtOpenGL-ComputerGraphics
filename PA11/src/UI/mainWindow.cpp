@@ -60,6 +60,8 @@ void MainWindow::swapToGame()
     oglWidget = new OGLWidget();
     oglWidget->setFormat( format );
 
+    connect( actionPauseProgram, SIGNAL(triggered()), oglWidget , SLOT(pause()) );
+
     setCentralWidget( oglWidget );
     if( titleWidget != NULL ){
         delete titleWidget;
@@ -91,6 +93,10 @@ void MainWindow::createActions()
     connect( actionExitProgram, SIGNAL( triggered() ), 
         QApplication::instance(), SLOT( quit() ) );
 
+    actionPauseProgram = new QAction( "Pause Program", this );
+    actionPauseProgram->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_P ) );
+    actionPauseProgram->setStatusTip( "Pauses the program." );
+
     actionRestartGame = new QAction( "Restart Game", this );
     actionRestartGame->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_R ) );
     actionRestartGame->setStatusTip( "Restarts the game." );
@@ -104,6 +110,7 @@ void MainWindow::createActions()
 void MainWindow::createMenus()
 {
     menuFile = new QMenu( "&File" );
+    menuFile->addAction( actionPauseProgram );
     menuFile->addAction( actionRestartGame );
     menuFile->addAction( actionExitProgram );
 }

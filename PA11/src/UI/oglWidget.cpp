@@ -319,7 +319,7 @@ void OGLWidget::controlBoard()
 
 
     // Update vertical rotation
-    if( Input::keyPressed( Qt::Key_Up ) )
+    else if( Input::keyPressed( Qt::Key_Up ) )
     {
         camera.rotate( rotationSpeed, QVector3D(1, 0, 0) );
         camera.translate( 0, 0, 0.70f );        
