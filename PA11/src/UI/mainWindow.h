@@ -9,6 +9,7 @@
 
 #include "oglWidget.h"
 #include "titleWidget.h"
+#include "winWidget.h"
 
 class MainWindow : public QMainWindow
 {
@@ -20,6 +21,7 @@ public:
 public slots:
     void swapToTitle();
     void swapToGame();
+    void swapToWin();
     void restartGame();
 
 private:
@@ -29,6 +31,7 @@ private:
 
     OGLWidget* oglWidget;
     TitleWidget* titleWidget;
+    WinWidget* winWidget;
 
     QMenuBar* menuBar;
     QMenu* menuFile;
