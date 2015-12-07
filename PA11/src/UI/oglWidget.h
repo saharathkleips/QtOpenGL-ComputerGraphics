@@ -15,6 +15,7 @@
 
 #include <QDebug>
 #include <QString>
+#include <QMediaPlayer>
 
 #include <btBulletDynamicsCommon.h>
 
