@@ -255,7 +255,7 @@ void OGLWidget::flyThroughCamera()
 void OGLWidget::controlBoard()
 {
     const float rotationSpeed = 0.5f;
-    const float rollingSpeed = 1.0f;
+    const float rollingSpeed = 0.5f;
     btVector3 gravity = m_dynamicsWorld->getGravity();
 
     /* I suppose gravity being relative to camera would be best, here is some code incase you want
