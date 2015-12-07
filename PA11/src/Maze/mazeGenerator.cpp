@@ -1,5 +1,4 @@
 #include "mazeGenerator.h"
-#include <QDebug>
 
 #define Grid std::vector< std::vector<int> >
 #define Cell std::tuple<int, int>
