@@ -144,6 +144,13 @@ void Camera3D::setRotation( float angle, float x, float y, float z )
     setRotation( QQuaternion::fromAxisAndAngle( x, y, z, angle ) );
 }
 
+void Camera3D::setMatrix( const QMatrix4x4 &newMatrix )
+{
+    m_matrixWasSet = true;
+    m_world = newMatrix;
+}
+
+
 //
 // ACCESSORS ///////////////////////////////////////////////////////////////////
 // 
@@ -175,9 +182,17 @@ const QQuaternion& Camera3D::rotation() const
  */
 const QMatrix4x4& Camera3D::toMatrix()
 {
-    m_world.setToIdentity();
-    m_world.rotate( m_rotation.conjugate() );
-    m_world.translate( -m_translation );
+    if( !m_matrixWasSet )
+    {
+        m_world.setToIdentity();
+        m_world.rotate( m_rotation.conjugate() );
+        m_world.translate( -m_translation );
+    }
+
+    else
+    {
+        m_matrixWasSet = false;
+    }
 
     return m_world;
 }

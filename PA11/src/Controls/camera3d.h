@@ -29,6 +29,7 @@ public:
     void setRotation( const QQuaternion& r );
     void setRotation( float angle, const QVector3D& axis );
     void setRotation( float angle, float ax, float ay, float az );
+    void setMatrix( const QMatrix4x4 &newMatrix );
 
     // Accessors
     const QVector3D& translation() const;
@@ -44,6 +45,8 @@ private:
     QVector3D m_translation;
     QQuaternion m_rotation;
     QMatrix4x4 m_world;
+
+    bool m_matrixWasSet = false;
 };
 
 #ifndef QT_DEBUG_TRANSFORM_STREAM
